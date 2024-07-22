@@ -45,16 +45,17 @@ export const Card = ({
         )}
       >
         <Image
-          src={`http://77.243.80.138/media/${image}`}
+          src={`http://77.243.80.138:81/media/${image}`}
           fill
-          alt="te"
-          className="absolute left-0 right-0 top-0 bottom-0 "
+          // objectFit="cover"
+          alt="image"
+          className="absolute  left-0 right-0 top-0 bottom-0 "
         />
       </div>
       <div>
         <span className="text-sm">{date}</span>
         <h2 className="font-bold text-xl">{title}</h2>
-        <p>{content.length > 90 ? `${content.slice(0, 90)}...` : content}</p>
+        <p>{variant === 'horizontal' ? content : content.length > 90 ? `${content.slice(0, 90)}...` : content}</p>
       </div>
     </Comp>
   );

@@ -6,6 +6,9 @@ export const Header = () => {
   return (
     <header className="relative  flex flex-col   w-full ">
       <section className="bg-red-950 min-h-10 flex gap-6 justify-end pr-3 ">
+        <section>
+          sdfsf
+        </section>
         <ChangeLocale />
         <BurgerMenu />
       </section>

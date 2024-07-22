@@ -26,7 +26,7 @@ export default async function Layout({
           {children}
         </div>
       </main>
-      <footer className="w-full h-[435px]  bg-cyan-400">
+      <footer className="w-full   bg-red-950">
         <div className=" max-w-[1200px] mx-auto p-10 ">
           <div className=" flex justify-between items-center mb-10">
             <div className="flex flex-col gap-4 items-start">
@@ -48,21 +48,21 @@ export default async function Layout({
               <div className="flex flex-col gap-3">
                 <div className="flex gap-4">
                   <Phone />
-                  <a href="tel:+7 /7172/ 21-71-06">+7 /7172/ 21-71-06</a>
+                  <a href="tel:+7 /7172/ 21-71-06">+7 (7222) 42-32-24</a>
                 </div>
                 <div className="flex gap-4">
                   <Mail />
-                  <a href="email:prof_adilet@mail.ru">prof_adilet@mail.ru</a>
+                  <a href="email:prof_adilet@mail.ru">semey@abu.edu.kz</a>
                 </div>
                 <div className="flex gap-4">
                   <MapPin />
-                  <span>Астана, проспект Абая, 38, офис 401</span>
+                  <span>Область Абай, г. Семей, ул. Мәңгілік Ел, 11</span>
                 </div>
               </div>
             </div>
           </div>
           <Separator />
-          <span className="text-gray-600 block mt-14">
+          <span className="text-white block mt-4">
             ©{new Date().getFullYear()} Все права защищены.
           </span>
         </div>
