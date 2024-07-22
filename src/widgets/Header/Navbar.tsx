@@ -1,54 +1,18 @@
 "use client";
 
-import { getNavbarPages, getPages } from "@/shared/api/pages";
+import { getNavbarPages } from "@/shared/api/pages";
 import { NavPage } from "@/shared/lib/types";
-import { cn } from "@/shared/lib/utils";
 import {
-  Button,
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuPortal,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
   Skeleton,
 } from "@/shared/ui";
-import { BurgerMenu } from "@/widgets/BurgerMenu/BurgetMenu";
 import { useQuery } from "@tanstack/react-query";
 import clsx from "clsx";
 import {
-  User,
-  CreditCard,
-  Settings,
-  Keyboard,
-  Users,
-  UserPlus,
-  Mail,
-  MessageSquare,
-  PlusCircle,
-  Plus,
-  Github,
-  LifeBuoy,
-  Cloud,
-  LogOut,
-  ArrowRight,
-  ArrowDown01,
-  ArrowDown,
+
   ChevronRight,
-  ChevronLeft,
 } from "lucide-react";
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
@@ -59,7 +23,6 @@ export const Navbar = () => {
   const {
     data: pages,
     isFetching,
-    error,
   } = useQuery({
     queryKey: ["navbar"],
     queryFn: async () => {
@@ -93,21 +56,27 @@ export const Navbar = () => {
   return (
     <nav
       className={clsx(
-        "min-h-[76px]   md:z-50 md:top-0 hidden md:flex justify-center items-center  bg-white shadow-xl",
+        "pt-2 pb-2  md:z-50 md:top-0 hidden md:flex justify-center items-center  bg-white shadow-xl",
         scrolled ? "md:fixed md:left-0 md:right-0 md:top-0" : "md:static",
       )}
     >
-      <ul className="max-w-[1200px] mx-auto gap-5 items-center justify-center flex ">
-        {isFetching ? (
-          <Skeleton className="w-[500px] h-10" />
-        ) : pages ? (
-          <section className="flex text-cyan-500  text-start gap-5 text-xl">
-            <NavList locale={params.locale} pages={pages} />
-          </section>
-        ) : (
-          <span>Навигация не найдена</span>
-        )}
-      </ul>
+      <div className="w-[1200px] flex">
+        <Link href="/" className="flex-grow">
+          <img src="/images/logo.svg" alt="logo" style={{ width: "80px", height: "80px" }} />
+        </Link>
+        <ul className=" gap-5 items-center justify-center flex flex-grow-0">
+          {isFetching ? (
+            <Skeleton className="w-[500px] h-10" />
+          ) : pages ? (
+            <section className="flex text-cyan-500  text-start gap-5 text-xl">
+              <NavList locale={params.locale} pages={pages} />
+            </section>
+          ) : (
+            <span>Навигация не найдена</span>
+          )}
+
+        </ul>
+      </div>
     </nav>
   );
 };
@@ -127,7 +96,7 @@ const NavList = ({
       return (
         <Link
           className={clsx(
-            "text-center p-3 rounded-md  hover:bg-gray-100",
+            "text-center text-red-950 p-3 rounded-md  hover:bg-gray-100",
             path == `/${locale}${page.slug}` && "font-bold",
           )}
           href={`/${locale}/${page.slug}`}
@@ -141,15 +110,15 @@ const NavList = ({
         <DropdownMenu open={open} onOpenChange={setOpen} key={page.id}>
           <DropdownMenuTrigger asChild>
             <div className="p-3 rounded-md flex gap-2 items-center text-center  justify-normal hover:bg-gray-100">
-              <span className="ml-5">{page.title}</span>
+              <span className="ml-5 text-red-950">{page.title}</span>
               <ChevronRight
-                className={clsx("transition", !open ? "rotate-0" : "rotate-90")}
+                className={clsx("transition text-red-950", !open ? "rotate-0" : "rotate-90")}
               />
             </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent
             align="start"
-            className=" flex flex-col gap-3  text-cyan-500 "
+            className=" flex flex-col gap-3  text-red-950 "
           >
             <NavList locale={locale} pages={page.children} />
           </DropdownMenuContent>

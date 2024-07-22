@@ -5,12 +5,6 @@ import {
   Drawer,
   DrawerTrigger,
   DrawerContent,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerDescription,
-  DrawerFooter,
-  Button,
-  DrawerClose,
 } from "@/shared/ui";
 import { useQuery } from "@tanstack/react-query";
 import clsx from "clsx";
@@ -22,8 +16,6 @@ export const BurgerMenu = () => {
   const params = useParams();
   const {
     data: pages,
-    isFetching,
-    error,
   } = useQuery({
     queryKey: ["navbar"],
     queryFn: async () => {
@@ -39,10 +31,10 @@ export const BurgerMenu = () => {
     <Drawer direction="right">
       <DrawerTrigger>
         <div className="flex justify-center items-center md:hidden ">
-          <Menu size={32} />
+          <Menu size={32} color="#fff" />
         </div>
       </DrawerTrigger>
-      <DrawerContent className="rounded-none bg-cyan-500  border-none px-4 py-10">
+      <DrawerContent className="rounded-none bg-red-950  border-none px-4 py-10">
         <div className="flex flex-col gap-3 text-xl text-white">
           {pages?.map((p) => (
             <MenuLink key={p.id} page={p} locale={params.locale} />
@@ -76,7 +68,7 @@ const MenuLink = ({
         <DrawerTrigger className="text-start flex justify-start items-center gap-3">
           {page.title} <ChevronRight className="mt-1" />
         </DrawerTrigger>
-        <DrawerContent className="rounded-none bg-cyan-500  border-none px-4 py-10">
+        <DrawerContent className="rounded-none bg-red-950  border-none px-4 py-10">
           <div className="flex flex-col gap-3 text-xl text-white ">
             {page.children.map((p) => (
               <MenuLink key={p.id} page={p} locale={locale} />

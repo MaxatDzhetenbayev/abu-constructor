@@ -44,7 +44,7 @@ export const BreadCrumbs = ({
     <Breadcrumb>
       <BreadcrumbList>
         {crumbs.map((crumb, idx) => (
-          <BreadcrumbItem className="text-cyan-500 font-bold text-xl" key={idx}>
+          <BreadcrumbItem className="text-red-950 font-bold text-xl" key={idx}>
             <BreadcrumbLink
               href={
                 crumb.type == "content" ? `/${locale}${crumb.slug}` : undefined

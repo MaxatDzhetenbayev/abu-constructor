@@ -23,7 +23,7 @@ export default async function Layout({
           {children}
         </div>
       </main>
-      <footer className="w-full h-20 bg-cyan-400"></footer>
+      <footer className="w-full h-20 bg-red-950"></footer>
     </section>
   );
 }
