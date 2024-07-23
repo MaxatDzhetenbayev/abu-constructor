@@ -149,7 +149,7 @@ export function useTemplateWidget<StateProps>({
           return obj;
         }, {}),
       );
-		
+
       const temp: Record<string, StateProps> = {};
       let items = props.ruOptions.items;
 
@@ -229,7 +229,7 @@ export function useTemplateWidget<StateProps>({
           },
         ),
       });
-    } catch (e) {}
+    } catch (e) { }
   };
 
   const writeMainPropsChanges = (key: string, value: string) => {

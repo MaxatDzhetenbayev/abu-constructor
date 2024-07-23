@@ -1,6 +1,6 @@
 "use client";
 import { TemplatesSelect } from "@/features";
-import {  useTemplateWidget } from "@/shared/hooks/useTemplateWidget";
+import { useTemplateWidget } from "@/shared/hooks/useTemplateWidget";
 import {
   BackedPage,
 } from "@/shared/lib/types";

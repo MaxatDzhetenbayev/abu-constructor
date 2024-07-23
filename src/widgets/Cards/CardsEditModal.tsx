@@ -1,4 +1,5 @@
 "use client";
+import { WidgetTemplateCheckbox } from "@/app/entities/WidgetTemplateCheckbox";
 import { WidgetVariantSelect } from "@/app/entities/WidgetVariantSelect";
 import { TemplatesSelect } from "@/features";
 import { useTemplateWidget } from "@/shared/hooks/useTemplateWidget";
@@ -106,39 +107,20 @@ const ModalContent = ({
     widgetStateFields: ["titleRu", "titleKz", "variant"],
     itemsStateFields: ["titleRu", "titleKz", "contentRu", "contentKz", "image"],
   });
-  console.log(widgetMainProps);
 
   return (
     <>
       <WidgetVariantSelect variant={widgetMainProps.variant} writeFunction={writeMainPropsChanges} />
-      {modalVariant === "card" && (
-        <>
-          {savedTemplate ? (
-            <span>Использованный шаблон {savedTemplate}</span>
-          ) : (
-            <div className="flex items-center gap-2">
-              <Checkbox
-                id="template"
-                checked={hasTemplate}
-                onCheckedChange={() => {
-                  setHasTemplate(!hasTemplate);
-                  setSelectedTemplate(null);
-                }}
-              />
-              <Label htmlFor="template" className="mt-1">
-                Есть темплейт
-              </Label>
-            </div>
-          )}
-          {hasTemplate && !savedTemplate && (
-            <TemplatesSelect
-              savedTemplate={savedTemplate}
-              templates={templates}
-              onSelect={handleTemplate}
-            />
-          )}
-        </>
-      )}
+      <WidgetTemplateCheckbox
+        handleTemplate={handleTemplate}
+        hasTemplate={hasTemplate}
+        modalVariant={modalVariant}
+        savedTemplate={savedTemplate}
+        setHasTemplate={setHasTemplate}
+        setSelectedTemplate={setSelectedTemplate}
+        templates={templates}
+
+      />
       <div className="flex flex-col md:flex-row gap-3">
         <Input
           label="Title RU"
