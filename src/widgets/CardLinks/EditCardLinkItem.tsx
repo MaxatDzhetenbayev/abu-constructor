@@ -1,9 +1,9 @@
+'use client';
 import { backendImageUrl } from "@/shared/lib/constants";
 import { EditItem, Button, Input } from "@/shared/ui";
 import { CardsEditModal } from "@/widgets/Cards/CardsEditModal";
 import {
   CarouselEditModal,
-  EditCarouselItemProps,
 } from "@/widgets/Carousel/CarouselEditModal";
 import { ListEditModal } from "@/widgets/List/ListEditModal";
 import { TextEditModal } from "@/widgets/Text/TextEditModal";
