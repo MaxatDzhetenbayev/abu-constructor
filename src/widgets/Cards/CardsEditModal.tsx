@@ -1,4 +1,5 @@
 "use client";
+import { WidgetVariantSelect } from "@/app/entities/WidgetVariantSelect";
 import { TemplatesSelect } from "@/features";
 import { useTemplateWidget } from "@/shared/hooks/useTemplateWidget";
 import { BackedPage } from "@/shared/lib/types";
@@ -109,21 +110,7 @@ const ModalContent = ({
 
   return (
     <>
-      <div className="flex gap-2 items-center">
-        <Label>Select card variant</Label>
-        <Select
-          value={widgetMainProps.variant}
-          onValueChange={(value) => writeMainPropsChanges("variant", value)}
-        >
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Variant" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="base">Base</SelectItem>
-            <SelectItem value="horizontal">Horizontal</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
+      <WidgetVariantSelect variant={widgetMainProps.variant} writeFunction={writeMainPropsChanges} />
       {modalVariant === "card" && (
         <>
           {savedTemplate ? (
