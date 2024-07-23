@@ -2,8 +2,8 @@ import { BackedPage } from "@/shared/lib/types";
 
 export interface ICardLinkProps {
   image: string;
-  title: string;
-  href: string;
+  Title: string;
+  HRef: string;
 }
 
 export interface ICardLinkListProps {

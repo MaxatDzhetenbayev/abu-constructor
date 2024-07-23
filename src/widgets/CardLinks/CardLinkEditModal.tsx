@@ -88,7 +88,7 @@ export const ModalContent = ({
     kzPageId,
     queryKey,
     order,
-    widgetStateFields: ["titleRu", "titleKz"],
+    widgetStateFields: [],
     itemsStateFields: ["TitleRu", "TitleKz", "image", "HRefRu", "HRefKz"],
   });
 
