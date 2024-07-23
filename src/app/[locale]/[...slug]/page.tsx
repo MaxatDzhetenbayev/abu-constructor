@@ -2,7 +2,6 @@ import { getPageBySlug } from "@/shared/api/pages";
 import { getWidgetsToDisplay } from "@/shared/api/widgets";
 import { capitalize } from "@/shared/lib";
 import { Cards, Carousel, Text, List } from "@/widgets";
-import { notFound } from "next/navigation";
 
 const getPageContent = async (slug: string[], locale: string) => {
   console.log(slug);
@@ -24,14 +23,11 @@ export default async function Page({
   params: { locale: string; slug: string[] };
 }) {
   const data = await getPageContent(params.slug, params.locale);
-  console.log(data, "DATA");
 
-  // let content = JSON.parse(localStorage.getItem("1720511119640") || "[]");
-  // if (data.length == 0) return notFound();
   return data
     .sort((a, b) => a.order - b.order)
     .map((m: any) =>
-      getWidgetByName(capitalize(m.widget_type), JSON.parse(m.options)),
+      getWidgetByName(capitalize(m.widget_type), JSON.parse(m.options))
     );
 }
 

@@ -9,12 +9,15 @@ interface CardsProps {
 export const Cards = ({ title, variant, items }: CardsProps) => {
   return (
     <section className="flex flex-col gap-3">
-      <h2 className="text-2xl font-bold">{title}</h2>
+      <h2 className="text-2xl font-bold">
+        {String(title).toLocaleUpperCase()}
+      </h2>
       <div
         className={cn(
           variant == "base"
-            ? "grid grid-cols-[auto] sm:grid-cols-[auto_auto] md:grid-cols-[auto_auto_auto] lg:grid-cols-[repeat(3_auto)]  gap-10 "
+            ? "grid gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
             : "flex flex-col gap-2",
+          "mt-2"
         )}
       >
         {items.map((i, idx) => (

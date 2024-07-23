@@ -38,13 +38,14 @@ import {
 } from "@/shared/api/widgets";
 import { queryClient } from "@/shared/lib/client";
 import { useSearchParams } from "next/navigation";
-const widgetsList = ["Cards", "Carousel", "List", "Text"];
+import { CardLinkEditModal } from '@/widgets/CardLinks/CardLinkEditModal';
+const widgetsList = ["Cards", "Carousel", "List", "Text", "CardLinks"];
 //TODO: Pass it there, not in EditBtn
 const getModal = (
   modal: string,
   order: number,
   ruPageId: string | null,
-  kzPageId: string | null,
+  kzPageId: string | null
 ) => {
   if (ruPageId && kzPageId) {
     const baseProps = {
@@ -63,6 +64,10 @@ const getModal = (
         return <ListEditModal {...baseProps} />;
       case "Text":
         return <TextEditModal {...baseProps} />;
+      case "CardLinks":
+        return <CardLinkEditModal {...baseProps} />;
+      default:
+        return null;
     }
   }
 };
@@ -101,7 +106,7 @@ export const PageEditorContent = ({
             name: widget.widget_type,
             props: widget,
           }))
-          .sort((a, b) => a.id - b.id),
+          .sort((a, b) => a.id - b.id)
       );
   }, [data, isFetching]);
   const {
@@ -128,7 +133,7 @@ export const PageEditorContent = ({
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
-    }),
+    })
   );
 
   const getLiPos = (id: UniqueIdentifier) =>
