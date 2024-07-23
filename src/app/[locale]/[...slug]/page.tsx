@@ -2,6 +2,7 @@ import { getPageBySlug } from "@/shared/api/pages";
 import { getWidgetsToDisplay } from "@/shared/api/widgets";
 import { capitalize } from "@/shared/lib";
 import { Cards, Carousel, Text, List } from "@/widgets";
+import { CardLinks } from "@/widgets/CardLinks/CardLinks";
 
 const getPageContent = async (slug: string[], locale: string) => {
   console.log(slug);
@@ -39,9 +40,10 @@ const getWidgetByName = (name: string, props: any) => {
       return <Cards {...props} />;
     case "List":
       return <List {...props} />;
-
     case "Text":
       return <Text {...props} />;
+    case "CardLinks":
+      return <CardLinks {...props} />;
     default:
       return <></>;
   }
