@@ -1,23 +1,13 @@
 "use client";
-import { WidgetItems } from "@/app/entities/WidgetItems";
-import { WidgetTemplateCheckbox } from "@/app/entities/WidgetTemplateCheckbox";
-import { WidgetVariantSelect } from "@/app/entities/WidgetVariantSelect";
-import { useTemplateWidget } from "@/shared/hooks/useTemplateWidget";
-import { BackedPage } from "@/shared/lib/types";
+import { EditCardItem } from "@/widgets/Cards/EditCardItem";
+import { WidgetTemplateCheckbox, WidgetItems, WidgetVariantSelect } from "@/app/entities";
 import {
   Button,
   Input,
   WidgetView,
 } from "@/shared/ui";
-import { EditCardItem, EditCardItemProps } from "@/widgets/Cards/EditCardItem";
-
-interface CardsEditModalProps {
-  variant?: "dialog" | "card";
-  order: number;
-  ruPageId: number | null;
-  kzPageId: number | null;
-  queryKey: string;
-}
+import { CardsEditModalProps } from './model/Cards.interface'
+import { useTemplateWidget } from "@/shared/hooks/useTemplateWidget";
 
 export const CardsEditModal = ({
   variant = "card",
@@ -43,20 +33,6 @@ export const CardsEditModal = ({
       }
     />
   );
-};
-
-export type EditCardProps = {
-  titleRu: string;
-  titleKz: string;
-  contentRu: string;
-  contentKz: string;
-  href?: string;
-  image: File | null;
-  templateSlug: string;
-  page?: {
-    ru: BackedPage;
-    kz: BackedPage;
-  };
 };
 
 const ModalContent = ({
