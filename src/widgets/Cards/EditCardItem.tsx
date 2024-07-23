@@ -11,19 +11,23 @@ import { TextEditModal } from "@/widgets/Text/TextEditModal";
 import { useQuery } from "@tanstack/react-query";
 import { useState, Fragment, useEffect } from "react";
 
+
+export interface EditCardItemProps {
+  id: string;
+  deleteCard: () => void;
+  card: EditCardProps;
+  templateWidgets?: string[];
+  writeChanges: (id: string, field: string, value: string | File) => void;
+
+}
+
 export const EditCardItem = ({
   id,
   deleteCard,
   card,
   templateWidgets,
   writeChanges,
-}: {
-  id: string;
-  card: EditCardProps;
-  writeChanges: (id: string, field: string, value: string | File) => void;
-  templateWidgets?: string[];
-  deleteCard: () => void;
-}) => {
+}: EditCardItemProps) => {
   //getWidgetProps for template
   const [image, setImage] = useState<string | ArrayBuffer | null>(() => {
     if (card.image) {
