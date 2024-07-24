@@ -1,29 +1,36 @@
 "use client";
-import { Widget } from "@/shared/lib/types";
-import { Button, Dialog, DialogContent, DialogTrigger } from "@/shared/ui";
 import { Settings } from "lucide-react";
-import { useSearchParams } from "next/navigation";
-import { cloneElement, ReactNode, useState } from "react";
+import { ReactNode } from "react";
+import {
+  Button,
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTrigger,
+} from "@/shared/ui";
+import { DialogDescription, DialogTitle } from "@radix-ui/react-dialog";
 
 export const EditWidgetContentDialog = ({
   modal,
-  order,
-  widget,
+  name,
 }: {
   modal: ReactNode;
-  order: number;
-  widget: Widget;
+  name: string;
 }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        {/* save widget order on click */}
         <Button size={"icon"}>
           <Settings />
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-sm sm:max-w-full ">
-        {/* TODO */}
+        <DialogHeader>
+          <DialogTitle className="hidden">Виджет {name}</DialogTitle>
+          <DialogDescription className="hidden">
+            Редактирование виджета {name}
+          </DialogDescription>
+        </DialogHeader>
         {modal}
       </DialogContent>
     </Dialog>

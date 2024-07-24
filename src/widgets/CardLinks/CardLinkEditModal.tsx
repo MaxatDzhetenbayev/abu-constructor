@@ -17,7 +17,7 @@ import { EditCardLinkItem } from "./EditCardLinkItem";
 import { TemplatesSelect } from "@/features";
 
 interface EditProps {
-  variant: "card";
+  variant?: "card" | "dialog";
   ruPageId: number | null;
   kzPageId: number | null;
   queryKey: string;
