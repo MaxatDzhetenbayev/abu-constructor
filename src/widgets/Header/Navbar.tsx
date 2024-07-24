@@ -6,8 +6,9 @@ import { useQuery } from "@tanstack/react-query";
 import clsx from "clsx";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { NavigationList } from "./Navigation/NavigationList";
+import { useScroll } from "@/shared/hooks/useScroll";
 
 export const Navbar = () => {
   const params = useParams();
@@ -25,29 +26,8 @@ export const Navbar = () => {
     refetchOnWindowFocus: false,
   });
 
-  const [scrolled, setScrolled] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<null | number>(null);
-
-
-
-  useEffect(() => {
-    if (document && window) {
-      document.addEventListener("scroll", () => {
-        if (window.scrollY >= 172) {
-          setScrolled(true);
-        } else {
-          setScrolled(false);
-        }
-      });
-    }
-    return document.removeEventListener("scroll", () => {
-      if (window.scrollY >= 172) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    });
-  }, []);
+  const [scrolled] = useScroll(40)
 
   return (
     <nav
@@ -76,7 +56,6 @@ export const Navbar = () => {
           ) : (
             <span>Навигация не найдена</span>
           )}
-
         </section>
       </div>
     </nav>

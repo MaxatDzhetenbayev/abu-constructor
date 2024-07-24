@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { ReactNode } from 'react'
 import { DropNavigation } from './DropNavigation';
+import { useScroll } from '@/shared/hooks/useScroll';
 
 interface NavigationItemProps {
     item: NavPage;
@@ -18,6 +19,7 @@ export const NavigationItem = ({ item, locale, hoveredItem, handleMouseEnter, ha
     const path = usePathname();
     const isHoveredItem = hoveredItem === item.id;
     const isHovered = Boolean(hoveredItem);
+    const [scrolled] = useScroll(40)
 
     if (item.children.length === 0 && item.navigation_type == "content") {
         return <Link className={clsx(
@@ -50,7 +52,7 @@ export const NavigationItem = ({ item, locale, hoveredItem, handleMouseEnter, ha
                     />
                 </button>
                 {
-                    isHoveredItem && <DropNavigation item={item} locale={locale} handleMouseLeave={handleMouseLeave} />
+                    isHoveredItem && <DropNavigation item={item} locale={locale} scrolled={scrolled} handleMouseLeave={handleMouseLeave} />
                 }
             </>
         )

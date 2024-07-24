@@ -9,12 +9,17 @@ interface DropNavigationProps {
     item: NavPage;
     locale: string | string[];
     handleMouseLeave: () => void;
+    scrolled: boolean;
 }
 
-export const DropNavigation = ({ handleMouseLeave, item, locale }: DropNavigationProps) => {
+export const DropNavigation = ({ handleMouseLeave, item, locale, scrolled }: DropNavigationProps) => {
     const path = usePathname();
+
     return (
-        <section onMouseLeave={handleMouseLeave} className="absolute left-0 top-[134px] pt-3 w-full bg-[#640000] h-[300px] ">
+        <section onMouseLeave={handleMouseLeave} className={clsx(
+            "absolute left-0  pt-3 w-full bg-[#640000] h-[300px] ",
+            scrolled ? "top-[94px]" : "top-[134px]"
+        )}>
             <ul className="flex justify-center  gap-[60px] ">
                 {item.children.map((child) => (
                     <li key={child.id}>
