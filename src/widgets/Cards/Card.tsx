@@ -47,9 +47,10 @@ export const Card = ({
         <Image
           src={`http://77.243.80.138:81/media/${image}`}
           fill
-          //  objectFit="cover"
+          objectFit="cover"
+          objectPosition="top"
           alt="image"
-          //  className="absolute left-0 right-0 top-0 bottom-0 "
+          className="absolute left-0 right-0 top-0 bottom-0"
         />
       </div>
       <div className="p-4">

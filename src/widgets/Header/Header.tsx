@@ -10,7 +10,7 @@ export const Header = () => {
   const params = useParams();
 
   return (
-    <header className="relative  flex flex-col gap-10 w-full ">
+    <header className="relative  flex flex-col  w-full ">
       <section className="bg-red-950 min-h-10 flex gap-20 justify-end  pr-3 ">
         <section className="flex gap-10 text-white items-center">
           <Link href={`/${params.locale}/main`}>Обучающимся</Link>
