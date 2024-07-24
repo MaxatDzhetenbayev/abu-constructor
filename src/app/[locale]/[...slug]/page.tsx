@@ -5,10 +5,8 @@ import { Cards, Carousel, Text, List } from "@/widgets";
 import { CardLinks } from "@/widgets/CardLinks/CardLinks";
 
 const getPageContent = async (slug: string[], locale: string) => {
-  console.log(slug);
 
   const page = await getPageBySlug(`/${slug.join("/")}`, locale);
-  console.log(page, "PAGE");
   if (page[0]) {
     const content = await getWidgetsToDisplay(page[0].id, locale);
 
