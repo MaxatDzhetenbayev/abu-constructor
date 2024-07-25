@@ -30,8 +30,8 @@ jobs:
           SERVER_PASSWORD: ${{ secrets.SERVER_PASSWORD }}
         run: |
           sshpass -p "$SERVER_PASSWORD" ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_HOST << 'EOF'
-            docker stop ${{ secrets.DOCKER_HUB_USERNAME }}/abu-project:latest || true
-            docker rm ${{ secrets.DOCKER_HUB_USERNAME }}/abu-project:latest || true
-            docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/abu-project:latest
-            docker run -d ${{ secrets.DOCKER_HUB_USERNAME }}/abu-project:latest -p 3003:3000 ${{ secrets.DOCKER_HUB_USERNAME }}/abu-project:latest
+            echo ${SERVER_PASSWORD} | sudo docker stop ${{ secrets.DOCKER_HUB_USERNAME }}/abu-project:latest || true
+            echo ${SERVER_PASSWORD} | sudo docker rm ${{ secrets.DOCKER_HUB_USERNAME }}/abu-project:latest || true
+            echo ${SERVER_PASSWORD} | sudo docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/abu-project:latest
+            echo ${SERVER_PASSWORD} | sudo docker run -d ${{ secrets.DOCKER_HUB_USERNAME }}/abu-project:latest -p 3003:3000 ${{ secrets.DOCKER_HUB_USERNAME }}/abu-project:latest
           EOF
