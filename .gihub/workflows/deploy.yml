@@ -1,38 +1,25 @@
 name: Deploy Next.js App
-
-on:
-  push:
-    branches:
-      - master
-
-deploy:
+on: push
+jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: "22"
-
       - name: Install dependencies
         run: npm install
-
       - name: Build project
         run: npm run build
-
       - name: Log in to Docker Hub
         run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
-
       - name: Build Docker image
         run: docker build -t maxatdzhetenbayev/abu-project:latest .
-
       - name: Push Docker image to Docker Hub
         run: docker push maxatdzhetenbayev/abu_project:latest
-
       - name: Deploy to Server
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
