@@ -27,9 +27,8 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SERVER_USER: ${{ secrets.SERVER_USER }}
           SERVER_HOST: ${{ secrets.SERVER_HOST }}
+          SERVER_PASSWORD: ${{ secrets.SERVER_PASSWORD }}
         run: |
-          echo "$SSH_PRIVATE_KEY" > id_rsa
-          chmod 600 id_rsa
           sshpass -p "$SERVER_PASSWORD" ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_HOST << 'EOF'
             docker stop ${{ secrets.DOCKER_HUB_USERNAME }}/abu-project:latest || true
             docker rm ${{ secrets.DOCKER_HUB_USERNAME }}/abu-project:latest || true
