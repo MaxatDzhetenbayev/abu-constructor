@@ -28,12 +28,12 @@ jobs:
           SERVER_USER: ${{ secrets.SERVER_USER }}
           SERVER_HOST: ${{ secrets.SERVER_HOST }}
         run: |
-          mkdir -p ~/.ssh
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_HOST << 'EOF'
+          echo "$SSH_PRIVATE_KEY" > id_rsa
+          chmod 600 id_rsa
+          echo "Connecting to $SERVER_USER@$SERVER_HOST"
+          ssh -i id_rsa -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_HOST << 'EOF'
             docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/abu-project:latest
-            docker stop abu-project || true
-            docker rm abu-project || true
-            docker run -d --name abu-project -p 3003:3000 ${{ secrets.DOCKER_HUB_USERNAME }}/abu-project:latest
+            docker stop your_container_name || true
+            docker rm your_container_name || true
+            docker run -d --name your_container_name -p 80:3000 ${{ secrets.DOCKER_HUB_USERNAME }}/abu-project:latest
           EOF
