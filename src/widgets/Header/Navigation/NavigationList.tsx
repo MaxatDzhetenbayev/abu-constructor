@@ -31,6 +31,7 @@ export const NavigationList = ({
             {
                 pages.map((mainPage) =>
                     <NavigationItem
+                        key={mainPage.id}
                         item={mainPage}
                         locale={locale}
                         hoveredItem={hoveredItem}

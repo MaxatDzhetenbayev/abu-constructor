@@ -68,8 +68,12 @@ export const Carousel = ({ items, position }: CarouselProps) => {
             );
           })}
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+        <CarouselPrevious>
+          sdfsdf
+        </CarouselPrevious>
+        <CarouselNext>
+          sdsdfs
+        </CarouselNext>
       </CarouselUI>
     </section>
   );

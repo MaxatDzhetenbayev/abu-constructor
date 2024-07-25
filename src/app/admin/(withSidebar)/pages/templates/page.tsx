@@ -1,7 +1,8 @@
 import { CreateTemplateDialog, PageEditorContent } from "@/features";
+import { withNoSSR } from "@/shared/hooks/useWithNoSSR";
 import { TemplatesListTable } from "@/widgets";
 
-export default function TemplatesPage() {
+function TemplatesPage() {
   return (
     <section>
       <CreateTemplateDialog />
@@ -9,3 +10,5 @@ export default function TemplatesPage() {
     </section>
   );
 }
+
+export default withNoSSR(TemplatesPage);
