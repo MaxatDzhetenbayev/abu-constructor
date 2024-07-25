@@ -33,5 +33,5 @@ jobs:
             echo ${SERVER_PASSWORD} | sudo docker stop ${{ secrets.DOCKER_HUB_USERNAME }}/abu-project:latest || true
             echo ${SERVER_PASSWORD} | sudo docker rm ${{ secrets.DOCKER_HUB_USERNAME }}/abu-project:latest || true
             echo ${SERVER_PASSWORD} | sudo docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/abu-project:latest
-            echo ${SERVER_PASSWORD} | sudo docker run -d ${{ secrets.DOCKER_HUB_USERNAME }}/abu-project:latest -p 3003:3000 ${{ secrets.DOCKER_HUB_USERNAME }}/abu-project:latest
+            echo ${SERVER_PASSWORD} | sudo docker run -p 3003:3000 -d ${{ secrets.DOCKER_HUB_USERNAME }}/abu-project:latest
           EOF
