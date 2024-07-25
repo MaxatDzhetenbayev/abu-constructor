@@ -30,10 +30,9 @@ jobs:
         run: |
           echo "$SSH_PRIVATE_KEY" > id_rsa
           chmod 600 id_rsa
-          echo "Connecting to $SERVER_USER@$SERVER_HOST"
-          ssh -i id_rsa -o StrictHostKeyChecking=no ubuntu@77.243.80.138 << 'EOF'
+          ssh -i id_rsa -o StrictHostKeyChecking=no -t ubuntu@77.243.80.138 << 'EOF'
+            docker stop ${{ secrets.DOCKER_HUB_USERNAME }}/abu-project:latest || true
+            docker rm ${{ secrets.DOCKER_HUB_USERNAME }}/abu-project:latest || true
             docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/abu-project:latest
-            docker stop your_container_name || true
-            docker rm your_container_name || true
-            docker run -d --name your_container_name -p 80:3000 ${{ secrets.DOCKER_HUB_USERNAME }}/abu-project:latest
+            docker run -d ${{ secrets.DOCKER_HUB_USERNAME }}/abu-project:latest -p 3003:3000 ${{ secrets.DOCKER_HUB_USERNAME }}/abu-project:latest
           EOF
