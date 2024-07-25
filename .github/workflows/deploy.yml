@@ -28,7 +28,7 @@ jobs:
           SERVER_USER: ${{ secrets.SERVER_USER }}
           SERVER_HOST: ${{ secrets.SERVER_HOST }}
           SERVER_PASSWORD: ${{ secrets.SERVER_PASSWORD }}
-          DOCKER_IMAGE_NAME: 'abu-project'
+          DOCKER_IMAGE_NAME: "abu-project"
         run: |
           sshpass -p "$SERVER_PASSWORD" ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_HOST << 'EOF'
             echo ${SERVER_PASSWORD} | sudo docker stop $DOCKER_IMAGE_NAME || true
