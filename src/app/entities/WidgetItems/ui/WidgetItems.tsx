@@ -5,11 +5,9 @@ interface IWidgetItemsProps {
     ItemComponent: any;
     writeChanges: any;
     deleteItem: any;
-    selectedTemplate: any;
-
 }
 
-export const WidgetItems = ({ items, ItemComponent, writeChanges, deleteItem, selectedTemplate }: IWidgetItemsProps) => {
+export const WidgetItems = ({ items, ItemComponent, writeChanges, deleteItem }: IWidgetItemsProps) => {
     return (
         <section className="max-h-[460px] flex flex-col gap-10 overflow-y-scroll w-full  rounded-md border p-4 ">
             {Object.keys(items).map((key, idx) => (
@@ -19,9 +17,7 @@ export const WidgetItems = ({ items, ItemComponent, writeChanges, deleteItem, se
                     deleteCard={() => deleteItem(key)}
                     key={idx}
                     id={key}
-                    templateWidgets={
-                        selectedTemplate ? selectedTemplate.widgets : undefined
-                    }
+
                 />
             ))}
         </section>
