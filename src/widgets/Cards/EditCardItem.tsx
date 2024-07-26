@@ -2,7 +2,6 @@ import { backendImageUrl } from "@/shared/lib/constants";
 import { EditItem, Button, Input } from "@/shared/ui";
 import { useState, Fragment, ChangeEvent } from "react";
 import { EditCardItemProps, EditCardProps } from "./model/Cards.interface";
-import { getTemplatesProps } from "@/shared/lib/utils/GetTempaltesProps";
 import { EditFile, EditSection } from "@/app/entities";
 import { TemplatesSelect } from "@/features";
 import { useTemplates } from "@/shared/hooks/useTemplateWidget";
@@ -12,19 +11,18 @@ import { TemplateWidgetsList } from "../TempalteWidgetsList/TempalteWidgetsList"
 export const EditCardItem = ({
   id,
   deleteCard,
-  card,
-  templateWidgets,
+  item,
   writeChanges,
   modalVariant = "card",
 }: EditCardItemProps) => {
-  const { isSaved, templates,  selectedTemplate, onSelect } =
+  const { isSaved, templates, selectedTemplate, onSelect } =
     useTemplates({
-      savedTemplate: card.savedTemplate,
+      savedTemplate: item.savedTemplate,
     });
 
   const [image, setImage] = useState<string | ArrayBuffer | null>(() => {
-    if (card.image) {
-      return `${backendImageUrl}${card.image}`;
+    if (item.image) {
+      return `${backendImageUrl}${item.image}`;
     } else {
       return "";
     }
@@ -41,7 +39,7 @@ export const EditCardItem = ({
     >
       {modalVariant === "card" && (
         <TemplatesSelect
-          savedTemplate={isSaved ? card.savedTemplate : ""}
+          savedTemplate={isSaved ? item.savedTemplate : ""}
           templates={templates}
           onSelect={(template) => {
             onSelect(template, (w) => {
@@ -51,12 +49,12 @@ export const EditCardItem = ({
           }}
         />
       )}
-      <EditCardSection card={card} id={id} writeChanges={writeChanges} />
+      <EditCardSection card={item} id={id} writeChanges={writeChanges} />
       <EditFile id={id} image={image} setImage={setImage} writeChanges={writeChanges} />
-      {(card.templateWidgets || selectedTemplate) && (
+      {(item.templateWidgets || selectedTemplate) && (
         <TemplateWidgetsList
           id={id}
-          saved={card.templateWidgets}
+          saved={item.templateWidgets}
           selectedTemplate={selectedTemplate}
         />
       )}

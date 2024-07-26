@@ -30,7 +30,7 @@ export interface EditCardItemProps {
     id: string;
     deleteCard: () => void;
     modalVariant: "dialog" | "card";
-    card: EditCardProps;
+    item: EditCardProps;
     templateWidgets?: string[];
     writeChanges: (id: string, field: string, value: string | File) => void;
 }
