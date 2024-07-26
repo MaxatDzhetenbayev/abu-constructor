@@ -13,7 +13,7 @@ export const WidgetItems = ({ items, ItemComponent, writeChanges, deleteItem }: 
             {Object.keys(items).map((key, idx) => (
                 <ItemComponent
                     writeChanges={writeChanges}
-                    card={items[key]}
+                    item={items[key]}
                     deleteCard={() => deleteItem(key)}
                     key={idx}
                     id={key}
