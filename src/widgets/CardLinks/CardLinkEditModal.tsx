@@ -1,20 +1,11 @@
 import React from "react";
-import { IEditCardLinkProps } from "./Interfaces";
 import { useTemplateWidget } from "@/shared/hooks/useTemplateWidget";
 import {
   Button,
-  Checkbox,
-  Input,
-  Label,
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
   WidgetView,
 } from "@/shared/ui";
 import { EditCardLinkItem } from "./EditCardLinkItem";
-import { TemplatesSelect } from "@/features";
+import { WidgetItems } from "@/app/entities";
 
 interface EditProps {
   variant?: "card" | "dialog";
@@ -55,7 +46,7 @@ export const ModalContent = ({
   kzPageId,
   order,
   queryKey,
-  modalVariant,
+  modalVariant = "card",
 }: {
   modalVariant?: "dialog" | "card";
   ruPageId: number | null;
@@ -71,17 +62,8 @@ export const ModalContent = ({
     props,
     loading,
     setLoading,
-    hasTemplate,
-    savedTemplate,
     items,
     writeChanges,
-    writeMainPropsChanges,
-    templates,
-    handleTemplate,
-    widgetMainProps,
-    setSelectedTemplate,
-    selectedTemplate,
-    setHasTemplate,
   } = useTemplateWidget({
     widgetName: "CardLinks",
     ruPageId,
@@ -89,53 +71,15 @@ export const ModalContent = ({
     queryKey,
     order,
     widgetStateFields: [],
-    itemsStateFields: ["TitleRu", "TitleKz", "image", "HRefRu", "HRefKz"],
+    itemsStateFields: ["TitleRu", "TitleKz", "image", "HRefRu", "HRefKz", "savedTemplate", "templateWidgets"],
   });
 
   return (
     <>
-      {modalVariant === "card" && (
-        <>
-          {!savedTemplate ? (
-            <div className="flex items-center gap-2">
-              <Checkbox
-                id="template"
-                checked={hasTemplate}
-                onCheckedChange={() => setHasTemplate(!hasTemplate)}
-              />
-              <Label htmlFor="template" className="mt-1">
-                Есть темплейт
-              </Label>
-            </div>
-          ) : (
-            <span>Использованный шаблон {savedTemplate}</span>
-          )}
-          {hasTemplate && !savedTemplate && (
-            <TemplatesSelect
-              savedTemplate={savedTemplate}
-              templates={templates}
-              onSelect={handleTemplate}
-            />
-          )}
-        </>
-      )}
       <Button onClick={addItem} className="w-full">
         Добавить новый элемент
       </Button>
-      <section className="max-h-[460px] flex flex-col gap-10 overflow-y-scroll w-full  rounded-md border p-4 ">
-        {Object.keys(items).map((key, idx) => (
-          <EditCardLinkItem
-            writeChanges={writeChanges}
-            cardLinkItem={items[key]}
-            deleteCardLinklItem={() => deleteItem(key)}
-            key={idx}
-            id={key}
-            templateWidgets={
-              selectedTemplate ? selectedTemplate.widgets : undefined
-            }
-          />
-        ))}
-      </section>
+      <WidgetItems items={items} ItemComponent={EditCardLinkItem} deleteItem={deleteItem} writeChanges={writeChanges} />
       <Button
         loading={loading}
         disabled={loading}

@@ -10,20 +10,28 @@ import { TextEditModal } from "@/widgets/Text/TextEditModal";
 import { useState, Fragment } from "react";
 import { CardLinkEditModal } from "./CardLinkEditModal";
 import { IEditCardLinkProps } from "./Interfaces";
+import Image from "next/image";
+import { TemplatesSelect } from "@/features";
+import { useTemplates } from "@/shared/hooks/useTemplateWidget";
+import { TemplateWidgetsList } from "../TempalteWidgetsList/TempalteWidgetsList";
+import { EditFile, EditSection } from "@/app/entities";
+
+interface IEditCardLinkItemProps {
+  id: string;
+  deleteCardLinklItem: () => void;
+  cardLinkItem: IEditCardLinkProps;
+  writeChanges: (id: string, field: string, value: string | File) => void;
+  modalVariant?: "dialog" | "card";
+}
+
 
 export const EditCardLinkItem = ({
   id,
   deleteCardLinklItem,
   cardLinkItem,
-  templateWidgets,
+  modalVariant = "card",
   writeChanges,
-}: {
-  id: string;
-  cardLinkItem: IEditCardLinkProps;
-  writeChanges: (id: string, field: string, value: string | File) => void;
-  templateWidgets?: string[];
-  deleteCardLinklItem: () => void;
-}) => {
+}: IEditCardLinkItemProps) => {
   const [image, setImage] = useState<string | ArrayBuffer | null>(() => {
     if (cardLinkItem.image) {
       return `${backendImageUrl}${cardLinkItem.image}`;
@@ -32,22 +40,10 @@ export const EditCardLinkItem = ({
     }
   });
 
-  const getTemplatesProps = (w: string, order: number, baseProps: any) => {
-    switch (w) {
-      case "Cards":
-        return <CardsEditModal variant="dialog" {...baseProps} />;
-      case "Carousel":
-        return <CarouselEditModal variant="dialog" {...baseProps} />;
-      case "List":
-        return <ListEditModal variant="dialog" {...baseProps} />;
-      case "Text":
-        return <TextEditModal variant="dialog" {...baseProps} />;
-      case "CardLinks":
-        return <CardLinkEditModal variant="dialog" {...baseProps} />;
-      default:
-        return null;
-    }
-  };
+  const { isSaved, templates, selectedTemplate, onSelect } =
+    useTemplates({
+      savedTemplate: cardLinkItem.savedTemplate,
+    });
 
   return (
     <EditItem
@@ -60,25 +56,22 @@ export const EditCardLinkItem = ({
         </>
       }
     >
-      <Input
-        type="file"
-        label="Image"
-        onChange={(e) => {
-          if (e.target.files && e.target.files[0]) {
-            const file = e.target.files[0];
-            const reader = new FileReader();
+      {modalVariant === "card" && (
+        <TemplatesSelect
+          savedTemplate={isSaved ? cardLinkItem.savedTemplate : ""}
+          templates={templates}
+          onSelect={(template) => {
+            onSelect(template, (w) => {
+              writeChanges(id, "templateWidgets", JSON.stringify(w.widgets));
+              writeChanges(id, "savedTemplate", w.name);
+            });
+          }}
+        />
+      )}
 
-            reader.onload = function (event) {
-              if (event.target) setImage(event.target.result);
-            };
-            reader.readAsDataURL(file);
+      <EditFile id={id} image={image} setImage={setImage} writeChanges={writeChanges} />
 
-            writeChanges(id, "image", file);
-          }
-        }}
-      />
-
-      {image && <img className="w-20 h-20" src={image as string} alt="image" />}
+      <EditCardLinkSection card={cardLinkItem} id={id} writeChanges={writeChanges} />
 
       <div className="flex flex-col md:flex-row gap-3">
         <Input
@@ -109,25 +102,59 @@ export const EditCardLinkItem = ({
         />
       </div>
 
-      {templateWidgets && (
-        <div className="flex flex-col gap-3 ">
-          <span>Настройки шаблона</span>
-          {templateWidgets?.map((w, idx) => {
-            const baseProps = {
-              order: idx,
-              ruPageId: +id.split("*")[0],
-              kzPageId: +id.split("*")[1],
-              queryKey: "getTemplateWidgets",
-            };
-
-            return (
-              <Fragment key={idx}>
-                {getTemplatesProps(w, idx, baseProps)}
-              </Fragment>
-            );
-          })}
-        </div>
+      {(cardLinkItem.templateWidgets || selectedTemplate) && (
+        <TemplateWidgetsList
+          id={id}
+          saved={cardLinkItem.templateWidgets}
+          selectedTemplate={selectedTemplate}
+        />
       )}
     </EditItem>
   );
 };
+
+
+
+
+const EditCardLinkSection = ({ writeChanges, card, id }: {
+  writeChanges: (id: string, field: string, value: string) => void;
+  card: IEditCardLinkProps;
+  id: string;
+}) => {
+  return (
+    <>
+      <EditSection
+        inputList={[
+          {
+            label: "Заголовок карточки(ru)",
+            value: card.titleRu,
+            type: "text",
+            onChange: (value: string) => writeChanges(id, "titleRu", value)
+          },
+          {
+            label: "Заголовок карточки(kz)",
+            value: card.titleKz,
+            type: "text",
+            onChange: (value: string) => writeChanges(id, "titleKz", value)
+          }
+        ]}
+      />
+      <EditSection
+        inputList={[
+          {
+            label: "Cсылка (ru)",
+            value: card.hrefRu,
+            type: "text",
+            onChange: (value: string) => writeChanges(id, "contentRu", value)
+          },
+          {
+            label: "Ссылка (kz)",
+            value: card.hrefKz,
+            type: "text",
+            onChange: (value: string) => writeChanges(id, "contentKz", value)
+          }
+        ]}
+      />
+    </>
+  )
+}

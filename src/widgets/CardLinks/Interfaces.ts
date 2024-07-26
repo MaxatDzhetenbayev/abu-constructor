@@ -16,6 +16,8 @@ export interface IEditCardLinkProps {
   titleKz: string;
   hrefRu: string;
   hrefKz: string;
+  savedTemplate: string;
+  templateWidgets: string;
   image: File | null;
   page?: {
     ru: BackedPage;

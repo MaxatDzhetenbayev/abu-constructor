@@ -17,7 +17,7 @@ export const EditCardItem = ({
   writeChanges,
   modalVariant = "card",
 }: EditCardItemProps) => {
-  const { isSaved, templates, setTemplates, selectedTemplate, onSelect } =
+  const { isSaved, templates,  selectedTemplate, onSelect } =
     useTemplates({
       savedTemplate: card.savedTemplate,
     });

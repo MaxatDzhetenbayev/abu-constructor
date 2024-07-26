@@ -1,6 +1,6 @@
 "use client";
 import { EditCardItem } from "@/widgets/Cards/EditCardItem";
-import { WidgetTemplateCheckbox, WidgetItems, WidgetVariantSelect } from "@/app/entities";
+import { WidgetItems, WidgetVariantSelect } from "@/app/entities";
 import {
   Button,
   Input,
