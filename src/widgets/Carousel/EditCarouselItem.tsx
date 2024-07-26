@@ -1,49 +1,37 @@
+import { EditFile, EditSection } from "@/app/entities";
+import { TemplatesSelect } from "@/features";
+import { useTemplates } from "@/shared/hooks/useTemplateWidget";
 import { backendImageUrl } from "@/shared/lib/constants";
-import { EditItem, Button, Input } from "@/shared/ui";
-import { CardsEditModal } from "@/widgets/Cards/CardsEditModal";
-import {
-  CarouselEditModal,
-  EditCarouselItemProps,
-} from "@/widgets/Carousel/CarouselEditModal";
-import { ListEditModal } from "@/widgets/List/ListEditModal";
-import { TextEditModal } from "@/widgets/Text/TextEditModal";
-import { useState, Fragment } from "react";
+import { EditItem, Button } from "@/shared/ui";
+import { EditCarouselItemProps } from "@/widgets/Carousel/CarouselEditModal";
+
+import { useState } from "react";
+import { TemplateWidgetsList } from "../TempalteWidgetsList/TempalteWidgetsList";
 
 export const EditCarouselItem = ({
   id,
   deleteCarouselItem,
-  carouselItem,
-  templateWidgets,
+  item,
   writeChanges,
+  modalVariant = "card",
 }: {
   id: string;
-  carouselItem: EditCarouselItemProps;
+  item: EditCarouselItemProps;
   writeChanges: (id: string, field: string, value: string | File) => void;
-  templateWidgets?: string[];
   deleteCarouselItem: () => void;
+  modalVariant?: "card" | "dialog";
 }) => {
   const [image, setImage] = useState<string | ArrayBuffer | null>(() => {
-    if (carouselItem.image) {
-      return `${backendImageUrl}${carouselItem.image}`;
+    if (item.image) {
+      return `${backendImageUrl}${item.image}`;
     } else {
       return "";
     }
   });
-
-  const getTemplatesProps = (w: string, order: number, baseProps: any) => {
-    switch (w) {
-      case "Cards":
-        return <CardsEditModal variant="dialog" {...baseProps} />;
-      case "Carousel":
-        return <CarouselEditModal variant="dialog" {...baseProps} />;
-      case "List":
-        return <ListEditModal variant="dialog" {...baseProps} />;
-      case "Text":
-        return <TextEditModal variant="dialog" {...baseProps} />;
-      default:
-        return null;
-    }
-  };
+  const { isSaved, templates, selectedTemplate, onSelect } =
+    useTemplates({
+      savedTemplate: item.savedTemplate,
+    });
 
   return (
     <EditItem
@@ -56,60 +44,58 @@ export const EditCarouselItem = ({
         </>
       }
     >
-      <Input
-        type="file"
-        label="Image"
-        onChange={(e) => {
-          if (e.target.files && e.target.files[0]) {
-            const file = e.target.files[0];
-            const reader = new FileReader();
-
-            reader.onload = function (event) {
-              if (event.target) setImage(event.target.result);
-            };
-            reader.readAsDataURL(file);
-
-            writeChanges(id, "image", file);
-          }
-        }}
-      />
-
-      {image && <img className="w-20 h-20" src={image as string} alt="image" />}
-
-      <div className="flex flex-col md:flex-row gap-3">
-        <Input
-          label="Content RU"
-          type="text"
-          value={carouselItem.contentRu}
-          onChange={(e) => writeChanges(id, "contentRu", e.target.value)}
+      {modalVariant === "card" && (
+        <TemplatesSelect
+          savedTemplate={isSaved ? item.savedTemplate : ""}
+          templates={templates}
+          onSelect={(template) => {
+            onSelect(template, (w) => {
+              writeChanges(id, "templateWidgets", JSON.stringify(w.widgets));
+              writeChanges(id, "savedTemplate", w.name);
+            });
+          }}
         />
-        <Input
-          label="Content KZ"
-          type="text"
-          value={carouselItem.contentKz}
-          onChange={(e) => writeChanges(id, "contentKz", e.target.value)}
+      )}
+      <EditFile id={id} image={image} setImage={setImage} writeChanges={writeChanges} />
+
+      <EditCarouselSection carouselItem={item} id={id} writeChanges={writeChanges} />
+      {(item.templateWidgets || selectedTemplate) && (
+        <TemplateWidgetsList
+          id={id}
+          saved={item.templateWidgets}
+          selectedTemplate={selectedTemplate}
         />
-      </div>
-
-      {templateWidgets && (
-        <div className="flex flex-col gap-3 ">
-          <span>Настройки шаблона</span>
-          {templateWidgets?.map((w, idx) => {
-            const baseProps = {
-              order: idx,
-              ruPageId: +id.split("*")[0],
-              kzPageId: +id.split("*")[1],
-              queryKey: "getTemplateWidgets",
-            };
-
-            return (
-              <Fragment key={idx}>
-                {getTemplatesProps(w, idx, baseProps)}
-              </Fragment>
-            );
-          })}
-        </div>
       )}
     </EditItem>
   );
 };
+
+
+
+
+const EditCarouselSection = ({ writeChanges, carouselItem, id }: {
+  writeChanges: (id: string, field: string, value: string) => void;
+  carouselItem: EditCarouselItemProps;
+  id: string;
+}) => {
+  return (
+    <>
+      <EditSection
+        inputList={[
+          {
+            label: "Заголовок карточки(ru)",
+            value: carouselItem.contentRu,
+            type: "text",
+            onChange: (value: string) => writeChanges(id, "titleRu", value)
+          },
+          {
+            label: "Заголовок карточки(kz)",
+            value: carouselItem.contentKz,
+            type: "text",
+            onChange: (value: string) => writeChanges(id, "titleKz", value)
+          }
+        ]}
+      />
+    </>
+  )
+}

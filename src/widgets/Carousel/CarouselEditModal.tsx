@@ -1,21 +1,20 @@
 "use client";
-import { TemplatesSelect } from "@/features";
+import { WidgetItems } from "@/app/entities";
 import { useTemplateWidget } from "@/shared/hooks/useTemplateWidget";
 import {
   BackedPage,
 } from "@/shared/lib/types";
 import {
   Button,
-  Checkbox,
-  Label,
+
   WidgetView,
 } from "@/shared/ui";
 import { EditCarouselItem } from "@/widgets/Carousel/EditCarouselItem";
 export type EditCarouselItemProps = {
-  titleRu: string;
-  titleKz: string;
   contentRu: string;
   templateSlug: string;
+  savedTemplate: string;
+  templateWidgets: string;
   contentKz: string;
   image: File | null;
   href?: string;
@@ -61,7 +60,6 @@ const ModalContent = ({
   kzPageId,
   order,
   queryKey,
-  modalVariant,
 }: {
   modalVariant?: "dialog" | "card";
   ruPageId: number | null;
@@ -77,17 +75,8 @@ const ModalContent = ({
     props,
     loading,
     setLoading,
-    hasTemplate,
-    savedTemplate,
     items,
     writeChanges,
-    writeMainPropsChanges,
-    templates,
-    handleTemplate,
-    widgetMainProps,
-    setSelectedTemplate,
-    selectedTemplate,
-    setHasTemplate,
   } = useTemplateWidget({
     widgetName: "Carousel",
     ruPageId,
@@ -95,53 +84,15 @@ const ModalContent = ({
     queryKey,
     order,
     widgetStateFields: [],
-    itemsStateFields: ["contentRu", "contentKz", "image"],
+    itemsStateFields: ["contentRu", "contentKz", "image", "savedTemplate", "templateWidgets"],
   });
-
+  console.log(items);
   return (
     <>
-      {modalVariant === "card" && (
-        <>
-          {!savedTemplate ? (
-            <div className="flex items-center gap-2">
-              <Checkbox
-                id="template"
-                checked={hasTemplate}
-                onCheckedChange={() => setHasTemplate(!hasTemplate)}
-              />
-              <Label htmlFor="template" className="mt-1">
-                Есть темплейт
-              </Label>
-            </div>
-          ) : (
-            <span>Использованный шаблон {savedTemplate}</span>
-          )}
-          {hasTemplate && !savedTemplate && (
-            <TemplatesSelect
-              savedTemplate={savedTemplate}
-              templates={templates}
-              onSelect={handleTemplate}
-            />
-          )}
-        </>
-      )}
       <Button onClick={addItem} className="w-full">
         Добавить новый элемент
       </Button>
-      <section className="max-h-[460px] flex flex-col gap-10 overflow-y-scroll w-full  rounded-md border p-4 ">
-        {Object.keys(items).map((key, idx) => (
-          <EditCarouselItem
-            writeChanges={writeChanges}
-            carouselItem={items[key]}
-            deleteCarouselItem={() => deleteItem(key)}
-            key={idx}
-            id={key}
-            templateWidgets={
-              selectedTemplate ? selectedTemplate.widgets : undefined
-            }
-          />
-        ))}
-      </section>
+      <WidgetItems items={items} ItemComponent={EditCarouselItem} deleteItem={deleteItem} writeChanges={writeChanges} />
       <Button
         loading={loading}
         disabled={loading}
