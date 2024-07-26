@@ -8,13 +8,16 @@ import {
   getWidgetProps,
 } from "@/shared/api/widgets";
 import { queryClient } from "@/shared/lib/client";
+import { backendImageUrl } from "@/shared/lib/constants";
 import { TemplateSelectType, WidgetProps } from "@/shared/lib/types";
 import { GetValuesByLang, saveToServerAndGetUrl } from "@/shared/lib/utils";
 import { useToast } from "@/shared/ui";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
+import { useState, useEffect, ReactNode } from "react";
 
-export const useTemplates = () => {
+export const useTemplates = ({ savedTemplate }: { savedTemplate: string }) => {
+  const [isSaved, setIsSaved] = useState(() => !!savedTemplate);
   const {
     data: templatePages,
     isFetching: pagesIsFetching,
@@ -51,10 +54,19 @@ export const useTemplates = () => {
       }
     }
   }, [templatePages, isSuccess]);
-  const onSelect = (template: string) => {
-    setSelectedTemplate(templates.filter((t) => t.name === template)[0]);
+  const onSelect = (
+    template: string,
+    saveWidgets: (widget: TemplateSelectType) => void,
+  ) => {
+    setSelectedTemplate((prev) => {
+      const selected = templates.filter((t) => t.name === template)[0];
+      saveWidgets(selected);
+      return selected;
+    });
   };
+
   return {
+    isSaved,
     templates,
     setTemplates,
     selectedTemplate,
@@ -96,6 +108,14 @@ export function useTemplateWidget<StateProps>({
         title: "Виджет создан.",
       });
     },
+    onError: (error) => {
+      toast({
+        variant: "destructive",
+        title: "Ошибка при создании виджета.",
+      });
+      setLoading(false);
+      console.log(error);
+    },
   });
   const { mutate: editWidgetMutation, isPending: editIsPending } = useMutation({
     mutationKey: ["editCardsWidget"],
@@ -107,25 +127,18 @@ export function useTemplateWidget<StateProps>({
         title: "Виджет изменен.",
       });
     },
+    onError: (error) => {
+      toast({
+        variant: "destructive",
+        title: "Ошибка при изменении виджета.",
+      });
+      setLoading(false);
+      console.log(error);
+    },
   });
 
-  const [hasTemplate, setHasTemplate] = useState(false);
-  const { templates, setTemplates, selectedTemplate, setSelectedTemplate } =
-    useTemplates();
-
-  const handleTemplate = (template: TemplateSelectType) => {
-    setSelectedTemplate(template);
-  };
-
-  const [savedTemplate, setSavedTemplate] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (savedTemplate) {
-      setSelectedTemplate(templates.filter((t) => t.name === savedTemplate)[0]);
-    }
-  }, [savedTemplate]);
-
   const [widgetMainProps, setWidgetMainProps] = useState<any>({});
+
   const [props, setProps] = useState<WidgetProps | null>(null);
 
   useEffect(() => {
@@ -134,7 +147,7 @@ export function useTemplateWidget<StateProps>({
         setProps(data);
       });
   }, [ruPageId, kzPageId, order]);
-
+  const [toCompare, setToCompare] = useState({});
   useEffect(() => {
     if (props) {
       setWidgetMainProps(
@@ -149,22 +162,10 @@ export function useTemplateWidget<StateProps>({
           return obj;
         }, {}),
       );
-
+      setToCompare({ ...widgetMainProps });
       const temp: Record<string, StateProps> = {};
       let items = props.ruOptions.items;
-
       if (Array.isArray(items)) {
-        if (items[0]) {
-          const templateName = items[0].templateName;
-          if (
-            templateName &&
-            templates.findIndex((t) => t.name === templateName) !== -1
-          ) {
-            setSavedTemplate(items[0]?.templateName);
-            setHasTemplate(true);
-          }
-        }
-
         items.forEach((item: any, idx: number) => {
           temp[item.templateId] = itemsStateFields.reduce(
             (obj: any, field: string) => {
@@ -184,27 +185,36 @@ export function useTemplateWidget<StateProps>({
           );
         });
         setItems(temp);
+        setToCompare((prev) => ({ ...prev, items: temp }));
       }
     }
   }, [props]);
-
   const [items, setItems] = useState<Record<string, any>>({});
+  const [lockSaveBtn, setLockSaveBtn] = useState(true);
+  useEffect(() => {
+    if (
+      JSON.stringify({ ...widgetMainProps, items }) !==
+      JSON.stringify(toCompare)
+    ) {
+      setLockSaveBtn(false);
+    } else {
+      setLockSaveBtn(true);
+    }
+  }, [widgetMainProps, items]);
 
   const createTemplatePagesForCard = async () => {
-
     const ruPage = await createPage({
       title: "templatePage",
-      slug: `/${selectedTemplate ? selectedTemplate.name.toLowerCase().replace(/\s/g, "") : "template"}-${Date.now()}`,
-      navigation_id: selectedTemplate ? selectedTemplate.id : null,
+      slug: `/template-${Date.now()}`,
+      navigation_id: null,
       navigation_type: "template",
       order: 1,
       language_key: "ru",
     });
-
     const kzPage = await createPage({
       title: "templatePage",
       slug: ruPage.slug,
-      navigation_id: selectedTemplate ? selectedTemplate.id : null,
+      navigation_id: null,
       navigation_type: "template",
       order: 1,
       language_key: "kz",
@@ -212,7 +222,6 @@ export function useTemplateWidget<StateProps>({
 
     return { ruPage, kzPage };
   };
-
   const addItem = async () => {
     try {
       const { ruPage, kzPage } = await createTemplatePagesForCard();
@@ -231,7 +240,6 @@ export function useTemplateWidget<StateProps>({
       });
     } catch (e) { }
   };
-
   const writeMainPropsChanges = (key: string, value: string) => {
     setWidgetMainProps({ ...widgetMainProps, [key]: value });
   };
@@ -241,7 +249,7 @@ export function useTemplateWidget<StateProps>({
     value: string | File,
   ) => {
     if (!(id in items)) return;
-    setItems({ ...items, [id]: { ...items[id], [field]: value } });
+    setItems((prev) => ({ ...prev, [id]: { ...prev[id], [field]: value } }));
   };
   const onSave = async () => {
     if (ruPageId && kzPageId) {
@@ -249,13 +257,11 @@ export function useTemplateWidget<StateProps>({
         Object.keys(items).map(async (key) => {
           const image = await saveToServerAndGetUrl(items[key].image);
           return {
-            //TODO Нужна функция которая будет определять есть ли Ru или Kz => создавать
             ...GetValuesByLang("Ru", items[key], itemsStateFields),
+            href: items[key].savedTemplate ? items[key].templateSlug : "",
             image,
-            href: hasTemplate ? items[key].page?.ru.slug : "",
             templateId: key,
             templateSlug: items[key].page?.ru.slug,
-            templateName: selectedTemplate ? selectedTemplate.name : null,
           };
         }),
       );
@@ -264,11 +270,10 @@ export function useTemplateWidget<StateProps>({
           const image = await saveToServerAndGetUrl(items[key].image);
           return {
             ...GetValuesByLang("Kz", items[key], itemsStateFields),
+            href: items[key].savedTemplate ? items[key].templateSlug : "",
             image,
-            href: hasTemplate ? items[key].page?.kz.slug : "",
             templateId: key,
             templateSlug: items[key].page?.ru.slug,
-            templateName: selectedTemplate ? selectedTemplate.name : null,
           };
         }),
       );
@@ -306,17 +311,9 @@ export function useTemplateWidget<StateProps>({
           return {
             ...GetValuesByLang("Ru", items[key], itemsStateFields),
             image,
-            href: items[key].href
-              ? items[key].href
-              : items[key].page
-                ? items[key].page.ru.slug
-                : items[key].templateSlug,
+            href: items[key].savedTemplate ? items[key].templateSlug : "",
+            templateSlug: items[key].templateSlug,
             templateId: key,
-            templateName: savedTemplate
-              ? savedTemplate
-              : selectedTemplate
-                ? selectedTemplate.name
-                : null,
           };
         }),
       );
@@ -333,11 +330,6 @@ export function useTemplateWidget<StateProps>({
                 ? items[key].page.ru.slug
                 : items[key].templateSlug,
             templateId: key,
-            templateName: savedTemplate
-              ? savedTemplate
-              : selectedTemplate
-                ? selectedTemplate.name
-                : null,
           };
         }),
       );
@@ -386,19 +378,13 @@ export function useTemplateWidget<StateProps>({
     writeChanges: writeItemsChanges,
     onSave,
     onEdit,
+    lockSaveBtn,
     deleteItem,
     items,
     loading,
     setLoading,
-    savedTemplate,
-    hasTemplate,
     props,
     widgetMainProps,
     writeMainPropsChanges,
-    setHasTemplate,
-    selectedTemplate,
-    setSelectedTemplate,
-    templates,
-    handleTemplate,
   };
 }
