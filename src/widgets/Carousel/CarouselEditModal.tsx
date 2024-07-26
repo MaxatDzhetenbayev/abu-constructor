@@ -86,7 +86,6 @@ const ModalContent = ({
     widgetStateFields: [],
     itemsStateFields: ["contentRu", "contentKz", "image", "savedTemplate", "templateWidgets"],
   });
-  console.log(items);
   return (
     <>
       <Button onClick={addItem} className="w-full">
