@@ -8,5 +8,5 @@ export interface IWidgetTemplateCheckboxProps {
     setHasTemplate: (value: boolean) => void;
     setSelectedTemplate: Dispatch<SetStateAction<TemplateSelectType | null>>
     templates: TemplateSelectType[];
-    handleTemplate: (template: TemplateSelectType) => void;
+    handleTemplate: (template: string) => void;
 }
