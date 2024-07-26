@@ -4,6 +4,9 @@ import { useState, Fragment, ChangeEvent } from "react";
 import { EditCardItemProps, EditCardProps } from "./model/Cards.interface";
 import { getTemplatesProps } from "@/shared/lib/utils/GetTempaltesProps";
 import { EditFile, EditSection } from "@/app/entities";
+import { TemplatesSelect } from "@/features";
+import { useTemplates } from "@/shared/hooks/useTemplateWidget";
+import { TemplateWidgetsList } from "../TempalteWidgetsList/TempalteWidgetsList";
 
 
 export const EditCardItem = ({
@@ -12,7 +15,12 @@ export const EditCardItem = ({
   card,
   templateWidgets,
   writeChanges,
+  modalVariant = "card",
 }: EditCardItemProps) => {
+  const { isSaved, templates, setTemplates, selectedTemplate, onSelect } =
+    useTemplates({
+      savedTemplate: card.savedTemplate,
+    });
 
   const [image, setImage] = useState<string | ArrayBuffer | null>(() => {
     if (card.image) {
@@ -31,26 +39,26 @@ export const EditCardItem = ({
       }
       title={"Card" + id}
     >
+      {modalVariant === "card" && (
+        <TemplatesSelect
+          savedTemplate={isSaved ? card.savedTemplate : ""}
+          templates={templates}
+          onSelect={(template) => {
+            onSelect(template, (w) => {
+              writeChanges(id, "templateWidgets", JSON.stringify(w.widgets));
+              writeChanges(id, "savedTemplate", w.name);
+            });
+          }}
+        />
+      )}
       <EditCardSection card={card} id={id} writeChanges={writeChanges} />
       <EditFile id={id} image={image} setImage={setImage} writeChanges={writeChanges} />
-      {templateWidgets && (
-        <div className="flex flex-col gap-3 ">
-          <span>Настройки шаблона</span>
-          {templateWidgets?.map((w, idx) => {
-            const baseProps = {
-              order: idx,
-              ruPageId: +id.split("*")[0],
-              kzPageId: +id.split("*")[1],
-              queryKey: "getTemplateWidgets",
-            };
-
-            return (
-              <Fragment key={idx}>
-                {getTemplatesProps(w, idx, baseProps)}
-              </Fragment>
-            );
-          })}
-        </div>
+      {(card.templateWidgets || selectedTemplate) && (
+        <TemplateWidgetsList
+          id={id}
+          saved={card.templateWidgets}
+          selectedTemplate={selectedTemplate}
+        />
       )}
     </EditItem>
   );

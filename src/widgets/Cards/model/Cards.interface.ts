@@ -14,6 +14,8 @@ export type EditCardProps = {
     titleKz: string;
     contentRu: string;
     contentKz: string;
+    savedTemplate: string;
+    templateWidgets: string;
     href?: string;
     image: File | null;
     templateSlug: string;
@@ -27,6 +29,7 @@ export type EditCardProps = {
 export interface EditCardItemProps {
     id: string;
     deleteCard: () => void;
+    modalVariant: "dialog" | "card";
     card: EditCardProps;
     templateWidgets?: string[];
     writeChanges: (id: string, field: string, value: string | File) => void;

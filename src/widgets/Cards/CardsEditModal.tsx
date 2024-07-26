@@ -56,17 +56,11 @@ const ModalContent = ({
     props,
     loading,
     setLoading,
-    hasTemplate,
-    savedTemplate,
+
     items,
     writeChanges,
     writeMainPropsChanges,
-    templates,
-    handleTemplate,
     widgetMainProps,
-    setSelectedTemplate,
-    selectedTemplate,
-    setHasTemplate,
   } = useTemplateWidget({
     widgetName: "Cards",
     ruPageId,
@@ -74,22 +68,13 @@ const ModalContent = ({
     queryKey,
     order,
     widgetStateFields: ["titleRu", "titleKz", "variant"],
-    itemsStateFields: ["titleRu", "titleKz", "contentRu", "contentKz", "image"],
+    itemsStateFields: ["titleRu", "titleKz", "contentRu", "contentKz", "image", "savedTemplate", "templateWidgets"],
   });
 
 
   return (
     <>
       <WidgetVariantSelect variant={widgetMainProps.variant} writeFunction={writeMainPropsChanges} />
-      <WidgetTemplateCheckbox
-        handleTemplate={handleTemplate}
-        hasTemplate={hasTemplate}
-        modalVariant={modalVariant}
-        savedTemplate={savedTemplate}
-        setHasTemplate={setHasTemplate}
-        setSelectedTemplate={setSelectedTemplate}
-        templates={templates}
-      />
       <select className="flex flex-col md:flex-row gap-3">
         <Input
           label="Title RU"
@@ -107,7 +92,7 @@ const ModalContent = ({
       <Button onClick={addItem} className="w-full">
         Добавить новый элемент
       </Button>
-      <WidgetItems items={items} ItemComponent={EditCardItem} deleteItem={deleteItem} selectedTemplate={selectedTemplate} writeChanges={writeChanges} />
+      <WidgetItems items={items} ItemComponent={EditCardItem} deleteItem={deleteItem} writeChanges={writeChanges} />
       <Button
         loading={loading}
         disabled={loading}
