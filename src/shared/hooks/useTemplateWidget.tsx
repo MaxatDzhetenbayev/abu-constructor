@@ -82,7 +82,9 @@ type useTemplateWidgetProps = {
   order: number;
   itemsStateFields: string[];
   widgetStateFields: string[];
+  withTemplate: boolean;
 };
+const fieldsWithTemplate = ["savedTemplate", "templateWidgets"];
 export function useTemplateWidget<StateProps>({
   widgetName,
   queryKey,
@@ -90,6 +92,7 @@ export function useTemplateWidget<StateProps>({
   kzPageId,
   itemsStateFields,
   widgetStateFields,
+  withTemplate,
   order,
 }: useTemplateWidgetProps) {
   const { toast } = useToast();
@@ -147,7 +150,10 @@ export function useTemplateWidget<StateProps>({
         setProps(data);
       });
   }, [ruPageId, kzPageId, order]);
-  const [toCompare, setToCompare] = useState({});
+  const [toCompare, setToCompare] = useState<{
+    widgetMainProps: any;
+    items: any;
+  }>({ widgetMainProps: {}, items: {} });
   useEffect(() => {
     if (props) {
       setWidgetMainProps(
@@ -162,7 +168,7 @@ export function useTemplateWidget<StateProps>({
           return obj;
         }, {}),
       );
-      setToCompare({ ...widgetMainProps });
+      setToCompare({ ...toCompare, widgetMainProps });
       const temp: Record<string, StateProps> = {};
       let items = props.ruOptions.items;
       if (Array.isArray(items)) {
@@ -178,29 +184,21 @@ export function useTemplateWidget<StateProps>({
               }
               return obj;
             },
-            {
-              templateSlug: item.templateSlug,
-              href: item.href,
-            },
+            withTemplate
+              ? {
+                templateSlug: item.templateSlug,
+                href: item.href,
+              }
+              : {},
           );
         });
         setItems(temp);
         setToCompare((prev) => ({ ...prev, items: temp }));
       }
     }
+    console.log("useEffect PROPS");
   }, [props]);
   const [items, setItems] = useState<Record<string, any>>({});
-  const [lockSaveBtn, setLockSaveBtn] = useState(true);
-  useEffect(() => {
-    if (
-      JSON.stringify({ ...widgetMainProps, items }) !==
-      JSON.stringify(toCompare)
-    ) {
-      setLockSaveBtn(false);
-    } else {
-      setLockSaveBtn(true);
-    }
-  }, [widgetMainProps, items]);
 
   const createTemplatePagesForCard = async () => {
     const ruPage = await createPage({
@@ -224,30 +222,60 @@ export function useTemplateWidget<StateProps>({
   };
   const addItem = async () => {
     try {
-      const { ruPage, kzPage } = await createTemplatePagesForCard();
-      setItems({
-        ...items,
-        [`${ruPage.id}*${kzPage.id}`]: itemsStateFields.reduce(
-          (obj: any, field: string) => {
-            obj[field] = "";
-            return obj;
-          },
-          {
+      let ruPage: any, kzPage: any;
+
+      if (withTemplate) {
+        ({ ruPage, kzPage } = await createTemplatePagesForCard());
+      }
+
+      const key = withTemplate
+        ? `${ruPage.id}*${kzPage.id}`
+        : Date.now().toString();
+
+      const newItem = (
+        withTemplate
+          ? itemsStateFields
+          : itemsStateFields.concat(fieldsWithTemplate)
+      ).reduce(
+        (obj: any, field: string) => {
+          obj[field] = "";
+          return obj;
+        },
+        withTemplate
+          ? {
             templateSlug: ruPage.slug,
             page: { ru: ruPage, kz: kzPage },
-          },
-        ),
-      });
-    } catch (e) { }
+          }
+          : {},
+      );
+
+      setItems((prevItems) => ({
+        ...prevItems,
+        [key]: newItem,
+      }));
+    } catch (e) {
+      console.log(e);
+    }
   };
-  const writeMainPropsChanges = (key: string, value: string) => {
-    setWidgetMainProps({ ...widgetMainProps, [key]: value });
+  const writeMainPropsChanges = ({
+    field,
+    value,
+  }: {
+    field: string;
+    value: string | File;
+  }) => {
+    setWidgetMainProps({ ...widgetMainProps, [field]: value });
   };
-  const writeItemsChanges = (
-    id: string,
-    field: string,
-    value: string | File,
-  ) => {
+  const writeItemsChanges = ({
+    id,
+    field,
+    value,
+  }: {
+    id?: string;
+    field: string;
+    value: string | File;
+  }) => {
+    if (!id) return;
     if (!(id in items)) return;
     setItems((prev) => ({ ...prev, [id]: { ...prev[id], [field]: value } }));
   };
@@ -255,11 +283,16 @@ export function useTemplateWidget<StateProps>({
     if (ruPageId && kzPageId) {
       const RuItems = await Promise.all(
         Object.keys(items).map(async (key) => {
-          const image = await saveToServerAndGetUrl(items[key].image);
+          const props = await GetValuesByLang(
+            "Ru",
+            items[key],
+            withTemplate
+              ? itemsStateFields.concat(fieldsWithTemplate)
+              : itemsStateFields,
+          );
           return {
-            ...GetValuesByLang("Ru", items[key], itemsStateFields),
+            ...props,
             href: items[key].savedTemplate ? items[key].templateSlug : "",
-            image,
             templateId: key,
             templateSlug: items[key].page?.ru.slug,
           };
@@ -267,22 +300,39 @@ export function useTemplateWidget<StateProps>({
       );
       const KzItems = await Promise.all(
         Object.keys(items).map(async (key) => {
-          const image = await saveToServerAndGetUrl(items[key].image);
+          const props = await GetValuesByLang(
+            "Kz",
+            items[key],
+            withTemplate
+              ? itemsStateFields.concat(fieldsWithTemplate)
+              : itemsStateFields,
+          );
+          console.log(props, "RUPORPS");
+
           return {
-            ...GetValuesByLang("Kz", items[key], itemsStateFields),
+            ...props,
             href: items[key].savedTemplate ? items[key].templateSlug : "",
-            image,
             templateId: key,
             templateSlug: items[key].page?.ru.slug,
           };
         }),
+      );
+      const mainPropsRu = await GetValuesByLang(
+        "Ru",
+        widgetMainProps,
+        widgetStateFields,
+      );
+      const mainPropsKz = await GetValuesByLang(
+        "Kz",
+        widgetMainProps,
+        widgetStateFields,
       );
 
       createCardsWidget({
         widget_type: widgetName,
         order,
         options: JSON.stringify({
-          ...GetValuesByLang("Ru", widgetMainProps, widgetStateFields),
+          ...mainPropsRu,
           items: RuItems,
           language_key: "ru",
           navigation_id: +ruPageId,
@@ -294,7 +344,7 @@ export function useTemplateWidget<StateProps>({
         widget_type: widgetName,
         order,
         options: JSON.stringify({
-          ...GetValuesByLang("Kz", widgetMainProps, widgetStateFields),
+          mainPropsKz,
           items: KzItems,
         }),
         language_key: "kz",
@@ -307,10 +357,16 @@ export function useTemplateWidget<StateProps>({
     if (props) {
       const RuItems = await Promise.all(
         Object.keys(items).map(async (key) => {
-          const image = await saveToServerAndGetUrl(items[key].image);
+          const props = await GetValuesByLang(
+            "Ru",
+            items[key],
+            withTemplate
+              ? itemsStateFields.concat(fieldsWithTemplate)
+              : itemsStateFields,
+          );
+
           return {
-            ...GetValuesByLang("Ru", items[key], itemsStateFields),
-            image,
+            ...props,
             href: items[key].savedTemplate ? items[key].templateSlug : "",
             templateSlug: items[key].templateSlug,
             templateId: key,
@@ -320,10 +376,16 @@ export function useTemplateWidget<StateProps>({
 
       const KzItems = await Promise.all(
         Object.keys(items).map(async (key) => {
-          const image = await saveToServerAndGetUrl(items[key].image);
+          const props = await GetValuesByLang(
+            "Kz",
+            items[key],
+            withTemplate
+              ? itemsStateFields.concat(fieldsWithTemplate)
+              : itemsStateFields,
+          );
+
           return {
-            ...GetValuesByLang("Kz", items[key], itemsStateFields),
-            image,
+            ...props,
             href: items[key].href
               ? items[key].href
               : items[key].page
@@ -334,12 +396,23 @@ export function useTemplateWidget<StateProps>({
         }),
       );
       if (ruPageId && kzPageId) {
+        const mainPropsRu = await GetValuesByLang(
+          "Ru",
+          widgetMainProps,
+          widgetStateFields,
+        );
+        const mainPropsKz = await GetValuesByLang(
+          "Kz",
+          widgetMainProps,
+          widgetStateFields,
+        );
+
         editWidgetMutation({
           id: props.ruWidgetId,
           navigation_id: ruPageId,
           body: {
             options: JSON.stringify({
-              ...GetValuesByLang("Ru", widgetMainProps, widgetStateFields),
+              ...mainPropsRu,
               items: RuItems,
             }),
           },
@@ -349,7 +422,7 @@ export function useTemplateWidget<StateProps>({
           navigation_id: kzPageId,
           body: {
             options: JSON.stringify({
-              ...GetValuesByLang("Kz", widgetMainProps, widgetStateFields),
+              ...mainPropsKz,
               items: KzItems,
             }),
           },
@@ -364,21 +437,23 @@ export function useTemplateWidget<StateProps>({
       delete temp[id];
       return { ...temp };
     });
-    const ids = id.split("*");
-    ids.forEach((id) => {
-      try {
-        deletePage(+id);
-      } catch (e) {
-        console.log(e);
-      }
-    });
+    if (withTemplate) {
+      const ids = id.split("*");
+      ids.forEach((id) => {
+        try {
+          deletePage(+id);
+        } catch (e) {
+          console.log(e);
+        }
+      });
+    }
   };
   return {
     addItem,
     writeChanges: writeItemsChanges,
     onSave,
     onEdit,
-    lockSaveBtn,
+    lockSaveBtn: false,
     deleteItem,
     items,
     loading,

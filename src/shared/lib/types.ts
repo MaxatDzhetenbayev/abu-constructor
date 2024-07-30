@@ -24,7 +24,7 @@ export interface BackedPage {
   update_date: string;
 }
 export interface Template
-  extends Omit<BackedPage, "id" | "order" | "create_date" | "update_date"> {}
+  extends Omit<BackedPage, "id" | "order" | "create_date" | "update_date"> { }
 export interface BackedWidget {
   id: number;
   widget_type: string;
@@ -57,3 +57,11 @@ export type TemplateSelectType = {
   name: string;
   widgets: string[];
 };
+
+export interface BaseEditModalProps {
+  variant?: "dialog" | "card";
+  order: number;
+  ruPageId: number | null;
+  kzPageId: number | null;
+  queryKey: string;
+}

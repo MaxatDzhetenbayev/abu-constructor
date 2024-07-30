@@ -6,7 +6,8 @@ import { TemplateSelectType } from "@/shared/lib/types";
 import { useQuery } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
 
-export const useTemplates = () => {
+export const useTemplates = ({ savedTemplate }: { savedTemplate: string }) => {
+  const [isSaved, setIsSaved] = useState(() => !!savedTemplate);
   const {
     data: templatePages,
     isFetching: pagesIsFetching,
@@ -43,10 +44,19 @@ export const useTemplates = () => {
       }
     }
   }, [templatePages, isSuccess]);
-  const onSelect = (template: string) => {
-    setSelectedTemplate(templates.filter((t) => t.name === template)[0]);
+  const onSelect = (
+    template: string,
+    saveWidgets: (widget: TemplateSelectType) => void,
+  ) => {
+    setSelectedTemplate((prev) => {
+      const selected = templates.filter((t) => t.name === template)[0];
+      saveWidgets(selected);
+      return selected;
+    });
   };
+
   return {
+    isSaved,
     templates,
     setTemplates,
     selectedTemplate,
