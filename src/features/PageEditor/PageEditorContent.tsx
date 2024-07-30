@@ -47,7 +47,8 @@ import {
 } from "@/shared/api/widgets";
 import { queryClient } from "@/shared/lib/client";
 import { usePathname, useSearchParams } from "next/navigation";
-const widgetsList = ["Cards", "Carousel", "List", "Text"];
+import { AccardionModal } from "@/widgets/Accardion/Accardion.modal";
+const widgetsList = ["Cards", "Carousel", "List", "Text", "Accardion"];
 //TODO: Pass it there, not in EditBtn
 const getModal = (
   modal: string,
@@ -72,8 +73,8 @@ const getModal = (
         return <ListEditModal {...baseProps} />;
       case "Text":
         return <TextEditModal {...baseProps} />;
-      case "CardLinks":
-        return <CardLinkEditModal {...baseProps} />;
+      case "Accardion":
+        return <AccardionModal {...baseProps} />;
       default:
         return <></>;
     }

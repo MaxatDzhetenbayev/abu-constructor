@@ -4,7 +4,7 @@ import { CarouselEditModal } from "@/widgets/Carousel/CarouselEditModal";
 import { ListEditModal } from "@/widgets/List/ListEditModal";
 import { TextEditModal } from "@/widgets/Text/TextEditModal";
 import { Fragment } from "react";
-import { CardLinkEditModal } from "../CardLinks/CardLinkEditModal";
+import { AccardionModal } from "../Accardion/Accardion.modal";
 const getTemplatesProps = (w: string, order: number, baseProps: any) => {
     switch (w) {
         case "Cards":
@@ -15,8 +15,8 @@ const getTemplatesProps = (w: string, order: number, baseProps: any) => {
             return <ListEditModal variant="dialog" {...baseProps} />;
         case "Text":
             return <TextEditModal variant="dialog" {...baseProps} />;
-        case "CardLinks":
-            return <CardLinkEditModal variant="dialog" {...baseProps} />;
+        case "Accardion":
+            return <AccardionModal variant="dialog" {...baseProps} />;
         default:
             return null;
     }
