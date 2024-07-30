@@ -36,6 +36,7 @@ export const List = ({ items: listItems }: ListProps) => {
       });
     }
   };
+  console.log(listItems)
 
   const handlePrev = () => {
     if (pagination) {
@@ -89,9 +90,9 @@ export const List = ({ items: listItems }: ListProps) => {
                       ? "block"
                       : "hidden",
                     idx + 1 == 1 &&
-                      (current == pagination.totalPages - 1 ||
-                        current == pagination.totalPages) &&
-                      "block",
+                    (current == pagination.totalPages - 1 ||
+                      current == pagination.totalPages) &&
+                    "block",
                   )}
                   onClick={() => setCurrent(idx + 1)}
                 >
