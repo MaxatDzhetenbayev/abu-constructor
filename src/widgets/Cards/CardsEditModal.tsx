@@ -1,108 +1,42 @@
-"use client";
-import { EditCardItem } from "@/widgets/Cards/EditCardItem";
-import { WidgetItems, WidgetVariantSelect } from "@/app/entities";
-import {
-  Button,
-  Input,
-  WidgetView,
-} from "@/shared/ui";
-import { CardsEditModalProps } from './model/Cards.interface'
-import { useTemplateWidget } from "@/shared/hooks/useTemplateWidget";
+import { BaseEditModalProps } from "@/shared/lib/types";
+import { EditModal } from "@/widgets/EditModal/EditModal";
+const mainKeys = ["variant", "titleRu", "titleKz"];
+const mainInputs = [
+  {
+    value: "select",
+    select: {
+      placeholder: "Вид карточек ",
+      values: [
+        { value: "base", label: "Стандартный" },
+        { value: "horizontal", label: "Горизонтальный" },
+      ],
+    },
+  },
+  { label: "Заголовок RU", value: "text" },
+  { label: "Заголовок KZ", value: "text" },
+];
 
-export const CardsEditModal = ({
-  variant = "card",
-  order,
-  ruPageId,
-  kzPageId,
-  queryKey,
-}: CardsEditModalProps) => {
-  return (
-    <WidgetView
-      variant={variant}
-      cardTitle="Edit Cards"
-      desc="There you can edit Cards content"
-      triggerTitle="Редактировать карточки"
-      content={
-        <ModalContent
-          modalVariant={variant}
-          ruPageId={ruPageId}
-          kzPageId={kzPageId}
-          order={order}
-          queryKey={queryKey}
-        />
-      }
-    />
-  );
-};
+const itemKeys = ["titleRu", "titleKz", "contentRu", "contentKz", "image"];
+const itemInputs = [
+  { label: "Заголовок RU", value: "text" },
+  { label: "Заголовок KZ", value: "text" },
+  { label: "Контент RU", value: "text" },
+  { label: "Контент KZ", value: "text" },
+  { value: "file" },
+];
 
-const ModalContent = ({
-  ruPageId,
-  kzPageId,
-  order,
-  queryKey,
-  modalVariant,
-}: {
-  modalVariant?: "dialog" | "card";
-  ruPageId: number | null;
-  kzPageId: number | null;
-  queryKey: string;
-  order: number;
-}) => {
-  const {
-    addItem,
-    deleteItem,
-    onEdit,
-    onSave,
-    props,
-    loading,
-    setLoading,
-
-    items,
-    writeChanges,
-    writeMainPropsChanges,
-    widgetMainProps,
-  } = useTemplateWidget({
+export const CardsEditModal = (props: BaseEditModalProps) => {
+  const modalProps = {
+    ...props,
     widgetName: "Cards",
-    ruPageId,
-    kzPageId,
-    queryKey,
-    order,
-    widgetStateFields: ["titleRu", "titleKz", "variant"],
-    itemsStateFields: ["titleRu", "titleKz", "contentRu", "contentKz", "image", "savedTemplate", "templateWidgets"],
-  });
-
-
-  return (
-    <>
-      <WidgetVariantSelect variant={widgetMainProps.variant} writeFunction={writeMainPropsChanges} />
-      <select className="flex flex-col md:flex-row gap-3">
-        <Input
-          label="Title RU"
-          type="text"
-          value={widgetMainProps.titleRu}
-          onChange={(e) => writeMainPropsChanges("titleRu", e.target.value)}
-        />
-        <Input
-          label="Title KZ"
-          type="text"
-          value={widgetMainProps.titleKz}
-          onChange={(e) => writeMainPropsChanges("titleKz", e.target.value)}
-        />
-      </select>
-      <Button onClick={addItem} className="w-full">
-        Добавить новый элемент
-      </Button>
-      <WidgetItems items={items} ItemComponent={EditCardItem} deleteItem={deleteItem} writeChanges={writeChanges} />
-      <Button
-        loading={loading}
-        disabled={loading}
-        onClick={() => {
-          setLoading(true);
-          props ? onEdit() : onSave();
-        }}
-      >
-        Сохранить
-      </Button>
-    </>
-  );
+    cardTitle: "Редактировать карточки",
+    desc: "Здесь вы можете отредактировать виджен карточки",
+    triggerTitle: "Редактировать карточки",
+    mainKeys,
+    mainInputs,
+    itemKeys,
+    itemInputs,
+    withTemplate: true,
+  };
+  return <EditModal {...modalProps} />;
 };
