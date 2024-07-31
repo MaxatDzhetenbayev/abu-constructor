@@ -1,5 +1,6 @@
 "use client";
 import { EditWidgetContentDialog } from "@/features";
+import { capitalize } from "@/shared/lib";
 import {
   Button,
   Dialog,
@@ -9,14 +10,8 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTrigger,
+  useToast,
 } from "@/shared/ui";
-import {
-  CardsEditModal,
-  CarouselEditModal,
-  ListEditModal,
-  TextEditModal,
-  CardLinkEditModal
-} from "@/widgets";
 import {
   DndContext,
   DragEndEvent,
@@ -46,40 +41,11 @@ import {
   getWidgets,
 } from "@/shared/api/widgets";
 import { queryClient } from "@/shared/lib/client";
-import { usePathname, useSearchParams } from "next/navigation";
-import { AccardionModal } from "@/widgets/Accardion/Accardion.modal";
-const widgetsList = ["Cards", "Carousel", "List", "Text", "Accardion"];
-//TODO: Pass it there, not in EditBtn
-const getModal = (
-  modal: string,
-  order: number,
-  ruPageId: string | null,
-  kzPageId: string | null,
-) => {
-  if (ruPageId && kzPageId) {
-    const baseProps = {
-      order,
-      ruPageId: +ruPageId,
-      kzPageId: +kzPageId,
-      queryKey: "pageEditWidgets",
-    };
-
-    switch (modal) {
-      case "Cards":
-        return <CardsEditModal {...baseProps} />;
-      case "Carousel":
-        return <CarouselEditModal {...baseProps} />;
-      case "List":
-        return <ListEditModal {...baseProps} />;
-      case "Text":
-        return <TextEditModal {...baseProps} />;
-      case "Accardion":
-        return <AccardionModal {...baseProps} />;
-      default:
-        return <></>;
-    }
-  }
-};
+import { useSearchParams } from "next/navigation";
+import { DialogTitle } from "@radix-ui/react-dialog";
+import { widgetsList } from "@/shared/lib/constants";
+import { getEditModal } from "@/shared/lib/utils/GetWidgetByName";
+//EDIT PAGE CONTENT
 export const PageEditorContent = ({
   onTemplateSave,
   ids,
@@ -123,8 +89,9 @@ export const PageEditorContent = ({
           .sort((a, b) => a.id - b.id),
       );
   }, [data, isFetching]);
+  const { toast } = useToast();
   const {
-    mutate: deleteMutation,
+    mutateAsync: deleteMutation,
     isPending: deleteIsPending,
     error: deleteError,
   } = useMutation({
@@ -132,6 +99,14 @@ export const PageEditorContent = ({
     mutationKey: ["templateWidget"],
     onSuccess: () => {
       if (onTemplateSave) onTemplateSave();
+      toast({ title: "Виджет удален" });
+    },
+    onError: (error) => {
+      toast({
+        title: "При удалении виджета произошла ошибка",
+        variant: "destructive",
+      });
+      console.log(error);
     },
   });
 
@@ -143,6 +118,17 @@ export const PageEditorContent = ({
     },
   });
   const [list, setList] = useState<any[]>([]);
+  useEffect(() => {
+    if (!forTemplate) {
+      for (let i = 0; i < list.length; i++) {
+        if (list[i].id !== i + 1) {
+          updateOrder(list);
+          break;
+        }
+      }
+    }
+  }, [list]);
+
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
@@ -153,7 +139,6 @@ export const PageEditorContent = ({
   const getLiPos = (id: UniqueIdentifier) =>
     list.findIndex((li) => li.id === id);
 
-  console.log(list);
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
 
@@ -169,41 +154,62 @@ export const PageEditorContent = ({
   const onWidgetDelete = async (id: number) => {
     const widgetToDelete = list.find((li) => li.id === id);
     if (widgetToDelete && widgetToDelete.props) {
-      deleteMutation({
-        id: widgetToDelete.props.ruId,
-        navigation_id: widgetToDelete.props.ru_navigation_id,
-      }),
+      Promise.all([
+        deleteMutation({
+          id: widgetToDelete.props.ruId,
+          navigation_id: widgetToDelete.props.ru_navigation_id,
+        }),
         deleteMutation({
           id: widgetToDelete.props.kzId,
           navigation_id: widgetToDelete.props.kz_navigation_id,
-        });
+        }),
+      ]).then(() => {
+        console.log("updated");
+
+        updateOrder(list.filter((li) => li.id !== id));
+      });
     }
-    updateOrder(list.filter((li) => li.id !== id));
   };
-  console.log(list);
 
   const updateOrder = async (listState: typeof list) => {
     try {
-      const updatedList = listState.map((li, idx) => {
+      // Use map to create an array of promises
+      const updatePromises = listState.map(async (li, idx) => {
         if (li.props && ruId && kzId) {
-          editWidget({
-            id: li.props.ruId,
-            body: { order: idx + 1 },
-            navigation_id: +ruId,
-          }),
-            editWidget({
-              id: li.props.kzId,
-              body: { order: idx + 1 },
-              navigation_id: +kzId,
-            });
-          return { ...li, id: idx + 1 };
-        } else {
-          return { ...li, id: idx + 1 };
+          try {
+            // Await Promise.all to ensure both operations complete successfully
+            await Promise.all([
+              editWidget({
+                id: li.props.ruId,
+                body: { order: idx + 1 },
+                navigation_id: +ruId,
+              }),
+              editWidget({
+                id: li.props.kzId,
+                body: { order: idx + 1 },
+                navigation_id: +kzId,
+              }),
+            ]);
+          } catch (e) {
+            // Handle the error in the inner try block
+            throw new Error(`Error updating widget order`);
+          }
         }
+        return { ...li, id: idx + 1 };
       });
+
+      // Await all update promises and check for any errors
+      const updatedList = await Promise.all(updatePromises);
       setList(updatedList);
+      toast({
+        title: "Порядок виджетов обновлен",
+      });
     } catch (error) {
       console.error("Error updating widget order:", error);
+      toast({
+        title: "Произошла ошибка при обновлении порядка виджетов",
+        variant: "destructive",
+      });
     }
   };
   const ruId = useSearchParams().get("ruId");
@@ -221,26 +227,22 @@ export const PageEditorContent = ({
     });
     // if (onTemplateSave) onTemplateSave();
   };
-  const onSave = () => {
-    updateOrder(list);
-  };
-  console.log(list);
 
   return (
     <section>
       <section className=" h-[calc(100vh-300px)] w-[90%] grid grid-cols-1 md:grid-cols-[300px_1fr] gap-5">
         <section className="flex flex-col gap-2">
           <h3>Список виджетов</h3>
-          {widgetsList.map((widget) => (
+          {widgetsList.map(({ name }) => (
             <span
               className=" cursor-pointer px-5 py-3 rounded-sm text-center bg-slate-200"
-              key={widget}
+              key={name}
               onClick={() => {
                 if (!isFetching)
-                  setList([...list, { id: list.length + 1, name: widget }]);
+                  setList([...list, { id: list.length + 1, name }]);
               }}
             >
-              {widget}
+              {name}
             </span>
           ))}
         </section>
@@ -281,7 +283,13 @@ export const PageEditorContent = ({
                         ) : (
                           <EditWidgetContentDialog
                             name={item.name}
-                            modal={getModal(item.name, item.id, ruId, kzId)}
+                            modal={getEditModal(
+                              item.name,
+                              item.id,
+                              ruId,
+                              kzId,
+                              "pageEditWidgets",
+                            )}
                           />
                         )
                       }
@@ -293,12 +301,14 @@ export const PageEditorContent = ({
           )}
         </section>
       </section>
-      <Button
-        onClick={forTemplate ? templateSave : onSave}
-        className="w-full  col-span-2 align-self-end"
-      >
-        {!forTemplate ? "Изменить порядок виджетов" : "Coxранить"}
-      </Button>
+      {forTemplate && (
+        <Button
+          onClick={templateSave}
+          className="w-full  col-span-2 align-self-end"
+        >
+          Coxранить
+        </Button>
+      )}
     </section>
   );
 };
@@ -315,15 +325,15 @@ const DeleteWidgetDialog = ({
   return (
     <Dialog>
       <DialogTrigger>
-        <Button size={"icon"}>
-          <DeleteIcon />
-        </Button>
+        <DeleteIcon />
       </DialogTrigger>
       <DialogContent>
-        <DialogHeader>Удаление виджета</DialogHeader>
-        <DialogDescription>
-          Вы действительно хотите удалить виджет {name}
-        </DialogDescription>
+        <DialogHeader>
+          <DialogTitle>Удаление виджета</DialogTitle>
+          <DialogDescription>
+            Вы действительно хотите удалить виджет {name}
+          </DialogDescription>
+        </DialogHeader>
         <DialogFooter className="flex gap-10">
           <Button
             className="flex-1"
