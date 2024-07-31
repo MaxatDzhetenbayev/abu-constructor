@@ -1,9 +1,7 @@
 import { getPageBySlug } from "@/shared/api/pages";
 import { getWidgetsToDisplay } from "@/shared/api/widgets";
+import { getWidgetByName } from "@/shared/lib/utils/GetWidgetByName";
 import { capitalize } from "@/shared/lib";
-import { Cards, Carousel, Text, List } from "@/widgets";
-import { Accardion } from "@/widgets/Accardion/Accardion";
-
 
 const getPageContent = async (slug: string[], locale: string) => {
 
@@ -30,20 +28,3 @@ export default async function Page({
       getWidgetByName(capitalize(m.widget_type), JSON.parse(m.options))
     );
 }
-
-const getWidgetByName = (name: string, props: any) => {
-  switch (name) {
-    case "Carousel":
-      return <Carousel {...props} />;
-    case "Cards":
-      return <Cards {...props} />;
-    case "List":
-      return <List {...props} />;
-    case "Text":
-      return <Text {...props} />;
-    case "Accardion":
-      return <Accardion {...props} />;
-    default:
-      return <></>;
-  }
-};

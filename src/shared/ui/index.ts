@@ -20,7 +20,7 @@ export {
   type CarouselApi,
 } from "./carousel";
 export { Checkbox } from "./checkbox";
-export { EditItem } from "./editItem";
+export { EditItemWrapper } from "./editItem";
 export {
   Pagination,
   PaginationContent,

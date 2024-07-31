@@ -21,11 +21,11 @@ type CarouselItemType = {
   content: string;
   href?: string;
 };
-interface CarouselProps {
+export interface CarouselProps {
   items: CarouselItemType[];
   position: "left" | "center" | "right";
 }
-export const Carousel = ({ items, position }: CarouselProps) => {
+const CarouselClient = ({ items, position }: CarouselProps) => {
   const params = useParams();
   return (
     <section className="w-full flex items-center justify-center">
@@ -52,10 +52,10 @@ export const Carousel = ({ items, position }: CarouselProps) => {
                       >
                         <Image
                           src={`${backendImageUrl}/${item.image}`}
-                          className="absolute rounded-md"
-                          objectFit="cover"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          className="absolute object-cover rounded-md"
                           fill
-                          alt={item.title}
+                          alt={item.title ?? `carousel item ${idx}`}
                         />
                       </Comp>
                     </CardContent>
@@ -68,13 +68,10 @@ export const Carousel = ({ items, position }: CarouselProps) => {
             );
           })}
         </CarouselContent>
-        <CarouselPrevious>
-          sdfsdf
-        </CarouselPrevious>
-        <CarouselNext>
-          sdsdfs
-        </CarouselNext>
+        <CarouselPrevious>a</CarouselPrevious>
+        <CarouselNext>a</CarouselNext>
       </CarouselUI>
     </section>
   );
 };
+export { CarouselClient };
