@@ -9,3 +9,4 @@ export { PageEditorContent } from "./PageEditor/PageEditorContent";
 export { Pagination } from "./Pagination";
 export { TemplatesSelect } from "./TemplatesSelect";
 export { UpdateLinksForm } from "./UpdateLinksForm";
+export { PreviewButton } from './PreviewButton'
