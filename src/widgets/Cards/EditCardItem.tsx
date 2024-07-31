@@ -1,5 +1,5 @@
 import { backendImageUrl } from "@/shared/lib/constants";
-import { EditItem, Button, Input } from "@/shared/ui";
+import { EditItemWrapper, Button, Input } from "@/shared/ui";
 import { useState, Fragment, ChangeEvent } from "react";
 import { EditCardItemProps, EditCardProps } from "./model/Cards.interface";
 import { EditFile, EditSection } from "@/app/entities";
@@ -29,7 +29,7 @@ export const EditCardItem = ({
   });
 
   return (
-    <EditItem
+    <EditItemWrapper
       buttons={
         <>
           <Button onClick={deleteCard}>Удалить</Button>
@@ -58,7 +58,7 @@ export const EditCardItem = ({
           selectedTemplate={selectedTemplate}
         />
       )}
-    </EditItem>
+    </EditItemWrapper>
   );
 };
 
