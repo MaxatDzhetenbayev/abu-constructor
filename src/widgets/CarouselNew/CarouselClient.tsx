@@ -16,16 +16,26 @@ export const CarouselClient = ({ items, variant, perView, title }: CarouselProps
 
     const params = useParams();
     return (
-        <>
+        <section>
             <h1 className='font-bold text-2xl'>{title}</h1>
             <Swiper
                 pagination={{
                     dynamicBullets: true,
                 }}
-                slidesPerView={Number(perView)}
                 autoplay={{
                     delay: 3000,
                     disableOnInteraction: false,
+                }}
+                breakpoints={perView === '1' ? {} : {
+                    640: {
+                        slidesPerView: 1,
+                    },
+                    768: {
+                        slidesPerView: 2,
+                    },
+                    1024: {
+                        slidesPerView: 3,
+                    },
                 }}
                 loop={true}
                 spaceBetween={perView === '1' ? 0 : 10}
@@ -44,7 +54,7 @@ export const CarouselClient = ({ items, variant, perView, title }: CarouselProps
                         <SwiperSlide className='relative w-full h-full'>
                             <Comp href={`/${params.locale}/${item.href}`}>
                                 <div
-                                    className="absolute inset-0 bg-cover bg-top bg-no-repeat"
+                                    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                                     style={{
                                         backgroundImage: `url('${backendImageUrl}/${item.image}')`
                                     }}
@@ -61,6 +71,6 @@ export const CarouselClient = ({ items, variant, perView, title }: CarouselProps
                 }
                 )}
             </Swiper >
-        </>
+        </section>
     )
 }
