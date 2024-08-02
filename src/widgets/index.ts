@@ -2,8 +2,8 @@ import { Cards } from "./Cards/Cards";
 export { BreadCrumbs } from "./BreadCrumbs";
 import { CardsEditModal } from "./Cards/CardsEditModal";
 export { BurgerMenu } from "./BurgerMenu/BurgetMenu";
-import { Carousel } from "./Carousel/CarouselServer";
-import { CarouselEditModal } from "./Carousel/CarouselEditModal";
+export { Carousel } from "./CarouselNew/CarouselServer";
+import { CarouselEditModal } from "./CarouselNew/CarouselEditModal";
 import { List } from "./List/ListServer";
 import { ListEditModal } from "./List/ListEditModal";
 import { Text } from "./Text/Text";
@@ -17,7 +17,6 @@ export { AccardionModal, Accardion } from './Accardion'
 export {
   Cards,
   CardsEditModal,
-  Carousel,
   CarouselEditModal,
   List,
   ListEditModal,

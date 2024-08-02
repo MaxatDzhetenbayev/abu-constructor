@@ -1,6 +1,6 @@
 import { TemplateSelectType } from "@/shared/lib/types";
 import { CardsEditModal } from "@/widgets/Cards/CardsEditModal";
-import { CarouselEditModal } from "@/widgets/Carousel/CarouselEditModal";
+import { CarouselEditModal } from "@/widgets/CarouselNew/CarouselEditModal";
 import { ListEditModal } from "@/widgets/List/ListEditModal";
 import { TextEditModal } from "@/widgets/Text/TextEditModal";
 import { Fragment } from "react";
