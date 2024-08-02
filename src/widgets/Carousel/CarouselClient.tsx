@@ -59,7 +59,9 @@ export const CarouselClient = ({ items, variant, perView, title }: CarouselProps
                                         backgroundImage: `url('${backendImageUrl}/${item.image}')`
                                     }}
                                 ></div>
-                                <section className="absolute inset-0 bg-black bg-opacity-20 flex items-end text-justify">
+                                <section className={clsx("absolute inset-0 flex items-end text-justify", {
+                                    'bg-black bg-opacity-20 ': item.title || item.content,
+                                })}>
                                     <section className='pb-8 px-5'>
                                         <h1 className="text-white text-4xl font-bold">{item.title}</h1>
                                         <p className="text-white text-xl">{item.content}</p>
