@@ -2,6 +2,7 @@ import { getNavbarPages } from "@/shared/api/pages";
 import { Separator } from "@/shared/ui";
 import { BreadCrumbs, Header } from "@/widgets";
 import { Mail, MapPin, Phone } from "lucide-react";
+
 import Link from "next/link";
 import { ReactNode } from "react";
 const getPages = async (locale: string) => {
@@ -22,7 +23,7 @@ export default async function Layout({
       <Header />
       <main className="max-w-[1200px] min-h-[calc(100svh-683px)] mx-auto   mb-10 mt-24 ">
         <BreadCrumbs locale={params.locale} slug={params.slug} pages={pages} />
-        <div className="shadow-lg rounded-3xl flex p-10  flex-col gap-10">
+        <div className="flex p-10 flex-col gap-10">
           {children}
         </div>
       </main>
