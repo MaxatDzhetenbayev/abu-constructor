@@ -1,6 +1,15 @@
 "use client";
-import { EditWidgetContentDialog } from "@/features";
-import { capitalize } from "@/shared/lib";
+import { EditWidgetContentDialog, PreviewButton } from "@/features";
+import {
+  createWidget,
+  deleteWidget,
+  editWidget,
+  getWidgets,
+} from "@/shared/api/widgets";
+import { queryClient } from "@/shared/lib/client";
+import { widgetsList } from "@/shared/lib/constants";
+import { Langs } from "@/shared/lib/types";
+import { getEditModal } from "@/shared/lib/utils/GetWidgetByName";
 import {
   Button,
   Dialog,
@@ -28,23 +37,12 @@ import {
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
+import { DialogTitle } from "@radix-ui/react-dialog";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { DeleteIcon, Loader2 } from "lucide-react";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { PageEditorContentItem } from "./PageEditorContentItem";
-import { SubmitHandler } from "react-hook-form";
-import { Langs, Template } from "@/shared/lib/types";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import {
-  createWidget,
-  deleteWidget,
-  editWidget,
-  getWidgets,
-} from "@/shared/api/widgets";
-import { queryClient } from "@/shared/lib/client";
-import { useSearchParams } from "next/navigation";
-import { DialogTitle } from "@radix-ui/react-dialog";
-import { widgetsList } from "@/shared/lib/constants";
-import { getEditModal } from "@/shared/lib/utils/GetWidgetByName";
 //EDIT PAGE CONTENT
 export const PageEditorContent = ({
   onTemplateSave,
@@ -270,6 +268,7 @@ export const PageEditorContent = ({
                       key={item.id}
                       id={item.id}
                       name={item.name}
+                      previewBtn={<PreviewButton modal={item.name} />}
                       deleteBtn={
                         <DeleteWidgetDialog
                           name={item.name}
@@ -324,8 +323,8 @@ const DeleteWidgetDialog = ({
 }) => {
   return (
     <Dialog>
-      <DialogTrigger>
-        <DeleteIcon />
+      <DialogTrigger className="bg-black px-3 rounded-md">
+        <DeleteIcon color="white" />
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

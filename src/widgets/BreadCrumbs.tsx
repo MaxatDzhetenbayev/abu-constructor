@@ -41,7 +41,7 @@ export const BreadCrumbs = ({
 }) => {
   const crumbs = getBreadCrumbs(slug, pages);
   return (
-    <Breadcrumb className="px-3">
+    <Breadcrumb className="px-10">
       <BreadcrumbList>
         {crumbs.map((crumb, idx) => (
           <BreadcrumbItem className="text-red-950 font-bold text-xl" key={idx}>
