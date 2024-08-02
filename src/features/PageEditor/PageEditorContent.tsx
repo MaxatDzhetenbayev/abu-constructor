@@ -125,7 +125,7 @@ export const PageEditorContent = ({
         }
       }
     }
-  }, [list, forTemplate]);
+  }, [list]);
 
   const sensors = useSensors(
     useSensor(PointerSensor),

@@ -197,14 +197,7 @@ export function useTemplateWidget<StateProps>({
       }
     }
     console.log("useEffect PROPS");
-  }, [
-    props,
-    itemsStateFields,
-    toCompare,
-    widgetMainProps,
-    widgetStateFields,
-    withTemplate,
-  ]);
+  }, [props]);
   const [items, setItems] = useState<Record<string, any>>({});
 
   const createTemplatePagesForCard = async () => {
