@@ -41,7 +41,8 @@ export const Navbar = () => {
             <Image
               src={`/images/logo-${hoveredItem ? "white" : "brown"}.png`}
               alt="logo"
-              style={{ height: "80px" }}
+              height={80}
+              width={240}
             />
           </Link>
         </section>
