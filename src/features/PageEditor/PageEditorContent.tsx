@@ -84,7 +84,7 @@ export const PageEditorContent = ({
             name: widget.widget_type,
             props: widget,
           }))
-          .sort((a, b) => a.id - b.id),
+          .sort((a, b) => a.id - b.id)
       );
   }, [data, isFetching]);
   const { toast } = useToast();
@@ -125,13 +125,13 @@ export const PageEditorContent = ({
         }
       }
     }
-  }, [list]);
+  }, [list, forTemplate]);
 
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
-    }),
+    })
   );
 
   const getLiPos = (id: UniqueIdentifier) =>
@@ -287,7 +287,7 @@ export const PageEditorContent = ({
                               item.id,
                               ruId,
                               kzId,
-                              "pageEditWidgets",
+                              "pageEditWidgets"
                             )}
                           />
                         )

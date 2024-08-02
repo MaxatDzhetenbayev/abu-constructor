@@ -9,13 +9,11 @@ import { useParams } from "next/navigation";
 import React, { useState } from "react";
 import { NavigationList } from "./Navigation/NavigationList";
 import { useScroll } from "@/shared/hooks/useScroll";
+import Image from "next/image";
 
 export const Navbar = () => {
   const params = useParams();
-  const {
-    data: pages,
-    isFetching,
-  } = useQuery({
+  const { data: pages, isFetching } = useQuery({
     queryKey: ["navbar"],
     queryFn: async () => {
       if (!Array.isArray(params.locale)) {
@@ -27,20 +25,24 @@ export const Navbar = () => {
   });
 
   const [hoveredItem, setHoveredItem] = useState<null | number>(null);
-  const [scrolled] = useScroll(40)
+  const [scrolled] = useScroll(40);
 
   return (
     <nav
       className={clsx(
         "md:z-50 md:top-0 hidden md:flex justify-center items-center shadow-xl",
         scrolled ? "md:fixed md:left-0 md:right-0 md:top-0" : "md:static",
-        hoveredItem ? "bg-[#640000]" : "bg-white",
+        hoveredItem ? "bg-[#640000]" : "bg-white"
       )}
     >
       <div className="w-[1200px] flex  items-center">
         <section className="flex-grow">
-          <Link href="/" >
-            <img src={`/images/logo-${hoveredItem ? "white" : "brown"}.png`} alt="logo" style={{ height: "80px" }} />
+          <Link href="/">
+            <Image
+              src={`/images/logo-${hoveredItem ? "white" : "brown"}.png`}
+              alt="logo"
+              style={{ height: "80px" }}
+            />
           </Link>
         </section>
         <section className=" gap-5 items-center justify-center flex flex-grow-0">
@@ -61,4 +63,3 @@ export const Navbar = () => {
     </nav>
   );
 };
-

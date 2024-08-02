@@ -56,7 +56,7 @@ export const useTemplates = ({ savedTemplate }: { savedTemplate: string }) => {
   }, [templatePages, isSuccess]);
   const onSelect = (
     template: string,
-    saveWidgets: (widget: TemplateSelectType) => void,
+    saveWidgets: (widget: TemplateSelectType) => void
   ) => {
     setSelectedTemplate((prev) => {
       const selected = templates.filter((t) => t.name === template)[0];
@@ -166,7 +166,7 @@ export function useTemplateWidget<StateProps>({
             obj[field] = props.ruOptions[field];
           }
           return obj;
-        }, {}),
+        }, {})
       );
       setToCompare({ ...toCompare, widgetMainProps });
       const temp: Record<string, StateProps> = {};
@@ -186,10 +186,10 @@ export function useTemplateWidget<StateProps>({
             },
             withTemplate
               ? {
-                templateSlug: item.templateSlug,
-                href: item.href,
-              }
-              : {},
+                  templateSlug: item.templateSlug,
+                  href: item.href,
+                }
+              : {}
           );
         });
         setItems(temp);
@@ -197,7 +197,14 @@ export function useTemplateWidget<StateProps>({
       }
     }
     console.log("useEffect PROPS");
-  }, [props]);
+  }, [
+    props,
+    itemsStateFields,
+    toCompare,
+    widgetMainProps,
+    widgetStateFields,
+    withTemplate,
+  ]);
   const [items, setItems] = useState<Record<string, any>>({});
 
   const createTemplatePagesForCard = async () => {
@@ -243,10 +250,10 @@ export function useTemplateWidget<StateProps>({
         },
         withTemplate
           ? {
-            templateSlug: ruPage.slug,
-            page: { ru: ruPage, kz: kzPage },
-          }
-          : {},
+              templateSlug: ruPage.slug,
+              page: { ru: ruPage, kz: kzPage },
+            }
+          : {}
       );
 
       setItems((prevItems) => ({
@@ -288,7 +295,7 @@ export function useTemplateWidget<StateProps>({
             items[key],
             withTemplate
               ? itemsStateFields.concat(fieldsWithTemplate)
-              : itemsStateFields,
+              : itemsStateFields
           );
           return {
             ...props,
@@ -296,7 +303,7 @@ export function useTemplateWidget<StateProps>({
             templateId: key,
             templateSlug: items[key].page?.ru.slug,
           };
-        }),
+        })
       );
       const KzItems = await Promise.all(
         Object.keys(items).map(async (key) => {
@@ -305,7 +312,7 @@ export function useTemplateWidget<StateProps>({
             items[key],
             withTemplate
               ? itemsStateFields.concat(fieldsWithTemplate)
-              : itemsStateFields,
+              : itemsStateFields
           );
           console.log(props, "RUPORPS");
 
@@ -315,17 +322,17 @@ export function useTemplateWidget<StateProps>({
             templateId: key,
             templateSlug: items[key].page?.ru.slug,
           };
-        }),
+        })
       );
       const mainPropsRu = await GetValuesByLang(
         "Ru",
         widgetMainProps,
-        widgetStateFields,
+        widgetStateFields
       );
       const mainPropsKz = await GetValuesByLang(
         "Kz",
         widgetMainProps,
-        widgetStateFields,
+        widgetStateFields
       );
 
       createCardsWidget({
@@ -362,7 +369,7 @@ export function useTemplateWidget<StateProps>({
             items[key],
             withTemplate
               ? itemsStateFields.concat(fieldsWithTemplate)
-              : itemsStateFields,
+              : itemsStateFields
           );
 
           return {
@@ -371,7 +378,7 @@ export function useTemplateWidget<StateProps>({
             templateSlug: items[key].templateSlug,
             templateId: key,
           };
-        }),
+        })
       );
 
       const KzItems = await Promise.all(
@@ -381,7 +388,7 @@ export function useTemplateWidget<StateProps>({
             items[key],
             withTemplate
               ? itemsStateFields.concat(fieldsWithTemplate)
-              : itemsStateFields,
+              : itemsStateFields
           );
 
           return {
@@ -393,18 +400,18 @@ export function useTemplateWidget<StateProps>({
                 : items[key].templateSlug,
             templateId: key,
           };
-        }),
+        })
       );
       if (ruPageId && kzPageId) {
         const mainPropsRu = await GetValuesByLang(
           "Ru",
           widgetMainProps,
-          widgetStateFields,
+          widgetStateFields
         );
         const mainPropsKz = await GetValuesByLang(
           "Kz",
           widgetMainProps,
-          widgetStateFields,
+          widgetStateFields
         );
 
         editWidgetMutation({
