@@ -1,5 +1,5 @@
-import Accordion from "./Accordion/Accordion";
-import AccordionEditModal from "./Accordion/AccordionEditModal";
+import Accordion from "./Accordion/AccordionServer";
+import AccordionEditModal from "./Accordion/Accordion.modal";
 import Cards from "./Cards/Cards";
 import CardsEditModal from "./Cards/CardsEditModal";
 import Carousel from "./Carousel/CarouselServer";
@@ -60,11 +60,13 @@ export const widgetsList = [
   Gallery,
 ];
 export const getWidgetByName = (name: string, props: any) => {
+  console.log(editModalList);
   const widget = widgetsList.find((w, idx) => {
+    // console.log(name);
     return w.displayName == name;
   });
   widgetsList.forEach((w, idx) => {
-    console.log(w);
+    // console.log(w);
   });
   if (widget) {
     return widget({ ...props });
