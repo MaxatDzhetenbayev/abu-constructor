@@ -51,7 +51,7 @@ export const CarouselClient = ({ items, variant, perView, title }: CarouselProps
                         : ("div" as "div");
 
                     return (
-                        <SwiperSlide className='relative w-full h-full'>
+                        <SwiperSlide key={item.href} className='relative w-full h-full'>
                             <Comp href={`/${params.locale}/${item.href}`}>
                                 <div
                                     className="absolute inset-0 bg-cover bg-center bg-no-repeat"

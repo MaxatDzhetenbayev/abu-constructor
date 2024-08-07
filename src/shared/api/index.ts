@@ -1,8 +1,9 @@
+import cookie from 'cookie';
+
 const backendUrl = "http://77.243.80.138:8001";
 interface CRequest {
   path: string;
   method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE" | "UPDATE";
-  token?: string;
   query?: URLSearchParams | Record<string, any>;
   body?: { json?: unknown; multipart?: FormData };
 }
@@ -23,8 +24,10 @@ export const customFetch = async (params: CRequest) => {
   if (params.body?.json) {
     headers.set("Content-Type", "application/json");
   }
-  if (params.token) {
-    headers.set("authorization", params.token);
+  if (params.method !== "GET") {
+    const token = cookie.parse(document.cookie).token;
+    console.log(token)
+    headers.set("authorization", token);
   }
 
   const response = await fetch(url, {

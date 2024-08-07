@@ -60,7 +60,7 @@ export const widgetsList = [
   Gallery,
 ];
 export const getWidgetByName = (name: string, props: any) => {
-  console.log(editModalList);
+  // console.log(editModalList);
   const widget = widgetsList.find((w, idx) => {
     // console.log(name);
     return w.displayName == name;

@@ -50,8 +50,8 @@ export const ListClient = ({ items: listItems }: ListProps) => {
   };
 
   return (
-    <section className="flex flex-col gap-4  h-full">
-      <ul className="h-auto">
+    <section className="flex flex-col gap-4 h-full">
+      <ul className="h-auto flex flex-col gap-4 ">
         {listItems
           .slice((current - 1) * 5, (current - 1) * 5 + 5)
           .map((list, idx) => (
@@ -89,9 +89,9 @@ export const ListClient = ({ items: listItems }: ListProps) => {
                       ? "block"
                       : "hidden",
                     idx + 1 == 1 &&
-                      (current == pagination.totalPages - 1 ||
-                        current == pagination.totalPages) &&
-                      "block",
+                    (current == pagination.totalPages - 1 ||
+                      current == pagination.totalPages) &&
+                    "block",
                   )}
                   onClick={() => setCurrent(idx + 1)}
                 >

@@ -4,8 +4,7 @@ import {
   BreadcrumbList,
   BreadcrumbItem,
   BreadcrumbLink,
-  BreadcrumbSeparator,
-  BreadcrumbPage,
+
 } from "@/shared/ui";
 import { ChevronRight } from "lucide-react";
 function getBreadCrumbs(slug: string[], pages: NavPage[]) {
@@ -41,10 +40,10 @@ export const BreadCrumbs = ({
 }) => {
   const crumbs = getBreadCrumbs(slug, pages);
   return (
-    <Breadcrumb>
+    <Breadcrumb className="px-10">
       <BreadcrumbList>
         {crumbs.map((crumb, idx) => (
-          <BreadcrumbItem className="text-cyan-500 font-bold text-xl" key={idx}>
+          <BreadcrumbItem className="text-red-950 font-bold text-xl" key={idx}>
             <BreadcrumbLink
               href={
                 crumb.type == "content" ? `/${locale}${crumb.slug}` : undefined
