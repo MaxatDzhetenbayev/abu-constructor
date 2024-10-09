@@ -88,7 +88,7 @@ export const CardBaseAndHorizontal = ({
               {!hasDescription && (
                 <>
                   <div className="absolute inset-0 bg-black opacity-40"></div>
-                  <h2 className="text-white font-bold text-xl relative px-2 flex w-full h-full items-center justify-center">
+                  <h2 className="text-white text-center font-bold text-xl relative px-2 flex w-full h-full items-center justify-center">
                     {title}
                   </h2>
                 </>
