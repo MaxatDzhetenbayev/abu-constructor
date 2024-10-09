@@ -10,9 +10,27 @@ enum CardVariant {
 
 function Cards({
   contents,
-  options: { content, variant, size },
+  options: { content, variant, size, count_of_row = 3 },
   locale,
 }: IWidgetProps) {
+
+
+  function getRowItemWidth(count_of_row: number) {
+    switch (count_of_row) {
+      case 2:
+        return "420px";
+      case 3:
+        return "310px";
+      case 4:
+        return "235px";
+      default:
+        return "235px";
+    }
+  }
+
+
+  const row_item_width = getRowItemWidth(count_of_row);
+
   return (
     <section className="flex flex-col gap-3">
       <h2 className="text-2xl font-bold">
@@ -23,7 +41,7 @@ function Cards({
           variant == CardVariant.BASE ||
             variant == CardVariant.WITH_MODAL ||
             variant == CardVariant.WITH_FILE
-            ? "grid grid-cols-[repeat(auto-fit,_minmax(235px,_1fr))] gap-2"
+            ? `grid grid-cols-[repeat(auto-fit,_minmax(${row_item_width},_1fr))] gap-2`
             : "flex flex-col gap-2",
           "mt-2"
         )}

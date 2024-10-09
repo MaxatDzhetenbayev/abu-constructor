@@ -8,8 +8,7 @@ export const SideMenu = ({ widgets, locale }: { widgets: IWidget[], locale: stri
         <ul className="hidden sm:flex sticky top-32  flex-col shadow-lg  max-h-fit  rounded-md">
             {
                 widgets.map(({ options }, idx) => {
-                    const { content } = options;
-
+                    const { content, title_view } = options;
                     return content?.[locale]?.title ?
                         (
                             <li key={idx} className=" bg-white  rounded-md border-l-4 border-transparent hover:border-abu_primary hover:bg-slate-50 ">

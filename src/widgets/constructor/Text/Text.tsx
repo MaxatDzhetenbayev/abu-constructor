@@ -3,15 +3,19 @@ interface TextProps {
   content: string;
 }
 function Text({
-  options: { content },
+  options: { content, title_view },
   locale,
 }: {
-  options: { title: any; content: any };
+  options: { title: any; content: any, title_view: boolean };
   locale: string;
 }) {
+  console.log(title_view)
+
   return (
     <section className="p-4 ">
-      <h2 className="text-3xl mb-2 ">{content?.[locale]?.title}</h2>
+      {title_view === true &&
+        <h2 className="text-3xl mb-2 ">{content?.[locale]?.title}</h2>
+      }
       <div
         className="quill-content"
         dangerouslySetInnerHTML={{ __html: content[locale].content }}

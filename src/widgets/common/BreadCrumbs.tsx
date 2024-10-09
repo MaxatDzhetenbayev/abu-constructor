@@ -40,12 +40,12 @@ export const BreadCrumbs = ({
     window.addEventListener,
   ])
 
-  console.log(isMobileWidth)
 
   const getCrumbsElementForView = (crumbs: string[]) => {
     if (!crumbs) return [];
     // Вернуть массив crumbs кроме 2 элемента массива
-    return [...crumbs.slice(0, 1), ...crumbs.slice(2, crumbs.length)];
+    if (crumbs.length > 2) return [...crumbs.slice(0, 1), ...crumbs.slice(2, crumbs.length)];
+    return crumbs;
   };
 
   return (
@@ -60,7 +60,7 @@ export const BreadCrumbs = ({
               >
                 <BreadcrumbLink
                   href={
-                    ["content", "group-link"].includes(type)
+                    ["content", "group-link", "detail"].includes(type)
                       ? `/${locale}/${slug}`
                       : undefined
                   }

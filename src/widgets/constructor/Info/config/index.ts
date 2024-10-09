@@ -4,6 +4,7 @@ export const InfoEditOptions: EditOptionsProps = {
     widgetName: "Info",
     widgetOptions: [
         { props: "title", type: "text", placeholder: "Заголовок" },
+        { props: "full_name", type: "text", placeholder: "ФИО" },
         { props: "content", type: "quill", placeholder: "Контент" },
         {
             props: "variant",

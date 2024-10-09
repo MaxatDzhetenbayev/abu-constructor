@@ -53,7 +53,7 @@ export const CardWithModal = ({
               }[String(content.image != undefined)]
             )}
           ></div>
-          <h2 className="font-bold   text-xl  text-center relative">
+          <h2 className="font-bold  text-2xl  text-center relative">
             {title.length > 70 ? `${title.slice(0, 70)}...` : title}
           </h2>
         </div>
