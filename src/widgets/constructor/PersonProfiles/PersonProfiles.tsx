@@ -13,7 +13,7 @@ function PersonProfiles({
             <h2 className="text-2xl font-bold">
                 {content?.[locale]?.title.toLocaleUpperCase()}
             </h2>
-            <ul className='grid grid-cols-[repeat(auto-fill,_310px)] gap-5'>
+            <ul className='grid grid-cols-[repeat(auto-fill,minmax(310px,_1fr))] gap-5 justify-center'>
                 {
                     contents.map(({ content }, idx) => (
                         <ProfileCard key={idx} content={content} locale={locale} />
