@@ -18,7 +18,6 @@ function Info({
 }) {
 
 
-  console.log(content)
 
   return (
     <section className="flex flex-col">
@@ -32,7 +31,7 @@ function Info({
               src={`${backendImageUrl}${content.image}`}
               fill
               objectFit="cover"
-              objectPosition="center"
+              objectPosition="top"
               alt="image"
               className="rounded-md"
             />

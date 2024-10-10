@@ -15,22 +15,22 @@ function Cards({
 }: IWidgetProps) {
 
 
-  function getRowItemWidth(count_of_row: number) {
+  function getRowItemWidth(count_of_row: string) {
     switch (count_of_row) {
-      case 2:
-        return "420px";
-      case 3:
+      case "2":
         return "310px";
-      case 4:
+      case "3":
+        return "310px";
+      case "4":
         return "235px";
       default:
-        return "235px";
+        return "310px";
     }
   }
 
 
   const row_item_width = getRowItemWidth(count_of_row);
-
+  // console.log("Размер колонки: " + row_item_width);
   return (
     <section className="flex flex-col gap-3">
       <h2 className="text-2xl font-bold">

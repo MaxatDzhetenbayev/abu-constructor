@@ -18,7 +18,6 @@ export function CarouselClient({
   options: any;
   locale: string;
 }) {
-  console.log(contents);
   return (
     <section>
       <h1 className="font-bold text-2xl">{content?.[locale].title}</h1>
@@ -56,7 +55,6 @@ export function CarouselClient({
       >
         {contents.map(
           ({ content }: any, idx: number) => {
-            console.log(content[locale].content)
             return (
               <SwiperSlide key={idx} className="relative w-full h-full">
                 <div className="w-[90%]">

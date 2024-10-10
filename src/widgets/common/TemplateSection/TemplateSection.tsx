@@ -44,7 +44,6 @@ export const TemplateSection = ({ content_id }: { content_id: number }) => {
         },
       });
 
-      console.log(data);
     },
   });
 

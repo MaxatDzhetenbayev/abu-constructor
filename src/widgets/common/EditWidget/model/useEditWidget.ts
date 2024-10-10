@@ -35,6 +35,7 @@ export const useEditWidget = (
       queryClient.invalidateQueries({
         queryKey: ["widget", widgetId],
       });
+      console.log(data)
       reset({ ...data.options });
       toast({ title: "Настройки", description: "Главные настройки виджета были обновлены" })
     },

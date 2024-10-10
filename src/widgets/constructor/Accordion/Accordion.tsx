@@ -18,7 +18,6 @@ function Accordion({
   locale: string;
 }) {
 
-  console.log(options)
   return (
     <section className="mt-7">
       <h2 className="text-2xl font-bold text-[#690000]">

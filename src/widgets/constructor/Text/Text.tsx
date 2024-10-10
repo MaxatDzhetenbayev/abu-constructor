@@ -9,7 +9,6 @@ function Text({
   options: { title: any; content: any, title_view: boolean };
   locale: string;
 }) {
-  console.log(title_view)
 
   return (
     <section className="p-4 ">

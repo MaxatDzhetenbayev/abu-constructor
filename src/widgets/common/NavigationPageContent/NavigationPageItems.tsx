@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import Link from "next/link";
 import { DeleteIcon, Loader2, Settings } from "lucide-react";
@@ -7,8 +7,15 @@ import { useNavigationPageContent } from "./model/useNavigationPageContent";
 import { handleDragEnd } from "./lib";
 
 import { useDragAndDrop } from "@/shared/lib/hooks/useDrag&Drop";
-import { Button } from "@/shared/ui";
+import { Button, Input } from "@/shared/ui";
 import { IWidget } from "@/shared/types";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { backendUrl } from "@/shared/lib/constants";
+import { useForm } from "react-hook-form";
+import { locales } from "@/i18n";
+import { INavigation } from "@/shared/lib/types";
+import { toast } from "@/shared/ui/use-toast";
+import { queryClient } from "@/shared/lib/client";
 
 export const NavigationPageItems = ({
   trans,
@@ -23,11 +30,76 @@ export const NavigationPageItems = ({
   const { widgets, isFetching, handleWidgetDelete, handleWidgetUpdate } =
     useNavigationPageContent(id);
 
+  const { reset,
+    handleSubmit,
+    register,
+  } = useForm({
+
+  })
+
+  const { data: navigationItem, isSuccess, isLoading } = useQuery<INavigation>({
+    queryKey: ["get-navigations", id],
+    queryFn: async () => {
+      const res = await fetch(`${backendUrl}/navigations/${id}`)
+      return res.json()
+    },
+    enabled: !!id
+  })
+
+  const { mutate: fetchUpdateNavigation } = useMutation({
+    mutationKey: ["update-navigations", id],
+    mutationFn: async (data: Partial<INavigation>) => {
+      const res = await fetch(`${backendUrl}/navigations/${id}`, {
+        method: "PATCH",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+      return res.json()
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["get-navigations", id]
+      })
+      toast({ title: "Настройки", description: "Настройки навигации были изменены " })
+    }
+  })
+
+  useEffect(() => {
+    if (!isLoading && isSuccess) {
+      const { title, slug } = navigationItem
+      reset({ title, slug })
+    }
+  }, [navigationItem, isLoading])
+
   return (
     <section className="flex grow bg-slate-500 flex-col gap-3  p-3">
       <h2 className="text-center mb-2 text-white font-bold">
         {trans("rightTitle")}
       </h2>
+      {
+        isSuccess && navigationItem.navigation_type === "detail" && (
+          <section>
+            <form onSubmit={handleSubmit((data) => fetchUpdateNavigation(data))}>
+              <section className="flex gap-3">
+                {locales.map((locale, idx) => (
+                  <Input
+                    key={idx}
+                    {...register(`title.${locale}`)}
+                    label={`Название на ${locale} `}
+                  />
+                ))}
+              </section>
+              <Input
+                {...register("slug")}
+                label="slug страницы"
+              />
+              <Button type="submit" className="w-full">Сохранить</Button>
+            </form>
+          </section>
+        )
+      }
       <section>
         {isFetching && (
           <div className="flex justify-center items-center">

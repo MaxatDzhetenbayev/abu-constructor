@@ -20,9 +20,9 @@ export const CardEditOptions: EditOptionsProps = {
       type: "select",
       placeholder: "Количество карточек в строке",
       values: [
-        { value: 2, label: 2 },
-        { value: 3, label: 3 },
-        { value: 4, label: 4 },
+        { value: "2", label: "Два" },
+        { value: "3", label: "Три" },
+        { value: "4", label: "Четыре" },
       ],
     },
     {
