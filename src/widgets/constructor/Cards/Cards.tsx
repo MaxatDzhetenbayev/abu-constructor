@@ -10,52 +10,43 @@ enum CardVariant {
 
 function Cards({
   contents,
-  options: { content, variant, size, count_of_row = 3 },
+  options: { content, variant, size, count_of_row = "3" },
   locale,
 }: IWidgetProps) {
 
-
-  function getRowItemWidth(count_of_row: string) {
-    switch (count_of_row) {
-      case "2":
-        return "310px";
-      case "3":
-        return "310px";
-      case "4":
-        return "235px";
-      default:
-        return "310px";
-    }
-  }
+  console.log(count_of_row)
 
 
-  const row_item_width = getRowItemWidth(count_of_row);
-  // console.log("Размер колонки: " + row_item_width);
   return (
     <section className="flex flex-col gap-3">
       <h2 className="text-2xl font-bold">
         {content?.[locale]?.title.toLocaleUpperCase()}
       </h2>
-      <div
-        className={clsx(
-          variant == CardVariant.BASE ||
-            variant == CardVariant.WITH_MODAL ||
-            variant == CardVariant.WITH_FILE
-            ? `grid grid-cols-[repeat(auto-fit,_minmax(${row_item_width},_1fr))] gap-2`
-            : "flex flex-col gap-2",
-          "mt-2"
-        )}
-      >
-        {contents.map(({ content }, idx) => (
-          <Card
-            key={idx}
-            variant={variant}
-            content={content}
-            locale={locale}
-            size={size}
-          />
-        ))}
-      </div>
+      {
+
+        <div
+          className={clsx(
+            variant == CardVariant.BASE ||
+              variant == CardVariant.WITH_MODAL ||
+              variant == CardVariant.WITH_FILE
+              ? `grid gap-2`
+              : "flex flex-col gap-2",
+            "mt-2"
+          )}
+          style={{ gridTemplateColumns: `repeat(auto-fit, minmax(${count_of_row}, 1fr))` }}
+        >
+          {contents.map(({ content }, idx) => (
+            <Card
+              key={idx}
+              variant={variant}
+              content={content}
+              locale={locale}
+              size={size}
+            />
+          ))}
+        </div>
+      }
+
     </section>
   );
 }
