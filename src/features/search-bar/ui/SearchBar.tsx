@@ -24,15 +24,18 @@ export const SearchBar = () => {
                 : (
                     <ul>
                         {
-                            data?.map((item: any) => (
-
-                                <li key={item.id} >
+                            data?.map((item: any) => {
+                                console.log(item)
+                                return <li key={item.id} >
                                     <Link href={`/${locale}/${item.slug}`} className='flex items-center justify-between p-2 hover:bg-muted rounded-md'>
-                                        <h3 className='quill-content ql-size-large' >{item.title}</h3>
+                                        <span className='flex flex-col gap-1'>
+                                            <sub>{item.all_title}</sub>
+                                            <h3 className='quill-content ql-size-large' >{item.title}</h3>
+                                        </span>
                                         <Badge variant="outline">{t(item.type)}</Badge>
                                     </Link>
                                 </li>
-                            ))
+                            })
                         }
                     </ul>
                 )
