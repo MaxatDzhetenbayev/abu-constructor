@@ -91,10 +91,10 @@ export const NavigationPageItems = ({
                   />
                 ))}
               </section>
-              <Input
+              {/* <Input
                 {...register("slug")}
                 label="slug страницы"
-              />
+              /> */}
               <Button type="submit" className="w-full">Сохранить</Button>
             </form>
           </section>
