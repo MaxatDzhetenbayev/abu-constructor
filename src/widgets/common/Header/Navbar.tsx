@@ -33,7 +33,7 @@ export const Navbar = () => {
           ? "md:fixed md:left-0 md:right-0 md:top-0"
           : hoveredItem
             ? "bg-[#640000]"
-            : path === "/ru/home"
+            : path === `/${params.locale}/home`
               ? "md:static bg-none bg-black/30"
               : "md:static bg-[#640000]"
       )}
