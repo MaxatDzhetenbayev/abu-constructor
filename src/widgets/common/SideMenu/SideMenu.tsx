@@ -14,7 +14,7 @@ export const SideMenu = ({ widgets, locale }: { widgets: IWidget[], locale: stri
                             className="text-abu_primary font-bold hover:underline p-2 block"
                             onClick={(e) => {
                                 e.preventDefault();
-                                // Проверяем наличие document на клиенте
+                              //   Проверяем наличие document на клиенте
                                 if (typeof document !== 'undefined') {
                                     const element = document.getElementById(`widget-${idx}`);
                                     if (element) {

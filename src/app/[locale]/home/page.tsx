@@ -37,15 +37,18 @@ export default function Page() {
     },
   ];
 
-  const [scrolled] = useScroll(40)
+  const [scrolled] = useScroll(40);
 
   return (
     <section className="">
       {/* Hero section */}
       <section className="relative -top-32 h-screen">
-        <div className={clsx("absolute left-0 -top-0  bottom-0 right-0",
-          scrolled && "bottom-16"
-        )}>
+        <div
+          className={clsx(
+            "absolute left-0 -top-0  bottom-0 right-0",
+            scrolled && "bottom-16"
+          )}
+        >
           <Image
             src="/images/hero.gif"
             alt="video"
@@ -123,7 +126,7 @@ export default function Page() {
                   </header>
                   <footer className="mt-[12px]">
                     <button className="text-[#640000] font-bold">
-                      Подробнее{" "}
+                      Подробнее
                     </button>
                   </footer>
                 </section>
@@ -161,7 +164,7 @@ export default function Page() {
           <h2 className="font-bold text-[32px]">ОБРАЩЕНИЕ ПРЕЗИДЕНТА</h2>
           <section className="mt-4">
             <p className="text-justify break-all sm:break-normal">
-              <div className="w-[240px] h-[310px] relative float-left mr-4">
+              <span className="w-[240px] h-[310px] relative float-left mr-4">
                 <Image
                   src="/images/president.jpg"
                   alt="president"
@@ -169,7 +172,7 @@ export default function Page() {
                   objectFit="cover"
                   className="rounded-[10px]  "
                 />
-              </div>
+              </span>
               Достар, Әлихан Бөкейхан университетінің ресми сайтына қош
               келдіңіздер! Біз ерекше тарихи кезеңде өмір сүріп жатырмыз: Әлем
               IV Өндірістік революция қарсаңында тұр. Шекарамен белгіленбейтін
