@@ -1,28 +1,27 @@
-"use client"
-import { useEffect, useState } from 'react'
+"use client";
+import { useEffect, useState } from 'react';
 
 export const useScroll = (srollValue: number) => {
-
     const [scrolled, setScrolled] = useState(false);
 
     useEffect(() => {
-        if (document && window) {
-            document.addEventListener("scroll", () => {
+        // Проверяем, существует ли document и window
+        if (typeof window !== "undefined" && typeof document !== "undefined") {
+            const handleScroll = () => {
                 if (window.scrollY >= srollValue) {
                     setScrolled(true);
                 } else {
                     setScrolled(false);
                 }
-            });
-        }
-        return document.removeEventListener("scroll", () => {
-            if (window.scrollY >= srollValue) {
-                setScrolled(true);
-            } else {
-                setScrolled(false);
-            }
-        });
-    }, []);
+            };
 
-    return [scrolled]
-}
+            document.addEventListener("scroll", handleScroll);
+
+            return () => {
+                document.removeEventListener("scroll", handleScroll);
+            };
+        }
+    }, [srollValue]);
+
+    return [scrolled];
+};

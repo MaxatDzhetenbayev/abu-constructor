@@ -12,7 +12,6 @@ export function TabsClient({ contents, locale }: { contents: any; locale: string
   const slugs = params.slug as string[];
   const currentPath = slugs[slugs.length - 1];
 
-  console.log(currentPath)
   return (
     <ul className="flex flex-wrap gap-5">
       {contents?.map((tab: any, idx: number) => {

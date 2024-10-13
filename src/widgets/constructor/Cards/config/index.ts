@@ -16,6 +16,16 @@ export const CardEditOptions: EditOptionsProps = {
       ],
     },
     {
+      props: "count_of_row",
+      type: "select",
+      placeholder: "Количество карточек в строке",
+      values: [
+        { value: "400px", label: "Два" },
+        { value: "300px", label: "Три" },
+        { value: "200px", label: "Четыре" },
+      ],
+    },
+    {
       props: "size",
       type: "select",
       placeholder: "Размер",

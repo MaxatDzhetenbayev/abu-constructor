@@ -16,6 +16,7 @@ export const NavigationPageContent = ({
 
   const { handleWidgetCreate } = useNavigationPageContent(id);
 
+
   return (
     <section className="flex gap-5">
       <NavigationPageItems id={id} trans={trans} />

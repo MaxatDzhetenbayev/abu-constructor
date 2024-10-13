@@ -42,7 +42,6 @@ export const fetchCreateContent = async ({
   content,
   options,
 }: IContentCreationParams): Promise<IContent> => {
-  console.log(content);
   const response = await fetch(`${backendUrl}/contents`, {
     method: "POST",
     headers: {

@@ -17,7 +17,7 @@ export const SearchWidget = () => {
                     <SearchIcon className='text-white w-10 cursor-pointer' />
                 </Button>
             </DialogTrigger>
-            <DialogContent className='sm:max-w-[425px] max-h-[95%] overflow-y-auto'>
+            <DialogContent className='sm:max-w-[40%] max-h-[95%] overflow-y-auto'>
                 <DialogTitle>{t("title")}</DialogTitle>
                 <SearchBar />
             </DialogContent>

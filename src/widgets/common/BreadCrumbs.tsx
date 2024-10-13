@@ -8,6 +8,7 @@ import {
 } from "@/shared/ui";
 import { useQuery } from "@tanstack/react-query";
 import { ChevronRight } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export const BreadCrumbs = ({
   slug,
@@ -26,11 +27,25 @@ export const BreadCrumbs = ({
     },
   });
 
-  console.log(crumbs);
+  const [isMobileWidth, setIsMobileWidth] = useState<boolean>(false);
 
-  const getCrumbsElementForView = (crumbs: string[] | Object) => {
-    if (!Array.isArray(crumbs)) return [];
-    return crumbs?.length > 2 ? [crumbs[0], crumbs[2]] : crumbs;
+  // получение ширины экрана
+  useEffect(() => {
+    const handleResize = () => setIsMobileWidth(() => window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [
+    window.innerWidth,
+
+    window.addEventListener,
+  ])
+
+
+  const getCrumbsElementForView = (crumbs: string[]) => {
+   if (!Array.isArray(crumbs)) return [];
+    // Вернуть массив crumbs кроме 2 элемента массива
+    if (crumbs.length > 2) return [...crumbs.slice(0, 1), ...crumbs.slice(2, crumbs.length)];
+    return crumbs;
   };
 
   return (
@@ -45,12 +60,15 @@ export const BreadCrumbs = ({
               >
                 <BreadcrumbLink
                   href={
-                    ["content", "group-link"].includes(type)
+                    ["content", "group-link", "detail"].includes(type)
                       ? `/${locale}/${slug}`
                       : undefined
                   }
+                  style={{
+                    fontSize: "clamp(14px, 1.4vw, 18px)",
+                  }}
                 >
-                  {title}
+                  {isMobileWidth ? `${title.slice(0, 30)}...` : title}
                 </BreadcrumbLink>
                 {idx < getCrumbsElementForView(crumbs)?.length - 1 && (
                   <ChevronRight size={30} className="mb-1" />

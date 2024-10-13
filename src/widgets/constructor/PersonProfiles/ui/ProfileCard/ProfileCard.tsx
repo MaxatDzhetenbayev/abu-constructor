@@ -49,7 +49,7 @@ export const ProfileCard = ({ locale, content }: { locale: string, content: any 
 
     return (
         <li
-            className='h-[500px] bg-cover bg-center bg-no-repeat rounded-3xl cursor-pointer flex flex-col justify-end overflow-hidden'
+            className='h-[400px] bg-cover bg-center bg-no-repeat rounded-3xl cursor-pointer flex flex-col justify-end overflow-hidden'
             style={{
                 backgroundImage: `url(${backendImageUrl + content?.image})`,
             }}
