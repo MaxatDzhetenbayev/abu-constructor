@@ -26,8 +26,10 @@ export const BreadCrumbs = ({
     },
   });
 
-  const getCrumbsElementForView = (crumbs: string[]) => {
-    if (!crumbs) return [];
+  console.log(crumbs);
+
+  const getCrumbsElementForView = (crumbs: string[] | Object) => {
+    if (!Array.isArray(crumbs)) return [];
     return crumbs?.length > 2 ? [crumbs[0], crumbs[2]] : crumbs;
   };
 
