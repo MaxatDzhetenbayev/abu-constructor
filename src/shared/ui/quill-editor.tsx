@@ -1,8 +1,12 @@
 "use client";
-import ReactQuill, { Quill } from "react-quill";
+import dynamic from "next/dynamic";
 import { Label } from "./label";
 import "react-quill/dist/quill.snow.css";
 
+// Динамический импорт ReactQuill для предотвращения SSR ошибок
+const ReactQuill = dynamic(() => import("react-quill"), {
+  ssr: false,
+});
 
 const quillModules = {
   toolbar: [
@@ -20,15 +24,13 @@ const quillModules = {
   ],
 };
 
-
-
-interface QuillEditor {
-  value?: ReactQuill.Value;
+interface QuillEditorProps {
+  value?: string;
   onChange: (value: string) => void;
   label?: string;
 }
 
-const QuillEditor = ({ value, onChange, label }: QuillEditor) => {
+const QuillEditor = ({ value, onChange, label }: QuillEditorProps) => {
   return (
     <div>
       <Label>{label}</Label>
@@ -42,4 +44,5 @@ const QuillEditor = ({ value, onChange, label }: QuillEditor) => {
     </div>
   );
 };
+
 export default QuillEditor;
