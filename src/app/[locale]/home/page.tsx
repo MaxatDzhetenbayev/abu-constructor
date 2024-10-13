@@ -79,12 +79,11 @@ export default function Page() {
       </section>
       <section className="max-w-[1200px] mx-auto  px-4">
         {/* Sidebar & education section */}
-        <section className="flex flex-col items-center gap-4  ">
+        <section className="flex flex-col items-center gap-4">
           <Swiper
             pagination={true}
             modules={[Pagination]}
-            className="h-[240px] sm:h-[380px] md:h-[480px] w-full mt-5]"
-            style={{ maxWidth: "900px" }}
+            className="h-[440px] w-full"
           >
             {[1, 2].map((id) => (
               <SwiperSlide className="relative" key={id}>
@@ -197,10 +196,61 @@ export default function Page() {
             </p>
           </section>
         </section>
-        {/* President section */}
+        {/* Gallery section */}
         <section className="mt-16">
           <h2 className="font-bold text-[32px]">Галлерея</h2>
-          <section className="mt-4 grid grid-cols-[1fr_1fr_300px] gap-2 ">
+          <Swiper
+            pagination={true}
+            modules={[Pagination]}
+            className="h-[540px] w-full"
+          >
+            <SwiperSlide className="relative">
+              <Image
+                src={`/images/gallery/1.png`}
+                alt="slide"
+                layout="fill"
+                objectFit="cover"
+                className="rounded-[10px]"
+              />
+            </SwiperSlide>
+            <SwiperSlide className="relative">
+              <Image
+                src={`/images/gallery/2.png`}
+                alt="slide"
+                layout="fill"
+                objectFit="cover"
+                className="rounded-[10px]"
+              />
+            </SwiperSlide>
+            <SwiperSlide className="relative">
+              <Image
+                src={`/images/gallery/3.png`}
+                alt="slide"
+                layout="fill"
+                objectFit="cover"
+                className="rounded-[10px]"
+              />
+            </SwiperSlide>
+            <SwiperSlide className="relative">
+              <Image
+                src={`/images/gallery/4.png`}
+                alt="slide"
+                layout="fill"
+                objectFit="cover"
+                className="rounded-[10px]"
+              />
+            </SwiperSlide>
+            <SwiperSlide className="relative">
+              <Image
+                src={`/images/gallery/5.png`}
+                alt="slide"
+                layout="fill"
+                objectFit="cover"
+                className="rounded-[10px]"
+              />
+            </SwiperSlide>
+          </Swiper>
+          {/* <section className="mt-4 grid grid-cols-[1fr_1fr_300px] gap-2 ">
             <img
               className="row-span-1 col-span-1 rounded-md"
               src="/images/gallery/1.png"
@@ -226,7 +276,7 @@ export default function Page() {
               src="/images/gallery/5.png"
               alt="gallery-image-5"
             />
-          </section>
+          </section> */}
         </section>
       </section>
     </section>
