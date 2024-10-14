@@ -49,12 +49,17 @@ export default function Page() {
             scrolled && "bottom-16"
           )}
         >
-          <Image
+
+          <video loop autoPlay muted playsInline>
+            <source src="/hero-video.webm" type="video/webm">
+            </source>
+          </video>
+          {/* <Image
             src="/images/hero.gif"
             alt="video"
             layout="fill"
             objectFit="cover"
-          />
+          /> */}
         </div>
         <section className="absolute bottom-16 w-full">
           <ul className="flex flex-wrap gap-5 w-full max-w-[1200px] mx-auto px-4">
