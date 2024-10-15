@@ -7,7 +7,7 @@ import Link from "next/link";
 import { SearchWidget } from "../SearchWidget/SearchWidget";
 
 const topHeaderMenuList = [
-  { title: "Обучающимся", link: "home" },
+  { title: "Обучающимся", link: "https://education.abu.edu.kz/" },
   { title: "Международное сотрудничество", link: "home" },
   { title: "Выпусникам", link: "home" },
   { title: "AIS", link: "https://ais.semuniver.kz/login.php" },
