@@ -115,6 +115,8 @@ export default function Page() {
           <source src="/hero-video.webm" type="video/webm"></source>
         </video>
       </section>
+      <section className="flex justify-center">
+      </section>
       <section className={clsx("content max-w-[1200px] mx-auto px-4 mt-8"
       )}>
         <section className=" flex flex-col items-center gap-4">
@@ -201,7 +203,7 @@ export default function Page() {
                   <Image
                     src={image}
                     alt="news"
-                    layout="fill"
+                    fill
                     objectFit="cover"
                     className="rounded-md"
                   />
@@ -286,7 +288,7 @@ export default function Page() {
               <Image
                 src="/images/president.jpg"
                 alt="president"
-                layout="fill"
+                fill
                 objectFit="cover"
               />
             </motion.div>
@@ -319,8 +321,8 @@ export default function Page() {
                   <Image
                     src="/images/president.jpg"
                     alt="president"
-                    layout="fill"
-                    objectFit="cover"
+                    fill
+                    style={{ objectFit: "cover" }}
                   />
                 </motion.div>
                 <motion.div
