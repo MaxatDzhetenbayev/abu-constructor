@@ -30,6 +30,8 @@ export { BurgerMenu } from "./common/BurgerMenu/BurgerMenu";
 export { Header } from "./common/Header/Header";
 export { NavigationPageContent } from "./common/NavigationPageContent";
 
+export { Counter } from './common/Animations'
+
 export { Accordion, Cards, Carousel, Gallery, Info, Links, List, Text, StepSwitcher, Tabs };
 
 export const widgetsList = [
