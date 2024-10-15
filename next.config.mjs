@@ -15,7 +15,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "https://backnew.abu.edu.kz",
+        hostname: "backnew.abu.edu.kz",
         pathname: "/uploads/**",
       },
       {
