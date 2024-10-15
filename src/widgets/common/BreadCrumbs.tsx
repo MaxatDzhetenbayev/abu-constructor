@@ -31,18 +31,20 @@ export const BreadCrumbs = ({
 
   // получение ширины экрана
   useEffect(() => {
-    const handleResize = () => setIsMobileWidth(() => window.innerWidth < 768);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [
-    window.innerWidth,
+    if (typeof window !== "undefined") {
+      // Код будет выполнен только на клиенте
+      const handleResize = () => setIsMobileWidth(() => window.innerWidth < 768);
+      window.addEventListener("resize", handleResize);
 
-    window.addEventListener,
-  ])
+      // Установить начальное значение
+      handleResize();
 
+      return () => window.removeEventListener("resize", handleResize);
+    }
+  }, []);
 
   const getCrumbsElementForView = (crumbs: string[]) => {
-   if (!Array.isArray(crumbs)) return [];
+    if (!Array.isArray(crumbs)) return [];
     // Вернуть массив crumbs кроме 2 элемента массива
     if (crumbs.length > 2) return [...crumbs.slice(0, 1), ...crumbs.slice(2, crumbs.length)];
     return crumbs;
