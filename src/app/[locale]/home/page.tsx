@@ -1,96 +1,106 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import { gsap } from "gsap";
+import TiltCard from "@/shared/ui/cards/TiltCard";
+import { GraduationCap, BookOpen, School, Shield } from "lucide-react";
 import { useScroll } from "@/shared/lib/hooks/useScroll";
-import clsx from "clsx";
-
 export default function Page() {
-  const ed_list = [
-    { title: "Бакалавриат", description: "29 образовательных программ" },
-    { title: "Магистратура", description: "10 образовательных программ" },
-    { title: "Докторантура", description: "6 образовательных программ" },
-    { title: "Военная кафедра", description: "10 военно-учетных спец." },
-  ];
-
   const fact_list = [
     {
       count: 45,
       title: "Специальностей",
+      icon: "🎓",
     },
     {
       count: 10,
       title: "Молодежных организаций",
+      icon: "🤝",
     },
     {
       count: 8,
       title: "Учебных корпусов",
+      icon: "🏛️",
     },
     {
       count: 1998,
       title: "Год создания университета",
+      icon: "📅",
     },
+  ];
+
+  const educationPrograms = [
+    {
+      title: "Бакалавриат",
+      count: 29,
+      icon: GraduationCap,
+      color: "bg-blue-100",
+    },
+    { title: "Магистратура", count: 10, icon: BookOpen, color: "bg-green-100" },
+    { title: "Докторантура", count: 6, icon: School, color: "bg-yellow-100" },
+    { title: "Военная кафедра", count: 10, icon: Shield, color: "bg-red-100" },
   ];
 
   const [scrolled] = useScroll(40);
 
-  return (
-    <section className="">
-      {/* Hero section */}
-      <section className="relative -top-32 h-screen">
-        <div
-          className={clsx(
-            "absolute left-0 -top-0  bottom-0 right-0",
-            scrolled && "bottom-16"
-          )}
-        >
+  useEffect(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".content",
+        start: "top 20%",
+        end: "bottom 30%",
+        scrub: true,
+        pin: true,
+      },
+    });
 
-          <video loop autoPlay muted playsInline>
-            <source src="/hero-video.webm" type="video/webm">
-            </source>
-          </video>
-          {/* <Image
-            src="/images/hero.gif"
-            alt="video"
-            layout="fill"
-            objectFit="cover"
-          /> */}
-        </div>
-        <section className="absolute bottom-16 w-full">
-          <ul className="flex flex-wrap gap-5 w-full max-w-[1200px] mx-auto px-4">
-            {ed_list.map((item, index) => (
-              <li
-                key={index}
-                className="basis-[calc(25%-gap)] grow shadow-[0px_4px_23.3px_rgba(0,0,0,0.18)] bg-white p-3 rounded-[10px] relative z-10"
-              >
-                <h3
-                  className="text-[#500002] font-bold"
-                  style={{ fontSize: "clamp(18px, 2vw, 24px)" }}
-                >
-                  {item.title}
-                </h3>
-                <p style={{ fontSize: "clamp(12px, 2vw, 16px)" }}>
-                  {item.description}
-                </p>
-              </li>
-            ))}
-          </ul>
-        </section>
+    tl.fromTo(".block-1", { opacity: 0 }, { opacity: 1, duration: 1 })
+      .fromTo(
+        ".block-2 li",
+        { opacity: 0, x: -200 }, // Стартовые значения - элемент за пределами экрана и невидим
+        {
+          opacity: 1,
+          x: 0, // Элементы возвращаются в исходное положение
+          duration: 1,
+          stagger: 0.3, // Задержка между появлением каждого элемента
+          ease: "power2.out", // Плавная анимация
+        }
+      )
+      .fromTo(".block-3", { opacity: 0 }, { opacity: 1, duration: 1 })
+      .fromTo(".block-4", { opacity: 0 }, { opacity: 1, duration: 1 });
+  }, []);
+
+  return (
+    <main className="w-full h-full overflow-hidden ">
+      <section>
+        {/* <DotsCanvas /> */}
+        <div className="absolute left-0 top-0  w-full h-full -z-10 bg-black/20"></div>
+        <video
+          muted
+          loop
+          autoPlay
+          playsInline
+          className="absolute left-0 top-0  w-full h-full object-cover -z-20 "
+        >
+          <source src="/hero-video.webm" type="video/webm"></source>
+        </video>
       </section>
-      <section className="max-w-[1200px] mx-auto  px-4">
-        {/* Sidebar & education section */}
-        <section className="flex flex-col items-center gap-4">
+      <section className="content max-w-[1200px] mx-auto px-4 mt-24">
+        {/* Hero section */}
+        <section className="block-1 opacity-0 flex flex-col items-center gap-4">
           <Swiper
             pagination={true}
+            direction="vertical"
             modules={[Pagination]}
-            className="h-[440px] w-full"
+            className="lg:h-[440px] h-[50vh] w-full"
           >
-            {[1, 2].map((id) => (
+            {[2, 1].map((id) => (
               <SwiperSlide className="relative" key={id}>
                 <Image
                   src={`/images/banner-${id}.jpeg`}
@@ -103,8 +113,35 @@ export default function Page() {
             ))}
           </Swiper>
         </section>
-        {/* News sesction */}
+        {/* List */}
         <section className="mt-16">
+          <ul className="block-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {educationPrograms.map((program, index) => (
+              <li
+                key={index}
+                className={`overflow-hidden ${program.color} shadow-lg transition-shadow opacity-0 rounded-md`}
+              >
+                <section className="bg-[#640000] text-white p-4">
+                  <section className="flex items-center text-xl font-semibold">
+                    <program.icon className="w-6 h-6 mr-2" />
+                    {program.title}
+                  </section>
+                </section>
+                <section className="p-6">
+                  <p className="text-4xl font-bold text-[#640000]">
+                    {program.count}
+                  </p>
+                  <p className="text-sm text-gray-600">
+                    образовательных программ
+                  </p>
+                </section>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        {/* News sesction */}
+        <section className="block-3 opacity-0 mt-16">
           <h2 className="font-bold text-[32px]">НОВОСТИ И СОБЫТИЯ</h2>
           <section className="flex gap-3 flex-wrap mt-3">
             {[1, 2, 3, 4].map((id) => (
@@ -139,67 +176,92 @@ export default function Page() {
           </section>
         </section>
         {/* Facts section */}
-        <section className="mt-16">
+        <section className="block-4 opacity-0 mt-16">
           <h2 className="font-bold text-[32px]">ФАКТЫ О НАС</h2>
-          <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 mt-3">
+          <section className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 w-full gap-5 mt-3">
             {fact_list.map((item: any, index: number) => (
-              <article
-                key={index}
-                className="last:bg-[#640000] last:text-white grow basis-[calc(25%-gap)] shadow-[0px_4px_23.3px_rgba(0,0,0,0.18)] p-3 rounded-[10px] relative"
-              >
-                <h3
-                  className="last:text-white text-inherit  decoration-solid underline font-semibold"
-                  style={{ fontSize: "clamp(28px, 1.6vw, 42px)" }}
+              <TiltCard key={item.title}>
+                <article
+                  style={{
+                    transform: "translateZ(30px)",
+                  }}
+                  key={index}
+                  className="bg-white h-[220px]  shadow-[0px_4px_23.3px_rgba(0,0,0,0.18)] p-3 rounded-[10px] flex flex-col items-center justify-center"
                 >
-                  {item.count}
-                </h3>
-                <p
-                  className="text-inherit"
-                  style={{ fontSize: "clamp(12px, 2vw, 16px)" }}
-                >
-                  {item.title}
-                </p>
-              </article>
+                  <div className="text-[42px] ">{item.icon}</div>
+                  <h3
+                    className="last:text-white text-inherit  decoration-solid font-semibold"
+                    style={{ fontSize: "clamp(36px, 1.6vw, 42px)" }}
+                  >
+                    {item.count}
+                  </h3>
+                  <p
+                    className="text-center"
+                    style={{ fontSize: "clamp(16px, 2vw, 21px)" }}
+                  >
+                    {item.title}
+                  </p>
+                </article>
+              </TiltCard>
             ))}
           </section>
         </section>
         {/* President section */}
-        <section className="mt-16">
-          <h2 className="font-bold text-[32px]">ОБРАЩЕНИЕ ПРЕЗИДЕНТА</h2>
-          <section className="mt-4">
-            <p className="text-justify break-all sm:break-normal">
-              <span className="w-[240px] h-[310px] relative float-left mr-4">
-                <Image
-                  src="/images/president.jpg"
-                  alt="president"
-                  layout="fill"
-                  objectFit="cover"
-                  className="rounded-[10px]  "
-                />
-              </span>
-              Достар, Әлихан Бөкейхан университетінің ресми сайтына қош
-              келдіңіздер! Біз ерекше тарихи кезеңде өмір сүріп жатырмыз: Әлем
-              IV Өндірістік революция қарсаңында тұр. Шекарамен белгіленбейтін
-              білім беру кеңістігінің көкжиегі барынша кеңейіп келеді. Оның
-              айғағы – шетелдік университеттердің қазақстандық жоғары оқу
-              орындарында филиалдарының ашылуы. Ұлттық менталитетіміз бен
-              тарихи, мәдени құндылықтарымызды барынша сақтай отырып, өзіндік
-              қолтаңбасы бар іргелі оқу орны болу миссиясына сәйкес, заман
-              үндеуіне бейімделуге міндеттіміз. Ақпараттық технология ағынынан
-              қалыспай, Abai IT-Walley арқылы Жасанды интеллектіні жұмыс стилі,
-              өмір сүру салты ретінде тұтынуына жол ашып, үздік тәжіибелер
-              енгізу жүйесі қарастырылуда. Жасанды интеллект – бүгінгі уақыттың
-              күн тәртібіндегі бірінші мәселе. Алаш көсемі Әлихан Бөкейхан «алда
-              күнді көре білетін ұрпақ келеді», - деп келешекке зор үмітпен
-              сенім артқаны белгілі. Кешегі күні қиял мен арман болған бүгінгі
-              күннің ақиқаты адамзатты жаңа тарихтағы прогреске жетелейді.
-              Тәуелсіздік аңсаған Алаш ардақтыларының идеясын жүйелі түрде
-              ілгерілету басты мақсатымыз бола береді. Білімді ізгілендіру
-              арқылы жоғары кәсіби біліктілігі туралы дипломы бар маман ғана
-              емес кемел Тұлға тәрбиелеу игілікті, аяқталмайтын қызметіміз болып
-              қала береді.
-            </p>
-          </section>
+        <section className="mt-16 rounded-[10px] overflow-hidden">
+          <div className="w-full  flex flex-col lg:grid grid-cols-[1fr,_2fr]  ">
+            <div className="lg:h-full h-[320px] relative hidden lg:block">
+              <Image
+                src="/images/president.jpg"
+                alt="president"
+                layout="fill"
+                objectFit="cover"
+              />
+            </div>
+            <div className="p-5">
+              <h2 className="text-3xl font-bold mb-4 text-[#640000]">
+                ОБРАЩЕНИЕ ПРЕЗИДЕНТА
+              </h2>
+              <section className="flex flex-col gap-5">
+                <div className="relative h-[60vh] md:h-[80vh]   lg:hidden ">
+                  <Image
+                    src="/images/president.jpg"
+                    alt="president"
+                    layout="fill"
+                    objectFit="cover"
+                  />
+                </div>
+                <div className="border-l-4 border-[#FFD700] pl-4 mb-4">
+                  <p className="text-justify">
+                    Достар, Әлихан Бөкейхан университетінің ресми сайтына қош
+                    келдіңіздер! Біз ерекше тарихи кезеңде өмір сүріп жатырмыз:
+                    Әлем IV Өндірістік революция қарсаңында тұр. Шекарамен
+                    белгіленбейтін білім беру кеңістігінің көкжиегі барынша
+                    кеңейіп келеді. Оның айғағы – шетелдік университеттердің
+                    қазақстандық жоғары оқу орындарында филиалдарының ашылуы.
+                    Ұлттық менталитетіміз бен тарихи, мәдени құндылықтарымызды
+                    барынша сақтай отырып, өзіндік қолтаңбасы бар іргелі оқу
+                    орны болу миссиясына сәйкес, заман үндеуіне бейімделуге
+                    міндеттіміз. Ақпараттық технология ағынынан қалыспай, Abai
+                    IT-Walley арқылы Жасанды интеллектіні жұмыс стилі, өмір сүру
+                    салты ретінде тұтынуына жол ашып, үздік тәжіибелер енгізу
+                    жүйесі қарастырылуда. Жасанды интеллект – бүгінгі уақыттың
+                    күн тәртібіндегі бірінші мәселе. Алаш көсемі Әлихан Бөкейхан
+                    «алда күнді көре білетін ұрпақ келеді», - деп келешекке зор
+                    үмітпен сенім артқаны белгілі. Кешегі күні қиял мен арман
+                    болған бүгінгі күннің ақиқаты адамзатты жаңа тарихтағы
+                    прогреске жетелейді. Тәуелсіздік аңсаған Алаш ардақтыларының
+                    идеясын жүйелі түрде ілгерілету басты мақсатымыз бола
+                    береді. Білімді ізгілендіру арқылы жоғары кәсіби біліктілігі
+                    туралы дипломы бар маман ғана емес кемел Тұлға тәрбиелеу
+                    игілікті, аяқталмайтын қызметіміз болып қала береді.
+                  </p>
+                </div>
+                <p className="text-lg font-semibold text-[#8B0000]">
+                  Университет президенті - Курманбаева Шырын Асылхановна
+                </p>
+              </section>
+            </div>
+          </div>
         </section>
         {/* Gallery section */}
         <section className="mt-16">
@@ -284,6 +346,6 @@ export default function Page() {
           </section> */}
         </section>
       </section>
-    </section>
+    </main>
   );
 }
