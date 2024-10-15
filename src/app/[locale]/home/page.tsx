@@ -180,7 +180,7 @@ export default function Page() {
           <h2 className="font-bold text-[32px]">ФАКТЫ О НАС</h2>
           <section className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 w-full gap-5 mt-3">
             {fact_list.map((item: any, index: number) => (
-              <TiltCard>
+              <TiltCard key={item.title}>
                 <article
                   style={{
                     transform: "translateZ(30px)",
