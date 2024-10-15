@@ -35,9 +35,12 @@ export const DropNavigation = ({
               <Link
                 href={`/${locale}/${item.slug}/${child.slug}`}
                 className={clsx(
-                  "text-white font-bold text-[24px]",
+                  "text-white font-bold",
                   path == `/${locale}${child.slug}` && "font-bold"
                 )}
+                style={{
+                  fontSize: "clamp(18px, 1.4vw, 24px)",
+                }}
               >
                 {child.title[locale]}
               </Link>
@@ -57,10 +60,13 @@ export const DropNavigation = ({
                     <Link
                       href={`/${locale}/${item.slug}/${child.slug}/${subChild.slug}`}
                       className={clsx(
-                        "text-center max-w-11 text-slate-200",
+                        "text-center max-w-11 text-slate-200 leading-3",
                         path === `/${locale}$/${child.slug}/${subChild.slug}` && "font-bold",
-                        ["bachelor's_degree", "master's_degree", "doctorates_degree"].includes(subChild.slug) && "font-bold"
+                        ["bachelor's_degree", "master's_degree", "doctorates_degree"].includes(subChild.slug) && "font-bold "
                       )}
+                      style={{
+                        fontSize: "clamp(16px, 1.5vw, 20px)",
+                      }}
                     >
                       {subChild.title[locale]}
                     </Link>

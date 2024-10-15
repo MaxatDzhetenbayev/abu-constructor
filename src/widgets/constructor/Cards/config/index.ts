@@ -22,7 +22,7 @@ export const CardEditOptions: EditOptionsProps = {
       values: [
         { value: "400px", label: "Два" },
         { value: "300px", label: "Три" },
-        { value: "200px", label: "Четыре" },
+        { value: "240px", label: "Четыре" },
       ],
     },
     {
