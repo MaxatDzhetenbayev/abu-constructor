@@ -21,13 +21,6 @@ export const CardBaseAndHorizontal = ({
   const { title, content: description } = content[locale];
   const hasDescription = Boolean(description && description.length > 0);
 
-  const variantClasses = {
-    base: "flex-1 min-w-[300px]",
-    with_file: "flex-1 min-w-[300px]",
-    with_modal: "flex-1 min-w-[300px]",
-    horizontal: "col-start-1 col-end-2",
-  }[variant];
-
   const colors = [
     "from-rose-500 to-indigo-600",
     "from-cyan-400 to-blue-600",

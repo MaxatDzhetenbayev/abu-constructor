@@ -1,81 +1,104 @@
 "use client";
 
-import React, { useEffect } from "react";
-
+import React from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
+import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import { gsap } from "gsap";
-import TiltCard from "@/shared/ui/cards/TiltCard";
 import { GraduationCap, BookOpen, School, Shield } from "lucide-react";
-import { useScroll } from "@/shared/lib/hooks/useScroll";
 import clsx from "clsx";
+import { motion } from 'framer-motion'
+import { Counter } from "@/widgets";
+const fact_list = [
+  {
+    count: 45,
+    title: "Специальностей",
+    icon: "🎓",
+  },
+  {
+    count: 10,
+    title: "Молодежных организаций",
+    icon: "🤝",
+  },
+  {
+    count: 8,
+    title: "Учебных корпусов",
+    icon: "🏛️",
+  },
+  {
+    count: 1998,
+    title: "Год создания университета",
+    icon: "📅",
+  },
+];
+
+const educationPrograms = [
+  {
+    title: "Бакалавриат",
+    count: 29,
+    icon: GraduationCap,
+    color: "bg-blue-100",
+  },
+  { title: "Магистратура", count: 10, icon: BookOpen, color: "bg-green-100" },
+  { title: "Докторантура", count: 6, icon: School, color: "bg-yellow-100" },
+  { title: "Военная кафедра", count: 10, icon: Shield, color: "bg-red-100" },
+];
+
+const news = [
+  {
+    title: "Диагностика профессорско-преподавательского состава Alikhan Bokeikhan University",
+    date: "17 апреля, 2024",
+    image: "/images/banner-2.jpeg",
+  },
+  {
+    title: "Семестровое обучение в Indian Institute of Technology Bombay",
+    date: "18 апреля, 2024",
+    image: "/images/banner-3.jpeg",
+  },
+  {
+    title: "Региональная студенческая олимпиада «Финансовая безопасность»",
+    date: "19 апреля, 2024",
+    image: "/images/banner-4.jpeg",
+  },
+  {
+    title: "Встреча с представителями АО `Финансовый центр`",
+    date: "20 апреля, 2024",
+    image: "/images/banner-5.jpeg",
+  },
+]
+
 export default function Page() {
-  const fact_list = [
-    {
-      count: 45,
-      title: "Специальностей",
-      icon: "🎓",
-    },
-    {
-      count: 10,
-      title: "Молодежных организаций",
-      icon: "🤝",
-    },
-    {
-      count: 8,
-      title: "Учебных корпусов",
-      icon: "🏛️",
-    },
-    {
-      count: 1998,
-      title: "Год создания университета",
-      icon: "📅",
-    },
-  ];
 
-  const educationPrograms = [
-    {
-      title: "Бакалавриат",
-      count: 29,
-      icon: GraduationCap,
-      color: "bg-blue-100",
-    },
-    { title: "Магистратура", count: 10, icon: BookOpen, color: "bg-green-100" },
-    { title: "Докторантура", count: 6, icon: School, color: "bg-yellow-100" },
-    { title: "Военная кафедра", count: 10, icon: Shield, color: "bg-red-100" },
-  ];
 
-  const [scrolled] = useScroll(40);
+  // useEffect(() => {
+  //   const tl = gsap.timeline({
+  //     scrollTrigger: {
+  //       trigger: ".content",
+  //       start: "top 20%",
+  //       end: "bottom 30%",
+  //       scrub: true,
+  //       pin: true,
+  //     },
+  //   });
 
-  useEffect(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".content",
-        start: "top 20%",
-        end: "bottom 30%",
-        scrub: true,
-        pin: true,
-      },
-    });
+  //   tl.fromTo(".block-1", { opacity: 0 }, { opacity: 1, duration: 1 })
+  //     .fromTo(
+  //       ".block-2 li",
+  //       { opacity: 0, y: -200 },
+  //       {
+  //         opacity: 1,
+  //         y: 0,
+  //         duration: 1,
+  //         stagger: 0.3,
+  //         ease: "power2.out",
+  //       }
+  //     )
+  //     .fromTo(".block-3", { opacity: 0 }, { opacity: 1, duration: 1 })
+  //     .fromTo(".block-4", { opacity: 0 }, { opacity: 1, duration: 1 });
+  // }, []);
 
-    tl.fromTo(".block-1", { opacity: 0 }, { opacity: 1, duration: 1 })
-      .fromTo(
-        ".block-2 li",
-        { opacity: 0, x: -200 }, // Стартовые значения - элемент за пределами экрана и невидим
-        {
-          opacity: 1,
-          x: 0, // Элементы возвращаются в исходное положение
-          duration: 1,
-          stagger: 0.3, // Задержка между появлением каждого элемента
-          ease: "power2.out", // Плавная анимация
-        }
-      )
-      .fromTo(".block-3", { opacity: 0 }, { opacity: 1, duration: 1 })
-      .fromTo(".block-4", { opacity: 0 }, { opacity: 1, duration: 1 });
-  }, []);
+
 
   return (
     <main className="w-full h-full">
@@ -92,12 +115,16 @@ export default function Page() {
           <source src="/hero-video.webm" type="video/webm"></source>
         </video>
       </section>
+      <section className="flex justify-center">
+      </section>
       <section className={clsx("content max-w-[1200px] mx-auto px-4 mt-8"
       )}>
-        <section className="block-1 opacity-0 flex flex-col items-center gap-4">
+        <section className=" flex flex-col items-center gap-4">
           <Swiper
+            loop={true}
+            autoplay={{ delay: 10000, }}
             pagination={true}
-            modules={[Pagination]}
+            modules={[Pagination, Autoplay]}
             className="h-[300px] lg:h-[440px]  w-full"
           >
             {[2, 1].map((id) => (
@@ -115,57 +142,82 @@ export default function Page() {
         </section>
         {/* List */}
         <section className="mt-16">
-          <ul className="block-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <motion.ul
+            whileInView="visible"
+            initial="hidden"
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.2, // Задержка между анимацией каждого элемента
+                },
+              },
+            }}
+            className="block-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          >
             {educationPrograms.map((program, index) => (
-              <li
+              <motion.li
                 key={index}
-                className={`overflow-hidden bg-white shadow-lg transition-shadow opacity-0 rounded-md`}
+                variants={{
+                  hidden: { opacity: 0, y: -20 },
+                  visible: {
+                    opacity: 1, y: 0, transition: {
+                      type: 'spring',
+                      stiffness: 120,
+                      damping: 10,
+                      delay: index * 0.2,
+                    }
+                  },
+                }
+                }
+                className={`overflow-hidden bg-white shadow-lg transition-shadow  rounded-md`
+                }
               >
                 <section className="bg-[#640000] text-white p-4">
-                  <section className="flex items-center text-xl font-semibold">
+                  <h3 className="flex items-center text-xl font-semibold">
                     <program.icon className="w-6 h-6 mr-2" />
                     {program.title}
-                  </section>
+                  </h3>
                 </section>
                 <section className="p-6">
                   <p className="text-4xl font-bold text-[#640000]">
-                    {program.count}
+                    <Counter targetValue={program.count} />
                   </p>
                   <p className="text-sm text-gray-600">
                     образовательных программ
                   </p>
                 </section>
-              </li>
+              </motion.li>
             ))}
-          </ul>
+          </motion.ul>
         </section>
 
         {/* News sesction */}
-        <section className="block-3 opacity-0 mt-16">
+        <section className="mt-16">
           <h2 className="font-bold text-[32px] text-abu_primary">НОВОСТИ И СОБЫТИЯ</h2>
           <section className="flex gap-3 flex-wrap mt-3">
-            {[1, 2, 3, 4].map((id) => (
-              <article key={id} className="grow basis-[283px]">
+            {news.map(({ date, image, title }, index) => (
+              <article key={title} className="grow basis-[283px]">
                 <div className="w-full h-[280px] relative">
                   <Image
-                    src="/images/banner-2.jpeg"
+                    src={image}
                     alt="news"
-                    layout="fill"
+                    fill
                     objectFit="cover"
                     className="rounded-md"
                   />
                 </div>
                 <section className="mt-[20px]">
-                  <header>
+                  <header >
                     <h2 className="text-[18px] font-bold ">
-                      Диагностика профессорско-преподавательского состава
-                      Alikhan Bokeikhan University
+                      {title}
                     </h2>
+                  </header >
+                  <footer >
                     <p className="text-[#A3A3A3] text-[16px] mt-[6px]">
-                      17 апреля, 2024
+                      {date}
                     </p>
-                  </header>
-                  <footer className="mt-[12px]">
                     <button className="text-[#640000] font-bold">
                       Подробнее
                     </button>
@@ -176,12 +228,25 @@ export default function Page() {
           </section>
         </section>
         {/* Facts section */}
-        <section className="block-4 opacity-0 mt-16">
+        <section className=" mt-16">
           <h2 className="font-bold text-[32px] text-abu_primary">ФАКТЫ О НАС</h2>
-          <section className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 w-full gap-5 mt-3">
+          <motion.ul className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 w-full gap-5 mt-3">
             {fact_list.map((item: any, index: number) => (
               // <TiltCard key={item.title}>
-              <article
+              <motion.li
+                whileInView="visible"
+                initial="hidden"
+                variants={{
+                  hidden: { opacity: 0, y: -20 },
+                  visible: {
+                    opacity: 1, y: 0, transition: {
+                      type: 'spring',
+                      stiffness: 120,
+                      damping: 10,
+                      delay: index * 0.2,
+                    }
+                  },
+                }}
                 style={{
                   transform: "translateZ(30px)",
                 }}
@@ -193,7 +258,7 @@ export default function Page() {
                   className="last:text-white text-inherit  decoration-solid font-semibold"
                   style={{ fontSize: "clamp(36px, 1.6vw, 42px)" }}
                 >
-                  {item.count}
+                  <Counter targetValue={item.count} />
                 </h3>
                 <p
                   className="text-center"
@@ -201,37 +266,77 @@ export default function Page() {
                 >
                   {item.title}
                 </p>
-              </article>
+              </motion.li>
               // </TiltCard>
             ))}
-          </section>
+          </motion.ul>
         </section>
         {/* President section */}
         <section className="mt-16 rounded-[10px] overflow-hidden">
-          <div className="w-full  flex flex-col lg:grid grid-cols-[1fr,_2fr]  ">
-            <div className="lg:h-full h-[320px] relative hidden lg:block">
+          <div className="w-full  flex flex-col lg:grid grid-cols-[1fr,_2fr]">
+            <motion.div
+              transition={{ duration: 0.5 }}
+              whileInView={{
+                x: 0,
+                opacity: 1,
+              }}
+              initial={{
+                opacity: 0,
+                x: -100,
+              }}
+              className="lg:h-full h-[320px] relative hidden lg:block">
               <Image
                 src="/images/president.jpg"
                 alt="president"
-                layout="fill"
+                fill
                 objectFit="cover"
               />
-            </div>
+            </motion.div>
             <div className="p-5">
-              <h2 className="text-3xl font-bold mb-4 text-[#640000]">
+              <motion.h2
+                transition={{ duration: 0.5 }}
+                whileInView={{
+                  x: 0,
+                  opacity: 1,
+                }}
+                initial={{
+                  opacity: 0,
+                  x: 100,
+                }}
+                className="text-3xl font-bold mb-4 text-[#640000]">
                 ОБРАЩЕНИЕ ПРЕЗИДЕНТА
-              </h2>
-              <section className="flex flex-col gap-5">
-                <div className="relative h-[60vh] md:h-[80vh]   lg:hidden ">
+              </motion.h2>
+              <motion.section className="flex flex-col gap-5">
+                <motion.div
+                  transition={{ duration: 0.5 }}
+                  whileInView={{
+                    x: 0,
+                    opacity: 1,
+                  }}
+                  initial={{
+                    opacity: 0,
+                    x: -100,
+                  }}
+                  className="relative h-[60vh] md:h-[80vh] lg:hidden ">
                   <Image
                     src="/images/president.jpg"
                     alt="president"
-                    layout="fill"
-                    objectFit="cover"
+                    fill
+                    style={{ objectFit: "cover" }}
                   />
-                </div>
-                <div className="border-l-4 border-[#FFD700] pl-4 mt-3">
-                  <p className="text-justify">
+                </motion.div>
+                <motion.div
+                  transition={{ duration: 0.5 }}
+                  whileInView={{
+                    x: 0,
+                    opacity: 1,
+                  }}
+                  initial={{
+                    opacity: 0,
+                    x: 100,
+                  }}
+                  className=" pl-4 mt-3">
+                  <p className="text-justify border-l-4 border-[#FFD700] pl-3">
                     Достар, Әлихан Бөкейхан университетінің ресми сайтына қош
                     келдіңіздер! Біз ерекше тарихи кезеңде өмір сүріп жатырмыз:
                     Әлем IV Өндірістік революция қарсаңында тұр. Шекарамен
@@ -255,11 +360,12 @@ export default function Page() {
                     туралы дипломы бар маман ғана емес кемел Тұлға тәрбиелеу
                     игілікті, аяқталмайтын қызметіміз болып қала береді.
                   </p>
-                </div>
-                <p className="text-lg font-semibold text-abu_primary">
-                  Президент университета - Курманбаева Шырын Асылхановна
-                </p>
-              </section>
+                  <p className="text-lg font-semibold text-abu_primary text-left">
+                    Президент университета - Курманбаева Шырын Асылхановна
+                  </p>
+                </motion.div>
+
+              </motion.section>
             </div>
           </div>
         </section>
@@ -319,6 +425,6 @@ export default function Page() {
           </Swiper>
         </section> */}
       </section>
-    </main>
+    </main >
   );
 }

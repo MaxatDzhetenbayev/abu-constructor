@@ -6,15 +6,15 @@ enum CardVariant {
   BASE = "base",
   WITH_MODAL = "with_modal",
   WITH_FILE = "with_file",
+  HOVER_ANIMATION = "hover_animation",
 }
 
 function Cards({
   contents,
-  options: { content, variant, size, count_of_row = "3" },
+  options: { content, variant, size, count_of_row = "300px" },
   locale,
 }: IWidgetProps) {
 
-  console.log(count_of_row)
 
 
   return (
@@ -28,7 +28,8 @@ function Cards({
           className={clsx(
             variant == CardVariant.BASE ||
               variant == CardVariant.WITH_MODAL ||
-              variant == CardVariant.WITH_FILE
+              variant == CardVariant.WITH_FILE ||
+              variant == CardVariant.HOVER_ANIMATION
               ? `grid gap-2`
               : "flex flex-col gap-2",
             "mt-2"
