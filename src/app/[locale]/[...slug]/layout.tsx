@@ -15,7 +15,6 @@ export default async function Layout({
     <section>
       <Header />
       <main className=" min-h-[100svh]  px-5 mt-20 [@media(max-width:890px)]:mt-[114px]">
-        {params.slug[0] === "main" ? <section></section> : null}
         <div className="max-w-[1200px] mx-auto flex lg:p-0 p-3  flex-col gap-10 mb-10">
           {
             params.slug[0] != "home" && (
@@ -25,7 +24,7 @@ export default async function Layout({
           <div className="">{children}</div>
         </div>
       </main>
-      <footer className="w-full   bg-abu_primary">
+      <footer className="w-full  bg-abu_primary">
         <div className=" max-w-[1200px] mx-auto p-10 ">
           <div className=" flex justify-between items-center mb-10">
             <div className="flex flex-col gap-4  text-white">

@@ -11,6 +11,7 @@ import { gsap } from "gsap";
 import TiltCard from "@/shared/ui/cards/TiltCard";
 import { GraduationCap, BookOpen, School, Shield } from "lucide-react";
 import { useScroll } from "@/shared/lib/hooks/useScroll";
+import clsx from "clsx";
 export default function Page() {
   const fact_list = [
     {
@@ -77,28 +78,27 @@ export default function Page() {
   }, []);
 
   return (
-    <main className="w-full h-full overflow-hidden ">
-      <section>
-        {/* <DotsCanvas /> */}
-        <div className="absolute left-0 top-0  w-full h-full -z-10 bg-black/20"></div>
+    <main className="w-full h-full">
+      {/* Hero section */}
+      <section className="w-full h-[500px] md:h-[750px] [@media(min-width:890px)]:-top-[96px] [@media(min-width:890px)]:relative">
+        {/* <div className="absolute left-0 -top-20  w-full h-[100%] -z-10 bg-black/20"></div> */}
         <video
           muted
           loop
           autoPlay
           playsInline
-          className="absolute left-0 top-0  w-full h-full object-cover -z-20 "
+          className="object-cover w-full h-full"
         >
           <source src="/hero-video.webm" type="video/webm"></source>
         </video>
       </section>
-      <section className="content max-w-[1200px] mx-auto px-4 mt-24">
-        {/* Hero section */}
+      <section className={clsx("content max-w-[1200px] mx-auto px-4 mt-8"
+      )}>
         <section className="block-1 opacity-0 flex flex-col items-center gap-4">
           <Swiper
             pagination={true}
-            direction="vertical"
             modules={[Pagination]}
-            className="lg:h-[440px] h-[50vh] w-full"
+            className="h-[300px] lg:h-[440px]  w-full"
           >
             {[2, 1].map((id) => (
               <SwiperSlide className="relative" key={id}>
@@ -119,7 +119,7 @@ export default function Page() {
             {educationPrograms.map((program, index) => (
               <li
                 key={index}
-                className={`overflow-hidden ${program.color} shadow-lg transition-shadow opacity-0 rounded-md`}
+                className={`overflow-hidden bg-white shadow-lg transition-shadow opacity-0 rounded-md`}
               >
                 <section className="bg-[#640000] text-white p-4">
                   <section className="flex items-center text-xl font-semibold">
@@ -142,7 +142,7 @@ export default function Page() {
 
         {/* News sesction */}
         <section className="block-3 opacity-0 mt-16">
-          <h2 className="font-bold text-[32px]">НОВОСТИ И СОБЫТИЯ</h2>
+          <h2 className="font-bold text-[32px] text-abu_primary">НОВОСТИ И СОБЫТИЯ</h2>
           <section className="flex gap-3 flex-wrap mt-3">
             {[1, 2, 3, 4].map((id) => (
               <article key={id} className="grow basis-[283px]">
@@ -177,32 +177,32 @@ export default function Page() {
         </section>
         {/* Facts section */}
         <section className="block-4 opacity-0 mt-16">
-          <h2 className="font-bold text-[32px]">ФАКТЫ О НАС</h2>
+          <h2 className="font-bold text-[32px] text-abu_primary">ФАКТЫ О НАС</h2>
           <section className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 w-full gap-5 mt-3">
             {fact_list.map((item: any, index: number) => (
-              <TiltCard key={item.title}>
-                <article
-                  style={{
-                    transform: "translateZ(30px)",
-                  }}
-                  key={index}
-                  className="bg-white h-[220px]  shadow-[0px_4px_23.3px_rgba(0,0,0,0.18)] p-3 rounded-[10px] flex flex-col items-center justify-center"
+              // <TiltCard key={item.title}>
+              <article
+                style={{
+                  transform: "translateZ(30px)",
+                }}
+                key={index}
+                className="bg-white h-[220px]  shadow-[0px_4px_15.3px_rgba(0,0,0,0.18)] p-3 rounded-[10px] flex flex-col items-center justify-center"
+              >
+                <div className="text-[42px] ">{item.icon}</div>
+                <h3
+                  className="last:text-white text-inherit  decoration-solid font-semibold"
+                  style={{ fontSize: "clamp(36px, 1.6vw, 42px)" }}
                 >
-                  <div className="text-[42px] ">{item.icon}</div>
-                  <h3
-                    className="last:text-white text-inherit  decoration-solid font-semibold"
-                    style={{ fontSize: "clamp(36px, 1.6vw, 42px)" }}
-                  >
-                    {item.count}
-                  </h3>
-                  <p
-                    className="text-center"
-                    style={{ fontSize: "clamp(16px, 2vw, 21px)" }}
-                  >
-                    {item.title}
-                  </p>
-                </article>
-              </TiltCard>
+                  {item.count}
+                </h3>
+                <p
+                  className="text-center"
+                  style={{ fontSize: "clamp(16px, 2vw, 21px)" }}
+                >
+                  {item.title}
+                </p>
+              </article>
+              // </TiltCard>
             ))}
           </section>
         </section>
@@ -230,7 +230,7 @@ export default function Page() {
                     objectFit="cover"
                   />
                 </div>
-                <div className="border-l-4 border-[#FFD700] pl-4 mb-4">
+                <div className="border-l-4 border-[#FFD700] pl-4 mt-3">
                   <p className="text-justify">
                     Достар, Әлихан Бөкейхан университетінің ресми сайтына қош
                     келдіңіздер! Біз ерекше тарихи кезеңде өмір сүріп жатырмыз:
@@ -256,20 +256,20 @@ export default function Page() {
                     игілікті, аяқталмайтын қызметіміз болып қала береді.
                   </p>
                 </div>
-                <p className="text-lg font-semibold text-[#8B0000]">
-                  Университет президенті - Курманбаева Шырын Асылхановна
+                <p className="text-lg font-semibold text-abu_primary">
+                  Президент университета - Курманбаева Шырын Асылхановна
                 </p>
               </section>
             </div>
           </div>
         </section>
         {/* Gallery section */}
-        <section className="mt-16">
-          <h2 className="font-bold text-[32px]">Галлерея</h2>
+        {/* <section className="mt-16">
+          <h2 className="font-bold text-[32px] text-abu_primary">Галерея</h2>
           <Swiper
             pagination={true}
             modules={[Pagination]}
-            className="h-[540px] w-full"
+            className="h-[540px] w-full mt-10"
           >
             <SwiperSlide className="relative">
               <Image
@@ -317,34 +317,7 @@ export default function Page() {
               />
             </SwiperSlide>
           </Swiper>
-          {/* <section className="mt-4 grid grid-cols-[1fr_1fr_300px] gap-2 ">
-            <img
-              className="row-span-1 col-span-1 rounded-md"
-              src="/images/gallery/1.png"
-              alt="gallery-image-1"
-            />
-            <img
-              className="row-start-1 col-start-2 rounded-md"
-              src="/images/gallery/2.png"
-              alt="gallery-image-2"
-            />
-            <img
-              className="row-start-2 col-span-1 rounded-md"
-              src="/images/gallery/3.png"
-              alt="gallery-image-3"
-            />
-            <img
-              className="row-start-2 col-start-2 rounded-md"
-              src="/images/gallery/4.png"
-              alt="gallery-image-4"
-            />
-            <img
-              className="col-start-3 h-full row-span-2 object-cover rounded-md"
-              src="/images/gallery/5.png"
-              alt="gallery-image-5"
-            />
-          </section> */}
-        </section>
+        </section> */}
       </section>
     </main>
   );
