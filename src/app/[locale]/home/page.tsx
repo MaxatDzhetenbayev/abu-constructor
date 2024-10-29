@@ -360,7 +360,7 @@ export default function Page() {
                     туралы дипломы бар маман ғана емес кемел Тұлға тәрбиелеу
                     игілікті, аяқталмайтын қызметіміз болып қала береді.
                   </p>
-                  <p className="text-lg font-semibold text-abu_primary text-left">
+                  <p className="text-lg text-right font-semibold text-abu_primary text-left">
                     Президент университета - Курманбаева Шырын Асылхановна
                   </p>
                 </motion.div>
