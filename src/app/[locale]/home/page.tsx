@@ -556,7 +556,11 @@ const Accreditation = () => {
             <h3 className="text-4xl mb-[35px] font-bold">Социальные сети</h3>
             <div className="flex gap-2">
               {socials.map((s) => (
-                <img src={`/icons/${s}`} className="w-[46px] h-[46px]" />
+                <img
+                  key={s}
+                  src={`/icons/${s}`}
+                  className="w-[46px] h-[46px]"
+                />
               ))}
             </div>
           </div>
