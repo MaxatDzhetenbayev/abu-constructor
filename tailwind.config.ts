@@ -24,6 +24,7 @@ const config = {
       },
       backgroundImage: {
         "footer-texture": "url('/brush.svg')",
+        president: "url('/icons/president-bg.png')",
       },
       fontSize: {
         "calc-text-xl": "clamp(0.8rem, 3vw, 1.25rem)",

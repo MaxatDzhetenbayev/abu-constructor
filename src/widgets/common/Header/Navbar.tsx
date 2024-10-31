@@ -10,6 +10,7 @@ import { useScroll } from "@/shared/lib/hooks/useScroll";
 import { INavigation } from "@/shared/lib/types";
 import { backendUrl } from "@/shared/lib/constants";
 import Image from "next/image";
+import { ChangeLocale } from "@/features";
 
 export const Navbar = () => {
   const params = useParams();
@@ -35,7 +36,7 @@ export const Navbar = () => {
             ? "bg-[#640000]"
             : path === `/${params.locale}/home`
               ? "md:static bg-none bg-black/30"
-              : "md:static bg-[#640000]"
+              : "md:static bg-[#640000]",
       )}
     >
       <div
@@ -66,6 +67,8 @@ export const Navbar = () => {
           ) : (
             <span>Навигация не найдена</span>
           )}
+
+          {scrolled && <ChangeLocale />}
         </section>
       </div>
     </nav>

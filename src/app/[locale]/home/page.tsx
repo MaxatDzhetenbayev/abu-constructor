@@ -1,14 +1,5 @@
 "use client";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import clsx from "clsx";
-import { AnimatePresence, motion } from "framer-motion";
-import { BookOpen, GraduationCap, School, Shield } from "lucide-react";
-import Image from "next/image";
-import "swiper/css";
-import "swiper/css/pagination";
-import { Swiper, SwiperSlide } from "swiper/react";
+import Autoplay from "embla-carousel-autoplay";
 import {
   Carousel,
   CarouselContent,
@@ -16,8 +7,16 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/shared/ui";
-import { ReactNode, useState } from "react";
-import { eventNames } from "process";
+import clsx from "clsx";
+import { AnimatePresence, motion } from "framer-motion";
+import { BookOpen, GraduationCap, School, Shield } from "lucide-react";
+import Image from "next/image";
+import { ReactNode, useEffect, useRef, useState } from "react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import Script from "next/script";
+import { useParams } from "next/navigation";
 const section_1 = [
   "58 образовательных программ",
   "2 современных общежития",
@@ -121,7 +120,7 @@ export default function Page() {
           <source src="/hero-video.webm" type="video/webm"></source>
         </video>
       </section>
-      <section className="max-w-[1200px] flex flex-col gap-24 md:px-3 lg:px-0 mx-auto">
+      <section className=" flex flex-col gap-24 md:px-3 lg:px-0 ">
         <SectionOne />
         <PresidentSection />
         <Gallery />
@@ -135,7 +134,7 @@ export default function Page() {
 }
 const SectionOne = () => {
   return (
-    <section className="flex justify-center flex-wrap gap-5  ">
+    <Container className="flex justify-center flex-wrap gap-5  ">
       {section_1.map((s, idx) => (
         <section
           key={idx}
@@ -155,29 +154,15 @@ const SectionOne = () => {
           </span>
         </section>
       ))}
-    </section>
+    </Container>
   );
 };
 const PresidentSection = () => {
   return (
-    <section className="mt-16 rounded-[10px] overflow-hidden">
-      <motion.h2
-        transition={{ duration: 0.5 }}
-        whileInView={{
-          x: 0,
-          opacity: 1,
-        }}
-        initial={{
-          opacity: 0,
-          x: -100,
-        }}
-        className="text-5xl font-bold mb-4 text-[#640000]"
-      >
-        ОБРАЩЕНИЕ ПРЕЗИДЕНТА
-      </motion.h2>
-
-      <div className="w-full  flex flex-col lg:grid grid-cols-[1fr_1fr]">
-        <motion.div
+    <section className="relative">
+      <div className="absolute top-0 left-0 right-0 bottom-0 bg-abu_primary bg-opacity-95 bg-president" />
+      <Container className="mt-16 rounded-[10px]  overflow-hidden text-white  ">
+        <motion.h2
           transition={{ duration: 0.5 }}
           whileInView={{
             x: 0,
@@ -187,82 +172,100 @@ const PresidentSection = () => {
             opacity: 0,
             x: -100,
           }}
-          className="lg:h-full h-[320px] relative hidden lg:block"
+          className="text-5xl font-bold mb-4 "
         >
-          <Image
-            src="/icons/president.png"
-            alt="president"
-            width={430}
-            height={430}
-            className="max-w-[430px]  w-full h-auto absolute bottom-0 left-1/2 -translate-x-1/2 right-1/2"
-          />
-          <div className="h-[210px] w-full bg-abu_primary rounded-md absolute bottom-0  -z-10" />
-        </motion.div>
-        <div className="p-5">
-          <motion.section className="flex flex-col gap-5">
-            <motion.div
-              transition={{ duration: 0.5 }}
-              whileInView={{
-                x: 0,
-                opacity: 1,
-              }}
-              initial={{
-                opacity: 0,
-                x: -100,
-              }}
-              className="relative h-[60vh] md:h-[80vh] lg:hidden "
-            >
-              <Image
-                src="/icons/president.png"
-                alt="president"
-                width={430}
-                height={430}
-                className="max-w-[430px]  w-full h-auto absolute bottom-0 left-1/2 -translate-x-1/2 right-1/2"
-              />
-              <div className="h-[210px] w-full bg-abu_primary rounded-md absolute bottom-0  -z-10" />
-            </motion.div>
-            <motion.div
-              transition={{ duration: 0.5 }}
-              whileInView={{
-                x: 0,
-                opacity: 1,
-              }}
-              initial={{
-                opacity: 0,
-                x: 100,
-              }}
-              className=" pl-4 mt-3 border-l-4 border-abu_primary"
-            >
-              <p className="text-justify  pl-3">
-                Достар, Әлихан Бөкейхан университетінің ресми сайтына қош
-                келдіңіздер! Біз ерекше тарихи кезеңде өмір сүріп жатырмыз: Әлем
-                IV Өндірістік революция қарсаңында тұр. Шекарамен белгіленбейтін
-                білім беру кеңістігінің көкжиегі барынша кеңейіп келеді. Оның
-                айғағы – шетелдік университеттердің қазақстандық жоғары оқу
-                орындарында филиалдарының ашылуы. Ұлттық менталитетіміз бен
-                тарихи, мәдени құндылықтарымызды барынша сақтай отырып, өзіндік
-                қолтаңбасы бар іргелі оқу орны болу миссиясына сәйкес, заман
-                үндеуіне бейімделуге міндеттіміз. Ақпараттық технология ағынынан
-                қалыспай, Abai IT-Walley арқылы Жасанды интеллектіні жұмыс
-                стилі, өмір сүру салты ретінде тұтынуына жол ашып, үздік
-                тәжіибелер енгізу жүйесі қарастырылуда. Жасанды интеллект –
-                бүгінгі уақыттың күн тәртібіндегі бірінші мәселе. Алаш көсемі
-                Әлихан Бөкейхан «алда күнді көре білетін ұрпақ келеді», - деп
-                келешекке зор үмітпен сенім артқаны белгілі. Кешегі күні қиял
-                мен арман болған бүгінгі күннің ақиқаты адамзатты жаңа тарихтағы
-                прогреске жетелейді. Тәуелсіздік аңсаған Алаш ардақтыларының
-                идеясын жүйелі түрде ілгерілету басты мақсатымыз бола береді.
-                Білімді ізгілендіру арқылы жоғары кәсіби біліктілігі туралы
-                дипломы бар маман ғана емес кемел Тұлға тәрбиелеу игілікті,
-                аяқталмайтын қызметіміз болып қала береді.
-              </p>
-              <p className="text-lg text-right font-semibold text-abu_primary ">
-                Президент университета - Курманбаева Шырын Асылхановна
-              </p>
-            </motion.div>
-          </motion.section>
+          ОБРАЩЕНИЕ ПРЕЗИДЕНТА
+        </motion.h2>
+
+        <div className="w-full  flex flex-col lg:grid grid-cols-[1fr_1fr]">
+          <motion.div
+            transition={{ duration: 0.5 }}
+            whileInView={{
+              x: 0,
+              opacity: 1,
+            }}
+            initial={{
+              opacity: 0,
+              x: -100,
+            }}
+            className="lg:h-full h-[320px] relative hidden lg:block"
+          >
+            <Image
+              src="/icons/president.png"
+              alt="president"
+              width={430}
+              height={430}
+              className="max-w-[430px]  w-full h-auto absolute bottom-0 left-1/2 -translate-x-1/2 right-1/2"
+            />
+            {/* <div className="h-[210px] w-full bg-abu_primary rounded-md absolute bottom-0  -z-10" /> */}
+          </motion.div>
+          <div className="p-5">
+            <motion.section className="flex flex-col gap-5">
+              <motion.div
+                transition={{ duration: 0.5 }}
+                whileInView={{
+                  x: 0,
+                  opacity: 1,
+                }}
+                initial={{
+                  opacity: 0,
+                  x: -100,
+                }}
+                className="relative h-[60vh] md:h-[80vh] lg:hidden "
+              >
+                <Image
+                  src="/icons/president.png"
+                  alt="president"
+                  width={430}
+                  height={430}
+                  className="max-w-[430px]  w-full h-auto absolute bottom-0 left-1/2 -translate-x-1/2 right-1/2"
+                />
+                <div className="h-[210px] w-full bg-abu_primary rounded-md absolute bottom-0  -z-10" />
+              </motion.div>
+              <motion.div
+                transition={{ duration: 0.5 }}
+                whileInView={{
+                  x: 0,
+                  opacity: 1,
+                }}
+                initial={{
+                  opacity: 0,
+                  x: 100,
+                }}
+                className=" pl-4 mt-3 border-l-4 border-[#FFD700]"
+              >
+                <p className="text-justify  pl-3">
+                  Достар, Әлихан Бөкейхан университетінің ресми сайтына қош
+                  келдіңіздер! Біз ерекше тарихи кезеңде өмір сүріп жатырмыз:
+                  Әлем IV Өндірістік революция қарсаңында тұр. Шекарамен
+                  белгіленбейтін білім беру кеңістігінің көкжиегі барынша
+                  кеңейіп келеді. Оның айғағы – шетелдік университеттердің
+                  қазақстандық жоғары оқу орындарында филиалдарының ашылуы.
+                  Ұлттық менталитетіміз бен тарихи, мәдени құндылықтарымызды
+                  барынша сақтай отырып, өзіндік қолтаңбасы бар іргелі оқу орны
+                  болу миссиясына сәйкес, заман үндеуіне бейімделуге
+                  міндеттіміз. Ақпараттық технология ағынынан қалыспай, Abai
+                  IT-Walley арқылы Жасанды интеллектіні жұмыс стилі, өмір сүру
+                  салты ретінде тұтынуына жол ашып, үздік тәжіибелер енгізу
+                  жүйесі қарастырылуда. Жасанды интеллект – бүгінгі уақыттың күн
+                  тәртібіндегі бірінші мәселе. Алаш көсемі Әлихан Бөкейхан «алда
+                  күнді көре білетін ұрпақ келеді», - деп келешекке зор үмітпен
+                  сенім артқаны белгілі. Кешегі күні қиял мен арман болған
+                  бүгінгі күннің ақиқаты адамзатты жаңа тарихтағы прогреске
+                  жетелейді. Тәуелсіздік аңсаған Алаш ардақтыларының идеясын
+                  жүйелі түрде ілгерілету басты мақсатымыз бола береді. Білімді
+                  ізгілендіру арқылы жоғары кәсіби біліктілігі туралы дипломы
+                  бар маман ғана емес кемел Тұлға тәрбиелеу игілікті,
+                  аяқталмайтын қызметіміз болып қала береді.
+                </p>
+                <p className="text-lg text-right font-semibold ">
+                  Президент университета <br /> Курманбаева Шырын Асылхановна
+                </p>
+              </motion.div>
+            </motion.section>
+          </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 };
@@ -270,7 +273,7 @@ const gallery_1 = ["1", "2", "3", "4"];
 const gallery_2 = ["1", "2", "3", "4"];
 const Gallery = () => {
   return (
-    <section className="flex flex-col items-center xl:flex-row gap-5">
+    <Container className="flex flex-col items-center xl:flex-row gap-5">
       <section className="grid grid-cols-[repeat(4,129px)]  grid-rows-[129px,129px] gap-5">
         {gallery_1.map((i, idx) => (
           <div
@@ -299,7 +302,7 @@ const Gallery = () => {
           />
         ))}
       </section>
-    </section>
+    </Container>
   );
 };
 const SLcards = [
@@ -313,12 +316,20 @@ const SLcards = [
     date: "18.10.24",
     text: "Наши студенты заняли призовое 2 место на командных интеллектуальных играх",
   },
-  {
-    img: "/icons/sl1.png",
-    date: "18.10.24",
-    text: "Студент 2 курса Диас Нуртаев стал обладателем серебряной награды на Международном турнире по смешанным единоборствам",
-  },
 ];
+const Container = ({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) => {
+  return (
+    <section className={clsx("max-w-[1200px] w-full mx-auto", className)}>
+      {children}
+    </section>
+  );
+};
 const Heading = ({
   children,
   className,
@@ -339,7 +350,7 @@ const Heading = ({
 };
 const StudentLife = () => {
   return (
-    <section className="grid md:grid-cols-1 lg:grid-cols-[auto_1fr] overflow-hidden    place-items-center">
+    <Container className="grid md:grid-cols-1 gap-10 lg:grid-cols-[auto_1fr] overflow-hidden    place-items-center">
       <Heading>
         Студенческая <br className="2xl:block hidden" /> жизнь в{" "}
         <br className="2xl:block hidden" /> нашем вузе
@@ -359,7 +370,7 @@ const StudentLife = () => {
           ))}
         </CarouselContent>
       </Carousel>
-    </section>
+    </Container>
   );
 };
 
@@ -405,7 +416,7 @@ const events = [
 ];
 const News = () => {
   return (
-    <section className="w-full ">
+    <Container className="w-full ">
       <Heading>Новости события</Heading>
       <section className="w-full flex flex-col md:flex-row ">
         <section className="flex gap-4 flex-wrap w-full justify-center">
@@ -432,7 +443,7 @@ const News = () => {
           ))}
         </section>
       </section>
-    </section>
+    </Container>
   );
 };
 
@@ -502,22 +513,41 @@ const partners = [
   { name: "FREEDOM BROKER", img: "/free.png" },
   { name: "HUAWEI", img: "/h.png" },
   { name: "Акимат города Семей", img: "/a.png" },
+  { name: "", img: "/partners/1.webp" },
+  { name: "", img: "/partners/2.png" },
+  { name: "", img: "/partners/3.webp" },
+  { name: "", img: "/partners/4.webp" },
+  { name: "", img: "/partners/5.webp" },
+  { name: "", img: "/partners/6.webp" },
+  { name: "", img: "/partners/7.webp" },
+  { name: "", img: "/partners/8.webp" },
+  { name: "", img: "/partners/9.svg" },
+  { name: "", img: "/partners/10.webp" },
 ];
 
 const Partners = () => {
+  const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
   return (
-    <section className="flex items-center flex-col ">
+    <Container className="flex items-center flex-col ">
       <Heading className="text-center mb-[37px]">Партнерство</Heading>
-      <Carousel className="mb-10 md:mb-0">
+      <Carousel
+        opts={{
+          align: "start",
+          loop: true,
+        }}
+        //@ts-ignore
+        plugins={[plugin.current]}
+        className="mb-10 md:mb-0"
+      >
         <CarouselContent className="-ml-10 max-w-[20rem] sm:max-w-sm  md:max-w-lg lg:max-w-2xl 2xl:max-w-5xl 4xl:max-w-[70rem] ">
           {partners.map((p) => (
             <CarouselItem
               key={p.img}
               className=" flex items-center justify-center pl-10 basis-[100%] md:basis-1/2  lg:basis-1/3 xl:basis-1/4  2xl:basis-1/5"
             >
-              <div className="w-[164px] h-[164px] p-4 flex gap-1 flex-col items-center justify-center rounded-md border-2 border-abu_primary">
-                <img src={`/icons${p.img}`} />
-                <span className="text-center">{p.name}</span>
+              <div className="w-[164px] h-[164px] p-4 flex  gap-1 flex-col items-center justify-center rounded-md border-2 border-abu_primary">
+                <img src={`/icons${p.img}`} className="" />
+                <span className="text-center ">{p.name}</span>
               </div>
             </CarouselItem>
           ))}
@@ -525,27 +555,22 @@ const Partners = () => {
         <CarouselPrevious variant={"default"}>a</CarouselPrevious>
         <CarouselNext variant={"default"}>a</CarouselNext>
       </Carousel>
-    </section>
+    </Container>
   );
 };
 const socials = ["/vk.png", "inst.png", "fb.png", "yt.png", "in.png"];
 const Accreditation = () => {
+  const locale = useParams().locale;
   return (
-    <section className="px-2 md:px-0">
-      <div className="flex gap-5 items-center">
+    <Container className="px-2 md:px-0">
+      <div className="flex gap-5 items-center justify-between">
         <Heading>
           Аккредитация <br /> и признание
         </Heading>
         <img src="/icons/accre.png" className="w-[166px] h-[69px]" />
       </div>
       <div className="grid  grid-cols-1 md:grid-cols-2 gap-4">
-        <iframe
-          className="w-full h-full rounded-md"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1271.4114056513292!2d80.2433479390266!3d50.40713970234375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x42f2653b6778ca47%3A0xc602e68a1b22b35e!2zQWxpa2hhbiBCb2tlaWtoYW4gVW5pdmVyc2l0eSAo05jQu9C40YXQsNC9INCR06nQutC10LnRhdCw0L3QvtCyINGD0L3QuNCy0LXRgNGB0LjRgtC10YLRlik!5e0!3m2!1sru!2skz!4v1730282671079!5m2!1sru!2skz"
-          loading="lazy"
-          title="Технологический кластер «Abai IT-Valley” - как добраться"
-          referrerPolicy="no-referrer-when-downgrade"
-        ></iframe>
+        {getMap({ locale: locale as string })}
         <div className="flex flex-col gap-5">
           <div className="bg-abu_primary rounded-md text-white p-10 flex flex-col gap-4 text-2xl min-h-[216px]">
             <h3 className="text-4xl font-bold">Наши контакты</h3>
@@ -566,6 +591,54 @@ const Accreditation = () => {
           </div>
         </div>
       </div>
-    </section>
+    </Container>
+  );
+};
+const TwoGisMap = () => {
+  useEffect(() => {
+    const existingScript = document.getElementById("map-script");
+    if (existingScript) {
+      existingScript.remove();
+    }
+    const script = document.createElement("script");
+    script.id = "map-script";
+    script.src = "/map.js"; // Path to your custom script
+    script.async = true;
+
+    // Append the new script to the document
+    document.body.appendChild(script);
+
+    // Cleanup function to remove the script if component unmounts
+    return () => {
+      script.remove();
+    };
+  }, []);
+  return (
+    <div>
+      <Script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full" />
+      <Script id="map-script" src="/map.js" />
+      <div
+        id="map"
+        style={{
+          width: "100%",
+          height: "100%",
+          borderRadius: 10,
+          display: "block",
+        }}
+      ></div>
+    </div>
+  );
+};
+const getMap = ({ locale }: { locale: string }) => {
+  if (locale == "ru" || locale == "kz") {
+    return <TwoGisMap />;
+  }
+  return (
+    <iframe
+      className="w-full h-full rounded-md"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2542.7918338912605!2d80.23955609127222!3d50.40771698426139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x42f2653d0aaf6d87%3A0xa0f11e2864d6eb80!2zQWxpa2hhbiBCb2tlaWtoYW4gVW5pdmVyc2l0eSAyINC60L7RgNC_0YPRgQ!5e0!3m2!1sru!2skz!4v1730369385166!5m2!1sru!2skz"
+      loading="lazy"
+      referrerPolicy="no-referrer-when-downgrade"
+    ></iframe>
   );
 };

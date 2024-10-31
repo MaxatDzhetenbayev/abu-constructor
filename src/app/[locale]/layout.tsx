@@ -6,6 +6,7 @@ import "../globals.css";
 import { QueryProvider } from "@/shared/providers";
 import { Toaster } from "@/shared/ui";
 import "react-quill/dist/quill.snow.css";
+import Script from "next/script";
 
 // const inter = Montserrat({ subsets: ["latin"] });
 const inter = Raleway({ weight: ["400"], subsets: ["cyrillic"] });
@@ -23,6 +24,10 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale}>
+      <head>
+        <Script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full" />
+        <Script src="../../shared/lib/map.js" />
+      </head>
       <body className={inter.className}>
         <NextIntlClientProvider messages={messages}>
           <QueryProvider>{children}</QueryProvider>
