@@ -573,23 +573,25 @@ const News = () => {
   );
 };
 
-const partners = [
-  { name: "ABAI IT VALLEY", img: "/aiv.png" },
-  { name: "ASTANA HUB", img: "/ah.png" },
-  { name: "FREEDOM BROKER", img: "/free.png" },
-  { name: "HUAWEI", img: "/h.png" },
-  { name: "Акимат города Семей", img: "/a.png" },
-  { name: "", img: "/partners/1.webp" },
-  { name: "", img: "/partners/2.png" },
-  { name: "", img: "/partners/3.webp" },
-  { name: "", img: "/partners/4.webp" },
-  { name: "", img: "/partners/5.webp" },
-  { name: "", img: "/partners/6.webp" },
-  { name: "", img: "/partners/7.webp" },
-  { name: "", img: "/partners/8.webp" },
-  { name: "", img: "/partners/9.svg" },
-  { name: "", img: "/partners/10.webp" },
-];
+const partners = Array(3)
+  .fill([
+    { name: "ABAI IT VALLEY", img: "/aiv.png" },
+    { name: "ASTANA HUB", img: "/ah.png" },
+    { name: "FREEDOM BROKER", img: "/free.png" },
+    { name: "HUAWEI", img: "/h.png" },
+    { name: "Акимат города Семей", img: "/a.png" },
+    { name: "", img: "/partners/1.webp" },
+    { name: "", img: "/partners/2.png" },
+    { name: "", img: "/partners/3.webp" },
+    { name: "", img: "/partners/4.webp" },
+    { name: "", img: "/partners/5.webp" },
+    { name: "", img: "/partners/6.webp" },
+    { name: "", img: "/partners/7.webp" },
+    { name: "", img: "/partners/8.webp" },
+    { name: "", img: "/partners/9.svg" },
+    { name: "", img: "/partners/10.webp" },
+  ])
+  .flat();
 const ONE_SECOND = 1000;
 const AUTO_DELAY = ONE_SECOND * 2.5;
 const DRAG_BUFFER = 50;
@@ -600,11 +602,74 @@ const SPRING_OPTIONS = {
   duration: 0.3,
 };
 
+const PartnersSlider = () => {
+  // Duplicate the slides array to ensure seamless looping
+  const duplicatedSlides = [...partners, ...partners, ...partners];
+
+  return (
+    <div className="relative w-full overflow-hidden">
+      {/* Wrapping div for seamless looping */}
+      <motion.div
+        className="flex"
+        animate={{
+          x: ["-100%", "0%"],
+          transition: {
+            ease: "linear",
+            duration: 10,
+            repeat: Infinity,
+          },
+        }}
+      >
+        {/* Render duplicated slides */}
+        {duplicatedSlides.map(({ img, name }, index) => (
+          <div
+            key={index}
+            className="flex-shrink-0 mx-3  flex items-center justify-center bg-white"
+            style={{ width: "clamp(10rem, 1rem + 40vmin, 30rem)" }}
+          >
+            <div className="flex flex-col items-center justify-center">
+              <div className="px-3 py-2 bg-white flex flex-col items-center text-xl gap-3">
+                <img
+                  src={`/icons${img}`}
+                  className="w-24 md:w-32 lg:w-48" // Adjust image size with breakpoints
+                  alt={name}
+                />
+                <h2 className="text-base md:text-lg lg:text-xl">{name}</h2>
+              </div>
+            </div>
+          </div>
+        ))}
+      </motion.div>
+    </div>
+  );
+};
 const PartnersCarousel = () => {
-  const [imgIndex, setImgIndex] = useState(2);
+  const centeredEl = useRef(2);
+  const elPerView = useRef(5);
+  const [imgIndex, setImgIndex] = useState(centeredEl.current);
   const dir = useRef("r");
   const dragX = useMotionValue(0);
-  console.log(dir);
+  useEffect(() => {
+    const resize = () => {
+      if (window.innerWidth > 1200) {
+        centeredEl.current = 2;
+        elPerView.current = 5;
+        return;
+      }
+      if (window.innerWidth < 1200 && window.innerWidth > 756) {
+        centeredEl.current = 1;
+        elPerView.current = 3;
+        return;
+      }
+      centeredEl.current = 0;
+      elPerView.current = 1;
+    };
+    resize();
+    if (window) {
+      window.addEventListener("resize", resize);
+    }
+    return () => removeEventListener("resize", resize);
+  }, []);
 
   useEffect(() => {
     const intervalRef = setInterval(() => {
@@ -615,7 +680,7 @@ const PartnersCarousel = () => {
           const { current: dirValue } = dir;
 
           if (dirValue && dirValue == "r") {
-            const res = (pv + 1) % (partners.length - 2);
+            const res = (pv + 1) % (partners.length - centeredEl.current);
             if (res == 0) {
               dir.current = "l";
               return pv - 1;
@@ -640,23 +705,26 @@ const PartnersCarousel = () => {
   const onDragEnd = () => {
     const x = dragX.get();
 
-    if (x <= -DRAG_BUFFER && imgIndex < partners.length - 3) {
+    if (
+      x <= -DRAG_BUFFER &&
+      imgIndex < partners.length - 1 - centeredEl.current
+    ) {
       setImgIndex((pv) => pv + 1);
       dir.current = "r";
-    } else if (x >= DRAG_BUFFER && imgIndex > 2) {
+    } else if (x >= DRAG_BUFFER && imgIndex > centeredEl.current) {
       setImgIndex((pv) => pv - 1);
       dir.current = "l";
     }
   };
   const getImageScale = (idx: number) => {
     if (idx == imgIndex - 2 || idx == imgIndex + 2) {
-      return 0.65;
+      return 0.7;
     }
     if (idx == imgIndex - 1 || idx == imgIndex + 1) {
       return 0.75;
     }
     if (idx == imgIndex) {
-      return 1;
+      return 0.9;
     }
     return 0.5;
   };
@@ -674,11 +742,10 @@ const PartnersCarousel = () => {
     }
     return -100;
   };
-  console.log(imgIndex);
 
   const circleRef = useRef<HTMLDivElement>(null);
   return (
-    <div className="w-full pt-40  flex justify-center overflow-hidden">
+    <div className=" max-w-[18.75rem] md:max-w-full w-full   pt-28 md:pt-40  flex justify-center overflow-hidden">
       <motion.div
         drag="x"
         dragConstraints={{
@@ -689,45 +756,61 @@ const PartnersCarousel = () => {
           x: dragX,
         }}
         animate={{
-          translateX: `-${(imgIndex - 2) * 20}%`,
+          translateX: `-${(imgIndex - centeredEl.current) * (100 / elPerView.current)}%`,
         }}
         transition={SPRING_OPTIONS}
         onDragEnd={onDragEnd}
-        className=" flex w-full cursor-grab     active:cursor-grabbing"
+        className=" flex w-full min-h-[20rem] gap-0 cursor-grab  active:cursor-grabbing"
       >
-        {Array(1)
-          .fill(partners)
-          .flat()
-          .map((i, idx) => (
-            <motion.div
-              ref={circleRef}
-              key={idx}
+        {partners.map((i, idx) => (
+          <motion.div
+            ref={circleRef}
+            key={idx}
+            style={{
+              width: 100 / elPerView.current + "%",
+              height: circleRef.current?.offsetWidth,
+            }}
+            className="flex shadow-white/40 shadow-2xl p-3 min-h-[16.875rem] items-center relative flex-col  overflow-hidden flex-none justify-center   rounded-full bg-white"
+            animate={{
+              scale: getImageScale(idx),
+              y: -getImageTranslateY(idx),
+            }}
+          >
+            <div
               style={{
-                height: circleRef.current?.offsetWidth,
+                backgroundImage: `url(/icons${i.img})`,
+                backgroundSize: "contain",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
               }}
-              className="flex items-center relative flex-col  overflow-hidden flex-none justify-center w-1/3 lg:w-1/5  rounded-full bg-white"
-              animate={{
-                scale: getImageScale(idx),
-                y: -getImageTranslateY(idx),
-              }}
-            >
-              <div
-                style={{
-                  backgroundImage: `url(/icons${i.img})`,
-                  backgroundSize: "contain",
-                  backgroundPosition: "center",
-                  backgroundRepeat: "no-repeat",
-                }}
-                className="w-[60%] h-[60%]" // Ensure both width and height are set
-              />
-              <h2 className="font-bold text-xl text-abu_primary">{i.name}</h2>
-            </motion.div>
-          ))}
+              className="w-[60%] h-[60%]" // Ensure both width and height are set
+            />
+            <h2 className="font-bold text-center text-md md:text-lg lg:text-xl text-abu_primary">
+              {i.name}
+            </h2>
+          </motion.div>
+        ))}
       </motion.div>
     </div>
   );
 };
-
+const Dots = () => {
+  return (
+    <div className="flex gap-5 mt-5  ">
+      {Array(7)
+        .fill("*")
+        .map((_, idx) => (
+          <div
+            key={idx}
+            className={clsx(
+              " h-5  rounded-full",
+              idx == 3 ? "w-10 bg-white" : "w-5 bg-white/60",
+            )}
+          />
+        ))}
+    </div>
+  );
+};
 const Partners = () => {
   return (
     <section className="bg-abu_primary py-20">
@@ -735,7 +818,9 @@ const Partners = () => {
         <Heading className="text-center font-bold   mb-[37px] text-white">
           НАШИ ПАРТНЕРЫ
         </Heading>
+        {/* <PartnersSlider /> */}
         <PartnersCarousel />
+        <Dots />
       </Container>
     </section>
   );
@@ -855,7 +940,7 @@ const AppealDialog = () => {
         setOpen(!open);
       }}
     >
-      <DialogTrigger className="absolute z-[30] right-0 top-1/2 -translate-y-1/2 p-5 bg-white rounded-tl-md rounded-bl-md  cursor-pointer ">
+      <DialogTrigger className="fixed z-[30] right-0 top-1/2 -translate-y-1/2 p-5 bg-slate-200 border border-slate-300 rounded-tl-md rounded-bl-md  cursor-pointer ">
         <Image
           src={"/icons/appeal.svg"}
           alt="appeal-trigger"
