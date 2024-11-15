@@ -31,8 +31,12 @@ const config = {
         "calc-text-2xl": "clamp(1rem, 3vw, 1.5rem)",
         "calc-text-4xl": "clamp(1.5rem, 3vw, 2.25rem)",
       },
+      fontFamily: {
+        raleway: "var(--font-raleway)",
+        montserrat: "var(--font-montserrat)",
+      },
       colors: {
-        abu_primary: "#640000",
+        abu_primary: "var(--abu-primary)",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

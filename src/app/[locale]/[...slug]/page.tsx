@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 interface PageProps {
-  params: { locale: string; slug: string[] };
+  params: { locale: string; slug: string[]; widgets: IWidget[] };
 }
 
 export interface INavigation {
@@ -27,20 +27,7 @@ export interface INavigation {
 }
 
 export default async function Page({ params }: PageProps) {
-  async function fetchNavigations(): Promise<INavigation> {
-    const response = await fetch(
-      `${backendUrl}/navigations/find/by-slug?slug=${params.slug.join("/")}`,
-      {
-        cache: "no-store",
-      }
-    );
-
-    const data = await response.json();
-
-    return data;
-  }
-
-  const { widgets } = await fetchNavigations();
+  const { slug, widgets } = params;
 
   const widgetList = widgets?.map(({ widget_type, options, contents }, idx) => {
     const widgetOptons = { contents, options, locale: params.locale };
@@ -55,7 +42,7 @@ export default async function Page({ params }: PageProps) {
   return (
     <section
       className={clsx(
-        widgets?.length >= 3 && "sm:grid sm:grid-cols-[1fr_210px] sm:gap-5"
+        widgets?.length >= 3 && "sm:grid sm:grid-cols-[1fr_210px] sm:gap-5",
       )}
     >
       <section className="flex flex-col gap-9 scroll-behavior: smooth">
@@ -66,4 +53,14 @@ export default async function Page({ params }: PageProps) {
       )}
     </section>
   );
+}
+export async function generateStaticParams() {
+  const pages: INavigation[] = await fetch(`${backendUrl}/navigations/`).then(
+    (res) => res.json(),
+  );
+
+  return pages.map((page) => ({
+    slug: page.slug.split("/"),
+    widgets: page.widgets,
+  }));
 }
