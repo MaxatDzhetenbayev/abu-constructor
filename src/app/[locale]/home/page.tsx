@@ -170,7 +170,7 @@ export default function Page() {
 const SectionOne = () => {
   return (
     <Container>
-      <Heading>Инфографика</Heading>
+      <Heading className="mt-10 md:mt-0">Инфографика</Heading>
       <section className="flex justify-center flex-wrap xl:flex-nowrap   gap-5  rounded-md ">
         {section_1.map((s, idx) => (
           <section
@@ -316,42 +316,46 @@ const PresidentSection = () => {
 };
 const Rector = ({ close }: { close?: ReactNode }) => {
   return (
-    <Container className="relative rounded-none md:rounded-3xl w-full h-full md:max-h-[54rem] md:w-[40.875rem]   bg-abu_primary  mb-3 px-0 md:px-3">
+    <Container className="relative rounded-xl md:rounded-3xl w-full max-h-[100svh] md:max-h-[54rem]  md:max-w-[70.875rem]   bg-abu_primary  mb-3 px-0 md:px-3">
       {close}
-      <section className="p-[4.3rem]">
+      <section className="px-0 py-12 lg:p-[4.3rem]">
         <Heading className="text-white text-center md:text-left">
-          Обращение к ректору
+          Обращение
         </Heading>
-        <form className="flex items-center flex-col gap-4 ">
-          <RectorFormInput placeholder="ФИО" icon="/rector/user.svg" />
-          <RectorFormInput
-            placeholder="Почта"
-            gap={false}
-            icon="/rector/email.svg"
-          />
-          <RectorFormInput
-            placeholder="Телефон"
-            type="tel"
-            gap={false}
-            icon="/rector/tel.svg"
-          />
-          <Select>
-            <SelectTrigger className=" px-6 rounded-[5rem] text-abu_primary">
-              <SelectValue placeholder={"Обращение"} />
-            </SelectTrigger>
-            <SelectContent className="">
-              <SelectItem value="ru">Обращение</SelectItem>
-              <SelectItem value="ru">Обращение к ректору</SelectItem>
-              <SelectItem value="ru">Претензия</SelectItem>
-              <SelectItem value="ru">Сообщение о коррупции</SelectItem>
-            </SelectContent>
-          </Select>
-          <RectorFormTextarea
-            className="min-h-[15rem]"
-            placeholder="Текст сообщения"
-            icon="/rector/message.svg"
-          />
-          <button className="px-14 py-3 rounded-[5rem]   w-full  text-center bg-[#FDC90C] text-[#1A0700]">
+        <form className="grid grid-cols-1 lg:grid-cols-2 gap-x-0 gap-y-4 lg:gap-4 ">
+          <div className="flex flex-col gap-4 lg:gap-8">
+            <RectorFormInput placeholder="ФИО" icon="/rector/user.svg" />
+            <RectorFormInput
+              placeholder="Почта"
+              gap={false}
+              icon="/rector/email.svg"
+            />
+            <RectorFormInput
+              placeholder="Телефон"
+              type="tel"
+              gap={false}
+              icon="/rector/tel.svg"
+            />
+          </div>
+          <div className="flex flex-col gap-3 col-start-1 lg:col-start-2">
+            <Select>
+              <SelectTrigger className=" px-6 py-7 lg:py-9 rounded-[10rem]  text-abu_primary">
+                <SelectValue placeholder={"Обращение"} />
+              </SelectTrigger>
+              <SelectContent className="">
+                <SelectItem value="ru">Обращение</SelectItem>
+                <SelectItem value="ru">Обращение к ректору</SelectItem>
+                <SelectItem value="ru">Претензия</SelectItem>
+                <SelectItem value="ru">Сообщение о коррупции</SelectItem>
+              </SelectContent>
+            </Select>
+            <RectorFormTextarea
+              className="min-h-[12.5rem]"
+              placeholder="Текст сообщения"
+              icon="/rector/message.svg"
+            />
+          </div>
+          <button className="px-14 py-3 rounded-[5rem] col-span-2   w-full  text-center bg-[#FDC90C] text-[#1A0700]">
             Отправить
           </button>
         </form>
@@ -575,7 +579,7 @@ const News = () => {
 
 const partners = Array(3)
   .fill([
-    { name: "ABAI IT VALLEY", img: "/aiv.png" },
+    { name: "ABAI IT VALLEY", img: "/aiv.svg" },
     { name: "ASTANA HUB", img: "/ah.png" },
     { name: "FREEDOM BROKER", img: "/free.png" },
     { name: "HUAWEI", img: "/h.png" },
@@ -594,7 +598,7 @@ const partners = Array(3)
   .flat();
 const ONE_SECOND = 1000;
 const AUTO_DELAY = ONE_SECOND * 2.5;
-const DRAG_BUFFER = 50;
+const DRAG_BUFFER = 20;
 
 const SPRING_OPTIONS = {
   type: "tween",
@@ -688,8 +692,10 @@ const PartnersCarousel = () => {
             return res;
           } else {
             const res = pv - 1;
-
-            if (res == 1) {
+            //centered == 2 => res = 1
+            //centered == 1 => res = 0
+            //centered == 0 => res = -1
+            if (res == centeredEl.current - 1) {
               dir.current = "r";
               return pv + 1;
             }
@@ -940,7 +946,7 @@ const AppealDialog = () => {
         setOpen(!open);
       }}
     >
-      <DialogTrigger className="fixed z-[30] right-0 top-1/2 -translate-y-1/2 p-5 bg-slate-200 border border-slate-300 rounded-tl-md rounded-bl-md  cursor-pointer ">
+      <DialogTrigger className="fixed z-[30] right-0 top-1/2 -translate-y-1/2 lg:p-5 p-3 bg-slate-200 border border-slate-300 rounded-tl-md rounded-bl-md  cursor-pointer ">
         <Image
           src={"/icons/appeal.svg"}
           alt="appeal-trigger"
@@ -988,7 +994,7 @@ const RectorFormInput = ({
         className="absolute left-8 top-1/2 transform -translate-y-1/2 text-gray-500 z-10"
       />
       <input
-        className={`pl-16  pr-3 py-6 text-md w-full border border-gray-300 rounded-[5rem]  shadow-sm focus:outline-none focus:ring-2 focus:ring-abu_primary focus:border-transparent ${className}`} // Add additional styling as needed
+        className={`pl-16  pr-3 lg:py-6 py-4 text-md w-full border border-gray-300 rounded-[5rem]  shadow-sm focus:outline-none focus:ring-2 focus:ring-abu_primary focus:border-transparent ${className}`} // Add additional styling as needed
         {...inputProps}
       />
     </div>
@@ -1013,7 +1019,7 @@ const RectorFormTextarea = ({
         className="absolute left-8 top-7 transform  text-gray-500 z-10"
       />
       <textarea
-        className={`pl-16  pr-3 py-6 text-md w-full border border-gray-300 rounded-[3rem]  shadow-sm focus:outline-none focus:ring-2 focus:ring-abu_primary focus:border-transparent ${className}`} // Add additional styling as needed
+        className={`pl-16  pr-3 lg:py-6  py-4 text-md w-full border border-gray-300 rounded-[3rem]  shadow-sm focus:outline-none focus:ring-2 focus:ring-abu_primary focus:border-transparent ${className}`} // Add additional styling as needed
         {...textareaProps}
       />
     </div>
