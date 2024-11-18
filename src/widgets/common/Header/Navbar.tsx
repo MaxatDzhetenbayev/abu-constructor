@@ -29,13 +29,13 @@ export const Navbar = () => {
   return (
     <nav
       className={clsx(
-        "md:z-50 md:top-0 hidden [@media(min-width:890px)]:flex justify-center items-center shadow-xl px-3 bg-abu_primary",
+        "md:z-50  md:top-0 hidden [@media(min-width:890px)]:flex justify-center items-center shadow-xl px-3 bg-abu_primary",
         scrolled
           ? "md:fixed md:left-0 md:right-0 md:top-0"
           : hoveredItem
             ? "bg-abu_primary"
             : path === `/${params.locale}/home`
-              ? "md:static bg-none bg-black/30"
+              ? "md:static  bg-none bg-black/30"
               : "md:static bg-abu_primary",
       )}
     >
@@ -54,7 +54,7 @@ export const Navbar = () => {
             objectFit="contain"
           />
         </Link>
-        <section className="py-2 gap-5 items-center justify-center flex">
+        <section className="py-0 gap-5 items-center justify-center flex">
           {isFetching ? (
             <div className="w-[600px] grid place-items-center h-[5.875rem]">
               <Skeleton className="w-full h-[3rem]" />
