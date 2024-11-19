@@ -1,13 +1,5 @@
-import {
-  Accordion as AccordionUI,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-} from "@/shared/ui";
-interface AccordionItem {
-  question: string;
-  answer: string;
-}
+import { AccordionItem } from './ui/AccordionItem'
+
 function Accordion({
   contents,
   options,
@@ -23,27 +15,14 @@ function Accordion({
       <h2 className="text-2xl font-bold text-[#690000]">
         {options?.content && options?.content[locale].title}
       </h2>
-      <AccordionUI type="single" collapsible>
+      <ul className="flex flex-col gap-3">
         {contents.map(({ content }: any, idx: number) => {
+
           return (
-            <AccordionItem
-              key={idx}
-              value={idx + `-` + content[locale].content}
-            >
-              <AccordionTrigger className="text-xl text-start text-[#690000]">
-                {content[locale].title}
-              </AccordionTrigger>
-              <AccordionContent className="text-lg">
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: content[locale]?.content || "",
-                  }}
-                />
-              </AccordionContent>
-            </AccordionItem>
+            <AccordionItem body={content[locale].content} title={content[locale].title} />
           );
         })}
-      </AccordionUI>
+      </ul>
     </section>
   );
 }
