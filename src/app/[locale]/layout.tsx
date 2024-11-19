@@ -1,14 +1,23 @@
-import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
-import type { Metadata } from "next";
-import { Montserrat, PT_Mono, Raleway } from "next/font/google";
-import "../globals.css";
 import { QueryProvider } from "@/shared/providers";
 import { Toaster } from "@/shared/ui";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
+import { Montserrat, Raleway } from "next/font/google";
+import Script from "next/script";
 import "react-quill/dist/quill.snow.css";
+import "../globals.css";
 
 // const inter = Montserrat({ subsets: ["latin"] });
-const inter = Raleway({ weight: ["400"], subsets: ["cyrillic"] });
+const raleway = Raleway({
+  weight: ["400"],
+  variable: "--font-raleway",
+  subsets: ["cyrillic", "latin"],
+});
+const montserrat = Montserrat({
+  weight: ["400", "700", "900"],
+  variable: "--font-montserrat",
+  subsets: ["cyrillic", "latin"],
+});
 
 export default async function LocaleLayout({
   children,
@@ -23,7 +32,11 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale}>
-      <body className={inter.className}>
+      <head>
+        <Script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full" />
+        <Script src="../../shared/lib/map.js" />
+      </head>
+      <body className={`${raleway.variable} ${montserrat.variable}`}>
         <NextIntlClientProvider messages={messages}>
           <QueryProvider>{children}</QueryProvider>
           <Toaster />

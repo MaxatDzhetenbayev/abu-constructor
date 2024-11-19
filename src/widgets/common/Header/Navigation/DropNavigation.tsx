@@ -23,20 +23,20 @@ export const DropNavigation = ({
     <section
       onMouseLeave={handleMouseLeave}
       className={clsx(
-        "absolute left-0  pt-3 w-full bg-[#640000] h-[380px] px-10 ",
-        scrolled ? "top-[94px]" : "top-[134px]"
+        "absolute left-0  pt-3 w-full bg-abu_primary h-[380px] px-10 ",
+        scrolled ? "top-[94px]" : "top-[134px]",
       )}
     >
       <ul className="flex justify-center  gap-[60px]">
         {item.children.map((child) => (
           <li key={child.id}>
             {child.navigation_type === "content" ||
-              child.navigation_type === "group-link" ? (
+            child.navigation_type === "group-link" ? (
               <Link
                 href={`/${locale}/${item.slug}/${child.slug}`}
                 className={clsx(
                   "text-white font-bold",
-                  path == `/${locale}${child.slug}` && "font-bold"
+                  path == `/${locale}${child.slug}` && "font-bold",
                 )}
                 style={{
                   fontSize: "clamp(18px, 1.4vw, 24px)",
@@ -61,8 +61,13 @@ export const DropNavigation = ({
                       href={`/${locale}/${item.slug}/${child.slug}/${subChild.slug}`}
                       className={clsx(
                         "text-center max-w-11 text-slate-200 leading-3",
-                        path === `/${locale}$/${child.slug}/${subChild.slug}` && "font-bold",
-                        ["bachelor's_degree", "master's_degree", "doctorates_degree"].includes(subChild.slug) && "font-bold "
+                        path === `/${locale}$/${child.slug}/${subChild.slug}` &&
+                          "font-bold",
+                        [
+                          "bachelor's_degree",
+                          "master's_degree",
+                          "doctorates_degree",
+                        ].includes(subChild.slug) && "font-bold ",
                       )}
                       style={{
                         fontSize: "clamp(16px, 1.5vw, 20px)",

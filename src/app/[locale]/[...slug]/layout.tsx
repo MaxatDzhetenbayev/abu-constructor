@@ -10,17 +10,14 @@ export default async function Layout({
   children: ReactNode;
   params: { slug: string[]; locale: string };
 }) {
-
   return (
     <section>
       <Header />
       <main className=" min-h-[100svh]  px-5 mt-20 [@media(max-width:890px)]:mt-[114px]">
         <div className="max-w-[1200px] mx-auto flex lg:p-0 p-3  flex-col gap-10 mb-10">
-          {
-            params.slug[0] != "home" && (
-              <BreadCrumbs locale={params.locale} slug={params.slug} />
-            )
-          }
+          {params.slug[0] != "home" && (
+            <BreadCrumbs locale={params.locale} slug={params.slug} />
+          )}
           <div className="">{children}</div>
         </div>
       </main>
@@ -32,11 +29,11 @@ export default async function Layout({
               <div className="flex flex-col gap-3">
                 <div className="flex gap-4">
                   <Phone />
-                  <a href="tel:+7 /7222/  42-32-24">+7 (7222) 42-32-24</a>
+                  <a href="tel:+7 7222 42-32-24">+7 (7222) 42-32-24</a>
                 </div>
                 <div className="flex gap-4">
                   <Mail />
-                  <a href="">semey@abu.edu.kz</a>
+                  <a href="mailto:semey@abu.edu.kz">semey@abu.edu.kz</a>
                 </div>
                 <div className="flex gap-4">
                   <MapPin />

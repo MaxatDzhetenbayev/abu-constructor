@@ -4,6 +4,10 @@
 
 @layer base {
   :root {
+    --abu-primary: #7c0000;
+    --swiper-pagination-color: var(--abu-primary);
+    --font-raleway: "Raleway", sans-serif;
+    --font-montserrat: "Montserrat", sans-serif;
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 
@@ -69,6 +73,25 @@
 @layer base {
   * {
     @apply border-border;
+    .gallery-swiper {
+      max-width: 900px;
+      width: 100%;
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
+
+    .gallery-swiper-slide {
+      background-position: center;
+      background-size: cover;
+      max-width: 50rem;
+      width: 100%;
+      height: auto;
+    }
+
+    .gallery-swiper-slide img {
+      display: block;
+      width: 100%;
+    }
   }
   body {
     @apply bg-background text-foreground;

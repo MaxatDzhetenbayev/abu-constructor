@@ -49,9 +49,10 @@ export const BurgerMenu = ({
           >
             <X />
           </Button>
-          {pages?.map((p) => (
-            <MenuLink key={p.id} page={p} locale={params.locale as string} />
-          ))}
+          {Array.isArray(pages) &&
+            pages.map((p) => (
+              <MenuLink key={p.id} page={p} locale={params.locale as string} />
+            ))}
         </div>
         <div className="w-full h-[2px] bg-white my-6"></div>
         <div className="flex flex-col gap-2">
@@ -83,7 +84,7 @@ const MenuLink = ({
   const t = useTranslations();
   const [open, setOpen] = useState(false);
   const [route] = useState(
-    () => `${parentRoute ? `${parentRoute}/` : ""}${page.slug}`
+    () => `${parentRoute ? `${parentRoute}/` : ""}${page.slug}`,
   );
 
   if (page?.children?.length === 0 || page?.navigation_type === "content") {

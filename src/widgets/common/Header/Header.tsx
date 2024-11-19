@@ -19,7 +19,7 @@ export const Header = () => {
   return (
     <header className="relative z-50  flex flex-col  w-full">
       <section
-        className="bg-[#640000] min-h-5 w-full flex justify-between [@media(min-width:890px)]:justify-end px-4 fixed [@media(min-width:890px)]:static"
+        className="bg-abu_primary min-h-5 w-full flex justify-between [@media(min-width:890px)]:justify-end px-4 fixed [@media(min-width:890px)]:static"
         style={{ gap: "clamp(20px, 1.5vw, 80px) " }}
       >
         <Link
