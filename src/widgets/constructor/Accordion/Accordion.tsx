@@ -19,7 +19,7 @@ function Accordion({
         {contents.map(({ content }: any, idx: number) => {
 
           return (
-            <AccordionItem body={content[locale].content} title={content[locale].title} />
+            <AccordionItem key={idx} body={content[locale].content} title={content[locale].title} />
           );
         })}
       </ul>
