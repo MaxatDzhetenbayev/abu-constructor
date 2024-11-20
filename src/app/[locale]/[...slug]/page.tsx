@@ -54,16 +54,16 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <section
-      className={clsx(
-        widgets?.length >= 3 && "sm:grid sm:grid-cols-[1fr_210px] sm:gap-5"
-      )}
+      // className={clsx(
+      //   widgets?.length >= 3 && "sm:grid sm:grid-cols-[1fr_210px] sm:gap-5"
+      // )}
     >
       <section className="flex flex-col gap-9 scroll-behavior: smooth">
         {widgetList}
       </section>
-      {widgets?.length >= 3 && (
+      {/* {widgets?.length >= 3 && (
         <SideMenu widgets={widgets} locale={params.locale} />
-      )}
+      )} */}
     </section>
   );
 }
