@@ -30,7 +30,7 @@ export const CardWithModal = ({
     "from-blue-400 to-indigo-600",
     "from-green-400 to-teal-600",
     "from-violet-500 to-purple-600",
-  ]
+  ];
 
   return (
     <Dialog>

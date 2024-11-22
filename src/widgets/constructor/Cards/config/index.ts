@@ -1,6 +1,10 @@
 import { EditOptionsProps } from "@/widgets/common/EditWidget/model/types";
 
-export const CardEditOptions: EditOptionsProps = {
+type CardEditOptionsProps = Omit<EditOptionsProps, "contentOptions"> & {
+  contentOptions: (variant: string) => Array<any>;
+};
+
+export const CardEditOptions: CardEditOptionsProps = {
   widgetName: "Cards",
   widgetOptions: [
     { props: "title", type: "text", placeholder: "Заголовок" },
@@ -10,10 +14,11 @@ export const CardEditOptions: EditOptionsProps = {
       placeholder: "Вид карточек",
       values: [
         { value: "base", label: "Стандарт" },
-        { value: "horizontal", label: "Горизонтальный" },
         { value: "with_modal", label: "С модальным окном" },
         { value: "with_file", label: "С прикреплением файла " },
-        { value: "hover_animation", label: "С анимацией при наведении" },
+
+        //   { value: "horizontal", label: "Горизонтальный" },
+        //   { value: "hover_animation", label: "С анимацией при наведении" },
       ],
     },
     {
@@ -40,7 +45,7 @@ export const CardEditOptions: EditOptionsProps = {
   contentOptions: (variant) => {
     switch (variant) {
       case "base":
-      case "horizontal":
+      // case "horizontal":
       case "with_modal":
         return [
           { props: "title", type: "text", placeholder: "Заголовок" },
@@ -54,12 +59,12 @@ export const CardEditOptions: EditOptionsProps = {
           { props: "image", type: "file", placeholder: "Изображение" },
           { props: "file", type: "file", placeholder: "Файл" },
         ];
-      case "hover_animation":
-        return [
-          { props: "title", type: "text", placeholder: "Заголовок" },
-          { props: "content", type: "quill", placeholder: "Описание" },
-          { props: "image", type: "file", placeholder: "Изображение" },
-        ];
+      // case "hover_animation":
+      //   return [
+      //     { props: "title", type: "text", placeholder: "Заголовок" },
+      //     { props: "content", type: "quill", placeholder: "Описание" },
+      //     { props: "image", type: "file", placeholder: "Изображение" },
+      //   ];
       default:
         return [
           { props: "title", type: "text", placeholder: "Заголовок" },
@@ -67,5 +72,5 @@ export const CardEditOptions: EditOptionsProps = {
           { props: "image", type: "file", placeholder: "Изображение" },
         ];
     }
-  }
+  },
 };

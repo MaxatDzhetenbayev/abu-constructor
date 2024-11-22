@@ -1,6 +1,10 @@
 "use client";
 import { useParams } from "next/navigation";
-import { CardBaseAndHorizontal, CardWithModal, CardHoverAnimation } from "@/entities/Card";
+import {
+  CardBase,
+  CardWithModal,
+  //   CardHoverAnimation,
+} from "@/entities/Card";
 export const Card = ({
   content,
   locale,
@@ -16,12 +20,22 @@ export const Card = ({
   const slugs = params.slug as string[];
   const currentPath = slugs[slugs.length - 1];
 
+  return (
+    <CardBase
+      content={content}
+      variant={variant}
+      locale={locale}
+      currentPath={currentPath}
+      size={size}
+    />
+  );
+
   switch (variant) {
     case "base":
-    case "horizontal":
+    //  case "horizontal":
     case "with_file":
       return (
-        <CardBaseAndHorizontal
+        <CardBase
           content={content}
           variant={variant}
           locale={locale}
@@ -29,13 +43,10 @@ export const Card = ({
           size={size}
         />
       );
-    case "hover_animation":
-      return (
-        <CardHoverAnimation
-          size={size}
-          content={content}
-          locale={locale}
-        />);
+    //  case "hover_animation":
+    //    return (
+    //      <CardHoverAnimation size={size} content={content} locale={locale} />
+    //    );
     case "with_modal":
       return (
         <CardWithModal

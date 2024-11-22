@@ -4,8 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { backendImageUrl } from "@/shared/lib/constants";
 import clsx from "clsx";
-
-export const CardBaseAndHorizontal = ({
+import { Dialog, DialogContent, DialogTrigger } from "@/shared/ui";
+export const CardBase = ({
   content,
   locale,
   variant,
@@ -21,17 +21,6 @@ export const CardBaseAndHorizontal = ({
   const { title, content: description } = content[locale];
   const hasDescription = Boolean(description && description.length > 0);
 
-  const colors = [
-    "from-rose-500 to-indigo-600",
-    "from-cyan-400 to-blue-600",
-    "from-emerald-400 to-cyan-600",
-    "from-amber-400 to-orange-600",
-    "from-purple-500 to-pink-600",
-    "from-blue-400 to-indigo-600",
-    "from-green-400 to-teal-600",
-    "from-violet-500 to-purple-600",
-  ]
-
   const sizeClasses = {
     normal: "h-[200px]",
     medium: "h-[350px]",
@@ -42,11 +31,58 @@ export const CardBaseAndHorizontal = ({
     content.file || content.link
       ? (Link as React.ElementType)
       : ("div" as "div");
+
   const linkProps = content.file
     ? { href: `${backendImageUrl}/${content.file}`, target: "_blank" }
-    : content.link
-      ? { href: `${currentPath}/${content.link}` }
-      : {};
+    : content.link && { href: `${currentPath}/${content.link}` };
+
+  return (
+    <WrapperComponent
+      {...linkProps}
+      className={clsx(
+        "flex grow basis-[376px] min-w-72 p-5  gap-5 rounded-2xl  shadow-md",
+        variant === "with_modal" ? "flex-col" : "justify-between items-center"
+      )}
+    >
+      <h2
+        className="text-[24px] grow font-bold"
+        style={{
+          display: "-webkit-box",
+          WebkitBoxOrient: "vertical",
+          WebkitLineClamp: 2,
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+        }}
+      >
+        {title}
+      </h2>
+      {variant !== "with_modal" ? (
+        <div className="relative  h-6 min-w-9">
+          <Image src="/icons/right-arrow.svg" fill alt="Кнопка для актиавции" />
+        </div>
+      ) : (
+        <Dialog>
+          <DialogTrigger asChild>
+            <button className="flex items-center gap-5">
+              Подробнее
+              <Image
+                src="/icons/right-arrow.svg"
+                width={17}
+                height={13}
+                alt="Кнопка для актиавции"
+              />
+            </button>
+          </DialogTrigger>
+          <DialogContent className="max-h-[80%] overflow-auto max-w-[90%] [@media(min-width:1180px)]:max-w-[50%]">
+            <div
+              className={`quill-content`}
+              dangerouslySetInnerHTML={{ __html: description }}
+            ></div>
+          </DialogContent>
+        </Dialog>
+      )}
+    </WrapperComponent>
+  );
 
   return (
     <article className={clsx("rounded-md")}>
@@ -88,7 +124,7 @@ export const CardBaseAndHorizontal = ({
               )}
             </>
           ) : (
-            <div className={`absolute inset-0 bg-gradient-to-br ${colors[Math.floor(Math.random() * colors.length)]} opacity-75`}>
+            <div className={`absolute inset-0  opacity-75`}>
               <h2 className="text-white text-center font-bold text-xl relative px-2 flex w-full h-full items-center justify-center">
                 {title}
               </h2>
