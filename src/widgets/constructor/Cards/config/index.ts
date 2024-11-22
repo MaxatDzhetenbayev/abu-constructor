@@ -1,10 +1,8 @@
 import { EditOptionsProps } from "@/widgets/common/EditWidget/model/types";
 
-type CardEditOptionsProps = Omit<EditOptionsProps, "contentOptions"> & {
-  contentOptions: (variant: string) => Array<any>;
-};
 
-export const CardEditOptions: CardEditOptionsProps = {
+
+export const CardEditOptions: EditOptionsProps = {
   widgetName: "Cards",
   widgetOptions: [
     { props: "title", type: "text", placeholder: "Заголовок" },
