@@ -36,7 +36,7 @@ export default async function LocaleLayout({
         <Script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full" />
         <Script src="../../shared/lib/map.js" />
       </head>
-      <body className={`${raleway.variable} ${montserrat.variable}`}>
+      <body className={`${raleway.className}`}>
         <NextIntlClientProvider messages={messages}>
           <QueryProvider>{children}</QueryProvider>
           <Toaster />

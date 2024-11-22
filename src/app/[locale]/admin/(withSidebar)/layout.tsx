@@ -14,7 +14,7 @@ export default function AdminLayout({
   return (
     <section
       className={clsx(
-        "w-full h-screen grid grid-cols-1 md:grid-cols-[290px_1fr]",
+        "w-full h-screen grid grid-cols-1 md:grid-cols-[290px_1fr]"
       )}
     >
       <AdminSidebar />

@@ -1,30 +1,22 @@
 "use client";
 import { useScroll } from "@/shared/lib/hooks/useScroll";
 import {
-  Button,
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-  Input,
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-  Textarea,
 } from "@/shared/ui";
 import { InputProps } from "@/shared/ui/input";
 import { TextareaProps } from "@/shared/ui/textarea";
 import clsx from "clsx";
-import { AnimatePresence, motion, useMotionValue } from "framer-motion";
+import { motion, useMotionValue } from "framer-motion";
 import {
   ArrowRight,
   BookOpen,
@@ -46,7 +38,7 @@ import "swiper/css/pagination";
 
 import "../../globals.css";
 // import required modules
-import { Autoplay, EffectCoverflow, Pagination } from "swiper/modules";
+import { EffectCoverflow, Pagination } from "swiper/modules";
 
 const section_1 = [
   "58 образовательных программ",
@@ -187,7 +179,7 @@ const SectionOne = () => {
                   3: "w-[8.25rem]",
                   4: "w-[10.5rem]",
                   5: "w-[10.375rem]",
-                }[idx + 1],
+                }[idx + 1]
               )}
               src={`/infograph/${idx + 1}.svg`}
               alt={`index-${idx + 1}`}
@@ -441,7 +433,7 @@ const Container = ({
     <section
       className={clsx(
         "max-w-[1500px] font-raleway px-3  w-full mx-auto",
-        className,
+        className
       )}
     >
       {children}
@@ -459,7 +451,7 @@ const Heading = ({
     <h2
       className={clsx(
         "text-2xl lg:text-[2rem]  font-montserrat  pl-3 md:pl-0 lg:text-4xl  font-bold mb-4 md:mb-8 text-[#640000]",
-        className,
+        className
       )}
     >
       {children}
@@ -498,7 +490,7 @@ const Card = ({
     <section
       className={clsx(
         "py-4 px-5 max-h-[35rem] border flex flex-col gap-[.9rem] border-slate-200 rounded-md",
-        className,
+        className
       )}
     >
       <div className="h-[80%] overflow-hidden rounded-md">
@@ -810,7 +802,7 @@ const Dots = () => {
             key={idx}
             className={clsx(
               " h-5  rounded-full",
-              idx == 3 ? "w-10 bg-white" : "w-5 bg-white/60",
+              idx == 3 ? "w-10 bg-white" : "w-5 bg-white/60"
             )}
           />
         ))}
