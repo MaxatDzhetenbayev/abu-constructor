@@ -294,9 +294,9 @@ const PresidentSection = () => {
                   аяқталмайтын қызметіміз болып қала береді.
                 </p>
                 <p className="text-[2rem] italic text-right font-extrabold ">
-                  С уважением,
+                  Ізгі тілекпен,
                   <br />
-                  Шырын Курманбаева{" "}
+                  Шырын Курманбаева
                 </p>
               </motion.div>
             </motion.section>
