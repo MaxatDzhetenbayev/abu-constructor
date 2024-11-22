@@ -19,15 +19,15 @@ function List({
   locale: string;
 }) {
   return (
-    <section className="flex flex-col gap-4  h-full">
-      <h2 className="text-2xl font-bold text-[#690000]">
-        {content?.[locale]?.title.toLocaleUpperCase()}
+    <section className="flex flex-col gap-5  h-full">
+      <h2 className="text-3xl font-bold text-[#690000]">
+        {content?.[locale]?.title}
       </h2>
-      <ul className="h-auto">
+      <ul className="flex flex-col  gap-2">
         {contents.map(({ content }, idx) => (
           <ListItem
             key={idx}
-            icon={<FileArchive />}
+            icon={<FileArchive className="w-7 h-9" />}
             href={`${backendImageUrl}${content.image}`}
           >
             <div>{content[locale].title}</div>
