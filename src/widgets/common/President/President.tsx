@@ -39,7 +39,7 @@ export const President = () => {
                             {t("text")}
                         </p>
                         <p className="text-calc-xl italic text-right font-extrabold ">
-                            Ізгі тілекпен,
+                            Ізгі ниетпен,
                             <br />
                             Шырын Курманбаева
                         </p>

@@ -5,6 +5,10 @@ import { ReactNode } from "react";
 import { EffectCoverflow, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+
 export const HomeCoverFlowGallery = ({ locale }: { locale: string }) => {
 
     const gallery_items = Array.from({ length: 15 }, (_, i) => i + 1)
