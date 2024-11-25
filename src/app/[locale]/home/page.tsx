@@ -315,7 +315,7 @@ const Rector = ({ close }: { close?: ReactNode }) => {
           Обращение
         </Heading>
         <form className="grid grid-cols-1 lg:grid-cols-2 gap-x-0 gap-y-4 lg:gap-4 ">
-          <div className="flex flex-col gap-4 lg:gap-8">
+          <div className="flex flex-col gap-3 lg:gap-8">
             <RectorFormInput placeholder="ФИО" icon="/rector/user.svg" />
             <RectorFormInput
               placeholder="Почта"
@@ -509,9 +509,14 @@ const Card = ({
     </section>
   );
 };
-const AllButton = () => {
+const AllButton = ({ maxWidth }: { maxWidth?: string }) => {
   return (
-    <button className="flex py-3 w-full max-w-[31.625rem] justify-center items-center rounded-lg bg-abu_primary gap-2">
+    <button
+      className="flex py-3 w-full justify-center items-center rounded-lg bg-abu_primary gap-2"
+      style={{
+        maxWidth,
+      }}
+    >
       <span className="text-2xl text-white font-bold">ВСЕ</span>
       <ArrowRight color="white" />
     </button>
@@ -559,11 +564,11 @@ const News = () => {
           <Events />
         </section>
         <section className="grid gap-3 grid-cols-1 md:grid-cols-2">
-          {news.slice(0, 1).map((card) => (
+          {news.slice(0, 2).map((card) => (
             <Card key={card.desc} {...card} />
           ))}
         </section>
-        <AllButton />
+        <AllButton maxWidth="506px" />
       </section>
     </Container>
   );
@@ -986,7 +991,7 @@ const RectorFormInput = ({
         className="absolute left-8 top-1/2 transform -translate-y-1/2 text-gray-500 z-10"
       />
       <input
-        className={`pl-16  pr-3 lg:py-6 py-4 text-md w-full border border-gray-300 rounded-[5rem]  shadow-sm focus:outline-none focus:ring-2 focus:ring-abu_primary focus:border-transparent ${className}`} // Add additional styling as needed
+        className={`pl-16  pr-3 lg:py-6 py-4 text-md w-full border border-gray-300 rounded-md  shadow-sm focus:outline-none focus:ring-2 focus:ring-abu_primary focus:border-transparent ${className}`} // Add additional styling as needed
         {...inputProps}
       />
     </div>
@@ -1011,7 +1016,7 @@ const RectorFormTextarea = ({
         className="absolute left-8 top-7 transform  text-gray-500 z-10"
       />
       <textarea
-        className={`pl-16  pr-3 lg:py-6  py-4 text-md w-full border border-gray-300 rounded-[3rem]  shadow-sm focus:outline-none focus:ring-2 focus:ring-abu_primary focus:border-transparent ${className}`} // Add additional styling as needed
+        className={`pl-16  pr-3 lg:py-6  py-4 text-md w-full border border-gray-300 rounded-md  shadow-sm focus:outline-none focus:ring-2 focus:ring-abu_primary focus:border-transparent ${className}`} // Add additional styling as needed
         {...textareaProps}
       />
     </div>
