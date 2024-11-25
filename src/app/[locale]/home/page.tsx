@@ -75,7 +75,11 @@ export default function Page({ params }: any) {
       <section
         className={`w-full h-[100vh] [@media(min-width:890px)]:-top-[96px] [@media(min-width:890px)]:relative`}
       >
-        <AppealDialog />
+        {/* На доработке */}
+        {/* <AppealDialog /> */}
+        {/* //На доработке */}
+
+
         {/* <div className="absolute left-0 -top-20  w-full h-[100%] -z-10 bg-black/20"></div> */}
         <video
           muted
@@ -261,26 +265,27 @@ const Card = ({
   className,
 }: (typeof SLcards)[0] & { className?: string }) => {
   return (
-    <section
+    <article
       className={clsx(
-        "py-4 px-5 max-h-[35rem] border flex flex-col gap-[.9rem] border-slate-200 rounded-md",
+        "py-4 px-5 grow basis-1 border flex flex-col gap-[.9rem] border-slate-200 rounded-md",
         className
       )}
     >
-      <div className="h-[80%] overflow-hidden rounded-md">
-        <img
+      <div className="relative  aspect-square md:max-h-[380px] lg:max-h-[320px]">
+        <Image
           src={img}
+          fill
           alt={text}
-          className="block w-full object-cover   h-auto"
+          className="object-cover"
         />
       </div>
-      <div>
-        <h2 className="text-abu_primary font-semibold text-xl md:text-2xl">
+      <div className="">
+        <h2 className="text-abu_primary font-semibold text-calc-xl">
           {text}
         </h2>
-        <p className="text-[#3E3232] text-xl md:text-2xl ">{desc}</p>
+        <p className="text-[#3E3232] text-calc-md mt-3">{desc}</p>
       </div>
-    </section>
+    </article>
   );
 };
 const AllButton = ({ maxWidth }: { maxWidth?: string }) => {
@@ -332,13 +337,13 @@ const News = () => {
   return (
     <Container className="w-full ">
       <Heading>Новости события</Heading>
-      <section className="w-full flex flex-col gap-4  ">
-        <section className="grid grid-cols-1 md:grid-cols-[2fr_1fr]  gap-5">
+      <section className="w-full flex flex-col gap-4">
+        {/* <section className="grid grid-cols-1 md:grid-cols-[2fr_1fr]  gap-5">
           <Card key={news[0].desc} {...news[0]} />
           <Events />
-        </section>
-        <section className="grid gap-3 grid-cols-1 md:grid-cols-2">
-          {news.slice(0, 2).map((card) => (
+        </section> */}
+        <section className="flex gap-4 max-lg:flex-col">
+          {news.slice(0, 3).map((card) => (
             <Card key={card.desc} {...card} />
           ))}
         </section>
@@ -377,47 +382,8 @@ const SPRING_OPTIONS = {
   duration: 0.3,
 };
 
-const PartnersSlider = () => {
-  // Duplicate the slides array to ensure seamless looping
-  const duplicatedSlides = [...partners, ...partners, ...partners];
 
-  return (
-    <div className="relative w-full overflow-hidden">
-      {/* Wrapping div for seamless looping */}
-      <motion.div
-        className="flex"
-        animate={{
-          x: ["-100%", "0%"],
-          transition: {
-            ease: "linear",
-            duration: 10,
-            repeat: Infinity,
-          },
-        }}
-      >
-        {/* Render duplicated slides */}
-        {duplicatedSlides.map(({ img, name }, index) => (
-          <div
-            key={index}
-            className="flex-shrink-0 mx-3  flex items-center justify-center bg-white"
-            style={{ width: "clamp(10rem, 1rem + 40vmin, 30rem)" }}
-          >
-            <div className="flex flex-col items-center justify-center">
-              <div className="px-3 py-2 bg-white flex flex-col items-center text-xl gap-3">
-                <img
-                  src={`/icons${img}`}
-                  className="w-24 md:w-32 lg:w-48" // Adjust image size with breakpoints
-                  alt={name}
-                />
-                <h2 className="text-base md:text-lg lg:text-xl">{name}</h2>
-              </div>
-            </div>
-          </div>
-        ))}
-      </motion.div>
-    </div>
-  );
-};
+
 const PartnersCarousel = () => {
   const centeredEl = useRef(2);
   const elPerView = useRef(5);

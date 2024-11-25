@@ -31,6 +31,7 @@ export const President = () => {
                             alt="president photo"
                             width={420}
                             height={420}
+                            priority={true}
 
                         />
                     </motion.div>

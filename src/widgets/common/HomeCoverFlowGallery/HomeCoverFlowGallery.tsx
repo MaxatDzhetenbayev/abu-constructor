@@ -8,6 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
+import { ArrowRight } from "lucide-react";
 
 export const HomeCoverFlowGallery = ({ locale }: { locale: string }) => {
 
@@ -29,9 +30,11 @@ export const HomeCoverFlowGallery = ({ locale }: { locale: string }) => {
                         университет по-настоящему уникальным. Наслаждайтесь просмотром и
                         присоединяйтесь к нашей большой университетской семье!
                     </p>
-                    <Link href={`/${locale}/university/media_resources`} className="px-[4.25rem] w-fit rounded-[1.2rem] py-5 bg-abu_primary text-white font-bold text-3xl">
-                        ПОСМОТРЕТЬ ВСЕ
+                    <Link href={`/${locale}/university/media_resources`} className="flex py-3 w-full justify-center items-center rounded-lg bg-abu_primary gap-2 text-white text-3xl">
+                        Посмотреть все
+                        <ArrowRight color="white" />
                     </Link>
+
                 </section>
                 <Swiper
                     effect={"coverflow"}
@@ -66,7 +69,7 @@ export const HomeCoverFlowGallery = ({ locale }: { locale: string }) => {
                     ))}
                 </Swiper>
             </section>
-        </section>
+        </section >
     );
 };
 
