@@ -26,34 +26,36 @@ export const Card = ({
       variant={variant}
       locale={locale}
       currentPath={currentPath}
-      size={size}
     />
   );
 
   switch (variant) {
+    case "with_image":
+      <CardBase
+        content={content}
+        variant={variant}
+        locale={locale}
+        currentPath={currentPath}
+      />;
     case "base":
     //  case "horizontal":
     case "with_file":
+    case "with_modal":
       return (
         <CardBase
           content={content}
           variant={variant}
           locale={locale}
           currentPath={currentPath}
-          size={size}
         />
       );
-    //  case "hover_animation":
-    //    return (
-    //      <CardHoverAnimation size={size} content={content} locale={locale} />
-    //    );
-    case "with_modal":
+    default:
       return (
-        <CardWithModal
+        <CardBase
           content={content}
           variant={variant}
-          size={size}
           locale={locale}
+          currentPath={currentPath}
         />
       );
   }

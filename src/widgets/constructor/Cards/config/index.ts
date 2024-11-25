@@ -1,7 +1,5 @@
 import { EditOptionsProps } from "@/widgets/common/EditWidget/model/types";
 
-
-
 export const CardEditOptions: EditOptionsProps = {
   widgetName: "Cards",
   widgetOptions: [
@@ -19,26 +17,26 @@ export const CardEditOptions: EditOptionsProps = {
         //   { value: "hover_animation", label: "С анимацией при наведении" },
       ],
     },
-    {
-      props: "count_of_row",
-      type: "select",
-      placeholder: "Количество карточек в строке",
-      values: [
-        { value: "400px", label: "Два" },
-        { value: "300px", label: "Три" },
-        { value: "240px", label: "Четыре" },
-      ],
-    },
-    {
-      props: "size",
-      type: "select",
-      placeholder: "Размер",
-      values: [
-        { value: "normal", label: "Стандартный" },
-        { value: "medium", label: "Средний" },
-        { value: "large", label: "большой" },
-      ],
-    },
+    //  {
+    //    props: "count_of_row",
+    //    type: "select",
+    //    placeholder: "Количество карточек в строке",
+    //    values: [
+    //      { value: "400px", label: "Два" },
+    //      { value: "300px", label: "Три" },
+    //      { value: "240px", label: "Четыре" },
+    //    ],
+    //  },
+    //  {
+    //    props: "size",
+    //    type: "select",
+    //    placeholder: "Размер",
+    //    values: [
+    //      { value: "normal", label: "Стандартный" },
+    //      { value: "medium", label: "Средний" },
+    //      { value: "large", label: "большой" },
+    //    ],
+    //  },
   ],
   contentOptions: (variant) => {
     switch (variant) {

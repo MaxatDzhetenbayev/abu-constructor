@@ -11,7 +11,7 @@ enum CardVariant {
 
 function Cards({
   contents,
-  options: { content, variant, size, count_of_row = "300px" },
+  options: { content, variant, size },
   locale,
 }: IWidgetProps) {
   return (
@@ -28,7 +28,7 @@ function Cards({
             //   variant == CardVariant.HOVER_ANIMATION
             //   ? `grid gap-2`
             //   :
-            "flex gap-5 flex-wrap",
+            "flex gap-5 flex-wrap justify-center",
             "mt-2"
           )}
           style={
