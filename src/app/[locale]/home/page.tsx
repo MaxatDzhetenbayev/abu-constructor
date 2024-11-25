@@ -37,6 +37,7 @@ import "../../globals.css";
 import { EffectCoverflow, Pagination } from "swiper/modules";
 import Link from "next/link";
 import { President } from "@/widgets";
+import { HomeCoverFlowGallery } from "@/widgets/common/HomeCoverFlowGallery/HomeCoverFlowGallery";
 
 const section_1 = [
   "58 образовательных программ",
@@ -93,7 +94,7 @@ export default function Page({ params }: any) {
       <section className=" flex flex-col gap-24 md:px-3 lg:px-0 ">
         <SectionOne />
         <President />
-        <Gallery locale={locale} />
+        <HomeCoverFlowGallery locale={locale} />
         <News />
         <IELTS />
         <Partners />
@@ -186,13 +187,15 @@ const Rector = ({ close }: { close?: ReactNode }) => {
     </Container>
   );
 };
-const gallery_1 = ["1", "2", "3", "4"];
 const Gallery = ({ locale }: { locale: string }) => {
+
+  const gallery_items = Array.from({ length: 15 }, (_, i) => i + 1)
+
   return (
-    <Container className="flex flex-col items-center xl:flex-row gap-5">
-      <section className="grid  grid-cols-1  md:grid-cols-[35.375rem,1fr] gap-3">
-        <section className="flex flex-col gap-10">
-          <Heading>Галерея</Heading>
+    <Container className="">
+      <Heading>Галерея</Heading>
+      <section className="grid grid-cols-1 lg:grid-cols-[566px,1fr] gap-3">
+        <section className="flex flex-col max-lg:order-2 max-lg:text-justify  gap-10">
           <p>
             Добро пожаловать в фотогалерею нашего университета! Здесь мы собрали
             яркие и запоминающиеся моменты из жизни нашего университета,
@@ -205,37 +208,41 @@ const Gallery = ({ locale }: { locale: string }) => {
             присоединяйтесь к нашей большой университетской семье!
           </p>
           <Link href={`/${locale}/university/media_resources`} className="px-[4.25rem] w-fit rounded-[1.2rem] py-5 bg-abu_primary text-white font-bold text-3xl">
-            ПОСМОТРЕТЬ
+            ПОСМОТРЕТЬ ВСЕ
           </Link>
         </section>
-        <section>
-          <Swiper
-            effect={"coverflow"}
-            grabCursor={true}
-            loop
-            centeredSlides={true}
-            slidesPerView={"auto"}
-            coverflowEffect={{
-              rotate: 0,
-              stretch: 0,
-              depth: 100,
-              modifier: 1,
-              slideShadows: false,
-            }}
-            pagination={true}
-            modules={[EffectCoverflow, Pagination]}
-            className="gallery-swiper"
-          >
-            {gallery_1.map((i) => (
-              <SwiperSlide key={i} className="gallery-swiper-slide">
-                <img
-                  src={`/icons/gallery/gallery1.jpeg`}
-                  className="block w-full"
+        <Swiper
+          effect={"coverflow"}
+          grabCursor={true}
+          loop
+          initialSlide={2}
+          centeredSlides={true}
+          slidesPerView="auto"
+          coverflowEffect={{
+            rotate: 0,
+            stretch: 150,
+            depth: 150,
+            modifier: 1,
+            slideShadows: true,
+          }}
+          pagination={true}
+          modules={[EffectCoverflow, Pagination]}
+          className="gallery-swiper pt-0"
+        >
+          {gallery_items.map((i) => (
+            <SwiperSlide key={i} className="gallery-swiper-slide">
+
+              <div className="block   relative h-[460px]">
+                <Image
+                  fill
+                  objectFit="cover"
+                  alt={String(i)}
+                  src={`/icons/gallery/gallery${i}.jpeg`}
                 />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </section>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </section>
     </Container>
   );
