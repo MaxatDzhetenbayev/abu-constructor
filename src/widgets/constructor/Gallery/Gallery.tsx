@@ -35,7 +35,7 @@ function Gallery({
           <Dialog key={idx}>
             <DialogTrigger
               className={clsx(
-                "cursor-pointer flex-1   min-w-[300px] w-[100%] [@media(max-width:390px)]:h-[300px] h-[350px] rounded-md bg-slate-50"
+                "cursor-pointer flex-1 min-w-[300px] w-[100%] [@media(max-width:390px)]:h-[300px] h-[350px] rounded-md bg-slate-50"
               )}
               style={{
                 backgroundImage: `url('${backendImageUrl}${content.image}')`,
@@ -60,6 +60,8 @@ function Gallery({
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="w-full h-full object-cover rounded-md"
                     fill
+                    quality={80}
+                    placeholder="blur"
                     src={`${backendImageUrl}/${content.image}`}
                     alt=""
                   />
