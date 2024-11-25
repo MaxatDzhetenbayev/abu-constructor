@@ -19,10 +19,6 @@ import clsx from "clsx";
 import { motion, useMotionValue } from "framer-motion";
 import {
   ArrowRight,
-  BookOpen,
-  GraduationCap,
-  School,
-  Shield,
   X,
 } from "lucide-react";
 import Image from "next/image";
@@ -39,6 +35,8 @@ import "swiper/css/pagination";
 import "../../globals.css";
 // import required modules
 import { EffectCoverflow, Pagination } from "swiper/modules";
+import Link from "next/link";
+import { President } from "@/widgets";
 
 const section_1 = [
   "58 образовательных программ",
@@ -47,40 +45,7 @@ const section_1 = [
   "Региональный технокластер Abai IT Valley",
   "Академическая мобильность",
 ];
-const fact_list = [
-  {
-    count: 45,
-    title: "Специальностей",
-    icon: "🎓",
-  },
-  {
-    count: 10,
-    title: "Молодежных организаций",
-    icon: "🤝",
-  },
-  {
-    count: 8,
-    title: "Учебных корпусов",
-    icon: "🏛️",
-  },
-  {
-    count: 1998,
-    title: "Год создания университета",
-    icon: "📅",
-  },
-];
 
-const educationPrograms = [
-  {
-    title: "Бакалавриат",
-    count: 29,
-    icon: GraduationCap,
-    color: "bg-blue-100",
-  },
-  { title: "Магистратура", count: 10, icon: BookOpen, color: "bg-green-100" },
-  { title: "Докторантура", count: 6, icon: School, color: "bg-yellow-100" },
-  { title: "Военная кафедра", count: 10, icon: Shield, color: "bg-red-100" },
-];
 
 const news = [
   {
@@ -100,40 +65,18 @@ const news = [
   },
 ];
 
-export default function Page() {
-  // useEffect(() => {
-  //   const tl = gsap.timeline({
-  //     scrollTrigger: {
-  //       trigger: ".content",
-  //       start: "top 20%",
-  //       end: "bottom 30%",
-  //       scrub: true,
-  //       pin: true,
-  //     },
-  //   });
+export default function Page({ params }: any) {
 
-  //   tl.fromTo(".block-1", { opacity: 0 }, { opacity: 1, duration: 1 })
-  //     .fromTo(
-  //       ".block-2 li",
-  //       { opacity: 0, y: -200 },
-  //       {
-  //         opacity: 1,
-  //         y: 0,
-  //         duration: 1,
-  //         stagger: 0.3,
-  //         ease: "power2.out",
-  //       }
-  //     )
-  //     .fromTo(".block-3", { opacity: 0 }, { opacity: 1, duration: 1 })
-  //     .fromTo(".block-4", { opacity: 0 }, { opacity: 1, duration: 1 });
-  // }, []);
+  const { locale } = params
+
   const scrolled = useScroll(40);
-  const height = scrolled ? 94 : 134;
+
+
   return (
     <main className="w-full h-full">
       {/* Hero section */}
       <section
-        className={`w-full h-[500px] md:h-[750px] [@media(min-width:890px)]:-top-[96px] [@media(min-width:890px)]:relative`}
+        className={`w-full h-[100vh] [@media(min-width:890px)]:-top-[96px] [@media(min-width:890px)]:relative`}
       >
         <AppealDialog />
         {/* <div className="absolute left-0 -top-20  w-full h-[100%] -z-10 bg-black/20"></div> */}
@@ -149,8 +92,8 @@ export default function Page() {
       </section>
       <section className=" flex flex-col gap-24 md:px-3 lg:px-0 ">
         <SectionOne />
-        <PresidentSection />
-        <Gallery />
+        <President />
+        <Gallery locale={locale} />
         <News />
         <IELTS />
         <Partners />
@@ -163,13 +106,13 @@ const SectionOne = () => {
   return (
     <Container>
       <Heading className="mt-10 md:mt-0">Инфографика</Heading>
-      <section className="flex justify-center flex-wrap xl:flex-nowrap   gap-5  rounded-md ">
+      <section className="flex justify-center flex-wrap xl:flex-nowrap gap-2   md:gap-5  rounded-md ">
         {section_1.map((s, idx) => (
           <section
             key={idx}
-            className="flex items-center relative h-[10.75rem] rounded-md px-2.5 w-[17.875rem] bg-abu_primary "
+            className="flex items-center relative h-[5.75rem] md:h-[10.75rem] rounded-md px-2.5 w-[17.875rem] bg-abu_primary "
           >
-            <span className="text-white font-bold text-2xl">{s}</span>
+            <span className="text-white font-bold text-calc-xl">{s}</span>
             <Image
               className={clsx(
                 "absolute left-1/2 -bottom-10   h-auto",
@@ -192,120 +135,8 @@ const SectionOne = () => {
     </Container>
   );
 };
-const PresidentSection = () => {
-  return (
-    <section className="relative  min-h-[51.438rem]">
-      <div className="absolute top-0 left-0 right-0 bottom-0 bg-abu_primary bg-opacity-95 bg-president" />
-      <Container className="mt-16 rounded-[10px]    overflow-hidden text-white  ">
-        <motion.h2
-          transition={{ duration: 0.5 }}
-          whileInView={{
-            x: 0,
-            opacity: 1,
-          }}
-          initial={{
-            opacity: 0,
-            x: -100,
-          }}
-          className="text-4xl  font-bold mb-20  "
-        >
-          ОБРАЩЕНИЕ ПРЕЗИДЕНТА
-        </motion.h2>
 
-        <div className="w-full  flex flex-col lg:grid grid-cols-[30.438rem_1fr]">
-          <motion.div
-            transition={{ duration: 0.5 }}
-            whileInView={{
-              x: 0,
-              opacity: 1,
-            }}
-            initial={{
-              opacity: 0,
-              x: -100,
-            }}
-            className="lg:h-full    relative hidden lg:block"
-          >
-            <Image
-              src="/icons/president.png"
-              alt="president"
-              width={430}
-              height={430}
-              className="max-w-[30.438rem]  w-full h-auto  "
-            />
-            {/* <div className="h-[210px] w-full bg-abu_primary rounded-md absolute bottom-0  -z-10" /> */}
-          </motion.div>
-          <div className="pl-5">
-            <motion.section className="flex flex-col gap-5">
-              <motion.div
-                transition={{ duration: 0.5 }}
-                whileInView={{
-                  x: 0,
-                  opacity: 1,
-                }}
-                initial={{
-                  opacity: 0,
-                  x: -100,
-                }}
-                className="relative h-[50vh] md:h-[80vh] lg:hidden "
-              >
-                <Image
-                  src="/icons/president.png"
-                  alt="president"
-                  width={430}
-                  height={430}
-                  className="max-w-[430px]  w-full h-auto absolute bottom-0 left-1/2 -translate-x-1/2 right-1/2"
-                />
-                <div className="h-[210px] w-full bg-abu_primary rounded-md absolute bottom-0  -z-10" />
-              </motion.div>
-              <motion.div
-                transition={{ duration: 0.5 }}
-                whileInView={{
-                  x: 0,
-                  opacity: 1,
-                }}
-                initial={{
-                  opacity: 0,
-                  x: 100,
-                }}
-                className=" pl-4  border-l-4 border-white min-h-[32.75rem] "
-              >
-                <p className="text-justify text-xl font-bold   pl-3">
-                  Достар, Әлихан Бөкейхан университетінің ресми сайтына қош
-                  келдіңіздер! Біз ерекше тарихи кезеңде өмір сүріп жатырмыз:
-                  Әлем IV Өндірістік революция қарсаңында тұр. Шекарамен
-                  белгіленбейтін білім беру кеңістігінің көкжиегі барынша
-                  кеңейіп келеді. Оның айғағы – шетелдік университеттердің
-                  қазақстандық жоғары оқу орындарында филиалдарының ашылуы.
-                  Ұлттық менталитетіміз бен тарихи, мәдени құндылықтарымызды
-                  барынша сақтай отырып, өзіндік қолтаңбасы бар іргелі оқу орны
-                  болу миссиясына сәйкес, заман үндеуіне бейімделуге
-                  міндеттіміз. Ақпараттық технология ағынынан қалыспай, Abai
-                  IT-Walley арқылы Жасанды интеллектіні жұмыс стилі, өмір сүру
-                  салты ретінде тұтынуына жол ашып, үздік тәжіибелер енгізу
-                  жүйесі қарастырылуда. Жасанды интеллект – бүгінгі уақыттың күн
-                  тәртібіндегі бірінші мәселе. Алаш көсемі Әлихан Бөкейхан «алда
-                  күнді көре білетін ұрпақ келеді», - деп келешекке зор үмітпен
-                  сенім артқаны белгілі. Кешегі күні қиял мен арман болған
-                  бүгінгі күннің ақиқаты адамзатты жаңа тарихтағы прогреске
-                  жетелейді. Тәуелсіздік аңсаған Алаш ардақтыларының идеясын
-                  жүйелі түрде ілгерілету басты мақсатымыз бола береді. Білімді
-                  ізгілендіру арқылы жоғары кәсіби біліктілігі туралы дипломы
-                  бар маман ғана емес кемел Тұлға тәрбиелеу игілікті,
-                  аяқталмайтын қызметіміз болып қала береді.
-                </p>
-                <p className="text-[2rem] italic text-right font-extrabold ">
-                  Ізгі тілекпен,
-                  <br />
-                  Шырын Курманбаева
-                </p>
-              </motion.div>
-            </motion.section>
-          </div>
-        </div>
-      </Container>
-    </section>
-  );
-};
+
 const Rector = ({ close }: { close?: ReactNode }) => {
   return (
     <Container className="relative rounded-xl md:rounded-3xl w-full max-h-[100svh] md:max-h-[54rem]  md:max-w-[70.875rem]   bg-abu_primary  mb-3 px-0 md:px-3">
@@ -356,8 +187,7 @@ const Rector = ({ close }: { close?: ReactNode }) => {
   );
 };
 const gallery_1 = ["1", "2", "3", "4"];
-const gallery_2 = ["5", "6", "7", "8"];
-const Gallery = () => {
+const Gallery = ({ locale }: { locale: string }) => {
   return (
     <Container className="flex flex-col items-center xl:flex-row gap-5">
       <section className="grid  grid-cols-1  md:grid-cols-[35.375rem,1fr] gap-3">
@@ -374,9 +204,9 @@ const Gallery = () => {
             университет по-настоящему уникальным. Наслаждайтесь просмотром и
             присоединяйтесь к нашей большой университетской семье!
           </p>
-          <button className="px-[4.25rem] w-fit rounded-[1.2rem] py-5 bg-abu_primary text-white font-bold text-3xl">
+          <Link href={`/${locale}/university/media_resources`} className="px-[4.25rem] w-fit rounded-[1.2rem] py-5 bg-abu_primary text-white font-bold text-3xl">
             ПОСМОТРЕТЬ
-          </button>
+          </Link>
         </section>
         <section>
           <Swiper
@@ -450,7 +280,7 @@ const Heading = ({
   return (
     <h2
       className={clsx(
-        "text-2xl lg:text-[2rem]  font-montserrat  pl-3 md:pl-0 lg:text-4xl  font-bold mb-4 md:mb-8 text-[#640000]",
+        "text-calc-2xl max-lg:text-center pl-3 md:pl-0 font-bold mb-4 md:mb-8 text-[#640000]",
         className
       )}
     >

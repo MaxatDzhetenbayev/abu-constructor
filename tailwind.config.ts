@@ -27,9 +27,10 @@ const config = {
         president: "url('/icons/president-bg.png')",
       },
       fontSize: {
-        "calc-text-xl": "clamp(0.8rem, 3vw, 1.25rem)",
-        "calc-text-2xl": "clamp(1rem, 3vw, 1.5rem)",
-        "calc-text-4xl": "clamp(1.5rem, 3vw, 2.25rem)",
+        "calc-md": "clamp(0.875rem, 0.875rem + 0.25vw, 1.125rem)",
+        "calc-xl": "clamp(1rem, 1rem + 0.5vw, 1.5rem)",
+        "calc-2xl": "clamp(1.5rem, 1.5rem + 1vw, 2.8rem)",
+        // "calc-text-4xl": "clamp(1.5rem, 3vw, 2.25rem)",
       },
       fontFamily: {
         raleway: "var(--font-raleway)",
