@@ -39,7 +39,7 @@ export const BurgerMenu = ({
       >
         <Menu size={32} />
       </Button>
-      <DrawerContent className="rounded-none bg-red-950 border-none   px-4 py-14">
+      <DrawerContent className="rounded-none bg-abu_primary border-none px-4 py-14">
         <div className="relative flex flex-col gap-3 text-xl text-white">
           <Button
             onClick={() => setOpen(false)}
@@ -84,7 +84,7 @@ const MenuLink = ({
   const t = useTranslations();
   const [open, setOpen] = useState(false);
   const [route] = useState(
-    () => `${parentRoute ? `${parentRoute}/` : ""}${page.slug}`,
+    () => `${parentRoute ? `${parentRoute}/` : ""}${page.slug}`
   );
 
   if (page?.children?.length === 0 || page?.navigation_type === "content") {
