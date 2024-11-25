@@ -1,6 +1,7 @@
 "use client";
 import { backendImageUrl } from "@/shared/lib/constants";
 import { Input } from "@/shared/ui";
+import Image from "next/image";
 import { useState, ReactNode } from "react";
 
 export const useUploadFile = ({
@@ -20,7 +21,7 @@ export const useUploadFile = ({
     }
   });
   const Preview: ReactNode = image ? (
-    <img className="w-20 h-20" src={image as string} alt="image" />
+    <Image height={80} width={80} src={image as string} alt="image" />
   ) : (
     <></>
   );

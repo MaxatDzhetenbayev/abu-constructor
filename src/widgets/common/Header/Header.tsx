@@ -7,9 +7,9 @@ import Link from "next/link";
 import { SearchWidget } from "../SearchWidget/SearchWidget";
 
 const topHeaderMenuList = [
-  { title: "Обучающимся", link: "https://education.abu.edu.kz/" },
-  { title: "Международное сотрудничество", link: "home" },
-  { title: "Выпусникам", link: "home" },
+  //   { title: "Обучающимся", link: "https://education.abu.edu.kz/" },
+  //   { title: "Международное сотрудничество", link: "home" },
+  //   { title: "Выпусникам", link: "home" },
   { title: "AIS", link: "https://ais.semuniver.kz/login.php" },
   { title: "Abai IT", link: "https://abai-it.kz/" },
   { title: "Abai IT School", link: "https://abai-it-school.abu.edu.kz/" },
@@ -30,7 +30,7 @@ export const Header = () => {
           <Image
             src={`/images/logo-white.png`}
             alt="logo"
-            layout="fill"
+            fill
             objectFit="contain"
           />
         </Link>

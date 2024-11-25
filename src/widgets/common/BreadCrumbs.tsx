@@ -33,7 +33,8 @@ export const BreadCrumbs = ({
   useEffect(() => {
     if (typeof window !== "undefined") {
       // Код будет выполнен только на клиенте
-      const handleResize = () => setIsMobileWidth(() => window.innerWidth < 768);
+      const handleResize = () =>
+        setIsMobileWidth(() => window.innerWidth < 768);
       window.addEventListener("resize", handleResize);
 
       // Установить начальное значение
@@ -46,7 +47,8 @@ export const BreadCrumbs = ({
   const getCrumbsElementForView = (crumbs: string[]) => {
     if (!Array.isArray(crumbs)) return [];
     // Вернуть массив crumbs кроме 2 элемента массива
-    if (crumbs.length > 2) return [...crumbs.slice(0, 1), ...crumbs.slice(2, crumbs.length)];
+    if (crumbs.length > 2)
+      return [...crumbs.slice(0, 1), ...crumbs.slice(2, crumbs.length)];
     return crumbs;
   };
 
@@ -67,7 +69,7 @@ export const BreadCrumbs = ({
                       : undefined
                   }
                   style={{
-                    fontSize: "clamp(14px, 1.4vw, 18px)",
+                    fontSize: "clamp(18px, 1.4vw, 24px)",
                   }}
                 >
                   {isMobileWidth ? `${title.slice(0, 30)}...` : title}
