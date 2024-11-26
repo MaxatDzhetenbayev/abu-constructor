@@ -19,6 +19,8 @@ export const DropNavigation = ({
 }: DropNavigationProps) => {
   const path = usePathname();
 
+
+
   return (
     <section
       onMouseLeave={handleMouseLeave}
@@ -28,10 +30,63 @@ export const DropNavigation = ({
       )}
     >
       <ul className="flex justify-center  gap-[60px]">
-        {item.children.map((child) => (
+        {
+          item.children.length === 1 ? (
+            <>
+              {
+                item.children.map((child) => (
+                  <li key={child.id} className="text-center">
+                    <Link
+                      href={`/${locale}/${item.slug}/${child.slug}`}
+                      className={clsx(
+                        "text-white font-bold",
+                      )}
+                      style={{
+                        fontSize: "clamp(18px, 1.4vw, 24px)",
+                      }}
+                    >
+                      {child.title[locale]}
+                    </Link>
+                    {
+                      child.children && (
+                        <ul className="flex">
+                          {
+                            child.children.map((two_level_child) => (
+                              <li>
+                                <Link
+                                  href={`/${locale}/${item.slug}/${two_level_child.slug}`}
+                                  className={clsx(
+                                    "text-slate-200 leading-3",
+                                    path == `/${locale}${child.slug}/${two_level_child.slug}` && "font-bold",
+                                  )}
+                                  style={{
+                                    fontSize: "clamp(18px, 1.4vw, 24px)",
+                                  }}
+                                >
+                                  {two_level_child.title[locale]}
+                                </Link>
+                              </li>
+                            ))
+                          }
+                        </ul>
+                      )
+                    }
+                  </li>
+                ))
+              }
+            </>
+          ) : (<div></div>)
+        }
+
+
+
+
+
+
+        {/* {item.children.map((child) => (
           <li key={child.id}>
             {child.navigation_type === "content" ||
-            child.navigation_type === "group-link" ? (
+              child.navigation_type === "group-link" ? (
               <Link
                 href={`/${locale}/${item.slug}/${child.slug}`}
                 className={clsx(
@@ -62,7 +117,7 @@ export const DropNavigation = ({
                       className={clsx(
                         "text-center max-w-11 text-slate-200 leading-3",
                         path === `/${locale}$/${child.slug}/${subChild.slug}` &&
-                          "font-bold",
+                        "font-bold",
                         [
                           "bachelor's_degree",
                           "master's_degree",
@@ -80,8 +135,14 @@ export const DropNavigation = ({
               </ul>
             )}
           </li>
-        ))}
+        ))} */}
       </ul>
-    </section>
+    </section >
   );
 };
+
+
+
+const navigationRecoursive = (navigations: INavigation[]) => {
+  
+}
