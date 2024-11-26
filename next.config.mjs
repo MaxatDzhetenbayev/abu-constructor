@@ -19,6 +19,11 @@ const nextConfig = {
         pathname: "/uploads/**",
       },
       {
+        protocol: "https",
+        hostname: "back.abu.foxminded.space",
+        pathname: "/uploads/**",
+      },
+      {
         protocol: "http",
         hostname: "2.134.68.196",
         port: "3003",
