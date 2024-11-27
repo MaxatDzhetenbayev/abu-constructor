@@ -19,12 +19,6 @@ const nextConfig = {
       },
       {
         protocol: "http",
-        hostname: "yekinsgnhome.ddns.net",
-        port: "3003",
-        pathname: "/uploads/**",
-      },
-      {
-        protocol: "http",
         hostname: "localhost",
         port: "3003",
         pathname: "/uploads/**",

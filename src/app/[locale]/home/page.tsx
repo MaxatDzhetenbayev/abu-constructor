@@ -288,9 +288,10 @@ const Card = ({
     </article>
   );
 };
-const AllButton = ({ maxWidth }: { maxWidth?: string }) => {
+const AllButton = ({ maxWidth, link }: { maxWidth?: string; link: string }) => {
   return (
-    <button
+    <Link
+      href={`${link}`}
       className="flex py-3 w-full justify-center items-center rounded-lg bg-abu_primary gap-2"
       style={{
         maxWidth,
@@ -298,41 +299,43 @@ const AllButton = ({ maxWidth }: { maxWidth?: string }) => {
     >
       <span className="text-2xl text-white font-bold">ВСЕ</span>
       <ArrowRight color="white" />
-    </button>
+    </Link>
   );
 };
-const Events = () => {
-  return (
-    <section className="flex flex-col justify-between gap-3  text-white  max-h-[35rem] ">
-      <section className="bg-abu_primary h-[85%] overflow-y-auto flex flex-col gap-3 py-5 px-6 rounded-md">
-        <div className="flex gap-2 ">
-          <Image
-            alt="event icon"
-            src={"/icons/events.svg"}
-            width={39}
-            height={39}
-          />
-          <h3 className=" text-xl  lg:text-3xl  font-bold  ">Ивенты</h3>
-        </div>
-        {events.map((ev) => (
-          <div key={ev.date} className="flex gap-3 ">
-            <div className="w-[6.25rem] h-[5.313rem] px-3 rounded-md bg-[#FFCC00] flex items-center justify-center flex-col text-white font-bold">
-              <span className="text-2xl font-bold">{ev.label.n}</span>
-              <span className="text-md">{ev.label.l}</span>
-            </div>
-            <div className="flex flex-col gap-2">
-              <h3 className="text-xl w-full text-wrap lg:text-nowrap font-bold">
-                {ev.title}
-              </h3>
-              <p className="text-md">{ev.text}</p>
-            </div>
-          </div>
-        ))}
-      </section>
-      <AllButton />
-    </section>
-  );
-};
+
+// const Events = () => {
+//   return (
+//     <section className="flex flex-col justify-between gap-3  text-white  max-h-[35rem] ">
+//       <section className="bg-abu_primary h-[85%] overflow-y-auto flex flex-col gap-3 py-5 px-6 rounded-md">
+//         <div className="flex gap-2 ">
+//           <Image
+//             alt="event icon"
+//             src={"/icons/events.svg"}
+//             width={39}
+//             height={39}
+//           />
+//           <h3 className=" text-xl  lg:text-3xl  font-bold  ">Ивенты</h3>
+//         </div>
+//         {events.map((ev) => (
+//           <div key={ev.date} className="flex gap-3 ">
+//             <div className="w-[6.25rem] h-[5.313rem] px-3 rounded-md bg-[#FFCC00] flex items-center justify-center flex-col text-white font-bold">
+//               <span className="text-2xl font-bold">{ev.label.n}</span>
+//               <span className="text-md">{ev.label.l}</span>
+//             </div>
+//             <div className="flex flex-col gap-2">
+//               <h3 className="text-xl w-full text-wrap lg:text-nowrap font-bold">
+//                 {ev.title}
+//               </h3>
+//               <p className="text-md">{ev.text}</p>
+//             </div>
+//           </div>
+//         ))}
+//       </section>
+//       <AllButton />
+//     </section>
+//   );
+// };
+
 const News = () => {
   return (
     <Container className="w-full ">
@@ -347,7 +350,7 @@ const News = () => {
             <Card key={card.desc} {...card} />
           ))}
         </section>
-        <AllButton maxWidth="506px" />
+        <AllButton maxWidth="506px" link="news" />
       </section>
     </Container>
   );

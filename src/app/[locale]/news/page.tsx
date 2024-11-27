@@ -52,11 +52,15 @@ export default function Page({ params }: any) {
             return (
               <Link href={`news/${item.id}`} tabIndex={0} key={item.id}>
                 <div className="relative bg-slate-100 w-full h-[260px] rounded-2xl overflow-hidden">
-                  <Image
-                    alt={title}
-                    fill
-                    src={`${backendImageUrl}${images[0]}`}
-                  />
+                  {
+                    images[0] && (
+                      <Image
+                        alt={title}
+                        fill
+                        src={`${backendImageUrl}${images[0]}`}
+                      />
+                    )
+                  }
                 </div>
                 <p className="font-raleway">
                   {item.createdAt &&
@@ -67,10 +71,10 @@ export default function Page({ params }: any) {
                       day: "numeric",
                     }).format(new Date(item.createdAt))}
                 </p>
-                <h2 className="text-calc-xl text-abu_primary font-bold font-montserrat">
+                <h2 className="text-calc-md text-abu_primary font-bold font-montserrat">
                   {title}
                 </h2>
-                <p>{description}</p>
+                <p className="line-clamp-2">{description}</p>
               </Link>
             );
           })}
