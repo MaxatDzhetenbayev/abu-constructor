@@ -16,7 +16,6 @@ function Cards({
 
   const flexStyles: string = calculateFlexBasis(contents.length)
 
-  console.log(flexStyles)
   return (
     <section className="flex flex-col gap-3">
       {content?.[locale]?.title && (
