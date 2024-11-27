@@ -102,7 +102,7 @@ const MenuLink = ({
         <DrawerTrigger className="text-start flex justify-start items-center gap-3">
           {page.title[locale]} <ChevronRight className="" />
         </DrawerTrigger>
-        <DrawerContent className="rounded-none bg-red-950  border-none px-4 py-14">
+        <DrawerContent className="rounded-none bg-abu_primary   border-none px-4 py-14">
           <div className=" relative flex flex-col gap-3 text-xl text-white ">
             <Button
               onClick={() => setOpen(false)}
