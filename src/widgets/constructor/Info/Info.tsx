@@ -25,6 +25,7 @@ function Info({
           <Image
             src={`${backendImageUrl}${content.image}`}
             fill
+            priority
             objectFit="cover"
             alt="image"
             className="rounded-2xl"
