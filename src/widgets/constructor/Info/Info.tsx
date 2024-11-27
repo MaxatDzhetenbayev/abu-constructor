@@ -3,11 +3,7 @@ import Image from "next/image";
 
 export interface InfoItemProps {
   image: string;
-  imagePosition: string;
-  href: string;
-  title: string;
   content: string;
-  linkText: string;
 }
 function Info({
   options: { content },
@@ -16,13 +12,16 @@ function Info({
   options: any;
   locale: string;
 }) {
+
+  const { post, full_name, content: body } = content[locale]
+
   return (
-    <section className="flex  flex-col">
-      <h2 className="text-2xl font-bold text-[#690000]">
+    <section className="flex flex-col">
+      <h2 className="text-2xl font-bold text-abu_primary">
         {content[locale]?.title}
       </h2>
-      <section className="flex p-5 sm:p-10 flex-col lg:flex-row gap-4 md:gap-7  lg:gap-14 shadow-[0_0_30px_0px_rgba(0,0,0,0.05)] rounded-2xl  bg-white mt-4 ">
-        <section className="relative sm:min-w-[400px] sm:max-w-[400px] h-[30vh] sm:h-[363px] sm:mx-auto">
+      <section className="flex p-5  flex-col lg:flex-row gap-4 md:gap-7 lg:gap-14 shadow-[0_0_30px_0px_rgba(0,0,0,0.05)] rounded-2xl bg-white mt-4 ">
+        <section className="relative max-w-[400px] w-full h-[30vh] sm:h-[363px] sm:mx-auto">
           <Image
             src={`${backendImageUrl}${content.image}`}
             fill
@@ -31,16 +30,20 @@ function Info({
             className="rounded-2xl"
           />
         </section>
-        <section className="flex flex-col gap-4 md:gap-7 lg:gap-10">
-          <h2 className="font-bold text-2xl">{content[locale]?.full_name}</h2>
+        <section className="flex flex-1 py-5 flex-col gap-4 md:gap-7 ">
+          <div>
+            <p className="text-abu_primary font-bold text-calc-md">{post}</p>
+            <h2 className="font-bold text-calc-xl">{full_name}</h2>
+          </div>
           <div
-            className="quill-content"
-            dangerouslySetInnerHTML={{ __html: content[locale].content }}
+            className="quill-content max-h-[235px] overflow-hidden"
+            dangerouslySetInnerHTML={{ __html: body }}
           ></div>
         </section>
       </section>
     </section>
   );
 }
+
 Info.displayName = "Info";
 export default Info;
