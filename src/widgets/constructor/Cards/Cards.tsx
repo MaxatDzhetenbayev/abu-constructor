@@ -10,13 +10,12 @@ enum CardVariant {
 
 function Cards({
   contents,
-  options: { content, variant, size },
+  options: { content, variant },
   locale,
 }: IWidgetProps) {
 
   const flexStyles: string = calculateFlexBasis(contents.length)
 
-  console.log(flexStyles)
   return (
     <section className="flex flex-col gap-3">
       {content?.[locale]?.title && (
@@ -37,7 +36,6 @@ function Cards({
               variant={variant}
               content={content}
               locale={locale}
-              size={size}
               styles={flexStyles}
             />
           ))}
@@ -62,7 +60,7 @@ function calculateFlexBasis(elementCount: number = 376): string {
   }
 
   if (elementCount % 2 === 0) {
-    styles += " max-w-[600px]"
+    styles += " xl:max-w-[600px]"
   }
 
   return styles
