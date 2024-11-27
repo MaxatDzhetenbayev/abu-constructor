@@ -10,7 +10,7 @@ enum CardVariant {
 
 function Cards({
   contents,
-  options: { content, variant, size },
+  options: { content, variant },
   locale,
 }: IWidgetProps) {
 
@@ -36,7 +36,6 @@ function Cards({
               variant={variant}
               content={content}
               locale={locale}
-              size={size}
               styles={flexStyles}
             />
           ))}
@@ -61,7 +60,7 @@ function calculateFlexBasis(elementCount: number = 376): string {
   }
 
   if (elementCount % 2 === 0) {
-    styles += " max-w-[600px]"
+    styles += " xl:max-w-[600px]"
   }
 
   return styles
