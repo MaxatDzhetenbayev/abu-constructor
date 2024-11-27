@@ -2,19 +2,18 @@
 import { useParams } from "next/navigation";
 import {
   CardBase,
-  CardWithModal,
-  //   CardHoverAnimation,
 } from "@/entities/Card";
 export const Card = ({
   content,
   locale,
   variant,
-  size,
+  styles,
 }: {
   content: any;
   variant: string;
   locale: string;
   size: string;
+  styles?: string;
 }) => {
   const params = useParams();
   const slugs = params.slug as string[];
@@ -26,37 +25,8 @@ export const Card = ({
       variant={variant}
       locale={locale}
       currentPath={currentPath}
+      styles={styles}
     />
   );
 
-  switch (variant) {
-    case "with_image":
-      <CardBase
-        content={content}
-        variant={variant}
-        locale={locale}
-        currentPath={currentPath}
-      />;
-    case "base":
-    //  case "horizontal":
-    case "with_file":
-    case "with_modal":
-      return (
-        <CardBase
-          content={content}
-          variant={variant}
-          locale={locale}
-          currentPath={currentPath}
-        />
-      );
-    default:
-      return (
-        <CardBase
-          content={content}
-          variant={variant}
-          locale={locale}
-          currentPath={currentPath}
-        />
-      );
-  }
 };

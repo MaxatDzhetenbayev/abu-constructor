@@ -11,11 +11,13 @@ export const CardBase = ({
   locale,
   variant,
   currentPath,
+  styles,
 }: {
   content: any;
   variant: string;
   locale: string;
   currentPath: string;
+  styles?: string
 }) => {
   const { title, content: description } = content[locale];
 
@@ -32,10 +34,11 @@ export const CardBase = ({
     <WrapperComponent
       {...linkProps}
       className={clsx(
-        "flex grow basis-[376px] min-w-72 sm:max-w-[376px]  gap-5 rounded-2xl  shadow-md",
+        "flex grow gap-5 rounded-2xl  shadow-md",
+        styles,
         variant === "with_modal"
-          ? "flex-col p-[10px] "
-          : "justify-between items-center p-5 "
+          ? "flex-col p-[10px]"
+          : "justify-between items-center p-5"
       )}
     >
       {variant !== "with_modal" ? (
