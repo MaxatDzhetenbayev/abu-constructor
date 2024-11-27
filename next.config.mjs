@@ -8,12 +8,6 @@ const nextConfig = {
     formats: ["image/webp"],
     remotePatterns: [
       {
-        protocol: "http",
-        hostname: "77.243.80.138",
-        port: "3003",
-        pathname: "/uploads/**",
-      },
-      {
         protocol: "https",
         hostname: "backnew.abu.edu.kz",
         pathname: "/uploads/**",
@@ -21,30 +15,6 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "back.abu.foxminded.space",
-        pathname: "/uploads/**",
-      },
-      {
-        protocol: "http",
-        hostname: "2.134.68.196",
-        port: "3003",
-        pathname: "/uploads/**",
-      },
-      {
-        protocol: "http",
-        hostname: "yekinsgnhome.ddns.net",
-        port: "3003",
-        pathname: "/uploads/**",
-      },
-      {
-        protocol: "http",
-        hostname: "195.210.47.167",
-        port: "3003",
-        pathname: "/uploads/**",
-      },
-      {
-        protocol: "http",
-        hostname: "127.0.0.1",
-        port: "3003",
         pathname: "/uploads/**",
       },
       {

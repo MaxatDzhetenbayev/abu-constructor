@@ -109,13 +109,13 @@ const config = {
     plugin(function ({ addBase, theme }) {
       addBase({
         ".quill-content .ql-size-normal": {
-          fontSize: theme("fontSize.calc-text-xl"),
+          fontSize: theme("fontSize.calc-md"),
         },
         ".quill-content .ql-size-large": {
-          fontSize: theme("fontSize.calc-text-2xl"),
+          fontSize: theme("fontSize.calc-xl"),
         },
         ".quill-content .ql-size-huge": {
-          fontSize: theme("fontSize.calc-text-4xl"),
+          fontSize: theme("fontSize.calc-2xl"),
           fontWeight: theme("fontWeight.medium"),
         },
         ".quill-content a": {

@@ -31,29 +31,33 @@ export function StepSwitcherClient({
   }
   return (
     <section>
-      <h2 className="text-2xl font-bold">
-        {content[locale]?.title.toLocaleUpperCase()}
+      <h2 className="text-calc-xl font-bold text-abu_primary">
+        {content[locale]?.title}
       </h2>
       <section className="flex flex-col mt-5">
-        <section className="flex justify-between gap-3 bg-abu_primary px-5">
-          {contents.map(({ content }, idx) => {
+        <section className={
+          clsx(
+            "flex gap-4 bg-abu_primary px-5 rounded-xl max-md:flex-col max-md:px-0 overflow-hidden",
+          )
+        }>
+          {contents.map(({ content }) => {
             return (
               <button
                 className={clsx(
-                  activeStep === content.link ? " " : "",
-                  "p-4 rounded-lg text-left text-white"
+                  "py-4 flex-1 font-bold text-calc-md text-center  md:border-b-4 border-transparent text-white ",
+                  activeStep === content.link ? " border-white max-md:bg-abu_primary_hover" : ""
                 )}
                 key={content[locale].title}
                 onClick={() => setActiveStep(content.link)}
               >
                 <h3 className="">
-                  {idx + 1}. {content[locale]?.title}
+                  {content[locale]?.title}
                 </h3>
               </button>
             );
           })}
         </section>
-        <section className="mt-5 flex flex-col  gap-10">
+        <section className="mt-10 md:mt-20 flex flex-col  gap-10">
           {isSuccess ? (
             <>
               {data.widgets?.map(
@@ -70,6 +74,6 @@ export function StepSwitcherClient({
           ) : null}
         </section>
       </section>
-    </section>
+    </section >
   );
 }

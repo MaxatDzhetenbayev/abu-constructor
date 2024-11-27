@@ -5,16 +5,8 @@ export const InfoEditOptions: EditOptionsProps = {
     widgetOptions: [
         { props: "title", type: "text", placeholder: "Заголовок" },
         { props: "full_name", type: "text", placeholder: "ФИО" },
+        { props: "post", type: "text", placeholder: "Должность/Звание" },
         { props: "content", type: "quill", placeholder: "Контент" },
-        {
-            props: "variant",
-            type: "select",
-            placeholder: "Положение картинки",
-            values: [
-                { value: "right", label: "Справа" },
-                { value: "left", label: "Слева" },
-            ],
-        },
         { props: "image", type: "file", placeholder: "Изображение" },
     ],
     contentOptions: [],

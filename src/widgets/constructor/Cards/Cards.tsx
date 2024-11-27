@@ -6,36 +6,29 @@ enum CardVariant {
   BASE = "base",
   WITH_MODAL = "with_modal",
   WITH_FILE = "with_file",
-  HOVER_ANIMATION = "hover_animation",
 }
 
 function Cards({
   contents,
-  options: { content, variant, size },
+  options: { content, variant },
   locale,
 }: IWidgetProps) {
+
+  const flexStyles: string = calculateFlexBasis(contents.length)
+
   return (
     <section className="flex flex-col gap-3">
-      <h2 className="text-3xl font-bold text-abu_primary">
-        {content?.[locale]?.title}
-      </h2>
+      {content?.[locale]?.title && (
+        <h2 className="text-3xl font-bold text-abu_primary">
+          {content[locale].title}
+        </h2>
+      )}
       {
         <div
           className={clsx(
-            // variant == CardVariant.BASE ||
-            //   variant == CardVariant.WITH_MODAL ||
-            //   variant == CardVariant.WITH_FILE ||
-            //   variant == CardVariant.HOVER_ANIMATION
-            //   ? `grid gap-2`
-            //   :
-            "flex gap-5 flex-wrap justify-center",
+            "flex gap-5 flex-wrap ",
             "mt-2"
           )}
-          style={
-            {
-              // gridTemplateColumns: `repeat(auto-fit, minmax(${count_of_row}, 1fr))`,
-            }
-          }
         >
           {contents.map(({ content }, idx) => (
             <Card
@@ -43,7 +36,7 @@ function Cards({
               variant={variant}
               content={content}
               locale={locale}
-              size={size}
+              styles={flexStyles}
             />
           ))}
         </div>
@@ -54,3 +47,21 @@ function Cards({
 
 Cards.displayName = "Cards";
 export default Cards;
+
+
+function calculateFlexBasis(elementCount: number = 376): string {
+
+  let styles: string = ""
+
+  if (elementCount % 4 === 0) {
+    styles += "basis-[250px]"
+  } else {
+    styles += "basis-[376px]"
+  }
+
+  if (elementCount % 2 === 0) {
+    styles += " xl:max-w-[600px]"
+  }
+
+  return styles
+}

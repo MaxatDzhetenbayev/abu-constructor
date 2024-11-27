@@ -13,7 +13,7 @@ export const ListItem = ({ children, icon, href }: ListItemProps) => {
       <a
         target="_blank"
         href={href}
-        className={clsx(icon && "flex gap-2 w-full items-center text-[24px]")}
+        className={clsx(icon && "flex gap-2 w-full items-center text-calc-md")}
       >
         <span>{icon}</span> {children}
       </a>
