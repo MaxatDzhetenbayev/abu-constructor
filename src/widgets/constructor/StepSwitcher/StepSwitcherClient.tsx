@@ -31,7 +31,7 @@ export function StepSwitcherClient({
   }
   return (
     <section>
-      <h2 className="text-calc-xl font-bold">
+      <h2 className="text-calc-xl font-bold text-abu_primary">
         {content[locale]?.title}
       </h2>
       <section className="flex flex-col mt-5">
