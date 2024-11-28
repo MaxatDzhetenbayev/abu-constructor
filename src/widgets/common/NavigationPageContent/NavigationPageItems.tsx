@@ -7,7 +7,7 @@ import { useNavigationPageContent } from "./model/useNavigationPageContent";
 import { handleDragEnd } from "./lib";
 
 import { useDragAndDrop } from "@/shared/lib/hooks/useDrag&Drop";
-import { Button, Input } from "@/shared/ui";
+import { Button, Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, Input } from "@/shared/ui";
 import { IWidget } from "@/shared/types";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { backendUrl } from "@/shared/lib/constants";
@@ -125,12 +125,36 @@ export const NavigationPageItems = ({
               >
                 <span>{widget.widget_type}</span>
                 <section className="flex gap-2">
-                  <Button
-                    size={"icon"}
-                    onClick={() => handleWidgetDelete(widget.id)}
-                  >
-                    <DeleteIcon className="cursor-pointer" />
-                  </Button>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button size={"sm"} >
+                        <DeleteIcon />
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-sm sm:max-w-3xl">
+                      <DialogHeader>
+                        <DialogTitle>
+                          Вы точно хотите удалить этот виджет?
+                        </DialogTitle>
+                        <DialogDescription></DialogDescription>
+                      </DialogHeader>
+                      <DialogFooter className=" gap-2 sm:justify-center">
+                        <DialogClose asChild>
+                          <Button
+
+                            // ref={closeRef} 
+                            type="button" variant="secondary">
+                            Отменить
+                          </Button>
+                        </DialogClose>
+                        <Button onClick={() => handleWidgetDelete(widget.id)}
+                        // loading={isPending} disabled={isPending}
+                        >
+                          Удалить
+                        </Button>
+                      </DialogFooter>
+                    </DialogContent>
+                  </Dialog>
                   <Link
                     className="bg-[#640000] text-white text-center rounded-md p-2"
                     href={{ pathname: `${id}/widget/${widget.id}` }}
