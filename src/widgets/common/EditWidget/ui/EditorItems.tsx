@@ -6,7 +6,7 @@ import { useMutation } from "@tanstack/react-query";
 import { IContentUpdateOrderOptions } from "../model/types";
 import { backendUrl } from "@/shared/lib/constants";
 import { queryClient } from "@/shared/lib/client";
-import { Button } from "@/shared/ui";
+import { Button, Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/shared/ui";
 import { DeleteIcon } from "lucide-react";
 
 interface EditorItemProps {
@@ -83,12 +83,36 @@ export const EditorItems = ({
             <p>Элемент - #{content.id}</p>
             <div className="flex items-center gap-2">
               {EditButton(content.content, content.id)}
-              <Button
-                size={"icon"}
-                onClick={() => { handleDeleteItem(content.id) }}
-              >
-                <DeleteIcon className="cursor-pointer" />
-              </Button>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button size={"sm"} >
+                    <DeleteIcon />
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-sm sm:max-w-3xl">
+                  <DialogHeader>
+                    <DialogTitle>
+                      Вы точно хотите удалить этот элемент?
+                    </DialogTitle>
+                    <DialogDescription></DialogDescription>
+                  </DialogHeader>
+                  <DialogFooter className=" gap-2 sm:justify-center">
+                    <DialogClose asChild>
+                      <Button
+
+                        // ref={closeRef} 
+                        type="button" variant="secondary">
+                        Отменить
+                      </Button>
+                    </DialogClose>
+                    <Button onClick={() => { handleDeleteItem(content.id) }}
+                    // loading={isPending} disabled={isPending}
+                    >
+                      Удалить
+                    </Button>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
             </div>
           </li>
         ))}
