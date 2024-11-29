@@ -29,19 +29,13 @@ import { ReactNode, useEffect, useRef, useState } from "react";
 
 
 import "../../globals.css";
-// import required modules
 import { EffectCoverflow, Pagination } from "swiper/modules";
 import Link from "next/link";
 import { President } from "@/widgets";
 import { HomeCoverFlowGallery } from "@/widgets/common/HomeCoverFlowGallery/HomeCoverFlowGallery";
+import { useTranslations } from "next-intl";
 
-const section_1 = [
-  "58 образовательных программ",
-  "2 современных общежития",
-  "Военная кафедра",
-  "Региональный технокластер Abai IT Valley",
-  "Академическая мобильность",
-];
+
 
 
 const news = [
@@ -65,8 +59,9 @@ const news = [
 export default function Page({ params }: any) {
 
   const { locale } = params
-
   const scrolled = useScroll(40);
+
+
 
 
   return (
@@ -104,16 +99,21 @@ export default function Page({ params }: any) {
   );
 }
 const SectionOne = () => {
+
+  const t = useTranslations("home");
+
+
+
   return (
     <Container>
-      <Heading className="mt-10 md:mt-0">Инфографика</Heading>
+      <Heading className="mt-10 md:mt-0">{t("infographics.title")}</Heading>
       <section className="flex justify-center flex-wrap xl:flex-nowrap gap-2   md:gap-5  rounded-md ">
-        {section_1.map((s, idx) => (
+        {Array.from({ length: 5 }).fill(1).map((s, idx) => (
           <section
             key={idx}
             className="flex items-center relative h-[5.75rem] md:h-[10.75rem] rounded-md px-2.5 w-[17.875rem] bg-abu_primary "
           >
-            <span className="text-white font-bold text-calc-xl">{s}</span>
+            <span className="text-white font-bold text-calc-xl">{t(`infographics.${idx + 1}`)}</span>
             <Image
               className={clsx(
                 "absolute left-1/2 -bottom-10   h-auto",
@@ -288,7 +288,9 @@ const Card = ({
     </article>
   );
 };
-const AllButton = ({ maxWidth, link }: { maxWidth?: string; link: string }) => {
+const MoreButton = ({ maxWidth, link }: { maxWidth?: string; link: string }) => {
+  const t = useTranslations()
+
   return (
     <Link
       href={`${link}`}
@@ -297,7 +299,7 @@ const AllButton = ({ maxWidth, link }: { maxWidth?: string; link: string }) => {
         maxWidth,
       }}
     >
-      <span className="text-2xl text-white font-bold">ВСЕ</span>
+      <span className="text-2xl text-white font-bold">{t("more")}</span>
       <ArrowRight color="white" />
     </Link>
   );
@@ -337,9 +339,13 @@ const AllButton = ({ maxWidth, link }: { maxWidth?: string; link: string }) => {
 // };
 
 const News = () => {
+
+  const t = useTranslations("home")
+
+
   return (
     <Container className="w-full ">
-      <Heading>Новости события</Heading>
+      <Heading>{t("news.title")}</Heading>
       <section className="w-full flex flex-col gap-4">
         {/* <section className="grid grid-cols-1 md:grid-cols-[2fr_1fr]  gap-5">
           <Card key={news[0].desc} {...news[0]} />
@@ -350,7 +356,7 @@ const News = () => {
             <Card key={card.desc} {...card} />
           ))}
         </section>
-        <AllButton maxWidth="506px" link="news" />
+        <MoreButton maxWidth="506px" link="news" />
       </section>
     </Container>
   );
@@ -558,11 +564,14 @@ const Dots = () => {
   );
 };
 const Partners = () => {
+
+  const t = useTranslations("home.partners")
+
   return (
     <section className="bg-abu_primary py-20">
       <Container className="grid place-items-center   ">
         <Heading className="text-center font-bold   mb-[37px] text-white">
-          НАШИ ПАРТНЕРЫ
+          {t("title")}
         </Heading>
         {/* <PartnersSlider /> */}
         <PartnersCarousel />
@@ -572,13 +581,17 @@ const Partners = () => {
   );
 };
 const socials = ["/vk.png", "inst.png", "fb.png", "yt.png", "in.png"];
+
 const Accreditation = () => {
   const locale = useParams().locale;
+
+  const t = useTranslations("home")
+
   return (
     <Container className="px-2 md:px-0">
       <div className="flex gap-5 items-center mb-[3.938rem] justify-center md:justify-end">
         <Heading className="md:mb-0">
-          Аккредитация <br /> и признание
+          {t("accreditation&Recognition.title")}
         </Heading>
         <img
           src="/icons/accre.png"
@@ -589,12 +602,15 @@ const Accreditation = () => {
         {getMap({ locale: locale as string })}
         <div className="flex flex-col gap-5">
           <div className="bg-abu_primary rounded-md text-white p-10 flex flex-col gap-4 text-2xl min-h-[216px]">
-            <h3 className="text-4xl font-bold">Наши контакты</h3>
-            <a href="tel:+7 (7222) 42-32-24">+7 (7222) 42-32-24</a>
+            <h3 className="text-4xl font-bold">{t("contacts.our")}</h3>
+            <a href="tel:+77222423224">+7 (7222) 42-32-24</a>
             <a href="mailto:semey@abu.edu.kz">semey@abu.edu.kz</a>
+            <h3 className="text-4xl font-bold">{t("contacts.admissions")}</h3>
+            <a href="tel:+77222423224">+7 (7222) 44-24-56</a>
+            <a href="tel:+77222423224">+7 (700) 643 43 56</a>
           </div>
           <div className="bg-abu_primary rounded-md text-white p-10 min-h-[216px]">
-            <h3 className="text-4xl mb-[35px] font-bold">Социальные сети</h3>
+            <h3 className="text-4xl mb-[35px] font-bold">{t("contacts.social")}</h3>
             <div className="flex gap-2">
               {socials.map((s) => (
                 <img
