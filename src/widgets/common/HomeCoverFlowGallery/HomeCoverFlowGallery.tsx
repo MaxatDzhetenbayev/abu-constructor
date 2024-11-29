@@ -9,29 +9,24 @@ import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import { ArrowRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export const HomeCoverFlowGallery = ({ locale }: { locale: string }) => {
+
+    const t = useTranslations()
 
     const gallery_items = Array.from({ length: 15 }, (_, i) => i + 1)
 
     return (
         <section className="max-w-[1500px] font-raleway px-3  w-full mx-auto">
-            <Heading>Галерея</Heading>
+            <Heading>{t("home.gallery.title")}</Heading>
             <section className="grid grid-cols-1 lg:grid-cols-[566px,1fr] gap-3">
                 <section className="flex flex-col max-lg:order-2 max-lg:text-justify  gap-10">
                     <p>
-                        Добро пожаловать в фотогалерею нашего университета! Здесь мы собрали
-                        яркие и запоминающиеся моменты из жизни нашего университета,
-                        мероприятий и достижений студентов. В каждом альбоме вы сможете
-                        увидеть, чем живет наше учебное сообщество: научные исследования,
-                        творческие проекты, студенческую жизнь, спортивные события и многое
-                        другое. Мы гордимся успехами наших студентов и преподавателей,
-                        атмосферой вдохновения и взаимной поддержки, которые делают наш
-                        университет по-настоящему уникальным. Наслаждайтесь просмотром и
-                        присоединяйтесь к нашей большой университетской семье!
+                        {t("home.gallery.body")}
                     </p>
                     <Link href={`/${locale}/university/media_resources`} className="flex py-3 w-full justify-center items-center rounded-lg bg-abu_primary gap-2 text-white text-3xl">
-                        Посмотреть все
+                        {t("more")}
                         <ArrowRight color="white" />
                     </Link>
 

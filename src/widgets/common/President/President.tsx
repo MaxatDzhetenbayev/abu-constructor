@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 
 
 export const President = () => {
-    const t = useTranslations("president");
+    const t = useTranslations("home.president_message");
 
     return (
         <section className="relative">
@@ -40,9 +40,9 @@ export const President = () => {
                             {t("text")}
                         </p>
                         <p className="text-calc-xl italic text-right font-extrabold ">
-                            Ізгі ниетпен,
+                            {t("signature")}
                             <br />
-                            Шырын Курманбаева
+                            {t("name")}
                         </p>
                     </motion.section>
                 </section>
