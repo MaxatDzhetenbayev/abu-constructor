@@ -14,7 +14,7 @@ export const WidgetListSection = ({
   id,
 }: IWidgetListSectionProps) => {
   return (
-    <section className="flex flex-col ">
+    <section className="flex flex-col flex-grow ">
       <h3>{trans("leftTitle")}</h3>
       {widgetsList.map(({ displayName }, idx) => (
         <Button

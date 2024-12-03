@@ -6,10 +6,10 @@ import {
 } from "../api";
 import { IContentCreationParams, IContentUpdateParams } from "./types";
 import { queryClient } from "@/shared/lib/client";
-import { useToast } from "@/shared/ui";
+// import { useToast } from "@/shared/ui";
 
 export const useEditWidgetContent = (widgetId: string) => {
-  const { toast } = useToast()
+  // const { toast } = useToast()
   const { data: contents } = useQuery({
     queryKey: ["contents"],
     queryFn: () => fetchContentsByWidgetId(widgetId),
@@ -33,7 +33,7 @@ export const useEditWidgetContent = (widgetId: string) => {
       queryClient.invalidateQueries({
         queryKey: ["contents"],
       });
-      toast({ title: "Создание", description: "Контент был успешно создан" })
+      // toast({ title: "Создание", description: "Контент был успешно создан" })
     },
   });
 
@@ -50,7 +50,10 @@ export const useEditWidgetContent = (widgetId: string) => {
       queryClient.invalidateQueries({
         queryKey: ["contents", data.id],
       });
-      toast({ title: "Настройки", description: "Настройки Контента были обновлены" })
+      queryClient.invalidateQueries({
+        queryKey: ["widgets"],
+      });
+      // toast({ title: "Настройки", description: "Настройки Контента были обновлены" })
     },
   });
 

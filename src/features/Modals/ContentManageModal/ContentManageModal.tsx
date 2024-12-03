@@ -1,3 +1,4 @@
+import Settings from "@/app/[locale]/admin/(withSidebar)/settings/page";
 import { backendUrl } from "@/shared/lib/constants";
 import {
   Button,
@@ -13,6 +14,7 @@ import {
 import { EditOptionsProps } from "@/widgets/common/EditWidget/model/types";
 import { viewInputByType } from "@/widgets/common/EditWidget/ui";
 import { useMutation } from "@tanstack/react-query";
+import clsx from "clsx";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -34,7 +36,6 @@ export const ContentManageModal = ({
   contents,
   widgetOptionsList,
   action,
-  TemplateSection,
   id,
   widget_variant,
   widget_type,
@@ -85,9 +86,9 @@ export const ContentManageModal = ({
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild className={action === "create" ? `w-full` : ""}>
-        <Button>
-          {action === "create" ? "Создать контент" : "Редактировать"}
+      <DialogTrigger asChild onClick={(e) => e.stopPropagation()} className={clsx("", action === "create" ? `w-full` : "w-9")}>
+        <Button className="" >
+          <Settings />
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-[90%] max-h-[95%] overflow-y-auto ">
@@ -103,31 +104,31 @@ export const ContentManageModal = ({
         <form onSubmit={handleSubmit(onSubmit)}>
           {Array.isArray(options)
             ? options?.map((option) => {
-                return (
-                  <Fragment key={option.props}>
-                    {viewInputByType(
-                      option.type,
-                      option,
-                      register,
-                      control,
-                      setIsUploading
-                    )}
-                  </Fragment>
-                );
-              })
+              return (
+                <Fragment key={option.props}>
+                  {viewInputByType(
+                    option.type,
+                    option,
+                    register,
+                    control,
+                    setIsUploading
+                  )}
+                </Fragment>
+              );
+            })
             : options?.(widget_variant as string).map((option) => {
-                return (
-                  <Fragment key={option.props}>
-                    {viewInputByType(
-                      option.type,
-                      option,
-                      register,
-                      control,
-                      setIsUploading
-                    )}
-                  </Fragment>
-                );
-              })}
+              return (
+                <Fragment key={option.props}>
+                  {viewInputByType(
+                    option.type,
+                    option,
+                    register,
+                    control,
+                    setIsUploading
+                  )}
+                </Fragment>
+              );
+            })}
 
           <Button className="w-full" type="submit" disabled={isUploading}>
             {action === "create" ? "Создать" : "Изменить"}
@@ -135,7 +136,6 @@ export const ContentManageModal = ({
         </form>
         {action === "update" && (
           <>
-            <TemplateSection content_id={id} />
             <Button onClick={() => fetchRemoveContent(id)}>
               Удалить контент
             </Button>

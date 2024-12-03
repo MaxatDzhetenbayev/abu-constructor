@@ -26,12 +26,16 @@ function Gallery({
   options: any;
   locale: string;
 }) {
-  const { title } = content[locale];
+  const { title } = content?.[locale];
   return (
     <section>
-      <h2 className="text-2xl font-bold">{title.toLocaleUpperCase()}</h2>
+      {
+        title && (
+          <h2 className="text-2xl font-bold">{title.toLocaleUpperCase()}</h2>
+        )
+      }
       <section className="flex flex-wrap gap-3 w-full mt-5">
-        {contents.map(({ content }, idx) => (
+        {contents?.map(({ content }, idx) => (
           <Dialog key={idx}>
             <DialogTrigger
               className={clsx(

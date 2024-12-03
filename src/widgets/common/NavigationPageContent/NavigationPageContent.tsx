@@ -10,16 +10,15 @@ import { WidgetListSection } from "./WidgetListSection";
 import { NavigationPageItems } from "./NavigationPageItems";
 
 export const NavigationPageContent = ({
-  params: { id },
+  params: { id, locale },
 }: INavigationPageContent) => {
   const trans = useTranslations("pages.pageEditorContent");
 
   const { handleWidgetCreate } = useNavigationPageContent(id);
 
-
   return (
     <section className="flex gap-5">
-      <NavigationPageItems id={id} trans={trans} />
+      <NavigationPageItems id={id} trans={trans} locale={locale} />
       <WidgetListSection
         trans={trans}
         id={id}

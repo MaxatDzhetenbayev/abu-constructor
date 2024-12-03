@@ -33,9 +33,8 @@ export const useEditWidget = (
     mutationFn: (data) => fetchEditWidgetMainOptions(data, widgetId),
     onSuccess: (data: any) => {
       queryClient.invalidateQueries({
-        queryKey: ["widget", widgetId],
+        queryKey: ["widgets"],
       });
-      console.log(data)
       reset({ ...data.options });
       toast({ title: "Настройки", description: "Главные настройки виджета были обновлены" })
     },

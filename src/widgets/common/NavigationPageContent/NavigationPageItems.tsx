@@ -16,17 +16,19 @@ import { locales } from "@/i18n";
 import { INavigation } from "@/shared/lib/types";
 import { toast } from "@/shared/ui/use-toast";
 import { queryClient } from "@/shared/lib/client";
+import { getWidgetByName } from "@/widgets";
 
 export const NavigationPageItems = ({
   trans,
   id,
+  locale
 }: {
   trans: any;
   id: string;
+  locale: string;
 }) => {
   const { handleDragStart, handleDrop } =
     useDragAndDrop<IWidget>(handleDragEnd);
-
   const { widgets, isFetching, handleWidgetDelete, handleWidgetUpdate } =
     useNavigationPageContent(id);
 
@@ -74,7 +76,7 @@ export const NavigationPageItems = ({
   }, [navigationItem, isLoading])
 
   return (
-    <section className="flex grow bg-slate-500 flex-col gap-3  p-3">
+    <section className="flex w-[1200px]  flex-col gap-3  p-3">
       <h2 className="text-center mb-2 text-white font-bold">
         {trans("rightTitle")}
       </h2>
@@ -111,59 +113,78 @@ export const NavigationPageItems = ({
             <h1>В этой странице нет контента</h1>
           </section>
         ) : (
-          <ul className="flex flex-col gap-2">
-            {widgets?.map((widget) => (
-              <li
-                key={widget.id}
-                className="flex justify-between items-center gap-2 rounded-sm px-5 py-3 bg-slate-100 cursor-grab"
-                draggable
-                onDragStart={(e) => handleDragStart(e, widget)}
-                onDrop={(e: React.DragEvent<HTMLLIElement>) =>
-                  handleDrop(e, widget, handleWidgetUpdate)
-                }
-                onDragOver={(e) => e.preventDefault()}
-              >
-                <span>{widget.widget_type}</span>
-                <section className="flex gap-2">
-                  <Dialog>
-                    <DialogTrigger asChild>
-                      <Button size={"sm"} >
-                        <DeleteIcon />
-                      </Button>
-                    </DialogTrigger>
-                    <DialogContent className="max-w-sm sm:max-w-3xl">
-                      <DialogHeader>
-                        <DialogTitle>
-                          Вы точно хотите удалить этот виджет?
-                        </DialogTitle>
-                        <DialogDescription></DialogDescription>
-                      </DialogHeader>
-                      <DialogFooter className=" gap-2 sm:justify-center">
-                        <DialogClose asChild>
-                          <Button
+          <ul className="flex flex-col gap-[70px]">
+            {widgets?.map((widget) => {
 
-                            // ref={closeRef} 
-                            type="button" variant="secondary">
-                            Отменить
-                          </Button>
-                        </DialogClose>
-                        <Button onClick={() => handleWidgetDelete(widget.id)}
-                        // loading={isPending} disabled={isPending}
-                        >
-                          Удалить
-                        </Button>
-                      </DialogFooter>
-                    </DialogContent>
-                  </Dialog>
-                  <Link
+              const { widget_type, options, contents, id, order } = widget
+
+              const widgetOptons = { id, contents, options, locale: locale, mode: "development" };
+              const widgetContent = getWidgetByName(widget_type, widgetOptons);
+              return (
+
+                <li>
+                  {widgetContent}
+                  {/* <Link
                     className="bg-[#640000] text-white text-center rounded-md p-2"
                     href={{ pathname: `${id}/widget/${widget.id}` }}
                   >
                     <Settings />
-                  </Link>
-                </section>
-              </li>
-            ))}
+                  </Link> */}
+                </li>
+
+                // <li
+                //   key={widget.id}
+                //   className="flex justify-between items-center gap-2 rounded-sm px-5 py-3 bg-slate-100 cursor-grab"
+                //   draggable
+                //   onDragStart={(e) => handleDragStart(e, widget)}
+                //   onDrop={(e: React.DragEvent<HTMLLIElement>) =>
+                //     handleDrop(e, widget, handleWidgetUpdate)
+                //   }
+                //   onDragOver={(e) => e.preventDefault()}
+                // >
+                //   <span>{widget.widget_type}</span>
+                //   <section className="flex gap-2">
+                //     <Dialog>
+                //       <DialogTrigger asChild>
+                //         <Button size={"sm"} >
+                //           <DeleteIcon />
+                //         </Button>
+                //       </DialogTrigger>
+                //       <DialogContent className="max-w-sm sm:max-w-3xl">
+                //         <DialogHeader>
+                //           <DialogTitle>
+                //             Вы точно хотите удалить этот виджет?
+                //           </DialogTitle>
+                //           <DialogDescription></DialogDescription>
+                //         </DialogHeader>
+                //         <DialogFooter className=" gap-2 sm:justify-center">
+                //           <DialogClose asChild>
+                //             <Button
+
+                //               // ref={closeRef} 
+                //               type="button" variant="secondary">
+                //               Отменить
+                //             </Button>
+                //           </DialogClose>
+                //           <Button onClick={() => handleWidgetDelete(widget.id)}
+                //           // loading={isPending} disabled={isPending}
+                //           >
+                //             Удалить
+                //           </Button>
+                //         </DialogFooter>
+                //       </DialogContent>
+                //     </Dialog>
+                //     <Link
+                //       className="bg-[#640000] text-white text-center rounded-md p-2"
+                //       href={{ pathname: `${id}/widget/${widget.id}` }}
+                //     >
+                //       <Settings />
+                //     </Link>
+                //   </section>
+                // </li>
+              )
+            }
+            )}
           </ul>
         )}
       </section>

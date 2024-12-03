@@ -16,7 +16,7 @@ import Carousel from "./constructor/Carousel";
 import Gallery from "./constructor/Gallery/Gallery";
 import Info from "./constructor/Info/Info";
 import Links from "./constructor/Links/Links";
-import List from "./constructor/List/List";
+import List from "./constructor/List/index";
 import Text from "./constructor/Text/Text";
 import Tabs from "./constructor/Tabs";
 import StepSwitcher from "./constructor/StepSwitcher";

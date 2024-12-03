@@ -1,9 +1,11 @@
 
 
 export interface IWidgetProps {
+  id: string;
   contents: Array<any>;
   options: any;
   locale: string;
+  mode: "development" | "production"
 }
 
 export interface IContent {

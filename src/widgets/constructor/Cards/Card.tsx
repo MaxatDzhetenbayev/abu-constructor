@@ -14,7 +14,7 @@ export const Card = ({
 }: ICard) => {
   const params = useParams();
   const slugs = params.slug as string[];
-  const currentPath = slugs[slugs.length - 1];
+  const currentPath = slugs?.[slugs.length - 1];
 
   return (
     <CardBase
