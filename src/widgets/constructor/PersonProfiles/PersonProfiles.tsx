@@ -1,7 +1,7 @@
-import { backendImageUrl } from '@/shared/lib/constants';
 import { IWidgetProps } from '@/shared/types'
 import React from 'react'
 import { ProfileCard } from './ui/ProfileCard/ProfileCard';
+import { Heading } from '@/shared/ui';
 
 function PersonProfiles({
     contents,
@@ -10,9 +10,7 @@ function PersonProfiles({
 }: IWidgetProps) {
     return (
         <section className='flex flex-col gap-3'>
-            <h2 className="text-2xl font-bold">
-                {content?.[locale]?.title.toLocaleUpperCase()}
-            </h2>
+            <Heading title={content[locale].title} />
             <ul className='grid grid-cols-[repeat(auto-fill,minmax(310px,_1fr))] gap-5 justify-center'>
                 {
                     contents.map(({ content }, idx) => (
