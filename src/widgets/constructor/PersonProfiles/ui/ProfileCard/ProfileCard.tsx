@@ -8,7 +8,7 @@ import { Divide } from 'lucide-react';
 
 export const ProfileCard = ({ locale, content }: { locale: string, content: any }) => {
 
-    const { job_title, full_name, content: body } = content[locale]
+    const { job_title, full_name, description: body } = content[locale]
 
 
 
