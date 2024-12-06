@@ -22,7 +22,7 @@ function Text({
       {
         body && <section className="flex flex-1 py-5 flex-col gap-4 md:gap-7 ">
           <div>
-            <div className="quill-content max-h-[235px] overflow-hidden"
+            <div className="quill-content"
               dangerouslySetInnerHTML={{ __html: body }}
             ></div>
           </div>
