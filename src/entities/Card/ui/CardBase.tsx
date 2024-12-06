@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import clsx from "clsx";
 import { backendImageUrl } from "@/shared/lib/constants";
-import { Dialog, DialogContent, DialogTrigger } from "@/shared/ui";
+import { Dialog, DialogContent, DialogTrigger, MoreArrow } from "@/shared/ui";
 import { ICard } from "@/widgets/constructor/Cards/model/Cards.interface";
 
 type ICardWithPath = ICard & Record<"currentPath", string>
@@ -41,7 +41,7 @@ export const CardBase = ({
       {variant !== "with_modal" ? (
         <>
           <Heading title={title} />
-          <CardArrow width={36} height={24} />
+          <MoreArrow width={36} height={24} />
         </>
       ) : (
         <div className="h-full flex flex-col">
@@ -61,7 +61,7 @@ export const CardBase = ({
                 <Heading title={title} />
                 <div className="flex items-center gap-5 mt-[15px]">
                   <p className="group-hover:text-white">Подробнее</p>
-                  <CardArrow width={17} height={13} />
+                  <MoreArrow width={17} height={13} />
                 </div>
               </button>
             </DialogTrigger>
@@ -78,8 +78,6 @@ export const CardBase = ({
   );
 };
 
-
-
 const Heading = ({ title }: { title: string }): React.JSX.Element => {
   return (
     <h2
@@ -89,26 +87,3 @@ const Heading = ({ title }: { title: string }): React.JSX.Element => {
     </h2>
   )
 }
-
-const CardArrow = ({ width, height }: { height: number, width: number }): React.JSX.Element => {
-  const commonClasses = "group-hover:hidden";
-  const hoverClasses = "hidden group-hover:block";
-  return (
-    <>
-      <Image
-        src="/icons/right-arrow-primary.svg"
-        width={width}
-        height={height}
-        className={commonClasses}
-        alt="Кнопка для активации"
-      />
-      <Image
-        src="/icons/right-arrow-white.svg"
-        width={width}
-        height={height}
-        className={hoverClasses}
-        alt="Кнопка для активации"
-      />
-    </>
-  );
-};
