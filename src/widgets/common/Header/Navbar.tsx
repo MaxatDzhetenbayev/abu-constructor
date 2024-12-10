@@ -1,20 +1,23 @@
 "use client";
+import React, { useState } from "react";
 import { Skeleton } from "@/shared/ui";
 import { useQuery } from "@tanstack/react-query";
 import clsx from "clsx";
 import Link from "next/link";
+import Image from "next/image";
 import { useParams, usePathname } from "next/navigation";
-import React, { useState } from "react";
 import { NavigationList } from "./Navigation/NavigationList";
 import { useScroll } from "@/shared/lib/hooks/useScroll";
-import { INavigation } from "@/shared/lib/types";
 import { backendUrl } from "@/shared/lib/constants";
-import Image from "next/image";
 import { ChangeLocale } from "@/features";
+import { INavigation } from "@/shared/types";
+import { Logo } from "@/entities/logo";
+import { LogoSize } from "@/entities/logo/model";
 
 export const Navbar = () => {
   const params = useParams();
   const path = usePathname();
+
   const { data: pages, isFetching } = useQuery<INavigation[]>({
     queryKey: ["navigations"],
     queryFn: async () => {
@@ -36,24 +39,14 @@ export const Navbar = () => {
             ? "bg-abu_primary"
             : path === `/${params.locale}/home`
               ? "md:static  bg-none bg-black/30"
-              : "md:static bg-abu_primary",
+              : "md:static bg-abu_primary"
       )}
     >
       <div
         onMouseLeave={() => setHoveredItem(null)}
         className="w-[1300px] flex gap-10  justify-between items-center"
       >
-        <Link
-          href="/"
-          style={{ position: "relative", height: "80px", width: "280px" }}
-        >
-          <Image
-            src={`/images/logo-white.png`}
-            alt="logo"
-            layout="fill"
-            objectFit="contain"
-          />
-        </Link>
+        <Logo size={LogoSize.MEDIUM} />
         <section className="py-0 gap-5 items-center justify-center flex">
           {isFetching ? (
             <div className="w-[600px] grid place-items-center h-[5.875rem]">
