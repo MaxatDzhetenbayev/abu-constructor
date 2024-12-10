@@ -50,13 +50,15 @@ const news = [
 
 export default function Page({ params }: any) {
   const { locale } = params;
-  const scrolled = useScroll(40);
-
+  const [scrolled] = useScroll(40);
   return (
-    <main className="w-full h-full">
+    <>
       {/* Hero section */}
       <section
-        className={`w-full h-[100vh] [@media(min-width:890px)]:-top-[96px] [@media(min-width:890px)]:relative`}
+        className={clsx(
+          `w-full h-[100vh] [@media(min-width:890px)]:relative `,
+          scrolled ? "top-0" : "-top-[96px]"
+        )}
       >
         {/* На доработке */}
         {/* <AppealDialog /> */}
@@ -82,7 +84,7 @@ export default function Page({ params }: any) {
         <Partners />
         <Accreditation />
       </section>
-    </main>
+    </>
   );
 }
 const SectionOne = () => {
