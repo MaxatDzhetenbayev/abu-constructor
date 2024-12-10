@@ -5,15 +5,7 @@ import { Navbar } from "@/widgets/common/Header/Navbar";
 import Image from "next/image";
 import Link from "next/link";
 import { SearchWidget } from "../SearchWidget/SearchWidget";
-
-const topHeaderMenuList = [
-  //   { title: "Обучающимся", link: "https://education.abu.edu.kz/" },
-  //   { title: "Международное сотрудничество", link: "home" },
-  //   { title: "Выпусникам", link: "home" },
-  { title: "AIS", link: "https://ais.semuniver.kz/login.php" },
-  { title: "Abai IT", link: "https://abai-it.kz/" },
-  { title: "Abai IT School", link: "https://abai-it-school.abu.edu.kz/" },
-];
+import { TopHeader } from "@/entities/top-header";
 
 export const Header = () => {
   return (
@@ -34,20 +26,11 @@ export const Header = () => {
             objectFit="contain"
           />
         </Link>
-        <section
-          className="text-white items-center hidden [@media(min-width:890px)]:flex"
-          style={{ gap: "clamp(15px, 1.5vw, 40px)" }}
-        >
-          {topHeaderMenuList.map((item, index) => (
-            <Link href={item.link} key={index} target="_blank">
-              {item.title}
-            </Link>
-          ))}
-        </section>
+        <TopHeader />
         <section className="flex items-center gap-7">
           <SearchWidget />
           <ChangeLocale />
-          <BurgerMenu topHeaderMenuList={topHeaderMenuList} />
+          <BurgerMenu  />
         </section>
       </section>
       <Navbar />
