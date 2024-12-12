@@ -13,7 +13,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { backendUrl } from "@/shared/lib/constants";
 import { useForm } from "react-hook-form";
 import { locales } from "@/i18n";
-import { INavigation } from "@/shared/lib/types";
+import { INavigation } from "@/shared/types";
 import { toast } from "@/shared/ui/use-toast";
 import { queryClient } from "@/shared/lib/client";
 

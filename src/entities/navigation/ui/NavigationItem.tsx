@@ -30,7 +30,7 @@ export const NavigationItem = ({
   return (
     <>
       {item.navigation_type === "link" ||
-      item.navigation_type === "group-link" ? (
+        item.navigation_type === "group-link" ? (
         <Link
           style={{ fontSize: "clamp(16px, 1.5vw, 20px)" }}
           className={clsx(
@@ -94,7 +94,7 @@ const DropDownMenu = ({
   return (
     <ul className="bg-white shadow-md p-3 absolute left-0">
       {element.children.map((child) => (
-        <li>
+        <li key={child.id}>
           <p>{child.title[locale]}</p>
           {child.children.length > 0 && (
             <DropDownMenu element={child} locale={locale} />

@@ -19,7 +19,7 @@ export const TopHeader = () => {
         style={{ gap: "clamp(15px, 1.5vw, 40px)" }}
       >
         {topHeaderMenuList.map((item, index) => (
-          <li>
+          <li key={item.link}>
             <Link href={item.link} key={index} target="_blank">
               {item.title}
             </Link>
