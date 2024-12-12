@@ -11,6 +11,7 @@ import { NavigationList } from "@/entities/navigation";
 
 export const Navbar = () => {
   const params = useParams();
+  const path = usePathname();
 
   const [hoveredItem, setHoveredItem] = useState<null | number>(null);
   const [scrolled] = useScroll(40);
@@ -23,7 +24,9 @@ export const Navbar = () => {
           ? "md:fixed md:left-0 md:right-0 md:top-0"
           : hoveredItem
             ? "bg-abu_primary"
-            : "bg-black/30"
+            : path === `/${params.locale}/home`
+              ? "md:static  bg-none bg-black/30"
+              : "md:static bg-abu_primary"
       )}
     >
       <div

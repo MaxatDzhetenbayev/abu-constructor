@@ -1,5 +1,4 @@
 import React from "react";
-import { INavigation } from "@/shared/types";
 import { NavigationItem } from "./NavigationItem";
 import { useNavigationList } from "../api/useNavigationList";
 import { Skeleton } from "@/shared/ui";
