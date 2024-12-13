@@ -1,27 +1,17 @@
 "use client";
-import { Skeleton } from "@/shared/ui";
-import { useQuery } from "@tanstack/react-query";
-import clsx from "clsx";
-import Link from "next/link";
-import { useParams, usePathname } from "next/navigation";
 import React, { useState } from "react";
-import { NavigationList } from "./Navigation/NavigationList";
+
+import clsx from "clsx";
+import { useParams, usePathname } from "next/navigation";
 import { useScroll } from "@/shared/lib/hooks/useScroll";
-import { INavigation } from "@/shared/lib/types";
-import { backendUrl } from "@/shared/lib/constants";
-import Image from "next/image";
 import { ChangeLocale } from "@/features";
+import { Logo } from "@/entities/logo";
+import { LogoSize } from "@/entities/logo/model";
+import { NavigationList } from "@/entities/navigation";
 
 export const Navbar = () => {
   const params = useParams();
   const path = usePathname();
-  const { data: pages, isFetching } = useQuery<INavigation[]>({
-    queryKey: ["navigations"],
-    queryFn: async () => {
-      const response = await fetch(`${backendUrl}/navigations`);
-      return response.json();
-    },
-  });
 
   const [hoveredItem, setHoveredItem] = useState<null | number>(null);
   const [scrolled] = useScroll(40);
@@ -36,40 +26,20 @@ export const Navbar = () => {
             ? "bg-abu_primary"
             : path === `/${params.locale}/home`
               ? "md:static  bg-none bg-black/30"
-              : "md:static bg-abu_primary",
+              : "md:static bg-abu_primary"
       )}
     >
       <div
         onMouseLeave={() => setHoveredItem(null)}
         className="w-[1300px] flex gap-10  justify-between items-center"
       >
-        <Link
-          href="/"
-          style={{ position: "relative", height: "80px", width: "280px" }}
-        >
-          <Image
-            src={`/images/logo-white.png`}
-            alt="logo"
-            layout="fill"
-            objectFit="contain"
-          />
-        </Link>
+        <Logo size={LogoSize.MEDIUM} />
         <section className="py-0 gap-5 items-center justify-center flex">
-          {isFetching ? (
-            <div className="w-[600px] grid place-items-center h-[5.875rem]">
-              <Skeleton className="w-full h-[3rem]" />
-            </div>
-          ) : pages ? (
-            <NavigationList
-              locale={params.locale as string}
-              pages={pages}
-              hoveredItem={hoveredItem}
-              setHoveredItem={setHoveredItem}
-            />
-          ) : (
-            <span>Навигация не найдена</span>
-          )}
-
+          <NavigationList
+            locale={params.locale as string}
+            hoveredItem={hoveredItem}
+            setHoveredItem={setHoveredItem}
+          />
           {scrolled && <ChangeLocale />}
         </section>
       </div>

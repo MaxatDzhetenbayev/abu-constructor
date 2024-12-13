@@ -17,16 +17,11 @@ import { InputProps } from "@/shared/ui/input";
 import { TextareaProps } from "@/shared/ui/textarea";
 import clsx from "clsx";
 import { motion, useMotionValue } from "framer-motion";
-import {
-  ArrowRight,
-  X,
-} from "lucide-react";
+import { ArrowRight, X } from "lucide-react";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import Script from "next/script";
 import { ReactNode, useEffect, useRef, useState } from "react";
-
-
 
 import "../../globals.css";
 import { EffectCoverflow, Pagination } from "swiper/modules";
@@ -34,9 +29,6 @@ import Link from "next/link";
 import { President } from "@/widgets";
 import { HomeCoverFlowGallery } from "@/widgets/common/HomeCoverFlowGallery/HomeCoverFlowGallery";
 import { useTranslations } from "next-intl";
-
-
-
 
 const news = [
   {
@@ -57,23 +49,20 @@ const news = [
 ];
 
 export default function Page({ params }: any) {
-
-  const { locale } = params
-  const scrolled = useScroll(40);
-
-
-
-
+  const { locale } = params;
+  const [scrolled] = useScroll(40);
   return (
-    <main className="w-full h-full">
+    <>
       {/* Hero section */}
       <section
-        className={`w-full h-[100vh] [@media(min-width:890px)]:-top-[96px] [@media(min-width:890px)]:relative`}
+        className={clsx(
+          `w-full h-[100vh] [@media(min-width:890px)]:relative `,
+          scrolled ? "top-0" : "-top-[96px]"
+        )}
       >
         {/* На доработке */}
         {/* <AppealDialog /> */}
         {/* //На доработке */}
-
 
         {/* <div className="absolute left-0 -top-20  w-full h-[100%] -z-10 bg-black/20"></div> */}
         <video
@@ -95,48 +84,48 @@ export default function Page({ params }: any) {
         <Partners />
         <Accreditation />
       </section>
-    </main>
+    </>
   );
 }
 const SectionOne = () => {
-
   const t = useTranslations("home");
-
-
 
   return (
     <Container>
       <Heading className="mt-10 md:mt-0">{t("infographics.title")}</Heading>
       <section className="flex justify-center flex-wrap xl:flex-nowrap gap-2   md:gap-5  rounded-md ">
-        {Array.from({ length: 5 }).fill(1).map((s, idx) => (
-          <section
-            key={idx}
-            className="flex items-center relative h-[5.75rem] md:h-[10.75rem] rounded-md px-2.5 w-[17.875rem] bg-abu_primary "
-          >
-            <span className="text-white font-bold text-calc-xl">{t(`infographics.${idx + 1}`)}</span>
-            <Image
-              className={clsx(
-                "absolute left-1/2 -bottom-10   h-auto",
-                {
-                  1: "w-[9.188rem]",
-                  2: "w-[5.688rem]",
-                  3: "w-[8.25rem]",
-                  4: "w-[10.5rem]",
-                  5: "w-[10.375rem]",
-                }[idx + 1]
-              )}
-              src={`/infograph/${idx + 1}.svg`}
-              alt={`index-${idx + 1}`}
-              width={100}
-              height={100}
-            />
-          </section>
-        ))}
+        {Array.from({ length: 5 })
+          .fill(1)
+          .map((s, idx) => (
+            <section
+              key={idx}
+              className="flex items-center relative h-[5.75rem] md:h-[10.75rem] rounded-md px-2.5 w-[17.875rem] bg-abu_primary "
+            >
+              <span className="text-white font-bold text-calc-xl">
+                {t(`infographics.${idx + 1}`)}
+              </span>
+              <Image
+                className={clsx(
+                  "absolute left-1/2 -bottom-10   h-auto",
+                  {
+                    1: "w-[9.188rem]",
+                    2: "w-[5.688rem]",
+                    3: "w-[8.25rem]",
+                    4: "w-[10.5rem]",
+                    5: "w-[10.375rem]",
+                  }[idx + 1]
+                )}
+                src={`/infograph/${idx + 1}.svg`}
+                alt={`index-${idx + 1}`}
+                width={100}
+                height={100}
+              />
+            </section>
+          ))}
       </section>
     </Container>
   );
 };
-
 
 const Rector = ({ close }: { close?: ReactNode }) => {
   return (
@@ -272,24 +261,23 @@ const Card = ({
       )}
     >
       <div className="relative  aspect-square md:max-h-[380px] lg:max-h-[320px]">
-        <Image
-          src={img}
-          fill
-          alt={text}
-          className="object-cover"
-        />
+        <Image src={img} fill alt={text} className="object-cover" />
       </div>
       <div className="">
-        <h2 className="text-abu_primary font-semibold text-calc-xl">
-          {text}
-        </h2>
+        <h2 className="text-abu_primary font-semibold text-calc-xl">{text}</h2>
         <p className="text-[#3E3232] text-calc-md mt-3">{desc}</p>
       </div>
     </article>
   );
 };
-const MoreButton = ({ maxWidth, link }: { maxWidth?: string; link: string }) => {
-  const t = useTranslations()
+const MoreButton = ({
+  maxWidth,
+  link,
+}: {
+  maxWidth?: string;
+  link: string;
+}) => {
+  const t = useTranslations();
 
   return (
     <Link
@@ -339,9 +327,7 @@ const MoreButton = ({ maxWidth, link }: { maxWidth?: string; link: string }) => 
 // };
 
 const News = () => {
-
-  const t = useTranslations("home")
-
+  const t = useTranslations("home");
 
   return (
     <Container className="w-full ">
@@ -353,7 +339,7 @@ const News = () => {
         </section> */}
         <section className="flex gap-4 max-lg:flex-col">
           {news.slice(0, 3).map((card) => (
-            <Card key={card.desc} {...card} />
+            <Card key={card.text} {...card} />
           ))}
         </section>
         <MoreButton maxWidth="506px" link="news" />
@@ -390,8 +376,6 @@ const SPRING_OPTIONS = {
   ease: "linear", // Smooth ease-in-out easing
   duration: 0.3,
 };
-
-
 
 const PartnersCarousel = () => {
   const centeredEl = useRef(2);
@@ -564,8 +548,7 @@ const Dots = () => {
   );
 };
 const Partners = () => {
-
-  const t = useTranslations("home.partners")
+  const t = useTranslations("home.partners");
 
   return (
     <section className="bg-abu_primary py-20">
@@ -585,7 +568,7 @@ const socials = ["/vk.png", "inst.png", "fb.png", "yt.png", "in.png"];
 const Accreditation = () => {
   const locale = useParams().locale;
 
-  const t = useTranslations("home")
+  const t = useTranslations("home");
 
   return (
     <Container className="px-2 md:px-0">
@@ -610,7 +593,9 @@ const Accreditation = () => {
             <a href="tel:+77222423224">+7 (700) 643 43 56</a>
           </div>
           <div className="bg-abu_primary rounded-md text-white p-10 min-h-[216px]">
-            <h3 className="text-4xl mb-[35px] font-bold">{t("contacts.social")}</h3>
+            <h3 className="text-4xl mb-[35px] font-bold">
+              {t("contacts.social")}
+            </h3>
             <div className="flex gap-2">
               {socials.map((s) => (
                 <img

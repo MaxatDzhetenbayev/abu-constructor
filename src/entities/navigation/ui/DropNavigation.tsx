@@ -1,4 +1,4 @@
-import { INavigation } from "@/shared/lib/types";
+import { INavigation } from "@/shared/types";
 import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -24,7 +24,7 @@ export const DropNavigation = ({
       onMouseLeave={handleMouseLeave}
       className={clsx(
         "absolute left-0  pt-3 w-full bg-abu_primary h-[380px] px-10 ",
-        scrolled ? "top-[94px]" : "top-[134px]",
+        scrolled ? "top-[94px]" : "top-[134px]"
       )}
     >
       <ul className="flex justify-center  gap-[60px]">
@@ -36,7 +36,7 @@ export const DropNavigation = ({
                 href={`/${locale}/${item.slug}/${child.slug}`}
                 className={clsx(
                   "text-white font-bold",
-                  path == `/${locale}${child.slug}` && "font-bold",
+                  path == `/${locale}${child.slug}` && "font-bold"
                 )}
                 style={{
                   fontSize: "clamp(18px, 1.4vw, 24px)",
@@ -67,7 +67,7 @@ export const DropNavigation = ({
                           "bachelor's_degree",
                           "master's_degree",
                           "doctorates_degree",
-                        ].includes(subChild.slug) && "font-bold ",
+                        ].includes(subChild.slug) && "font-bold "
                       )}
                       style={{
                         fontSize: "clamp(16px, 1.5vw, 20px)",

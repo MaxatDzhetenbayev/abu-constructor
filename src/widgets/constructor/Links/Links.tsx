@@ -16,7 +16,7 @@ function Links({
         {contents.map(({ content }, idx) => (
           <li
             key={idx}
-            className="hover:text-[#640000] text-xl underline hover:underline-offset-2  "
+            className="hover:text-[#640000] text-calc-xl underline hover:underline-offset-2  "
           >
             <a href={content[locale].link} target="_blank">
               {content[locale].title}

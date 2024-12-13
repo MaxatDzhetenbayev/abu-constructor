@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import React, { ReactNode } from "react";
 import { DropNavigation } from "./DropNavigation";
 import { useScroll } from "@/shared/lib/hooks/useScroll";
-import { INavigation } from "@/shared/lib/types";
+import { INavigation } from "@/shared/types";
 
 interface NavigationItemProps {
   item: INavigation;
@@ -30,7 +30,7 @@ export const NavigationItem = ({
   return (
     <>
       {item.navigation_type === "link" ||
-      item.navigation_type === "group-link" ? (
+        item.navigation_type === "group-link" ? (
         <Link
           style={{ fontSize: "clamp(16px, 1.5vw, 20px)" }}
           className={clsx(
@@ -51,23 +51,26 @@ export const NavigationItem = ({
           )}
         </Link>
       ) : (
-        <button
-          className={clsx(
-            "relative  h-[94px] flex items-center font-semibold text-white",
-            path.split("/")[2] == item.slug.split("/")[1] && "font-bold"
-          )}
-          onMouseEnter={() => handleMouseEnter(item.id)}
-          key={item.id}
-          style={{ fontSize: "clamp(16px, 1.5vw, 20px)" }}
-        >
-          {item.title[locale as string]}
-          <ChevronRight
+        <div className="relative">
+          <button
             className={clsx(
-              "transitio text-white",
-              isHoveredItem ? "rotate-90" : "rotate-0"
+              "  h-[94px] flex items-center font-semibold text-white",
+              path.split("/")[2] == item.slug.split("/")[1] && "font-bold"
             )}
-          />
-        </button>
+            onMouseEnter={() => handleMouseEnter(item.id)}
+            onClick={() => handleMouseEnter(item.id)}
+            key={item.id}
+            style={{ fontSize: "clamp(16px, 1.5vw, 20px)" }}
+          >
+            {item.title[locale as string]}
+            <ChevronRight
+              className={clsx(
+                "transitio text-white",
+                isHoveredItem ? "rotate-90" : "rotate-0"
+              )}
+            />
+          </button>
+        </div>
       )}
       {isHoveredItem && (
         <DropNavigation
@@ -78,5 +81,26 @@ export const NavigationItem = ({
         />
       )}
     </>
+  );
+};
+
+const DropDownMenu = ({
+  element,
+  locale,
+}: {
+  locale: string;
+  element: INavigation;
+}) => {
+  return (
+    <ul className="bg-white shadow-md p-3 absolute left-0">
+      {element.children.map((child) => (
+        <li key={child.id}>
+          <p>{child.title[locale]}</p>
+          {child.children.length > 0 && (
+            <DropDownMenu element={child} locale={locale} />
+          )}
+        </li>
+      ))}
+    </ul>
   );
 };

@@ -1,5 +1,5 @@
 import { backendUrl } from "@/shared/lib/constants";
-import { INavigation } from "@/shared/lib/types";
+import { INavigation } from "@/shared/types";
 
 
 export async function fetchCreateNavigationItem(

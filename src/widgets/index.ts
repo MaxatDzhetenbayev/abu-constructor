@@ -63,7 +63,7 @@ export const WidgetOptionList = [
   PersonProfilesEditOptions
 ];
 
-export const getWidgetByName = (name: string, props: any) => {
+export const getWidgetByName = (name: string, props: any): React.JSX.Element | null => {
   const widget = widgetsList.find((w) => {
     return w.displayName == name;
   });
