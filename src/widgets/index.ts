@@ -23,7 +23,6 @@ import StepSwitcher from "./constructor/StepSwitcher";
 import PersonProfiles from "./constructor/PersonProfiles/PersonProfiles";
 
 export { EditWidget } from "./common/EditWidget/EditWidget";
-export { President } from "./common/President/President";
 export { NavigationList } from "./common/NavigationList";
 export { AdminSidebar } from "./common/AdminSidebar/AdminSidebar";
 export { BreadCrumbs } from "./common/BreadCrumbs";
@@ -31,9 +30,20 @@ export { BurgerMenu } from "./common/BurgerMenu/BurgerMenu";
 export { Header } from "./common/Header/Header";
 export { NavigationPageContent } from "./common/NavigationPageContent";
 
-export { Counter } from './common/Animations'
+export { Counter } from "./common/Animations";
 
-export { Accordion, Cards, Carousel, Gallery, Info, Links, List, Text, StepSwitcher, Tabs };
+export {
+  Accordion,
+  Cards,
+  Carousel,
+  Gallery,
+  Info,
+  Links,
+  List,
+  Text,
+  StepSwitcher,
+  Tabs,
+};
 
 export const widgetsList = [
   Cards,
@@ -60,10 +70,13 @@ export const WidgetOptionList = [
   TabsEditOptions,
   GalleryEditOptions,
   StepSwitcherEditOptions,
-  PersonProfilesEditOptions
+  PersonProfilesEditOptions,
 ];
 
-export const getWidgetByName = (name: string, props: any): React.JSX.Element | null => {
+export const getWidgetByName = (
+  name: string,
+  props: any
+): React.JSX.Element | null => {
   const widget = widgetsList.find((w) => {
     return w.displayName == name;
   });

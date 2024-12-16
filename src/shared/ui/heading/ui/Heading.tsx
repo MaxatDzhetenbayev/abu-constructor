@@ -1,14 +1,23 @@
-import React from 'react'
-
+import clsx from "clsx";
+import React, { ReactNode } from "react";
 
 interface IHeadingProps {
-    title: string
+  children: ReactNode;
+  className?: string;
 }
 
-export const Heading = ({ title }: IHeadingProps): React.JSX.Element | null => {
-    return title ? (
-        <h2 className="text-2xl font-bold text-abu_primary">
-            {title}
-        </h2>
-    ) : null
-}
+export const Heading = ({
+  children,
+  className,
+}: IHeadingProps): React.JSX.Element | null => {
+  return (
+    <h2
+      className={clsx(
+        "text-calc-2xl max-lg:text-center font-bold text-abu_primary",
+        className
+      )}
+    >
+      {children}
+    </h2>
+  );
+};
