@@ -1,4 +1,20 @@
 "use client";
+import { ReactNode, useState } from "react";
+import { X } from "lucide-react";
+import Image from "next/image";
+import "../../globals.css";
+
+import {
+  Banner,
+  Footer,
+  Gallery,
+  IELTS,
+  Infographics,
+  News,
+  Partners,
+  President,
+} from "@/features/home";
+
 import {
   Container,
   Dialog,
@@ -16,22 +32,6 @@ import {
 } from "@/shared/ui";
 import { InputProps } from "@/shared/ui/input";
 import { TextareaProps } from "@/shared/ui/textarea";
-import { X } from "lucide-react";
-import Image from "next/image";
-import { ReactNode, useState } from "react";
-
-import "../../globals.css";
-
-import {
-  Banner,
-  Footer,
-  Gallery,
-  IELTS,
-  Infographics,
-  News,
-  Partners,
-  President,
-} from "@/features/home";
 
 export default function Page() {
   return (

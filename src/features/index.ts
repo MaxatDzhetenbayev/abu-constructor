@@ -7,3 +7,4 @@ export { PreviewButton } from "./PreviewButton";
 export { withNoSSR } from "./WithNoSSR";
 export { ChangeLocale } from "./ChangeLocale";
 export { UpdateLinksForm } from "./UpdateLinksForm";
+export { TopHeader, Navbar } from "./header";

@@ -10,8 +10,8 @@ import { useParams, usePathname } from "next/navigation";
 import { useState } from "react";
 
 import { backendUrl } from "@/shared/lib/constants";
+import { topHeaderMenuList } from "@/shared/config/topHeaderMenu";
 import { INavigation } from "@/shared/types";
-import { topHeaderMenuList } from "@/entities/top-header";
 
 export const BurgerMenu = () => {
   const params = useParams();
