@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useParams } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import clsx from "clsx";
 
 import { ChangeLocale } from "@/features";
@@ -8,10 +8,12 @@ import { Logo, LogoSize } from "@/entities";
 import { NavigationList } from "@/entities/navigation";
 
 import { useNavbarState } from "../model/useNavbarState";
+import { getNavbarClass } from "../libs/getNavbarClass";
 import { navbarStyles } from "../config/navbarStyles";
 
 export const Navbar = () => {
-  const params = useParams();
+  const locale = useParams().locale as string;
+  const path = usePathname();
 
   const { scrolled, hoveredItem, setHoveredItem } = useNavbarState();
 
@@ -19,11 +21,7 @@ export const Navbar = () => {
     <nav
       className={clsx(
         navbarStyles.default,
-        scrolled
-          ? navbarStyles.scrolled
-          : hoveredItem
-            ? navbarStyles.hovered
-            : navbarStyles.notHovered
+        getNavbarClass({ scrolled, hoveredItem, path, locale })
       )}
     >
       <div
@@ -33,7 +31,7 @@ export const Navbar = () => {
         <Logo size={LogoSize.MEDIUM} />
         <section className="py-0 gap-5 items-center justify-center flex">
           <NavigationList
-            locale={params.locale as string}
+            locale={locale}
             hoveredItem={hoveredItem}
             setHoveredItem={setHoveredItem}
           />
