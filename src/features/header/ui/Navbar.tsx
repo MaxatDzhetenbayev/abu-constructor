@@ -31,7 +31,6 @@ export const Navbar = () => {
         <Logo size={LogoSize.MEDIUM} />
         <section className="py-0 gap-5 items-center justify-center flex">
           <NavigationList
-            locale={locale}
             hoveredItem={hoveredItem}
             setHoveredItem={setHoveredItem}
           />

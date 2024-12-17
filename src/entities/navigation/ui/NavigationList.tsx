@@ -3,19 +3,19 @@ import { INavigation } from "@/shared/types";
 import { NavigationItem } from "./NavigationItem";
 import { useNavigationList } from "../api/useNavigationList";
 import { Skeleton } from "@/shared/ui";
+import { useParams } from "next/navigation";
 
 interface INavListProps {
-  locale: string;
   hoveredItem: number | null;
   setHoveredItem: (id: number | null) => void;
 }
 
 export const NavigationList = ({
-  locale,
   hoveredItem,
   setHoveredItem,
 }: INavListProps) => {
   const { data: navigations, isFetching } = useNavigationList();
+  const locale = useParams().locale as string;
 
   const handleMouseEnter = (id: number) => {
     setHoveredItem(id);

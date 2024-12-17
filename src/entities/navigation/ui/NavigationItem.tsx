@@ -27,6 +27,8 @@ export const NavigationItem = ({
   const isHoveredItem = hoveredItem === item.id;
   const [scrolled] = useScroll(40);
 
+  console.log(item.children.length < 2);
+
   return (
     <>
       {item.navigation_type === "link" ||
@@ -54,7 +56,7 @@ export const NavigationItem = ({
         <div className="relative">
           <button
             className={clsx(
-              "  h-[94px] flex items-center font-semibold text-white",
+              "h-[94px] flex items-center font-semibold text-white",
               path.split("/")[2] == item.slug.split("/")[1] && "font-bold"
             )}
             onMouseEnter={() => handleMouseEnter(item.id)}
@@ -70,9 +72,12 @@ export const NavigationItem = ({
               )}
             />
           </button>
+          {isHoveredItem && item.children.length === 1 && (
+            <DropDownMenu element={item} locale={locale} />
+          )}
         </div>
       )}
-      {isHoveredItem && (
+      {isHoveredItem && item.children.length >= 2 && (
         <DropNavigation
           item={item}
           locale={locale}
@@ -92,10 +97,10 @@ const DropDownMenu = ({
   element: INavigation;
 }) => {
   return (
-    <ul className="bg-white shadow-md p-3 absolute left-0">
+    <ul className="shadow-md bg-white  p-3 absolute left-0 ">
       {element.children.map((child) => (
-        <li>
-          <p>{child.title[locale]}</p>
+        <li className="p-2" key={child.id}>
+          <Link href={`/${locale}/${element.slug}`}>{child.title[locale]}</Link>
           {child.children.length > 0 && (
             <DropDownMenu element={child} locale={locale} />
           )}
