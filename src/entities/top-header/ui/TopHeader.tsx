@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { topHeaderMenuList } from "../model";
+import { topHeaderMenuList } from "@/shared/config/topHeaderMenu";
 import { Logo } from "@/entities/logo";
 import { LogoSize } from "@/entities/logo/model";
 import { SearchWidget } from "@/widgets/common/SearchWidget/SearchWidget";

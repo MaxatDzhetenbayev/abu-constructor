@@ -7,7 +7,6 @@ import { useTranslations } from "next-intl";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
-import { INavigation } from "@/shared/types";
 
 import {
   Button,
@@ -135,13 +134,13 @@ export const NavigationEditModal = ({
               </Select>
               {(navigationItem.navigation_type === "group-link" ||
                 navigationItem.navigation_type === "content") && (
-                <Link
-                  className="w-full bg-[#640000] text-white text-center rounded-md p-2"
-                  href={{ pathname: `pages/${navigationItem.id}` }}
-                >
-                  {t("table.edit")}
-                </Link>
-              )}
+                  <Link
+                    className="w-full bg-[#640000] text-white text-center rounded-md p-2"
+                    href={{ pathname: `pages/${navigationItem.id}` }}
+                  >
+                    {t("table.edit")}
+                  </Link>
+                )}
               <Button type="submit" loading={isPending} disabled={isPending}>
                 {t("form.save")}
               </Button>
