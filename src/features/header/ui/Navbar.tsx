@@ -7,6 +7,7 @@ import { ChangeLocale } from "@/features";
 import { Logo, LogoSize } from "@/entities";
 import { NavigationList } from "@/entities/navigation";
 
+
 import { useNavbarState } from "../model/useNavbarState";
 import { getNavbarClass } from "../libs/getNavbarClass";
 import { navbarStyles } from "../config/navbarStyles";

@@ -32,7 +32,7 @@ export const NavigationItem = ({
   return (
     <>
       {item.navigation_type === "link" ||
-      item.navigation_type === "group-link" ? (
+        item.navigation_type === "group-link" ? (
         <Link
           style={{ fontSize: "clamp(16px, 1.5vw, 20px)" }}
           className={clsx(

@@ -1,11 +1,13 @@
 "use client";
 import React, { useRef, useState } from "react";
 import { Settings } from "lucide-react";
+
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
+import { INavigation } from "@/shared/types";
 
 import {
   Button,
