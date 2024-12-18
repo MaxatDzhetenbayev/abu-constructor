@@ -1,5 +1,6 @@
 import { Container, Heading } from "@/shared/ui";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 import { useParams } from "next/navigation";
 import Script from "next/script";
 import React, { useEffect } from "react";
@@ -8,7 +9,28 @@ export const Footer = () => {
   const locale = useParams().locale;
 
   const t = useTranslations("home");
-  const socials = ["/vk.png", "inst.png", "fb.png", "yt.png", "in.png"];
+  const socials = [
+    {
+      image: "/vk.png",
+      link: "https://vk.com/id450108918"
+    },
+    {
+      image: "inst.png",
+      link: "https://www.instagram.com/bokeikhan_university/"
+    },
+    {
+      image: "fb.png",
+      link: "https://www.facebook.com/bokeikhan.university"
+    },
+    {
+      image: "yt.png",
+      link: "https://www.youtube.com/c/AlikhanBokeikhanUniversity"
+    },
+    {
+      image: "in.png",
+      link: "https://kz.linkedin.com/company/bokeikhan-university"
+    }
+  ];
 
   return (
     <Container>
@@ -28,7 +50,7 @@ export const Footer = () => {
             <h3 className="text-4xl font-bold">{t("contacts.our")}</h3>
             <a href="tel:+77222423224">+7 (7222) 42-32-24</a>
             <a href="mailto:semey@abu.edu.kz">semey@abu.edu.kz</a>
-            <h3 className="text-4xl font-bold">{t("contacts.admissions")}</h3>
+            <h3 className="text-4xl font-bold">{t("contacts.admissions")} с 20.06 по 25.08</h3>
             <a href="tel:+77222423224">+7 (7222) 44-24-56</a>
             <a href="tel:+77222423224">+7 (700) 643 43 56</a>
           </div>
@@ -37,12 +59,14 @@ export const Footer = () => {
               {t("contacts.social")}
             </h3>
             <div className="flex gap-2">
-              {socials.map((s) => (
-                <img
-                  key={s}
-                  src={`/icons/${s}`}
-                  className="w-[46px] h-[46px]"
-                />
+              {socials.map(({ image, link }, idx) => (
+                <Link href={link} target="_blank">
+                  <img
+                    key={idx}
+                    src={`/icons/${image}`}
+                    className="w-[46px] h-[46px]"
+                  />
+                </Link>
               ))}
             </div>
           </div>
