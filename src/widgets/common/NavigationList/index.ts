@@ -1,1 +1,1 @@
-export { NavigationList } from "./NavigationList";
+export { NavigationList } from "./navigation-list";

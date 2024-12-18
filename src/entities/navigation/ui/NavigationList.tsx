@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { NavigationItem } from "./NavigationItem";
 import { useNavigationList } from "../api/useNavigationList";

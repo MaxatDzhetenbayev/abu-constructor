@@ -1,5 +1,7 @@
 "use client";
-import { NavigationItem } from "./NavigationItem";
+import { AdminNavigation } from "@/entities";
+
+import { NavigationControl } from "./ui/navigation-control";
 import { useNavigations } from "./model/useNavigations";
 
 export const NavigationList = () => {
@@ -12,7 +14,12 @@ export const NavigationList = () => {
   return (
     <ul className="flex flex-col gap-3">
       {data?.map((item) => (
-        <NavigationItem key={item.id} item={item} handler={handleUpdateOrder} />
+        <AdminNavigation
+          key={item.id}
+          item={item}
+          handler={handleUpdateOrder}
+          actionSlot={<NavigationControl item={item} />}
+        />
       ))}
     </ul>
   );
