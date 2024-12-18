@@ -4,7 +4,7 @@ import { Settings } from "lucide-react";
 
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 
@@ -40,7 +40,7 @@ export const NavigationEditModal = ({
   const closeRef = useRef<HTMLButtonElement>(null);
   const t = useTranslations("pages");
   const locale = useParams().locale as string;
-  const { register, handleSubmit, reset } = useForm<NavigationEditModalForm>({
+  const { register, handleSubmit, reset, getValues, control } = useForm<NavigationEditModalForm>({
     mode: "onBlur",
     defaultValues: {
       slug: navigationItem?.slug || "",
@@ -68,17 +68,20 @@ export const NavigationEditModal = ({
   const handleEdit: SubmitHandler<NavigationEditModalForm> = ({
     title,
     slug,
+    variant
   }) => {
+
     if (!navigationItem) return;
     mutate({
       id: navigationItem.id,
       data: {
         title: { ...title },
         slug,
-        variant: navigationItem.variant,
+        variant,
       },
     });
   };
+
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -120,18 +123,24 @@ export const NavigationEditModal = ({
                 label={t("form.slug")}
                 {...register("slug", { required: true })}
               />
-              <Select {...register("variant", { required: true })}>
-                <SelectTrigger>
-                  <SelectValue
-                    placeholder={"Обращение"}
-                    defaultValue={navigationItem.variant || ""}
-                  />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="horizontal">Горизонтально</SelectItem>
-                  <SelectItem value="vertical">Вертикально</SelectItem>
-                </SelectContent>
-              </Select>
+              <Controller
+                name="variant"
+                control={control}
+                render={({ field }) => (
+                  <Select value={field.value} onValueChange={field.onChange}>
+                    <SelectTrigger>
+                      <SelectValue
+                        placeholder={"Вариант"}
+                      />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="horizontal">Горизонтально</SelectItem>
+                      <SelectItem value="vertical">Вертикально</SelectItem>
+                    </SelectContent>
+                  </Select>
+                )}
+              />
+
               {(navigationItem.navigation_type === "group-link" ||
                 navigationItem.navigation_type === "content") && (
                   <Link
