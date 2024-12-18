@@ -27,8 +27,6 @@ export const NavigationItem = ({
   const isHoveredItem = hoveredItem === item.id;
   const [scrolled] = useScroll(40);
 
-  console.log(item.children.length < 2);
-
   return (
     <>
       {item.navigation_type === "link" ||
@@ -72,12 +70,12 @@ export const NavigationItem = ({
               )}
             />
           </button>
-          {isHoveredItem && item.children.length === 1 && (
+          {isHoveredItem && item.variant === "vertical" && (
             <DropDownMenu element={item} locale={locale} />
           )}
         </div>
       )}
-      {isHoveredItem && item.children.length >= 2 && (
+      {isHoveredItem && item.variant === "horizontal" && (
         <DropNavigation
           item={item}
           locale={locale}
@@ -97,10 +95,10 @@ const DropDownMenu = ({
   element: INavigation;
 }) => {
   return (
-    <ul className="shadow-md bg-white  p-3 absolute left-0 ">
+    <ul className="shadow-md bg-white  p-3 absolute left-0 rounded-bl-md rounded-br-md">
       {element.children.map((child) => (
-        <li className="p-2" key={child.id}>
-          <Link href={`/${locale}/${element.slug}`}>{child.title[locale]}</Link>
+        <li key={child.id}>
+          <Link className="inline-block py-2 px-1" href={`/${locale}/${element.slug}/${child.slug}`}>{child.title[locale]}</Link>
           {child.children.length > 0 && (
             <DropDownMenu element={child} locale={locale} />
           )}
