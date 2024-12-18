@@ -42,6 +42,12 @@ export const Footer = () => {
           src="/icons/accre.png"
           className="w-[6rem] md:w-[10.375rem] h-auto"
         />
+        <Link href="https://greenmetric.ui.ac.id/rankings/overall-rankings-2024" target="_blank">
+          <img
+            src="/icons/green_metrics.png"
+            className="w-[6rem] md:w-[10.375rem] h-auto"
+          />
+        </Link>
       </div>
       <div className="grid  grid-cols-1 md:grid-cols-2 gap-4">
         {getMap({ locale: locale as string })}

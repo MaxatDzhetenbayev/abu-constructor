@@ -31,7 +31,7 @@ export const DropNavigation = ({
         {item.children.map((child) => (
           <li key={child.id}>
             {child.navigation_type === "content" ||
-            child.navigation_type === "group-link" ? (
+              child.navigation_type === "group-link" ? (
               <Link
                 href={`/${locale}/${item.slug}/${child.slug}`}
                 className={clsx(
@@ -60,14 +60,7 @@ export const DropNavigation = ({
                     <Link
                       href={`/${locale}/${item.slug}/${child.slug}/${subChild.slug}`}
                       className={clsx(
-                        "text-center max-w-11 text-slate-200 leading-3",
-                        path === `/${locale}$/${child.slug}/${subChild.slug}` &&
-                          "font-bold",
-                        [
-                          "bachelor's_degree",
-                          "master's_degree",
-                          "doctorates_degree",
-                        ].includes(subChild.slug) && "font-bold "
+                        "text-center max-w-11 text-slate-200 leading-3 hover:underline duration-150",
                       )}
                       style={{
                         fontSize: "clamp(16px, 1.5vw, 20px)",
