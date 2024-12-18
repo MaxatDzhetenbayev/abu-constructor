@@ -10,7 +10,9 @@ function PersonProfiles({
 }: IWidgetProps) {
     return (
         <section className='flex flex-col gap-3'>
-            <Heading title={content[locale].title} />
+            <Heading >
+                {content[locale].title}
+            </Heading>
             <ul className='grid grid-cols-[repeat(auto-fill,minmax(310px,_1fr))] gap-5 justify-center'>
                 {
                     contents.map(({ content }, idx) => (

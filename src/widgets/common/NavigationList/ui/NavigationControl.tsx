@@ -6,7 +6,7 @@ import {
   NavigationEditModal,
 } from "@/features";
 
-import { INavigation } from "@/shared/lib/types";
+import { INavigation } from "@/shared/types";
 
 export const NavigationControl = ({
   item,

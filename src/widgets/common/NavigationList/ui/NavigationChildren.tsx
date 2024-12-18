@@ -4,7 +4,7 @@ import { UseMutateFunction } from "@tanstack/react-query";
 
 import { NavigationItem } from "../NavigationItem";
 
-import { INavigation } from "@/shared/lib/types";
+import { INavigation } from "@/shared/types";
 
 export const NavigationChildren = ({
   handleDrop,

@@ -1,4 +1,4 @@
-import { INavigation } from "@/shared/lib/types";
+import { INavigation } from "@/shared/types";
 
 import { NavigationEditModalForm } from "../model";
 import { backendUrl } from "@/shared/lib/constants";

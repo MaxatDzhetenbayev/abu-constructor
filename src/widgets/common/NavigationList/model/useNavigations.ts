@@ -3,7 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { fetchUpdateOrderNavigationList } from "../api";
 
 import { backendUrl } from "@/shared/lib/constants";
-import { INavigation } from "@/shared/lib/types";
+import { INavigation } from "@/shared/types";
 
 export const useNavigations = () => {
   const { data, isLoading } = useQuery<INavigation[]>({

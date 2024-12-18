@@ -1,5 +1,5 @@
 import { DragAndDropProps } from "@/shared/lib/hooks/useDrag&Drop";
-import { INavigation } from "@/shared/lib/types";
+import { INavigation } from "@/shared/types";
 import { UseMutateFunction } from "@tanstack/react-query";
 
 export interface INavListUpdateOrderOptions {

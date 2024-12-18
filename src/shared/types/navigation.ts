@@ -1,3 +1,5 @@
+import { IWidget } from "./widget";
+
 export interface INavigation {
   id: number;
   title: {
@@ -7,7 +9,12 @@ export interface INavigation {
   navigation_type: string;
   order: number;
   parent_id: null | number;
+  variant: string;
   children: INavigation[];
   createdAt: string;
   updatedAt: string;
+}
+
+export interface INavigationWithWidgetList extends INavigation {
+  widgets: IWidget[];
 }

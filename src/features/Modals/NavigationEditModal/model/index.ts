@@ -1,6 +1,7 @@
 export interface NavigationEditModalForm {
-    slug: string,
-    title: {
-        [key: string]: string
-    },
+  slug: string;
+  title: {
+    [key: string]: string;
+  };
+  variant: string;
 }

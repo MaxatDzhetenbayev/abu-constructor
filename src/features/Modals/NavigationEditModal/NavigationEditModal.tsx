@@ -1,7 +1,12 @@
 "use client";
 import React, { useRef, useState } from "react";
 import { Settings } from "lucide-react";
-import { INavigation } from "@/shared/lib/types";
+
+import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
+import { useParams } from "next/navigation";
 
 import {
   Button,
@@ -14,15 +19,17 @@ import {
   DialogTitle,
   DialogTrigger,
   Input,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from "@/shared/ui";
-import { useTranslations } from "next-intl";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { useMutation } from "@tanstack/react-query";
-import { useParams } from "next/navigation";
+import { queryClient } from "@/shared/lib/client";
+import { INavigation } from "@/shared/types";
+
 import { NavigationEditModalForm } from "./model";
 import { fetchUpdateNavigation } from "./api/index";
-import { queryClient } from "@/shared/lib/client";
-import Link from "next/link";
 
 export const NavigationEditModal = ({
   navigationItem,
@@ -33,11 +40,12 @@ export const NavigationEditModal = ({
   const closeRef = useRef<HTMLButtonElement>(null);
   const t = useTranslations("pages");
   const locale = useParams().locale as string;
-  const { register, handleSubmit, reset } = useForm<NavigationEditModalForm>({
+  const { register, handleSubmit, reset, getValues, control } = useForm<NavigationEditModalForm>({
     mode: "onBlur",
     defaultValues: {
       slug: navigationItem?.slug || "",
       title: { ...navigationItem.title },
+      variant: navigationItem.variant || "",
     },
   });
 
@@ -52,6 +60,7 @@ export const NavigationEditModal = ({
       reset({
         slug: updatedNavigation.slug,
         title: { ...updatedNavigation.title },
+        variant: updatedNavigation.variant,
       });
     },
   });
@@ -59,16 +68,20 @@ export const NavigationEditModal = ({
   const handleEdit: SubmitHandler<NavigationEditModalForm> = ({
     title,
     slug,
+    variant
   }) => {
+
     if (!navigationItem) return;
     mutate({
       id: navigationItem.id,
       data: {
         title: { ...title },
         slug,
+        variant,
       },
     });
   };
+
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -110,11 +123,33 @@ export const NavigationEditModal = ({
                 label={t("form.slug")}
                 {...register("slug", { required: true })}
               />
-              {(navigationItem.navigation_type === 'group-link' || navigationItem.navigation_type === 'content') && (
-                <Link className="w-full bg-[#640000] text-white text-center rounded-md p-2" href={{ pathname: `pages/${navigationItem.id}` }}>
-                  {t("table.edit")}
-                </Link>
-              )}
+              <Controller
+                name="variant"
+                control={control}
+                render={({ field }) => (
+                  <Select value={field.value} onValueChange={field.onChange}>
+                    <SelectTrigger>
+                      <SelectValue
+                        placeholder={"Вариант"}
+                      />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="horizontal">Горизонтально</SelectItem>
+                      <SelectItem value="vertical">Вертикально</SelectItem>
+                    </SelectContent>
+                  </Select>
+                )}
+              />
+
+              {(navigationItem.navigation_type === "group-link" ||
+                navigationItem.navigation_type === "content") && (
+                  <Link
+                    className="w-full bg-[#640000] text-white text-center rounded-md p-2"
+                    href={{ pathname: `pages/${navigationItem.id}` }}
+                  >
+                    {t("table.edit")}
+                  </Link>
+                )}
               <Button type="submit" loading={isPending} disabled={isPending}>
                 {t("form.save")}
               </Button>

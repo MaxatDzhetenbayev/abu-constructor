@@ -8,15 +8,12 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 import { useState } from "react";
-import { INavigation } from "@/shared/lib/types";
 
 import { backendUrl } from "@/shared/lib/constants";
+import { topHeaderMenuList } from "@/shared/config/topHeaderMenu";
+import { INavigation } from "@/shared/types";
 
-export const BurgerMenu = ({
-  topHeaderMenuList,
-}: {
-  topHeaderMenuList: { title: string; link: string }[];
-}) => {
+export const BurgerMenu = () => {
   const params = useParams();
 
   const { data: pages } = useQuery<INavigation[]>({

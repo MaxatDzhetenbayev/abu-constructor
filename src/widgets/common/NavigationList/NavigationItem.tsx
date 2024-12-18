@@ -7,8 +7,8 @@ import { NavigationChildren } from "./ui/NavigationChildren";
 import { handleDragEnd } from "./lib";
 
 import { useDragAndDrop } from "@/shared/lib/hooks/useDrag&Drop";
-import { INavigation } from "@/shared/lib/types";
 import { INavigationItemProps } from "./model/types";
+import { INavigation } from "@/shared/types";
 
 export const NavigationItem = ({
   item,
