@@ -1,10 +1,10 @@
 "use client";
 import { AdminNavigation } from "@/entities";
 
-import { NavigationControl } from "./ui/navigation-control";
-import { useNavigations } from "./model/useNavigations";
+import { NavigationControl } from "./navigation-control";
+import { useNavigations } from "../model/useNavigations";
 
-export const NavigationList = () => {
+export const AdminNavigations = () => {
   const { data, isLoading, handleUpdateOrder } = useNavigations();
 
   if (isLoading) {
