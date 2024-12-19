@@ -4,4 +4,4 @@ export { NavigationList } from "./ui/NavigationList";
 
 export { useNavigationList } from "./api/useNavigationList";
 export { AdminNavigation } from "./ui/admin-navigation";
-export type { INavigation, NavigationType } from "./model/navigation.model";
+export { type INavigation, NavigationEnum } from "./model/navigation.model";

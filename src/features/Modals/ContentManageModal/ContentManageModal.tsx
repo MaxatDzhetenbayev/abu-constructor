@@ -21,7 +21,6 @@ interface ContentManageModalProps {
   handleUpdateContent: any;
   widget_type: string;
   id?: number | undefined;
-  TemplateSection?: any;
   contents?: any | undefined;
   action: "create" | "update";
   widget_variant?: string;
@@ -34,7 +33,6 @@ export const ContentManageModal = ({
   contents,
   widgetOptionsList,
   action,
-  TemplateSection,
   id,
   widget_variant,
   widget_type,
@@ -103,31 +101,31 @@ export const ContentManageModal = ({
         <form onSubmit={handleSubmit(onSubmit)}>
           {Array.isArray(options)
             ? options?.map((option) => {
-                return (
-                  <Fragment key={option.props}>
-                    {viewInputByType(
-                      option.type,
-                      option,
-                      register,
-                      control,
-                      setIsUploading
-                    )}
-                  </Fragment>
-                );
-              })
+              return (
+                <Fragment key={option.props}>
+                  {viewInputByType(
+                    option.type,
+                    option,
+                    register,
+                    control,
+                    setIsUploading
+                  )}
+                </Fragment>
+              );
+            })
             : options?.(widget_variant as string).map((option) => {
-                return (
-                  <Fragment key={option.props}>
-                    {viewInputByType(
-                      option.type,
-                      option,
-                      register,
-                      control,
-                      setIsUploading
-                    )}
-                  </Fragment>
-                );
-              })}
+              return (
+                <Fragment key={option.props}>
+                  {viewInputByType(
+                    option.type,
+                    option,
+                    register,
+                    control,
+                    setIsUploading
+                  )}
+                </Fragment>
+              );
+            })}
 
           <Button className="w-full" type="submit" disabled={isUploading}>
             {action === "create" ? "Создать" : "Изменить"}
@@ -135,7 +133,6 @@ export const ContentManageModal = ({
         </form>
         {action === "update" && (
           <>
-            <TemplateSection content_id={id} />
             <Button onClick={() => fetchRemoveContent(id)}>
               Удалить контент
             </Button>

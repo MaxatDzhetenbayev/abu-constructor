@@ -1,8 +1,8 @@
 import React from "react";
 
 import {
+  AdminNavigationCreate,
   DeletePageBtn,
-  NavigationCreateModal,
   NavigationEditModal,
 } from "@/features";
 
@@ -18,7 +18,7 @@ export const NavigationControl = ({ item }: { item: INavigation }) => {
       <div className="flex gap-2 ">
         <NavigationEditModal navigationItem={item} />
         {(navigation_type === "group-link" || navigation_type === "group") && (
-          <NavigationCreateModal parent_id={id} />
+          <AdminNavigationCreate parent_id={id} />
         )}
         <DeletePageBtn navigationId={id} name={title[locale]} />
       </div>

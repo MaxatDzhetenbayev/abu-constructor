@@ -4,7 +4,7 @@ export interface INavigation {
     [key: string]: string;
   };
   slug: string;
-  navigation_type: NavigationType;
+  navigation_type: NavigationEnum;
   order: number;
   parent_id: null | number;
   variant: string;
@@ -13,8 +13,10 @@ export interface INavigation {
   updatedAt: string;
 }
 
-export enum NavigationType {
-  LINK = "link",
+export enum NavigationEnum {
   GROUP = "group",
   GROUP_LINK = "group-link",
+  CONTENT = "content",
+  LINK = "link",
+  DETAIL = "detail",
 }

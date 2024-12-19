@@ -5,7 +5,6 @@ import { EditorMain, EditorItems } from "./ui";
 import { IContent } from "@/shared/types";
 import { WidgetOptionList } from "../..";
 import { ContentManageModal } from "@/features/Modals/ContentManageModal/ContentManageModal";
-import { TemplateSection } from "../TemplateSection/TemplateSection";
 
 export const EditWidget = ({ widgetId }: Types.EditWidgetProps) => {
   const {
@@ -46,7 +45,6 @@ export const EditWidget = ({ widgetId }: Types.EditWidgetProps) => {
               handleCreateContent={handleCreateContent}
               handleUpdateContent={handleUpdateContent}
               action="update"
-              TemplateSection={TemplateSection}
               contents={contents}
               widget_variant={widget_variant}
               id={id}
