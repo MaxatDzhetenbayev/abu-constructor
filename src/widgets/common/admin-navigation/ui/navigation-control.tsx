@@ -3,10 +3,10 @@ import React from "react";
 import {
   AdminNavigationCreate,
   DeletePageBtn,
-  NavigationEditModal,
+  AdminNavigationEdit,
 } from "@/features";
 
-import { INavigation } from "@/shared/types";
+import { INavigation } from "@/entities";
 import { useParams } from "next/navigation";
 
 export const NavigationControl = ({ item }: { item: INavigation }) => {
@@ -16,7 +16,7 @@ export const NavigationControl = ({ item }: { item: INavigation }) => {
   return (
     <section className="flex items-center">
       <div className="flex gap-2 ">
-        <NavigationEditModal navigationItem={item} />
+        <AdminNavigationEdit navigationItem={item} />
         {(navigation_type === "group-link" || navigation_type === "group") && (
           <AdminNavigationCreate parent_id={id} />
         )}
