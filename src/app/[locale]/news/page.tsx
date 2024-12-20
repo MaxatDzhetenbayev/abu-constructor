@@ -1,34 +1,16 @@
 "use client";
-import { Skeleton } from "@/shared/ui";
-import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
-import { backendImageUrl, backendUrl } from "@/shared/lib/constants";
 
-interface INews {
-  id: number;
-  title: {
-    [key: string]: any;
-  };
-  content: {
-    [key: string]: any;
-  };
-  viewCount: number;
-  createdAt: Date;
-  updatedAt: Date;
-}
+import { useNews } from "@/entities/news";
+
+import { Skeleton } from "@/shared/ui";
+import { backendImageUrl } from "@/shared/lib/constants";
+
 
 export default function Page({ params }: any) {
   const { locale } = params;
-
-  const { data, isLoading } = useQuery<INews[]>({
-    queryKey: ["news"],
-    queryFn: async () => {
-      const response = await fetch(`${backendUrl}/news`);
-      return response.json();
-    },
-  });
-
+  const { data, isLoading } = useNews()
   const skeletonNews = Array.from({ length: 8 }).fill(1);
 
   return (
@@ -58,6 +40,7 @@ export default function Page({ params }: any) {
                         alt={title}
                         fill
                         src={`${backendImageUrl}${images[0]}`}
+                        style={{ objectFit: "cover" }}
                       />
                     )
                   }

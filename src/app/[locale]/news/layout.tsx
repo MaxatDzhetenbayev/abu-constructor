@@ -18,7 +18,9 @@ export default async function Layout({
   return (
     <section>
       <Header />
-      <main className=" min-h-[100svh] pb-10">{children}</main>
+      <main className=" min-h-[100svh] max-w-[1200px] mx-auto mt-20 lg:p-0 p-3">
+        {children}
+      </main>
       <footer className="w-full  bg-abu_primary">
         <div className=" max-w-[1200px] mx-auto p-10 ">
           <div className=" flex justify-between items-center mb-10">
