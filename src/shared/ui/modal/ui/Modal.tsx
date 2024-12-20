@@ -1,13 +1,15 @@
 import React from 'react'
 import { Dialog, DialogContent, DialogHeader, DialogTrigger } from '../../dialog'
 import { DialogTitle } from '@radix-ui/react-dialog';
+import clsx from 'clsx';
 
 interface ModalProps {
-    modalContents: string
+    modalSlot: React.ReactNode | string
+    headerSlot?: React.ReactNode | string;
     children: React.ReactNode;
 }
 
-export const Modal = ({ modalContents, children }: ModalProps) => {
+export const Modal = ({ modalSlot, children, headerSlot }: ModalProps) => {
     return (
         <Dialog>
             <DialogTrigger asChild>
@@ -15,9 +17,15 @@ export const Modal = ({ modalContents, children }: ModalProps) => {
             </DialogTrigger>
             <DialogContent className="max-h-[80%] overflow-auto max-w-[90%] [@media(min-width:1180px)]:max-w-[50%]">
                 <DialogHeader>
-                    <DialogTitle className="opacity-0"></DialogTitle>
+                    <DialogTitle className={clsx(!headerSlot ? "opacity-0" : "")}>{headerSlot}</DialogTitle>
                 </DialogHeader>
-                <div className={`quill-content`} dangerouslySetInnerHTML={{ __html: modalContents }}></div>
+                {
+                    typeof modalSlot === 'string'
+                        ? (
+                            <div className={`quill-content`} dangerouslySetInnerHTML={{ __html: modalSlot }}></div>
+                        )
+                        : modalSlot
+                }
             </DialogContent>
         </Dialog>
     )
