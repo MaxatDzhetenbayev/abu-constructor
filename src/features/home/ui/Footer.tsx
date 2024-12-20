@@ -65,10 +65,10 @@ export const Footer = () => {
               {t("contacts.social")}
             </h3>
             <div className="flex gap-2">
-              {socials.map(({ image, link }, idx) => (
-                <Link href={link} target="_blank">
+              {socials.map(({ image, link }) => (
+                <Link key={link} href={link} target="_blank">
                   <img
-                    key={idx}
+
                     src={`/icons/${image}`}
                     className="w-[46px] h-[46px]"
                   />
