@@ -41,6 +41,7 @@ export const Logo = ({
         src={`/images/logo-white.png`}
         alt="logo"
         fill
+        priority
         style={{ objectFit: "contain" }}
       />
     </Link>
