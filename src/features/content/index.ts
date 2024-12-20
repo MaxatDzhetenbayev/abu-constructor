@@ -1,0 +1,1 @@
+export { ContentManage} from './ui/manage'

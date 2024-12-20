@@ -1,9 +1,9 @@
 export { DeletePageBtn } from "./DeletePageBtn";
 export { LogoutButton } from "./LogoutButton";
 export { LoginForm } from "./LoginForm";
-export { PreviewButton } from "./PreviewButton";
 export { withNoSSR } from "./WithNoSSR";
 export { ChangeLocale } from "./ChangeLocale";
 export { UpdateLinksForm } from "./UpdateLinksForm";
 export { TopHeader, Navbar } from "./header";
 export { AdminNavigationCreate, AdminNavigationEdit } from './navigation/admin-navigation'
+export { ContentManage } from './content'

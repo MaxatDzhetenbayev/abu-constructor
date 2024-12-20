@@ -4,7 +4,7 @@ import { Types, useEditWidget, useEditWidgetContent } from "./model";
 import { EditorMain, EditorItems } from "./ui";
 import { IContent } from "@/shared/types";
 import { WidgetOptionList } from "../..";
-import { ContentManageModal } from "@/features/Modals/ContentManageModal/ContentManageModal";
+import { ContentManage } from '@/features'
 
 export const EditWidget = ({ widgetId }: Types.EditWidgetProps) => {
   const {
@@ -12,8 +12,7 @@ export const EditWidget = ({ widgetId }: Types.EditWidgetProps) => {
     control,
     handleSubmit,
     widgetOptions,
-    widget_type,
-    widget_variant,
+    ...widgetInfo
   } = useEditWidget(widgetId, WidgetOptionList);
 
   const { contents, handleCreateContent, handleUpdateContent } =
@@ -30,26 +29,24 @@ export const EditWidget = ({ widgetId }: Types.EditWidgetProps) => {
       <EditorItems
         contents={contents}
         CreateButton={
-          <ContentManageModal
+          <ContentManage
+            action="create"
+            widgetOptionsList={WidgetOptionList}
+            {...widgetInfo}
             handleCreateContent={handleCreateContent}
             handleUpdateContent={handleUpdateContent}
-            action="create"
-            widget_variant={widget_variant}
-            widgetOptionsList={WidgetOptionList}
-            widget_type={widget_type}
           />
         }
         EditButton={(contents: IContent, id: number) => {
           return (
-            <ContentManageModal
+            <ContentManage
+              id={id}
+              action="update"
+              widgetOptionsList={WidgetOptionList}
+              {...widgetInfo}
+              contents={contents}
               handleCreateContent={handleCreateContent}
               handleUpdateContent={handleUpdateContent}
-              action="update"
-              contents={contents}
-              widget_variant={widget_variant}
-              id={id}
-              widgetOptionsList={WidgetOptionList}
-              widget_type={widget_type}
             />
           );
         }}
