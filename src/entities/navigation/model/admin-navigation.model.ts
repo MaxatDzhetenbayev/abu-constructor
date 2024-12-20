@@ -1,15 +1,10 @@
-import { DragAndDropProps } from "@/shared/lib/hooks/useDrag&Drop";
-import { INavigation } from "@/shared/types";
 import { UseMutateFunction } from "@tanstack/react-query";
-
-export interface INavListUpdateOrderOptions {
-  id: number;
-  order: number;
-  parent_id?: number | null;
-}
+import { DragAndDropProps } from "@/shared/lib/hooks/useDrag&Drop";
+import { INavigation } from "@/entities";
 
 export interface INavigationItemProps {
   item: INavigation;
   onDragEnd?: DragAndDropProps<INavigation>;
   handler: UseMutateFunction<() => Promise<any>, Error, any[], unknown>;
+  ActionComponent: React.ComponentType<{ item: INavigation }>;
 }

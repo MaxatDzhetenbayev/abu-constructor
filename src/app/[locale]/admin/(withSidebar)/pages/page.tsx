@@ -1,12 +1,11 @@
-import { withNoSSR } from "@/features";
-import { NavigationCreateModal } from "@/features";
-import { NavigationList } from "@/widgets";
+import { AdminNavigationCreate, withNoSSR } from "@/features";
+import { AdminNavigations } from "@/widgets";
 
 function PagesPage() {
   return (
     <section className="h-full">
-      <NavigationCreateModal />
-      <NavigationList />
+      <AdminNavigationCreate />
+      <AdminNavigations />
     </section>
   );
 }

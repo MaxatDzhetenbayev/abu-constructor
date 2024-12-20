@@ -23,7 +23,7 @@ import StepSwitcher from "./constructor/StepSwitcher";
 import PersonProfiles from "./constructor/PersonProfiles/PersonProfiles";
 
 export { EditWidget } from "./common/EditWidget/EditWidget";
-export { NavigationList } from "./common/NavigationList";
+export { AdminNavigations } from "./common/admin-navigation";
 export { AdminSidebar } from "./common/AdminSidebar/AdminSidebar";
 export { BreadCrumbs } from "./common/BreadCrumbs";
 export { BurgerMenu } from "./common/BurgerMenu/BurgerMenu";

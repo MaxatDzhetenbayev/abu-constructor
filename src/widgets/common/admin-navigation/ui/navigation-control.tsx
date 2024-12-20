@@ -1,28 +1,24 @@
 import React from "react";
+import { useParams } from "next/navigation";
 
 import {
+  AdminNavigationCreate,
   DeletePageBtn,
-  NavigationCreateModal,
-  NavigationEditModal,
+  AdminNavigationEdit,
 } from "@/features";
 
-import { INavigation } from "@/shared/types";
+import { INavigation } from "@/entities";
 
-export const NavigationControl = ({
-  item,
-  locale,
-}: {
-  locale: string;
-  item: INavigation;
-}) => {
+export const NavigationControl = ({ item }: { item: INavigation }) => {
+  const locale = useParams().locale as string;
+
   const { navigation_type, title, id } = item;
   return (
     <section className="flex items-center">
-      <h3 className="grow">{title[locale]}</h3>
       <div className="flex gap-2 ">
-        <NavigationEditModal navigationItem={item} />
+        <AdminNavigationEdit navigationItem={item} />
         {(navigation_type === "group-link" || navigation_type === "group") && (
-          <NavigationCreateModal parent_id={id} />
+          <AdminNavigationCreate parent_id={id} />
         )}
         <DeletePageBtn navigationId={id} name={title[locale]} />
       </div>

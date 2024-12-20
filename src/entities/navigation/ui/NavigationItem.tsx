@@ -95,10 +95,10 @@ const DropDownMenu = ({
   element: INavigation;
 }) => {
   return (
-    <ul className="shadow-md bg-white  p-3 absolute left-0 rounded-bl-md rounded-br-md">
+    <ul className="shadow-md absolute left-0 rounded-bl-md rounded-br-md bg-abu_primary">
       {element.children.map((child) => (
-        <li key={child.id}>
-          <Link className="inline-block py-2 px-1" href={`/${locale}/${element.slug}/${child.slug}`}>{child.title[locale]}</Link>
+        <li key={child.id} className="p-3 group">
+          <Link className="inline-block p-1 text-white group-hover:underline" href={`/${locale}/${element.slug}/${child.slug}`}>{child.title[locale]}</Link>
           {child.children.length > 0 && (
             <DropDownMenu element={child} locale={locale} />
           )}
