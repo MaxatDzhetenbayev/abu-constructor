@@ -1,4 +1,5 @@
 import React from "react";
+import { useParams } from "next/navigation";
 
 import {
   AdminNavigationCreate,
@@ -7,7 +8,6 @@ import {
 } from "@/features";
 
 import { INavigation } from "@/entities";
-import { useParams } from "next/navigation";
 
 export const NavigationControl = ({ item }: { item: INavigation }) => {
   const locale = useParams().locale as string;

@@ -18,7 +18,7 @@ export const AdminNavigations = () => {
           key={item.id}
           item={item}
           handler={handleUpdateOrder}
-          actionSlot={<NavigationControl item={item} />}
+          ActionComponent={NavigationControl}
         />
       ))}
     </ul>

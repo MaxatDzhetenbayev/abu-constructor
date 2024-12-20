@@ -2,14 +2,14 @@
 import React, { DragEvent } from "react";
 import { useParams } from "next/navigation";
 import { useDragAndDrop } from "@/shared/lib/hooks/useDrag&Drop";
-import { INavigation } from "@/shared/types";
+import { INavigation } from "@/entities";
 
 import { handleDragEnd } from "../libs/handle-drag-end";
 import { INavigationItemProps } from "../model/admin-navigation.model";
 
 export const AdminNavigation = ({
   item,
-  actionSlot,
+  ActionComponent,
   onDragEnd,
   handler,
 }: INavigationItemProps) => {
@@ -36,7 +36,7 @@ export const AdminNavigation = ({
     >
       <section className="flex items-center">
         <h3 className="grow">{title[locale]}</h3>
-        {actionSlot}
+        <ActionComponent item={item} />
       </section>
       {hasChildren ? (
         <ul className="flex flex-col gap-3">
@@ -46,7 +46,7 @@ export const AdminNavigation = ({
               item={child}
               onDragEnd={handleDragEnd}
               handler={handler}
-              actionSlot={actionSlot}
+              ActionComponent={ActionComponent}
             />
           ))}
         </ul>
