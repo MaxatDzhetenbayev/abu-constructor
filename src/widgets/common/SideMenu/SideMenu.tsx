@@ -1,6 +1,7 @@
 "use client";
-import { IWidget } from '@/shared/types';
 import React from 'react';
+
+import { IWidget } from '@/shared/types';
 
 export const SideMenu = ({ widgets, locale }: { widgets: IWidget[], locale: string }) => {
     return (

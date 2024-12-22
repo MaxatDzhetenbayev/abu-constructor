@@ -1,7 +1,7 @@
-import { type QueryClient, useMutation } from "@tanstack/react-query";
 import { INavigation } from "@/entities";
 
 import { fetchUpdateNavigation } from "../api/fetch-edit";
+import { type QueryClient, useMutation } from "@tanstack/react-query";
 
 
 

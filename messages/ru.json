@@ -65,9 +65,9 @@
         "label": "Страницы",
         "href": "/admin/pages"
       },
-      "templates": {
-        "label": "Шаблоны",
-        "href": "/admin/pages/templates"
+      "news": {
+        "label": "Новости",
+        "href": "/admin/news"
       }
     }
   },

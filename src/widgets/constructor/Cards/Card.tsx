@@ -1,8 +1,10 @@
 "use client";
 import { useParams } from "next/navigation";
+
 import {
   CardBase,
 } from "@/entities/Card";
+
 import { ICard } from "./model/Cards.interface";
 
 

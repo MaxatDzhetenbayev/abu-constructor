@@ -1,7 +1,8 @@
 import { FileArchive } from "lucide-react";
-import { ListItem } from "./ListItem";
+
 import { backendImageUrl } from "@/shared/lib/constants";
-import Link from "next/link";
+
+import { ListItem } from "./ListItem";
 interface ListItem {
   file: string;
   content: string;

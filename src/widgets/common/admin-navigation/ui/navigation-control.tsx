@@ -1,13 +1,12 @@
-import React from "react";
 import { useParams } from "next/navigation";
-
-import {
-  AdminNavigationCreate,
-  DeletePageBtn,
-  AdminNavigationEdit,
-} from "@/features";
+import React from "react";
 
 import { INavigation } from "@/entities";
+import {
+  AdminNavigationCreate,
+  AdminNavigationEdit,
+  DeletePageBtn,
+} from "@/features";
 
 export const NavigationControl = ({ item }: { item: INavigation }) => {
   const locale = useParams().locale as string;

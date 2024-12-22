@@ -1,5 +1,6 @@
-import { UseMutateFunction } from "@tanstack/react-query";
 import { INavigation } from "@/shared/types";
+
+import { UseMutateFunction } from "@tanstack/react-query";
 
 export const handleDragEnd = (
   e: React.DragEvent<HTMLDivElement> | React.DragEvent<HTMLLIElement>,

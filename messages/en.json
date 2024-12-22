@@ -65,9 +65,9 @@
                 "label": "Pages",
                 "href": "/admin/pages"
             },
-            "templates": {
-                "label": "Templates",
-                "href": "/admin/pages/templates"
+            "news": {
+                "label": "News",
+                "href": "/admin/news"
             }
         }
     },

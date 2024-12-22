@@ -1,8 +1,9 @@
-import { Container, Heading } from "@/shared/ui";
 import clsx from "clsx";
-import { useTranslations } from "next-intl";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import React from "react";
+
+import { Container, Heading } from "@/shared/ui";
 
 export const Infographics = () => {
   const t = useTranslations("home");

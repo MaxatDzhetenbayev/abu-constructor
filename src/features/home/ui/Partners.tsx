@@ -1,6 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import { motion,useMotionValue } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { useMotionValue, motion } from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
+
 import { Container, Heading } from "@/shared/ui";
 
 export const Partners = () => {

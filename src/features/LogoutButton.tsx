@@ -1,9 +1,9 @@
 "use client";
-import { queryClient } from "@/shared/lib/client";
-import { Button } from "@/shared/ui";
 import { deleteCookie } from "cookies-next";
-import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
+
+import { Button } from "@/shared/ui";
 
 export const LogoutButton = () => {
   const t = useTranslations("sidebar");

@@ -3,12 +3,12 @@
 import React, { Fragment, useEffect, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form';
 
-import { viewInputByType } from '@/widgets/common/EditWidget/ui';
 import { Button, Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/shared/ui';
+import { viewInputByType } from '@/widgets/common/EditWidget/ui';
 
+import { ContentManageModalProps } from '../model/types'
 import { useManageContent } from '../model/use-manage';
 import { useRemoveContent } from '../model/use-remove';
-import { ContentManageModalProps } from '../model/types'
 
 export const ContentManage = ({ id, action, widgetOptionsList, widget_type, widget_variant, handleCreateContent, handleUpdateContent, contents }: ContentManageModalProps) => {
 

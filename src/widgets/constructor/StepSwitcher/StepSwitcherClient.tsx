@@ -1,11 +1,13 @@
 "use client";
-import { backendUrl } from "@/shared/lib/constants";
-import { IWidgetProps } from "@/shared/types";
-import { getWidgetByName } from "@/widgets";
-import { useQuery } from "@tanstack/react-query";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
+
+import { backendUrl } from "@/shared/lib/constants";
+import { IWidgetProps } from "@/shared/types";
+import { getWidgetByName } from "@/widgets";
+
+import { useQuery } from "@tanstack/react-query";
 
 export function StepSwitcherClient({
   contents,

@@ -1,8 +1,9 @@
 "use client";
-import React from "react";
-import Link from "next/link";
-import Image from "next/image";
 import clsx from "clsx";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+
 import { backendImageUrl } from "@/shared/lib/constants";
 import { Dialog, DialogContent, DialogTrigger, MoreArrow } from "@/shared/ui";
 import { ICard } from "@/widgets/constructor/Cards/model/Cards.interface";
@@ -21,7 +22,7 @@ export const CardBase = ({
   const WrapperComponent =
     content.file || content.link
       ? (Link as React.ElementType)
-      : ("div" as "div");
+      : ("div" as const);
 
   const linkProps = content.file
     ? { href: `${backendImageUrl}/${content.file}`, target: "_blank" }

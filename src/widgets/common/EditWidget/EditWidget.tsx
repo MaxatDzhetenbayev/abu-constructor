@@ -1,10 +1,13 @@
 "use client";
 import React from "react";
-import { Types, useEditWidget, useEditWidgetContent } from "./model";
-import { EditorMain, EditorItems } from "./ui";
-import { IContent } from "@/shared/types";
-import { WidgetOptionList } from "../..";
+
 import { ContentManage } from '@/features'
+import { IContent } from "@/shared/types";
+
+import { Types, useEditWidget, useEditWidgetContent } from "./model";
+import { EditorItems,EditorMain } from "./ui";
+
+import { WidgetOptionList } from "../..";
 
 export const EditWidget = ({ widgetId }: Types.EditWidgetProps) => {
   const {

@@ -1,14 +1,16 @@
 "use client";
+import { ChevronRight } from "lucide-react";
+import { useEffect, useState } from "react";
+
 import { backendUrl } from "@/shared/lib/constants";
 import {
   Breadcrumb,
-  BreadcrumbList,
   BreadcrumbItem,
   BreadcrumbLink,
+  BreadcrumbList,
 } from "@/shared/ui";
+
 import { useQuery } from "@tanstack/react-query";
-import { ChevronRight } from "lucide-react";
-import { useEffect, useState } from "react";
 
 export const BreadCrumbs = ({
   slug,
@@ -17,7 +19,7 @@ export const BreadCrumbs = ({
   slug: string[];
   locale: string;
 }) => {
-  let { data: crumbs } = useQuery({
+  const { data: crumbs } = useQuery({
     queryKey: ["crumbs"],
     queryFn: async () => {
       const response = await fetch(

@@ -1,6 +1,4 @@
 import { customFetch } from "@/shared/api";
-import { useMutation } from "@tanstack/react-query";
-import { FormEvent } from "react";
 
 export const Login = (body: {
   username: string;

@@ -1,21 +1,21 @@
-import React, { useEffect } from "react";
-
-import Link from "next/link";
 import { DeleteIcon, Loader2, Settings } from "lucide-react";
-
-import { useNavigationPageContent } from "./model/useNavigationPageContent";
-import { handleDragEnd } from "./lib";
-
-import { useDragAndDrop } from "@/shared/lib/hooks/useDrag&Drop";
-import { Button, Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, Input } from "@/shared/ui";
-import { IWidget } from "@/shared/types";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { backendUrl } from "@/shared/lib/constants";
+import Link from "next/link";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
+
 import { locales } from "@/i18n";
-import { INavigation } from "@/shared/types";
-import { toast } from "@/shared/ui/use-toast";
 import { queryClient } from "@/shared/lib/client";
+import { backendUrl } from "@/shared/lib/constants";
+import { useDragAndDrop } from "@/shared/lib/hooks/useDrag&Drop";
+import { IWidget } from "@/shared/types";
+import { INavigation } from "@/shared/types";
+import { Button, Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, Input } from "@/shared/ui";
+import { toast } from "@/shared/ui/use-toast";
+
+import { handleDragEnd } from "./lib";
+import { useNavigationPageContent } from "./model/useNavigationPageContent";
+
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 export const NavigationPageItems = ({
   trans,

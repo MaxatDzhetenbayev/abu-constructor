@@ -1,7 +1,6 @@
 "use client";
-import * as React from "react";
-
 import clsx from "clsx";
+import * as React from "react";
 
 const Table = React.forwardRef<
   HTMLTableElement,

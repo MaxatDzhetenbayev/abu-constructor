@@ -12,8 +12,8 @@ export const DotsCanvas = () => {
 
     for (let i = 0; i < 50; i++) {
       dots.push({
-        x: Math.random() * canvasRef.current?.width!,
-        y: Math.random() * canvasRef.current?.height!,
+        x: canvasRef.current ? Math.random() * canvasRef.current.width : 0,
+        y: canvasRef.current ? Math.random() * canvasRef.current.height : 0,
         size: Math.random(),
         color: arrayColors[Math.floor(Math.random() * arrayColors.length)],
       });

@@ -1,4 +1,5 @@
 import { IWidgetProps } from "@/shared/types";
+
 import { TabsClient } from "./TabsClient";
 
 function Tabs(props: IWidgetProps) {

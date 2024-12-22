@@ -1,5 +1,6 @@
-import { backendImageUrl } from "@/shared/lib/constants";
 import Image from "next/image";
+
+import { backendImageUrl } from "@/shared/lib/constants";
 
 export interface InfoItemProps {
   image: string;

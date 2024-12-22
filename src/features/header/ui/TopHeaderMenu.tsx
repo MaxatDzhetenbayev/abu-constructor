@@ -1,6 +1,7 @@
-import React from "react";
-import { topHeaderMenuList } from "@/shared/config/topHeaderMenu";
 import Link from "next/link";
+import React from "react";
+
+import { topHeaderMenuList } from "@/shared/config/topHeaderMenu";
 
 export const TopHeaderMenu = () => {
   return (
