@@ -1,6 +1,6 @@
-import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import clsx from "clsx"
+import * as React from "react"
 
 
 const badgeVariants = cva(

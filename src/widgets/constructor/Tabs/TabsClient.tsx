@@ -1,10 +1,11 @@
 "use client"
 
-import { backendImageUrl } from "@/shared/lib/constants";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import React from "react";
+
+import { backendImageUrl } from "@/shared/lib/constants";
 
 export function TabsClient({ contents, locale }: { contents: any; locale: string }) {
 
@@ -20,7 +21,7 @@ export function TabsClient({ contents, locale }: { contents: any; locale: string
         const WrapperComponent =
           tab.content.link
             ? (Link as React.ElementType)
-            : ("div" as "div");
+            : ("div" as const);
 
         const linkProps = tab.content.link
           ? { href: `${currentPath}/${tab.content.link}` }

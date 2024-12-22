@@ -1,9 +1,10 @@
 "use client";
-import { queryClient } from "@/shared/lib/client";
-// _app.tsx
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { AppProps } from "next/app";
 import { ReactNode, useState } from "react";
+
+import { queryClient } from "@/shared/lib/client";
+
+// _app.tsx
+import { QueryClientProvider } from "@tanstack/react-query";
 
 // NEVER DO THIS:
 // const queryClient = new QueryClient()

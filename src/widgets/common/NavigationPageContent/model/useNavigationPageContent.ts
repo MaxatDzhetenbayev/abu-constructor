@@ -1,14 +1,15 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
-
+import { queryClient } from "@/shared/lib/client";
 import { IWidget } from "@/shared/types";
+
+import { IWidgetCreateOptions } from "./types";
+
 import {
   fetchWidgetCreate,
   fetchWidgetListByNavigationId,
   fetchWidgetOrderUpdate,
   fetchWidgetRemoveById,
 } from "../api";
-import { queryClient } from "@/shared/lib/client";
-import { IWidgetCreateOptions } from "./types";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 export const useNavigationPageContent = (id: string) => {
   const { data: widgets, isFetching } = useQuery<IWidget[]>({

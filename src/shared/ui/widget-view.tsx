@@ -1,4 +1,7 @@
 "use client";
+import { useTranslations } from "next-intl";
+import { ReactNode } from "react";
+
 import { Button } from "@/shared/ui/button";
 import {
   Card,
@@ -8,8 +11,6 @@ import {
   CardTitle,
 } from "@/shared/ui/card";
 import { Dialog, DialogContent, DialogTrigger } from "@/shared/ui/dialog";
-import { useTranslations } from "next-intl";
-import { ReactNode } from "react";
 
 interface WidgetViewProps {
   variant: "card" | "dialog";

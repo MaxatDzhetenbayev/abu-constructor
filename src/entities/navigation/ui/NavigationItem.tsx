@@ -4,9 +4,11 @@ import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { ReactNode } from "react";
-import { DropNavigation } from "./DropNavigation";
+
 import { useScroll } from "@/shared/lib/hooks/useScroll";
 import { INavigation } from "@/shared/types";
+
+import { DropNavigation } from "./DropNavigation";
 
 interface NavigationItemProps {
   item: INavigation;

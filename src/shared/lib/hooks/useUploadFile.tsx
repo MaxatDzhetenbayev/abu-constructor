@@ -1,8 +1,9 @@
 "use client";
+import Image from "next/image";
+import { ReactNode,useState } from "react";
+
 import { backendImageUrl } from "@/shared/lib/constants";
 import { Input } from "@/shared/ui";
-import Image from "next/image";
-import { useState, ReactNode } from "react";
 
 export const useUploadFile = ({
   id,

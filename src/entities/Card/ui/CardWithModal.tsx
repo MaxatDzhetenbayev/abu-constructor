@@ -1,7 +1,8 @@
-import { backendImageUrl } from "@/shared/lib/constants";
 import clsx from "clsx";
-import { Dialog, DialogContent, DialogTrigger } from "@/shared/ui";
 import React from "react";
+
+import { backendImageUrl } from "@/shared/lib/constants";
+import { Dialog, DialogContent, DialogTrigger } from "@/shared/ui";
 
 export const CardWithModal = ({
   content,

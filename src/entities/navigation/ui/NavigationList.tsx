@@ -1,9 +1,12 @@
 "use client";
-import React from "react";
-import { NavigationItem } from "./NavigationItem";
-import { useNavigationList } from "../api/useNavigationList";
-import { Skeleton } from "@/shared/ui";
 import { useParams } from "next/navigation";
+import React from "react";
+
+import { Skeleton } from "@/shared/ui";
+
+import { NavigationItem } from "./NavigationItem";
+
+import { useNavigationList } from "../api/useNavigationList";
 
 interface INavListProps {
   hoveredItem: number | null;

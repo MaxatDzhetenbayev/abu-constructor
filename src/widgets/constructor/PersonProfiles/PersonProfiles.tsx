@@ -1,7 +1,9 @@
-import { IWidgetProps } from '@/shared/types'
 import React from 'react'
-import { ProfileCard } from './ui/ProfileCard/ProfileCard';
+
+import { IWidgetProps } from '@/shared/types'
 import { Heading } from '@/shared/ui';
+
+import { ProfileCard } from './ui/ProfileCard/ProfileCard';
 
 function PersonProfiles({
     contents,

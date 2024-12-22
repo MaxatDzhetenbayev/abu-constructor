@@ -1,12 +1,11 @@
-import { AdminSidebar } from "@/widgets";
 import clsx from "clsx";
+
+import { AdminSidebar } from "@/widgets";
 
 export default function AdminLayout({
   children,
-  params,
 }: Readonly<{
   children: React.ReactNode;
-  params: { locale: string };
 }>) {
   // const token = cookies().get("token");
   // if (!token) redirect(`/${params.locale}/admin/login`);

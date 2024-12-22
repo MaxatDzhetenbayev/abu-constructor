@@ -1,11 +1,12 @@
-import React from "react";
 import Link from "next/link";
-import { topHeaderMenuList } from "@/shared/config/topHeaderMenu";
+import React from "react";
+
 import { Logo } from "@/entities/logo";
 import { LogoSize } from "@/entities/logo/model";
-import { SearchWidget } from "@/widgets/common/SearchWidget/SearchWidget";
 import { ChangeLocale } from "@/features";
+import { topHeaderMenuList } from "@/shared/config/topHeaderMenu";
 import { BurgerMenu } from "@/widgets";
+import { SearchWidget } from "@/widgets/common/SearchWidget/SearchWidget";
 
 export const TopHeader = () => {
   return (

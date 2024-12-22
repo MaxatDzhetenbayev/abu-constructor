@@ -6,10 +6,10 @@ export interface GeneralPageProps {
 export interface IContent {
     id: number;
     content: {
-        [key: string]: Object;
+        [key: string]: object;
     };
     options: {
-        [key: string]: Object;
+        [key: string]: object;
     };
     order: number
 }

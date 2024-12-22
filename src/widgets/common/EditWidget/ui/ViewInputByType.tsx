@@ -1,8 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
-import { locales } from "@/i18n";
 import { Controller, UseFormRegister } from "react-hook-form";
-import QuillEditor from "@/shared/ui/quill-editor";
-import { FileUploader } from "@/widgets/common/FileUploader";
+
+import { locales } from "@/i18n";
 import {
   Input,
   Select,
@@ -11,6 +10,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/shared/ui";
+import QuillEditor from "@/shared/ui/quill-editor";
+import { FileUploader } from "@/widgets/common/FileUploader";
 
 export const viewInputByType = (
   type: string,

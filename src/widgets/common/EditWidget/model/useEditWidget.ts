@@ -1,10 +1,13 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { fetchEditWidgetMainOptions, fetchWidgetOptions } from "../api";
-import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
-import { EditOptionsProps } from "./types";
+import { useForm } from "react-hook-form";
+
 import { queryClient } from "@/shared/lib/client";
 import { useToast } from "@/shared/ui";
+
+import { EditOptionsProps } from "./types";
+
+import { fetchEditWidgetMainOptions, fetchWidgetOptions } from "../api";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 export const useEditWidget = (
   widgetId: string,

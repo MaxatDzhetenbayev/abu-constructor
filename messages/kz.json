@@ -65,9 +65,9 @@
         "label": "Беттер",
         "href": "/admin/pages"
       },
-      "templates": {
-        "label": "Үлгілер",
-        "href": "/admin/pages/templates"
+      "news": {
+        "label": "Жаналықтар",
+        "href": "/admin/news"
       }
     }
   },

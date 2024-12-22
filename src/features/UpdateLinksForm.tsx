@@ -1,7 +1,8 @@
 "use client";
 
-import { Button, Input } from "@/shared/ui";
 import { useTranslations } from "next-intl";
+
+import { Button, Input } from "@/shared/ui";
 
 export const UpdateLinksForm = () => {
   const t = useTranslations("settings");

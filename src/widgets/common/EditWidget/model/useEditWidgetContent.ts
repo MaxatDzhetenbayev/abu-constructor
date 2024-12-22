@@ -1,12 +1,14 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { queryClient } from "@/shared/lib/client";
+import { useToast } from "@/shared/ui";
+
+import { IContentCreationParams, IContentUpdateParams } from "./types";
+
 import {
   fetchContentsByWidgetId,
   fetchCreateContent,
   fetchUpdateContent,
 } from "../api";
-import { IContentCreationParams, IContentUpdateParams } from "./types";
-import { queryClient } from "@/shared/lib/client";
-import { useToast } from "@/shared/ui";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 export const useEditWidgetContent = (widgetId: string) => {
   const { toast } = useToast()

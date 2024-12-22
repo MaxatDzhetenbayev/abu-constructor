@@ -1,20 +1,15 @@
 import clsx from "clsx";
-import { Card } from "./Card";
+
 import { IWidgetProps } from "@/shared/types";
 
-enum CardVariant {
-  BASE = "base",
-  WITH_MODAL = "with_modal",
-  WITH_FILE = "with_file",
-}
+import { Card } from "./Card";
 
 function Cards({
   contents,
   options: { content, variant },
   locale,
 }: IWidgetProps) {
-
-  const flexStyles: string = calculateFlexBasis(contents.length)
+  const flexStyles: string = calculateFlexBasis(contents.length);
 
   return (
     <section className="flex flex-col gap-3">
@@ -24,12 +19,7 @@ function Cards({
         </h2>
       )}
       {
-        <div
-          className={clsx(
-            "flex gap-5 flex-wrap ",
-            "mt-2"
-          )}
-        >
+        <div className={clsx("flex gap-5 flex-wrap ", "mt-2")}>
           {contents.map(({ content }, idx) => (
             <Card
               key={idx}
@@ -48,20 +38,18 @@ function Cards({
 Cards.displayName = "Cards";
 export default Cards;
 
-
 function calculateFlexBasis(elementCount: number = 376): string {
-
-  let styles: string = ""
+  let styles: string = "";
 
   if (elementCount % 4 === 0) {
-    styles += "basis-[250px]"
+    styles += "basis-[250px]";
   } else {
-    styles += "basis-[376px]"
+    styles += "basis-[376px]";
   }
 
   if (elementCount % 2 === 0) {
-    styles += " xl:max-w-[600px]"
+    styles += " xl:max-w-[600px]";
   }
 
-  return styles
+  return styles;
 }

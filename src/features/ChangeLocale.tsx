@@ -1,4 +1,6 @@
 "use client";
+import { useParams, usePathname, useRouter } from "next/navigation";
+
 import {
   Select,
   SelectContent,
@@ -6,7 +8,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/shared/ui";
-import { useParams, usePathname, useRouter } from "next/navigation";
 
 export const ChangeLocale = () => {
   const params = useParams();

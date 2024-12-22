@@ -1,5 +1,6 @@
-import { Input } from '@/shared/ui';
 import React from 'react'
+
+import { Input } from '@/shared/ui';
 
 export const EditFile = ({ image, writeChanges, setImage, id }: {
     image: string | ArrayBuffer | null,

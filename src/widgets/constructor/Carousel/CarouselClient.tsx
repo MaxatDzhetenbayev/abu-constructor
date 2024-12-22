@@ -1,13 +1,13 @@
 "use client"
-import { backendImageUrl } from "@/shared/lib/constants";
-
+import clsx from "clsx";
+import Image from "next/image";
+import { Autoplay,Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay } from "swiper/modules";
+
+import { backendImageUrl } from "@/shared/lib/constants";
 
 import "swiper/css";
 import "swiper/css/pagination";
-import clsx from "clsx";
-import Image from "next/image";
 
 export function CarouselClient({
   contents,

@@ -1,8 +1,9 @@
 "use client";
-import React, { DragEvent } from "react";
 import { useParams } from "next/navigation";
-import { useDragAndDrop } from "@/shared/lib/hooks/useDrag&Drop";
+import React, { DragEvent } from "react";
+
 import { INavigation } from "@/entities";
+import { useDragAndDrop } from "@/shared/lib/hooks/useDrag&Drop";
 
 import { handleDragEnd } from "../libs/handle-drag-end";
 import { INavigationItemProps } from "../model/admin-navigation.model";

@@ -1,7 +1,9 @@
 import React from "react";
-import { BurgerMenu, SearchWidget } from "@/widgets";
-import { ChangeLocale } from "@/features";
+
 import { Logo, LogoSize } from "@/entities";
+import { ChangeLocale } from "@/features";
+import { BurgerMenu, SearchWidget } from "@/widgets";
+
 import { TopHeaderMenu } from "./TopHeaderMenu";
 
 export const TopHeader = () => {

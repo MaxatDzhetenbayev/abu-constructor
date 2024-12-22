@@ -1,4 +1,4 @@
-import { TopHeader, Navbar } from "@/features";
+import { Navbar,TopHeader } from "@/features";
 
 export const Header = () => {
   return (

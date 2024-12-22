@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 
 export const ContentWithModalList = () => {
-  const [] = useState(false);
+  //   const [] = useState(false);
 
   return (
     <section>

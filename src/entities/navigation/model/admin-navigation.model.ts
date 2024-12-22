@@ -1,6 +1,7 @@
-import { UseMutateFunction } from "@tanstack/react-query";
-import { DragAndDropProps } from "@/shared/lib/hooks/useDrag&Drop";
 import { INavigation } from "@/entities";
+import { DragAndDropProps } from "@/shared/lib/hooks/useDrag&Drop";
+
+import { UseMutateFunction } from "@tanstack/react-query";
 
 export interface INavigationItemProps {
   item: INavigation;

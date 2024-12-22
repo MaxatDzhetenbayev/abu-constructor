@@ -1,19 +1,20 @@
 "use client";
-import { Login } from "@/shared/api/login";
-import { Button, Input } from "@/shared/ui";
-import { useMutation } from "@tanstack/react-query";
+import { setCookie } from "cookies-next";
+import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { FormEvent, useState } from "react";
-import { getCookie, setCookie } from "cookies-next";
-import { redirect, useParams, useRouter } from "next/navigation";
+
+import { Login } from "@/shared/api/login";
+import { Button, Input } from "@/shared/ui";
+
+import { useMutation } from "@tanstack/react-query";
 
 export const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const t = useTranslations("login");
-  const { locale } = useParams();
   const router = useRouter();
-  const { mutate, isPending, error } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationKey: ["login"],
     mutationFn: Login,
     onSuccess: (data) => {

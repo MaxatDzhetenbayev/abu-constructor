@@ -1,7 +1,8 @@
-import { Separator } from "@/shared/ui";
-import { BreadCrumbs, Header } from "@/widgets";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { ReactNode } from "react";
+
+import { Separator } from "@/shared/ui";
+import { BreadCrumbs, Header } from "@/widgets";
 
 export default async function Layout({
   children,

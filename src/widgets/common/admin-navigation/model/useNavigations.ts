@@ -1,9 +1,8 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { INavigation } from "@/entities";
+import { backendUrl } from "@/shared/lib/constants";
 
 import { fetchUpdateOrderNavigationList } from "../api";
-
-import { backendUrl } from "@/shared/lib/constants";
-import { INavigation } from "@/entities";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export const useNavigations = () => {
   const { data, isLoading } = useQuery<INavigation[]>({

@@ -1,9 +1,10 @@
 "use client";
-import { INavigation } from "@/shared/types";
 import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
+
+import { INavigation } from "@/shared/types";
 
 interface DropNavigationProps {
   item: INavigation;

@@ -1,9 +1,11 @@
-import { QueryProvider } from "@/shared/providers";
-import { Toaster } from "@/shared/ui";
+import { Raleway } from "next/font/google";
+import Script from "next/script";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
-import { Montserrat, Raleway } from "next/font/google";
-import Script from "next/script";
+
+import { QueryProvider } from "@/shared/providers";
+import { Toaster } from "@/shared/ui";
+
 import "react-quill/dist/quill.snow.css";
 import "../globals.css";
 
@@ -13,11 +15,11 @@ const raleway = Raleway({
   variable: "--font-raleway",
   subsets: ["cyrillic", "latin"],
 });
-const montserrat = Montserrat({
-  weight: ["400", "700", "900"],
-  variable: "--font-montserrat",
-  subsets: ["cyrillic", "latin"],
-});
+// const montserrat = Montserrat({
+//   weight: ["400", "700", "900"],
+//   variable: "--font-montserrat",
+//   subsets: ["cyrillic", "latin"],
+// });
 
 export default async function LocaleLayout({
   children,

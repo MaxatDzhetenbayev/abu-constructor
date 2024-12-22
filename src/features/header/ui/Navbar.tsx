@@ -1,16 +1,15 @@
 "use client";
-import React from "react";
-import { useParams, usePathname } from "next/navigation";
 import clsx from "clsx";
+import { useParams, usePathname } from "next/navigation";
+import React from "react";
 
-import { ChangeLocale } from "@/features";
 import { Logo, LogoSize } from "@/entities";
 import { NavigationList } from "@/entities/navigation";
+import { ChangeLocale } from "@/features";
 
-
-import { useNavbarState } from "../model/useNavbarState";
-import { getNavbarClass } from "../libs/getNavbarClass";
 import { navbarStyles } from "../config/navbarStyles";
+import { getNavbarClass } from "../libs/getNavbarClass";
+import { useNavbarState } from "../model/useNavbarState";
 
 export const Navbar = () => {
   const locale = useParams().locale as string;

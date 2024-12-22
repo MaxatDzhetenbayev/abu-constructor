@@ -1,6 +1,8 @@
 "use client";
 import dynamic from "next/dynamic";
+
 import { Label } from "./label";
+
 import "react-quill/dist/quill.snow.css";
 
 // Динамический импорт ReactQuill для предотвращения SSR ошибок
