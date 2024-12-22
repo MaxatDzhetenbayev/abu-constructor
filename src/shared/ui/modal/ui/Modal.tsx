@@ -1,7 +1,8 @@
+import clsx from 'clsx';
 import React from 'react'
+
 import { Dialog, DialogContent, DialogHeader, DialogTrigger } from '../../dialog'
 import { DialogTitle } from '@radix-ui/react-dialog';
-import clsx from 'clsx';
 
 interface ModalProps {
     modalSlot: React.ReactNode | string

@@ -1,17 +1,16 @@
 "use client"
 import Image from "next/image";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import { useNewsbyId, viewPluralWordsCollection } from "@/entities/news";
+import { useWordPlural } from "@/shared/lib";
+import { backendImageUrl, } from "@/shared/lib/constants";
+import { Skeleton } from "@/shared/ui";
 
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
-
-import { useNewsbyId, viewPluralWordsCollection } from "@/entities/news";
-
-import { backendImageUrl, } from "@/shared/lib/constants";
-import { Skeleton } from "@/shared/ui";
-import { useWordPlural } from "@/shared/lib";
 
 export default function Page({ params }: any) {
     const { id, locale } = params

@@ -1,6 +1,7 @@
 import { backendUrl } from "@/shared/lib/constants";
 import { IContent } from "@/shared/types";
-import { IContentCreationParams, IContentUpdateParams } from "../model/types";
+
+import { IContentCreationParams } from "../model/types";
 
 export const fetchWidgetOptions = async (widgetId: string) => {
   const response = await fetch(`${backendUrl}/widgets/${widgetId}`);

@@ -1,10 +1,11 @@
-import { Container, Heading } from "@/shared/ui";
 import clsx from "clsx";
 import { ArrowRight } from "lucide-react";
-import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import React from "react";
+
+import { Container, Heading } from "@/shared/ui";
 
 const news = [
   {
@@ -46,25 +47,18 @@ export const News = () => {
   );
 };
 
-const SLcards = [
-  {
-    img: "/icons/sl1.png",
-    desc: "Работа педагога-учителя всегда была и будет одной самых ответственных работ",
-    text: "Студент 2 курса Диас Нуртаев стал обладателем серебряной награды на Международном турнире по смешанным единоборствам",
-  },
-  {
-    img: "/icons/sl2.png",
-    desc: "Работа педагога-учителя всегда была и будет одной самых ответственных работ",
-    text: "Наши студенты заняли призовое 2 место на командных интеллектуальных играх",
-  },
-];
+type SLcard = {
+  img: string;
+  desc: string;
+  text: string;
+};
 
 const Card = ({
   img,
   desc,
   text,
   className,
-}: (typeof SLcards)[0] & { className?: string }) => {
+}: SLcard & { className?: string }) => {
   return (
     <article
       className={clsx(

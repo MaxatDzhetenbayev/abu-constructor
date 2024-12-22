@@ -1,5 +1,6 @@
-import { IContent } from "@/shared/types";
 import { UseFormRegister } from "react-hook-form";
+
+import { IContent } from "@/shared/types";
 
 export interface EditWidgetProps {
   widgetId: string;

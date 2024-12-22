@@ -1,9 +1,10 @@
-import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
+import React from 'react'
 
 import { backendImageUrl } from '@/shared/lib/constants'
+
 import { INews } from '../model/types'
-import Link from 'next/link'
 
 export const NewsItem = ({ item, locale }: { item: INews, locale: string }) => {
 

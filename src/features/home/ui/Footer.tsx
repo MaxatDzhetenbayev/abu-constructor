@@ -1,9 +1,10 @@
-import { Container, Heading } from "@/shared/ui";
-import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import Script from "next/script";
+import { useTranslations } from "next-intl";
 import React, { useEffect } from "react";
+
+import { Container, Heading } from "@/shared/ui";
 
 export const Footer = () => {
   const locale = useParams().locale;

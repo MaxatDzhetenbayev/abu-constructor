@@ -1,9 +1,8 @@
 "use client";
 
+import clsx from "clsx";
 import * as React from "react";
 import { Drawer as DrawerPrimitive } from "vaul";
-
-import clsx from "clsx";
 
 const Drawer = ({
   shouldScaleBackground = true,

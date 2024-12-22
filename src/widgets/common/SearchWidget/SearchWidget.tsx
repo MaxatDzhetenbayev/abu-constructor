@@ -1,10 +1,12 @@
 "use client";
-import React from "react";
-import { SearchBar } from "@/features/search-bar";
-import { Button, Dialog, DialogTrigger, DialogContent } from "@/shared/ui";
-import { DialogTitle } from "@radix-ui/react-dialog";
 import { SearchIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
+import React from "react";
+
+import { SearchBar } from "@/features/search-bar";
+import { Dialog, DialogContent, DialogTrigger } from "@/shared/ui";
+
+import { DialogTitle } from "@radix-ui/react-dialog";
 
 export const SearchWidget = () => {
   const t = useTranslations("search");

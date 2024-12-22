@@ -1,6 +1,5 @@
 "use client";
 import { NewsItem, useNews } from "@/entities/news";
-
 import { Skeleton } from "@/shared/ui";
 
 export default function Page({ params }: any) {

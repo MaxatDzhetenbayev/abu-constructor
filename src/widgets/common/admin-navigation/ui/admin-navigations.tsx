@@ -2,6 +2,7 @@
 import { AdminNavigation } from "@/entities";
 
 import { NavigationControl } from "./navigation-control";
+
 import { useNavigations } from "../model/useNavigations";
 
 export const AdminNavigations = () => {

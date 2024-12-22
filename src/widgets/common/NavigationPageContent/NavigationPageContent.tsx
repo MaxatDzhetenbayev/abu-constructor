@@ -1,13 +1,11 @@
 "use client";
+import { useTranslations } from "next-intl";
 import React from "react";
 
-import { useTranslations } from "next-intl";
-
-import { useNavigationPageContent } from "./model/useNavigationPageContent";
 import { INavigationPageContent } from "./model/types";
-
-import { WidgetListSection } from "./WidgetListSection";
+import { useNavigationPageContent } from "./model/useNavigationPageContent";
 import { NavigationPageItems } from "./NavigationPageItems";
+import { WidgetListSection } from "./WidgetListSection";
 
 export const NavigationPageContent = ({
   params: { id },

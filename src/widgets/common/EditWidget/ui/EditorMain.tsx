@@ -1,6 +1,9 @@
 import React from "react";
-import { viewInputByType } from "./ViewInputByType";
+
 import { Button } from "@/shared/ui";
+
+import { viewInputByType } from "./ViewInputByType";
+
 import { Types } from "../model";
 
 export const EditorMain = ({

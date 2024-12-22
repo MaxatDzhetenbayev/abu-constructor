@@ -1,4 +1,5 @@
 import { backendUrl } from "@/shared/lib/constants";
+
 import { normalizeSearchData } from "../lib/normalizeSearchData";
 
 export const fetchSearchResults = async (query: string, locale: string) => {

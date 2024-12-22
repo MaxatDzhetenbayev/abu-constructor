@@ -1,39 +1,41 @@
 "use client";
+import { DeleteIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { useRef } from "react";
+
 import { queryClient } from "@/shared/lib/client";
+import { backendUrl } from "@/shared/lib/constants";
 import {
   Button,
-  DialogTrigger,
-  DialogTitle,
-  DialogHeader,
-  DialogFooter,
-  DialogContent,
-  DialogClose,
   Dialog,
+  DialogClose,
+  DialogContent,
   DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
 } from "@/shared/ui";
+
 import { useMutation } from "@tanstack/react-query";
-import { DeleteIcon, Settings } from "lucide-react";
-import { useRef } from "react";
-import { useTranslations } from "next-intl";
-import { backendUrl } from "@/shared/lib/constants";
 export const DeletePageBtn = ({
   navigationId,
-  name
+  name,
 }: {
-  name: string
-  navigationId: number
+  name: string;
+  navigationId: number;
 }) => {
-  const { mutate, error, isPending } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationKey: [`navigations`],
     mutationFn: async ({ id }: { id: number }) => {
       await fetch(`${backendUrl}/navigations/${id}`, {
-        method: 'DELETE',
-      })
+        method: "DELETE",
+      });
     },
     onSuccess: () => {
       if (closeRef.current) closeRef.current.click();
       queryClient.invalidateQueries({
-        queryKey: ["navigations"]
+        queryKey: ["navigations"],
       });
     },
   });
@@ -60,7 +62,11 @@ export const DeletePageBtn = ({
               {t("decline")}
             </Button>
           </DialogClose>
-          <Button onClick={() => mutate({ id: navigationId })} loading={isPending} disabled={isPending}>
+          <Button
+            onClick={() => mutate({ id: navigationId })}
+            loading={isPending}
+            disabled={isPending}
+          >
             {t("delete")}
           </Button>
         </DialogFooter>

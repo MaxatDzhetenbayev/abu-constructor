@@ -1,16 +1,15 @@
 "use client"
-import React from 'react'
+import clsx from 'clsx';
 import Image from 'next/image';
-
-import { Swiper, SwiperSlide } from "swiper/react";
+import React from 'react'
 import { Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import { backendImageUrl } from '@/shared/lib/constants';
 
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
-import clsx from 'clsx';
-
-import { backendImageUrl } from '@/shared/lib/constants';
 
 
 export const SwiperGallery = ({ contents }: { contents: any[] }) => {

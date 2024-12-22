@@ -1,11 +1,11 @@
 "use client";
-import { backendImageUrl, backendUrl } from "@/shared/lib/constants";
-
-import { useMutation } from "@tanstack/react-query";
-
-import { Button, Input, useToast } from "@/shared/ui";
 import Image from "next/image";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
+
+import { backendImageUrl, backendUrl } from "@/shared/lib/constants";
+import { Button, Input, useToast } from "@/shared/ui";
+
+import { useMutation } from "@tanstack/react-query";
 
 interface FileUploaderProps {
   id?: string;
@@ -13,19 +13,18 @@ interface FileUploaderProps {
   field: string;
   label: string;
   onChange: (val: File | string) => void;
-  setIsUploading?: Dispatch<SetStateAction<boolean>>
+  setIsUploading?: Dispatch<SetStateAction<boolean>>;
 }
 
 export const FileUploader = ({
-  id,
   file,
   label,
   onChange,
   field,
-  setIsUploading
+  setIsUploading,
 }: FileUploaderProps) => {
   const [image, setImage] = useState<string | ArrayBuffer | null>(null);
-  const { toast } = useToast()
+  const { toast } = useToast();
   useEffect(() => {
     if (file) {
       setImage(`${backendImageUrl}${file}`);
@@ -60,7 +59,10 @@ export const FileUploader = ({
 
         const filename = await response.text();
         onChange(filename); // Возвращаем имя файла
-        toast({ title: "Файл загружен", description: "Файл был успешно загружен на сервер" })
+        toast({
+          title: "Файл загружен",
+          description: "Файл был успешно загружен на сервер",
+        });
       } catch (error) {
         console.error("Ошибка при загрузке:", error);
       } finally {

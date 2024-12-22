@@ -41,7 +41,6 @@ export const CardEditOptions: EditOptionsProps = {
   contentOptions: (variant) => {
     switch (variant) {
       case "base":
-      // case "horizontal":
       case "with_modal":
         return [
           { props: "title", type: "text", placeholder: "Заголовок" },

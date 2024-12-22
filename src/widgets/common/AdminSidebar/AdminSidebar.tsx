@@ -1,8 +1,10 @@
 import clsx from "clsx";
-import { ComponentProps } from "react";
-import { Navlink } from "./Navlink";
-import { ChangeLocale, LogoutButton } from "@/features";
 import { getTranslations } from "next-intl/server";
+import { ComponentProps } from "react";
+
+import { ChangeLocale, LogoutButton } from "@/features";
+
+import { Navlink } from "./Navlink";
 
 const links = [
   { label: "links.home.label", href: "links.home.href" },

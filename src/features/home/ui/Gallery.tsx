@@ -1,6 +1,9 @@
 import clsx from "clsx";
+import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useParams } from 'next/navigation';
+import { useTranslations } from "next-intl";
 import { ReactNode } from "react";
 import { EffectCoverflow, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -8,9 +11,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
-import { ArrowRight } from "lucide-react";
-import { useTranslations } from "next-intl";
-import { useParams } from 'next/navigation';
 
 export const Gallery = () => {
   const t = useTranslations();

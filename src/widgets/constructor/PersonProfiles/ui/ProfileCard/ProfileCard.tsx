@@ -1,8 +1,9 @@
 'use client';
-import { backendImageUrl } from '@/shared/lib/constants';
-import React, { useState } from 'react';
 import { motion, Variants } from 'framer-motion';
 import Image from 'next/image';
+import React, { useState } from 'react';
+
+import { backendImageUrl } from '@/shared/lib/constants';
 import { Modal, MoreArrow } from '@/shared/ui';
 
 export const ProfileCard = ({ locale, content }: { locale: string, content: any }) => {

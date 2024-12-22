@@ -1,5 +1,6 @@
 
 import { IWidgetProps } from '@/shared/types';
+
 import { CarouselClient } from './CarouselClient';
 
 function Carousel(props: IWidgetProps) {

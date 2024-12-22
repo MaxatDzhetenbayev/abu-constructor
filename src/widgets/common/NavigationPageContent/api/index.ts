@@ -1,8 +1,9 @@
+import { backendUrl } from "@/shared/lib/constants";
+
 import {
   IWidgetCreateOptions,
   IWidgetUpdateOrderOptions,
 } from "../model/types";
-import { backendUrl } from "@/shared/lib/constants";
 
 export const fetchWidgetListByNavigationId = async (navigationId: string) => {
   const response = await fetch(

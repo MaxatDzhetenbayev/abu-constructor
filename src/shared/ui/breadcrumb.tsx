@@ -1,8 +1,8 @@
-import * as React from "react";
-import { Slot } from "@radix-ui/react-slot";
-import { ChevronRight, MoreHorizontal } from "lucide-react";
-
 import clsx from "clsx";
+import { ChevronRight, MoreHorizontal } from "lucide-react";
+import * as React from "react";
+
+import { Slot } from "@radix-ui/react-slot";
 
 const Breadcrumb = React.forwardRef<
   HTMLElement,

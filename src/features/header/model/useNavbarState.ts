@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import { useScroll } from "@/shared/lib/hooks/useScroll";
 
 export const useNavbarState = () => {
