@@ -4,6 +4,7 @@ import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import React, { useState } from "react";
 
+import { LocaleType } from "@/i18n";
 import { Input } from "@/shared/ui";
 import { Badge } from "@/shared/ui/badge";
 
@@ -11,7 +12,7 @@ import { useSearch } from "../model/useSearch";
 
 export const SearchBar = () => {
   const [query, setQuery] = useState("");
-  const locale = useParams().locale as string;
+  const locale = useParams().locale as LocaleType[number];
   const t = useTranslations("search");
 
   const { data, isLoading } = useSearch(query, locale);
