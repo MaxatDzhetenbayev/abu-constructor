@@ -1,3 +1,4 @@
+"use client"
 import clsx from "clsx";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
@@ -5,29 +6,18 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import React from "react";
 
-import { Container, Heading } from "@/shared/ui";
+import { Container, Heading, Skeleton } from "@/shared/ui";
+import { useNews } from "@/entities/news";
+import { INews } from "@/entities/news/model/types";
+import { useParams } from "next/navigation";
+import { backendImageUrl } from "@/shared/lib/constants";
 
-const news = [
-  {
-    text: "Диагностика профессорско-преподавательского состава Alikhan Bokeikhan University",
-    desc: "Работа педагога-учителя всегда была и будет одной самых ответственных работ",
-    img: "/images/banner-2.jpeg",
-  },
-  {
-    text: "Семестровое обучение в Indian Institute of Technology Bombay",
-    desc: "Работа педагога-учителя всегда была и будет одной самых ответственных работ",
-    img: "/images/banner-3.jpeg",
-  },
-  {
-    text: "Региональная студенческая олимпиада «Финансовая безопасность»",
-    desc: "Работа педагога-учителя всегда была и будет одной самых ответственных работ",
-    img: "/images/banner-4.jpeg",
-  },
-];
 
 export const News = () => {
   const t = useTranslations("home");
 
+  const { data, isLoading } = useNews({ limit: 3 });
+  const skeletonNews = Array.from({ length: 3 }).fill(1);
   return (
     <Container className="w-full ">
       <Heading>{t("news.title")}</Heading>
@@ -36,44 +26,62 @@ export const News = () => {
 			 <Card key={news[0].desc} {...news[0]} />
 			 <Events />
 		  </section> */}
-        <section className="flex gap-4 max-lg:flex-col">
-          {news.slice(0, 3).map((card) => (
-            <Card key={card.text} {...card} />
-          ))}
-        </section>
+        {
+          isLoading ? (
+            <section>
+              {skeletonNews
+                .map((item, idx) => (
+                  <article key={idx}>
+                    <Skeleton className="w-full h-[260px]" />
+                    <Skeleton className="w-full h-[20px] mt-3" />
+                    <Skeleton className="w-full h-[50px]mt-5" />
+                  </article>
+                ))}
+            </section>
+          ) : (
+            <section className="grid grid-cols-3 gap-4 max-lg:flex-col">
+              {data?.map((card) => (
+                <Card key={card.id} {...card} />
+              ))}
+            </section>
+          )
+        }
         <MoreButton maxWidth="506px" link="news" />
       </section>
-    </Container>
+    </Container >
   );
 };
 
-type SLcard = {
-  img: string;
-  desc: string;
-  text: string;
-};
-
 const Card = ({
-  img,
-  desc,
-  text,
+  content,
+  title,
+  id,
   className,
-}: SLcard & { className?: string }) => {
+}: INews & { className?: string }) => {
+
+  const locale = useParams().locale as string;
+
+  const head = title[locale];
+  const { description, images } = content[locale];
+
   return (
-    <article
-      className={clsx(
-        "py-4 px-5 grow basis-1 border flex flex-col gap-[.9rem] border-slate-200 rounded-md",
-        className
-      )}
-    >
-      <div className="relative  aspect-square md:max-h-[380px] lg:max-h-[320px]">
-        <Image src={img} fill alt={text} className="object-cover" />
-      </div>
-      <div className="">
-        <h2 className="text-abu_primary font-semibold text-calc-xl">{text}</h2>
-        <p className="text-[#3E3232] text-calc-md mt-3">{desc}</p>
-      </div>
-    </article>
+    <Link href={`news/${id}`}>
+      <article
+        className={clsx(
+          "py-4 px-5 grow basis-1 border flex flex-col gap-[.9rem] border-slate-200 rounded-md",
+          className
+        )}
+      >
+        <div className="relative  aspect-square md:max-h-[380px] lg:max-h-[320px]">
+          <Image src={`${backendImageUrl}${images[0]}`} fill alt={head} className="object-cover" />
+        </div>
+        <div className="">
+          <h2 className="text-abu_primary font-semibold text-calc-xl">{head}</h2>
+          <p className="text-[#3E3232] text-calc-md mt-3">{description.length > 80 ? description.slice(0, 75) + "..." : description}</p>
+        </div>
+      </article>
+    </Link>
+
   );
 };
 const MoreButton = ({
