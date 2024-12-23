@@ -40,7 +40,7 @@ export const News = () => {
             </section>
           ) : (
             <section className="grid grid-cols-3 gap-4 max-lg:flex-col">
-              {data?.map((card) => (
+              {data?.items?.map((card) => (
                 <Card key={card.id} {...card} />
               ))}
             </section>
