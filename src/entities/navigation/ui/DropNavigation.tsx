@@ -37,7 +37,7 @@ export const DropNavigation = ({
               <Link
                 href={`/${locale}/${item.slug}/${child.slug}`}
                 className={clsx(
-                  "text-white font-bold",
+                  "text-white font-bold hover:underline duration-150",	
                   path == `/${locale}${child.slug}` && "font-bold"
                 )}
                 style={{

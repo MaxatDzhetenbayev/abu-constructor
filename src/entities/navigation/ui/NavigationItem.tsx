@@ -32,7 +32,7 @@ export const NavigationItem = ({
   return (
     <>
       {item.navigation_type === "link" ||
-        item.navigation_type === "group-link" ? (
+      item.navigation_type === "group-link" ? (
         <Link
           style={{ fontSize: "clamp(16px, 1.5vw, 20px)" }}
           className={clsx(
@@ -99,8 +99,13 @@ const DropDownMenu = ({
   return (
     <ul className="shadow-md absolute left-0 rounded-bl-md rounded-br-md bg-abu_primary">
       {element.children.map((child) => (
-        <li key={child.id} className="p-3 group">
-          <Link className="inline-block p-1 text-white group-hover:underline" href={`/${locale}/${element.slug}/${child.slug}`}>{child.title[locale]}</Link>
+        <li key={child.id} className="p-2 group">
+          <Link
+            className="inline-block p-1 text-white group-hover:underline"
+            href={`/${locale}/${element.slug}/${child.slug}`}
+          >
+            {child.title[locale]}
+          </Link>
           {child.children.length > 0 && (
             <DropDownMenu element={child} locale={locale} />
           )}
