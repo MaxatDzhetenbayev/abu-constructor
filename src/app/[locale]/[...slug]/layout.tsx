@@ -1,7 +1,7 @@
 import { Mail, MapPin, Phone } from "lucide-react";
 import { ReactNode } from "react";
 
-import { Separator } from "@/shared/ui";
+import { LayoutWrapper, Separator } from "@/shared/ui";
 import { BreadCrumbs, Header } from "@/widgets";
 
 export default async function Layout({
@@ -14,14 +14,10 @@ export default async function Layout({
   return (
     <section>
       <Header />
-      <main className=" min-h-[100svh] mt-20 [@media(max-width:890px)]:mt-[114px]">
-        <div className="max-w-[1200px] mx-auto flex lg:p-0 p-3  flex-col gap-10 mb-10">
-          {params.slug[0] != "home" && (
-            <BreadCrumbs locale={params.locale} slug={params.slug} />
-          )}
-          <div className="">{children}</div>
-        </div>
-      </main>
+      <LayoutWrapper>
+        <BreadCrumbs locale={params.locale} slug={params.slug} />
+        {children}
+      </LayoutWrapper>
       <footer className="w-full  bg-abu_primary">
         <div className=" max-w-[1200px] mx-auto p-10 ">
           <div className=" flex justify-between items-center mb-10">

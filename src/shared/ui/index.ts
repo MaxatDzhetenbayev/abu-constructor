@@ -149,3 +149,4 @@ export { Heading } from "./heading";
 export { Modal } from "./modal";
 export { MoreArrow } from "./more_arrow";
 export { Container } from "./Container";
+export { LayoutWrapper } from "./layout-wrapper";
