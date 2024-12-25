@@ -7,6 +7,7 @@ export interface ContentManageModalProps {
     contents?: any | undefined;
     widgetOptionsList: EditOptionsProps[];
     widget_variant?: string;
+    TemplateSection?: any;
     handleCreateContent: any;
     handleUpdateContent: any;
 }

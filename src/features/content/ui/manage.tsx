@@ -10,7 +10,7 @@ import { ContentManageModalProps } from '../model/types'
 import { useManageContent } from '../model/use-manage';
 import { useRemoveContent } from '../model/use-remove';
 
-export const ContentManage = ({ id, action, widgetOptionsList, widget_type, widget_variant, handleCreateContent, handleUpdateContent, contents }: ContentManageModalProps) => {
+export const ContentManage = ({ id, action, widgetOptionsList, widget_type, widget_variant, handleCreateContent, handleUpdateContent, contents, TemplateSection }: ContentManageModalProps) => {
 
     const [open, setOpen] = useState(false);
     const closeRef = useRef<HTMLButtonElement>(null);
@@ -89,11 +89,11 @@ export const ContentManage = ({ id, action, widgetOptionsList, widget_type, widg
                                 </Fragment>
                             );
                         })}
-
                     <Button className="w-full" type="submit" disabled={isUploading}>
                         {action === "create" ? "Создать" : "Изменить"}
                     </Button>
                 </form>
+                {TemplateSection}
                 {action === "update" && (
                     <>
                         <Button onClick={() => handleRemoveContent(id)}>

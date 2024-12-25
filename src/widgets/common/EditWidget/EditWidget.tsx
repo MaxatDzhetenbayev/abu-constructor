@@ -5,9 +5,10 @@ import { ContentManage } from '@/features'
 import { IContent } from "@/shared/types";
 
 import { Types, useEditWidget, useEditWidgetContent } from "./model";
-import { EditorItems,EditorMain } from "./ui";
+import { EditorItems, EditorMain } from "./ui";
 
 import { WidgetOptionList } from "../..";
+import { TemplateSection } from "../TemplateSection/TemplateSection";
 
 export const EditWidget = ({ widgetId }: Types.EditWidgetProps) => {
   const {
@@ -46,6 +47,7 @@ export const EditWidget = ({ widgetId }: Types.EditWidgetProps) => {
               id={id}
               action="update"
               widgetOptionsList={WidgetOptionList}
+              TemplateSection={<TemplateSection content_id={id} />}
               {...widgetInfo}
               contents={contents}
               handleCreateContent={handleCreateContent}
