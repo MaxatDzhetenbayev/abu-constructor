@@ -1,6 +1,6 @@
 "use client";
 import clsx from "clsx";
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import React, { useState } from "react";
 
 import { backendUrl } from "@/shared/lib/constants";
@@ -15,7 +15,8 @@ export function StepSwitcherClient({
   locale,
 }: IWidgetProps): React.JSX.Element {
   const currentPath = usePathname();
-  const currentSlug = currentPath.replace("/ru/", "");
+  const currentLocale = useParams().locale;
+  const currentSlug = currentPath.replace(`/${currentLocale}/`, "");
   const [activeStep, setActiveStep] = useState(() => contents[0].content.link);
 
   const { data, isSuccess } = useQuery({
