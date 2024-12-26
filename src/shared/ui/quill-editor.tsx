@@ -38,7 +38,7 @@ const QuillEditor = ({ value, onChange, label }: QuillEditorProps) => {
       <Label>{label}</Label>
       <ReactQuill
         value={value}
-        className="overflow-y-auto max-h-[200px]"
+        className="overflow-y-auto min-h-[200px] max-h-[600px]"
         onChange={onChange}
         modules={quillModules}
         theme="snow"
