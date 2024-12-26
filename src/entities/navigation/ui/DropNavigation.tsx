@@ -25,7 +25,7 @@ export const DropNavigation = ({
     <section
       onMouseLeave={handleMouseLeave}
       className={clsx(
-        "absolute left-0  pt-3 w-full bg-abu_primary h-[380px] px-10 ",
+        "absolute left-0  pt-3 w-full bg-abu_primary px-10 pb-10 ",
         scrolled ? "top-[94px]" : "top-[134px]"
       )}
     >
@@ -33,11 +33,11 @@ export const DropNavigation = ({
         {item.children.map((child) => (
           <li key={child.id}>
             {child.navigation_type === "content" ||
-            child.navigation_type === "group-link" ? (
+              child.navigation_type === "group-link" ? (
               <Link
                 href={`/${locale}/${item.slug}/${child.slug}`}
                 className={clsx(
-                  "text-white font-bold hover:underline duration-150",	
+                  "text-white font-bold hover:underline duration-150",
                   path == `/${locale}${child.slug}` && "font-bold"
                 )}
                 style={{
