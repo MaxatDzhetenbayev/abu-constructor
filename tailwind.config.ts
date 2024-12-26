@@ -18,6 +18,9 @@ const config = {
         "2xl": "1400px",
       },
     },
+    screens: {
+      "2md": "890px",
+    },
     extend: {
       gridTemplateColumns: {
         gallery: "repeat(3, minmax(200px, 1fr))",
