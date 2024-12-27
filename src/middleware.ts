@@ -4,7 +4,7 @@ import createIntlMiddleware from "next-intl/middleware";
 // Locale middleware setup
 const intlMiddleware = createIntlMiddleware({
   locales: ["ru", "kz", "en"],
-  defaultLocale: "ru",
+  defaultLocale: "kz",
 });
 
 // Authentication and redirection middleware
