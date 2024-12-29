@@ -1,7 +1,6 @@
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 
 import { LogoSize } from "../model";
 
@@ -19,7 +18,7 @@ export const Logo = ({
       case LogoSize.SMALL:
         return { width: "180px" };
       case LogoSize.MEDIUM:
-        return { width: "280px" };
+        return { width: "400px" };
       default:
         return { width: "280px" };
     }
@@ -29,7 +28,7 @@ export const Logo = ({
     <Link
       href="/"
       className={clsx(
-        "inline",
+        "flex gap-3",
         isMobileView && "[@media(min-width:890px)]:hidden"
       )}
       style={{
@@ -39,9 +38,18 @@ export const Logo = ({
       }}
     >
       <Image
-        src={`/images/logo-white.png`}
+        src={`/enbek/enbek.png`}
         alt="logo"
-        fill
+        width={70}
+        height={70}
+        priority
+        style={{ objectFit: "contain" }}
+      />
+      <Image
+        src={`/enbek/oblysy.png`}
+        alt="logo"
+        width={140}
+        height={90}
         priority
         style={{ objectFit: "contain" }}
       />

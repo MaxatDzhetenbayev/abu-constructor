@@ -1,32 +1,13 @@
 "use client";
 
-import {
-  Banner,
-  Footer,
-  Gallery,
-  IELTS,
-  Infographics,
-  News,
-  Partners,
-  President,
-} from "@/features/home";
 
 import "../../globals.css";
 
 export default function Page() {
-  return (
-    <section className="flex flex-col gap-24 md:px-3 lg:px-0 ">
-      {/* <AppealDialog /> */}
-      <Banner />
-      <Infographics />
-      <President />
-      <Gallery />
-      <News />
-      <IELTS />
-      <Partners />
-      <Footer />
-    </section>
-  );
+    return (
+        <section className="flex flex-col gap-24 md:px-3 lg:px-0 ">
+        </section>
+    );
 }
 
 // const Rector = ({ close }: { close?: ReactNode }) => {
