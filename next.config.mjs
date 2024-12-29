@@ -9,8 +9,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "193.193.228.6",
-        port: "3003",
+        hostname: "back.ctm.foxminded.space",
         pathname: "/uploads/**",
       },
       {
