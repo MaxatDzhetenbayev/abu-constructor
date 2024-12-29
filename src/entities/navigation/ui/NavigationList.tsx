@@ -69,7 +69,7 @@ const NavList = ({
             "text-left pl-6 p-1 rounded-md text-white bg-enbek_primary_active",
             path == `/${locale}${page.slug}` && "font-bold"
           )}
-          href={`/${locale}${page.slug}`}
+          href={`/${locale}/${page.slug}`}
           key={page.id}
         >
           {page.title[locale as string]}
