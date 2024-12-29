@@ -1,9 +1,9 @@
 import clsx from "clsx";
 import { ArrowRight } from "lucide-react";
-import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from 'next/navigation';
+import { useTranslations } from "next-intl";
 import { ReactNode } from "react";
 import { EffectCoverflow, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";

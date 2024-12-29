@@ -1,6 +1,6 @@
 import clsx from "clsx";
-import { useTranslations } from "next-intl";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 import { Container, Heading } from "@/shared/ui";
 

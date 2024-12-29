@@ -1,6 +1,6 @@
 import { motion, MotionProps } from "framer-motion";
-import { useTranslations } from "next-intl";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 export const President = () => {
     const t = useTranslations("home.president_message");

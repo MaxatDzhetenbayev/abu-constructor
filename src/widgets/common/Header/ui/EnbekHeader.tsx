@@ -1,6 +1,7 @@
-import { Navbar } from "@/features"
 import Image from "next/image"
 import Link from "next/link"
+
+import { Navbar } from "@/features"
 
 export const EnbekHeader = () => {
     return <header className=" w-full">

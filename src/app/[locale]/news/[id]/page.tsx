@@ -1,4 +1,5 @@
 "use client";
+import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -8,7 +9,6 @@ import { useWordPlural } from "@/shared/lib";
 import { backendImageUrl } from "@/shared/lib/constants";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, Skeleton } from "@/shared/ui";
 
-import { ChevronRight } from "lucide-react";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";

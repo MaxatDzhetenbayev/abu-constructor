@@ -1,15 +1,15 @@
 "use client"
 import clsx from "clsx";
 import { ArrowRight } from "lucide-react";
-import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
+import { useParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 import { useNews } from "@/entities/news";
 import { INews } from "@/entities/news/model/types";
 import { backendImageUrl } from "@/shared/lib/constants";
 import { Container, Heading, Skeleton } from "@/shared/ui";
-import { useParams } from "next/navigation";
 
 
 export const News = () => {

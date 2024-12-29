@@ -1,4 +1,6 @@
 "use client";
+import { useState } from "react";
+
 import { NewsItem, useNews } from "@/entities/news";
 import {
   Pagination,
@@ -10,7 +12,6 @@ import {
   PaginationPrevious,
   Skeleton,
 } from "@/shared/ui";
-import { useState } from "react";
 
 export default function Page({ params }: any) {
   const locale = params?.locale ?? "en";
