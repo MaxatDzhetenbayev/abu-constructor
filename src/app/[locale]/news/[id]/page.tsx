@@ -8,10 +8,10 @@ import { useWordPlural } from "@/shared/lib";
 import { backendImageUrl } from "@/shared/lib/constants";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, Skeleton } from "@/shared/ui";
 
+import { ChevronRight } from "lucide-react";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
-import { ChevronRight } from "lucide-react";
 
 export default function Page({ params }: any) {
     const { id, locale } = params;
@@ -99,7 +99,7 @@ export default function Page({ params }: any) {
                     </span>
                 )}
             </div>
-            <h2 className="text-calc-xl text-abu_primary font-bold font-montserrat">
+            <h2 className="text-calc-xl text-enbek_primary font-bold font-montserrat">
                 {data.title?.[locale] || "Заголовок отсутствует"}
             </h2>
             <Swiper

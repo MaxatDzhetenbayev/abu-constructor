@@ -1,5 +1,4 @@
 "use client";
-import React from 'react';
 
 import { IWidget } from '@/shared/types';
 
@@ -9,13 +8,13 @@ export const SideMenu = ({ widgets, locale }: { widgets: IWidget[], locale: stri
             {widgets.map(({ options }, idx) => {
                 const { content } = options;
                 return content?.[locale]?.title ? (
-                    <li key={idx} className=" bg-white  rounded-md border-l-4 border-transparent hover:border-abu_primary hover:bg-slate-50 ">
+                    <li key={idx} className=" bg-white  rounded-md border-l-4 border-transparent hover:border-enbek_primary hover:bg-slate-50 ">
                         <a
                             href={`#widget-${idx}`}
-                            className="text-abu_primary font-bold hover:underline p-2 block"
+                            className="text-enbek_primary font-bold hover:underline p-2 block"
                             onClick={(e) => {
                                 e.preventDefault();
-                              //   Проверяем наличие document на клиенте
+                                //   Проверяем наличие document на клиенте
                                 if (typeof document !== 'undefined') {
                                     const element = document.getElementById(`widget-${idx}`);
                                     if (element) {

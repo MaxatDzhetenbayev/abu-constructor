@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
 
 import { backendImageUrl } from '@/shared/lib/constants'
 
@@ -36,7 +35,7 @@ export const NewsItem = ({ item, locale }: { item: INews, locale: string }) => {
                         day: "numeric",
                     }).format(new Date(item.createdAt))}
             </p>
-            <h2 className="text-calc-md text-abu_primary font-bold font-montserrat">
+            <h2 className="text-calc-md text-enbek_primary font-bold font-montserrat">
                 {title}
             </h2>
             <p className="line-clamp-2">{description}</p>

@@ -14,7 +14,7 @@ function Cards({
     return (
         <section className="flex flex-col gap-3">
             {content?.[locale]?.title && (
-                <h2 className="text-3xl font-bold text-abu_primary">
+                <h2 className="text-3xl font-bold text-enbek_primary">
                     style={{ objectFit: "contain" }}
                     {content[locale].title}
                 </h2>

@@ -1,7 +1,7 @@
 'use client';
 import { motion, Variants } from 'framer-motion';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { backendImageUrl } from '@/shared/lib/constants';
 import { Modal, MoreArrow } from '@/shared/ui';
@@ -28,7 +28,7 @@ export const ProfileCard = ({ locale, content }: { locale: string, content: any 
                 </section>
                 <section className="flex flex-1 py-5 flex-col  ">
                     <div>
-                        <p className="text-abu_primary font-bold text-calc-md">{job_title}</p>
+                        <p className="text-enbek_primary font-bold text-calc-md">{job_title}</p>
                         <h2 className="font-bold text-calc-xl">{full_name}</h2>
                     </div>
                     <div className="flex items-center gap-5 mt-[15px]">
