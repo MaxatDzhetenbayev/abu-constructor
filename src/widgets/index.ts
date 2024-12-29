@@ -28,7 +28,7 @@ export { BreadCrumbs } from "./common/BreadCrumbs";
 export { BurgerMenu } from "./common/BurgerMenu/BurgerMenu";
 export { Header } from "./common/Header/ui/Header";
 export { NavigationPageContent } from "./common/NavigationPageContent";
-export { SearchWidget } from "./common/SearchWidget/SearchWidget";
+export { SearchWidget } from "./common/search-widget/search-widget";
 
 export { Counter } from "./common/Animations";
 

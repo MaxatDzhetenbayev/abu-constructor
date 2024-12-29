@@ -6,7 +6,7 @@ import { LogoSize } from "@/entities/logo/model";
 import { ChangeLocale } from "@/features";
 import { topHeaderMenuList } from "@/shared/config/topHeaderMenu";
 import { BurgerMenu } from "@/widgets";
-import { SearchWidget } from "@/widgets/common/SearchWidget/SearchWidget";
+import { SearchWidget } from "@/widgets/common/search-widget/search-widget";
 
 export const TopHeader = () => {
   return (
