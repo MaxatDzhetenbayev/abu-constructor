@@ -7,9 +7,6 @@ import { getWidgetByName } from "@/widgets";
 
 export const metadata: Metadata = {
   title: "Alikhan Bokeikhanov University",
-  icons: {
-    icon: "/icons/logo.png"
-  }
 };
 
 export default async function Page({
