@@ -55,21 +55,24 @@ const NavList = ({
     pages,
     locale,
     lvl,
+    parentSlug
 }: {
     pages: INavigation[];
     locale: string | string[];
     lvl: number;
+    parentSlug?: string
 }) => {
     const path = usePathname();
+    let fullParentSlug = parentSlug ? "/" + parentSlug : ""
     return pages.map((page) => {
         if (page.children.length === 0) {
             return (
                 <Link
                     className={clsx(
-                        "text-left pl-6 p-1 rounded-md text-white bg-enbek_primary_active",
-                        path == `/${locale}${page.slug}` && "font-bold"
+                        "text-left px-4  p-1 rounded-md text-white bg-enbek_primary",
+                        path == `/${locale}${fullParentSlug}/${page.slug}` && "font-bold"
                     )}
-                    href={`/${locale}/${page.slug}`}
+                    href={`/${locale}${fullParentSlug}/${page.slug}`}
                     key={page.id}
                 >
                     {page.title[locale as string]}
@@ -89,9 +92,9 @@ const NavList = ({
                     <DropdownMenuContent
                         side={lvl == 0 ? "bottom" : "right"}
                         align="start"
-                        className="flex flex-col gap-3  text-white bg-enbek_primary_active py-2 border-1  border-enbek_primary"
+                        className="flex flex-col gap-3  text-white bg-enbek_primary py-2 border-1  border-enbek_primary_active"
                     >
-                        <NavList lvl={lvl + 1} locale={locale} pages={page.children} />
+                        <NavList lvl={lvl + 1} locale={locale} pages={page.children} parentSlug={page.slug} />
                     </DropdownMenuContent>
                 </DropdownMenu>
             );
