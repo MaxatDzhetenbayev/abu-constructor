@@ -57,7 +57,7 @@ export const Footer = () => {
             <h3 className="text-4xl font-bold">{t("contacts.our")}</h3>
             <a href="tel:+77222423224">+7 (7222) 42-32-24</a>
             <a href="mailto:semey@abu.edu.kz">semey@abu.edu.kz</a>
-            <h3 className="text-4xl font-bold">{t("contacts.admissions")} с 20.06 по 25.08</h3>
+            <h3 className="text-4xl font-bold">{t("contacts.admissions")}</h3>
             <a href="tel:+77222423224">+7 (7222) 44-24-56</a>
             <a href="tel:+77222423224">+7 (700) 643 43 56</a>
           </div>
