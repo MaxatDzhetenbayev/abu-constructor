@@ -1,16 +1,19 @@
 "use client";
+import { useState } from "react";
+import Snowfall from "react-snowfall";
+
 import { NewsItem, useNews } from "@/entities/news";
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
   Skeleton,
 } from "@/shared/ui";
-import { useState } from "react";
+
+
 
 export default function Page({ params }: any) {
   const locale = params?.locale ?? "en";
@@ -26,16 +29,17 @@ export default function Page({ params }: any) {
 
   const totalPages = Math.ceil((data?.count ?? 0) / limit);
 
-  console.log(offset)
 
   const handleOffsetChange = (newOffset: number) => {
     if (newOffset >= 0 && newOffset < (data?.count ?? 0)) {
       setOffset(newOffset);
+      window.scrollTo(0, 0);
     }
   };
 
   return (
     <section className="max-w-[1200px] mx-auto mt-20 ">
+      <Snowfall />
       <section className="grid md:grid-cols-3 lg:grid-cols-4 gap-5 min-h-[800px]">
         {isLoading ? (
           <>
