@@ -31,7 +31,6 @@ export const SearchBar = () => {
       ) : (
         <ul>
           {data?.map((item: any) => {
-            console.log(item);
             return (
               <li key={item.id}>
                 <Link
