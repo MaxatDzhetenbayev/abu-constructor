@@ -6,7 +6,7 @@ import { GeneralPageProps } from "@/shared/types";
 import { getWidgetByName } from "@/widgets";
 
 export const metadata: Metadata = {
-  title: "Alikhan Bokeikhanov University",
+  title: "«АБАЙ ОБЛЫСЫНЫҢ ЕҢБЕК МОБИЛЬДІЛІГІ ОРТАЛЫҒЫ» КММ",
 };
 
 export default async function Page({
