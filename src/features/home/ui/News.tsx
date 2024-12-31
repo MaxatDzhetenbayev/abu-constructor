@@ -9,6 +9,7 @@ import React from "react";
 
 import { useNews } from "@/entities/news";
 import { INews } from "@/entities/news/model/types";
+import { LocaleType } from "@/i18n";
 import { backendImageUrl } from "@/shared/lib/constants";
 import { Container, Heading, Skeleton } from "@/shared/ui";
 
@@ -59,7 +60,7 @@ const Card = ({
   className,
 }: INews & { className?: string }) => {
 
-  const locale = useParams().locale as string;
+  const locale = useParams().locale as LocaleType[number];
 
   const head = title[locale];
   const { description, images } = content[locale];

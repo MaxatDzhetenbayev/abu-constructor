@@ -12,12 +12,12 @@ export const President = () => {
 
       <section className="max-w-[1500px] font-raleway px-3  w-full mx-auto my-16 rounded-[10px] overflow-hidden text-white">
         {/* Заголовок */}
-        <motion.h2
+        {/* <motion.h2
           className="text-calc-2xl max-lg:text-center  font-bold mb-20"
           {...leftViewAnim}
         >
           {t("title")}
-        </motion.h2>
+        </motion.h2> */}
 
         <section className="w-full flex flex-col max-xl:gap-5 items-center xl:grid grid-cols-[auto_1fr] ">
           <motion.div {...leftViewAnim} className="xl:mr-3">
