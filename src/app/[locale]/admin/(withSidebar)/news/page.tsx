@@ -10,6 +10,8 @@ import { Button, Input, Modal } from '@/shared/ui'
 import QuillEditor from '@/shared/ui/quill-editor'
 
 
+
+
 export default function NewsPage() {
     const lang = useParams().locale as LocaleType[number]
     const { data, isLoading, isError } = useNews({})
@@ -46,7 +48,7 @@ const NewsModalContent = ({ news: { id } }: { news: Pick<INews, "id"> }) => {
 
     const { data, isLoading, isError } = useNewsbyId(id)
 
-    const { register, reset, formState, control } = useForm({
+    const { register, reset, control } = useForm({
 
     })
 
@@ -55,9 +57,6 @@ const NewsModalContent = ({ news: { id } }: { news: Pick<INews, "id"> }) => {
             reset(data)
         }
     }, [data])
-
-    console.log(formState.defaultValues)
-
 
     return (
         <section>
