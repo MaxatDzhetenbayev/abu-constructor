@@ -1,11 +1,16 @@
 import { backendUrl } from "@/shared/lib/constants";
 
-import { INews } from "./types";
+import { INewsResponse } from "./types";
 
 import { useQuery } from "@tanstack/react-query";
 
-export const useNews = ({ limit, offset }: { limit?: number, offset?: number }) => {
-    return useQuery<{ items: INews[], count: number }>({
+interface IUseNewsProps {
+    limit?: number;
+    offset?: number;
+}
+
+export const useNews = ({ limit, offset }: IUseNewsProps) => {
+    return useQuery<INewsResponse>({
         queryKey: ["news", limit, offset],
         queryFn: async () => {
             const response = await fetch(`${backendUrl}/news?limit=${limit}&offset=${offset}`);

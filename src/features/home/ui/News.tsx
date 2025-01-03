@@ -3,14 +3,15 @@ import clsx from "clsx";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import React from "react";
 
-import { Container, Heading, Skeleton } from "@/shared/ui";
 import { useNews } from "@/entities/news";
 import { INews } from "@/entities/news/model/types";
-import { useParams } from "next/navigation";
+import { LocaleType } from "@/i18n";
 import { backendImageUrl } from "@/shared/lib/constants";
+import { Container, Heading, Skeleton } from "@/shared/ui";
 
 
 export const News = () => {
@@ -59,7 +60,7 @@ const Card = ({
   className,
 }: INews & { className?: string }) => {
 
-  const locale = useParams().locale as string;
+  const locale = useParams().locale as LocaleType[number];
 
   const head = title[locale];
   const { description, images } = content[locale];

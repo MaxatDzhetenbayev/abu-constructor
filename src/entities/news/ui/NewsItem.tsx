@@ -2,11 +2,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
+import { LocaleType } from '@/i18n'
 import { backendImageUrl } from '@/shared/lib/constants'
 
 import { INews } from '../model/types'
 
-export const NewsItem = ({ item, locale }: { item: INews, locale: string }) => {
+export const NewsItem = ({ item, locale }: { item: INews, locale: LocaleType[number] }) => {
 
     const title = item.title[locale];
     const { description, images } = item.content[locale];

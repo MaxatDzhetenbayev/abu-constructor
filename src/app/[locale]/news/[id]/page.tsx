@@ -1,9 +1,11 @@
 "use client";
+import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { useNewsbyId, viewPluralWordsCollection } from "@/entities/news";
+import { LocaleType } from '@/i18n'
 import { useWordPlural } from "@/shared/lib";
 import { backendImageUrl } from "@/shared/lib/constants";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, Skeleton } from "@/shared/ui";
@@ -11,9 +13,8 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, Skeleton } 
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
-import { ChevronRight } from "lucide-react";
 
-export default function Page({ params }: any) {
+export default function Page({ params }: { params: { id: number, locale: LocaleType[number] } }) {
     const { id, locale } = params;
     const { data, isLoading, isError } = useNewsbyId(id);
 

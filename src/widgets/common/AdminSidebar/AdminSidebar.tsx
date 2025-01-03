@@ -7,8 +7,8 @@ import { ChangeLocale, LogoutButton } from "@/features";
 import { Navlink } from "./Navlink";
 
 const links = [
-  { label: "links.home.label", href: "links.home.href" },
-  { label: "links.settings.label", href: "links.settings.href" },
+  // { label: "links.home.label", href: "links.home.href" },
+  // { label: "links.settings.label", href: "links.settings.href" },
   { label: "links.pages.label", href: "links.pages.href" },
   { label: "links.news.label", href: "links.news.href" },
 ];

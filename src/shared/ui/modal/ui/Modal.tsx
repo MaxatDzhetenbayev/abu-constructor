@@ -8,6 +8,7 @@ interface ModalProps {
     modalSlot: React.ReactNode | string
     headerSlot?: React.ReactNode | string;
     children: React.ReactNode;
+    isWfull?: boolean;
 }
 
 export const Modal = ({ modalSlot, children, headerSlot }: ModalProps) => {
@@ -16,7 +17,9 @@ export const Modal = ({ modalSlot, children, headerSlot }: ModalProps) => {
             <DialogTrigger asChild>
                 {children}
             </DialogTrigger>
-            <DialogContent className="max-h-[80%] overflow-auto max-w-[90%] [@media(min-width:1180px)]:max-w-[50%]">
+            <DialogContent className=
+            "max-h-[80%] overflow-auto max-w-[90%] [@media(min-width:1180px)]:max-w-[50%]"
+            >
                 <DialogHeader>
                     <DialogTitle className={clsx(!headerSlot ? "opacity-0" : "")}>{headerSlot}</DialogTitle>
                 </DialogHeader>
