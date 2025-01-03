@@ -20,28 +20,25 @@ export const SearchBar = () => {
   return (
     <section>
       <Input
-        placeholder="Напишите для поиска"
-        className="w-48"
-        label=""
+        placeholder="Напишите для поиска по сайту"
+        className="w-full active:ring-0 active:outline-none"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
       {isLoading ? (
         <p>Loading...</p>
       ) : (
-        <ul>
+        <ul className="mt-6">
           {data?.map((item: any) => {
             return (
-              <li key={item.id}>
+              <li key={item.id} className="border border-gray-200">
                 <Link
                   href={`/${locale}/${item.slug}`}
                   className="flex items-center justify-between p-2 hover:bg-muted rounded-md"
                 >
                   <span className="flex flex-col gap-1">
-                    <p className="text-[12px]">{item.all_title}</p>
-                    <h3 className="quill-content ql-size-large">
-                      {item.title}
-                    </h3>
+                    <p className="text-[14px]">{item.all_title}</p>
+                    <h3 className="">{item.title}</h3>
                   </span>
                   <Badge variant="outline">{t(item.type)}</Badge>
                 </Link>
