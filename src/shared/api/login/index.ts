@@ -1,8 +1,15 @@
-import { customFetch } from "@/shared/api";
+import { backendUrl } from "@/shared/lib/constants";
 
-export const Login = (body: {
+export const fetchLogin = async (body: {
   username: string;
   password: string;
-}): Promise<{ token: string }> => {
-  return customFetch({ method: "POST", path: "token/", body: { json: body } });
+}) => {
+  const response = await fetch(`${backendUrl}/auth/login`, {
+    method: "POST",
+    body: JSON.stringify(body),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+  return response.json();
 };

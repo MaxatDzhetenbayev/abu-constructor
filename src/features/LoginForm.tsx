@@ -1,10 +1,9 @@
 "use client";
-import { setCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { FormEvent, useState } from "react";
 
-import { Login } from "@/shared/api/login";
+import { fetchLogin } from "@/shared/api/login";
 import { Button, Input } from "@/shared/ui";
 
 import { useMutation } from "@tanstack/react-query";
@@ -16,9 +15,8 @@ export const LoginForm = () => {
   const router = useRouter();
   const { mutate, isPending } = useMutation({
     mutationKey: ["login"],
-    mutationFn: Login,
-    onSuccess: (data) => {
-      setCookie("token", data.token);
+    mutationFn: fetchLogin,
+    onSuccess: () => {
       router.refresh();
     },
   });
@@ -47,3 +45,4 @@ export const LoginForm = () => {
     </form>
   );
 };
+
