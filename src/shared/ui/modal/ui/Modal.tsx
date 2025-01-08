@@ -28,7 +28,7 @@ export const Modal = ({
       <DialogContent
         className={clsx(
           isWfull
-            ? "max-w-[90%]"
+            ? "max-w-[90%] overflow-auto"
             : "max-h-[80%] overflow-auto max-w-[90%] [@media(min-width:1180px)]:max-w-[50%]"
         )}
       >
