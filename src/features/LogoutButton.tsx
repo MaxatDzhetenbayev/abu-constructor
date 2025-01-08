@@ -1,8 +1,8 @@
 "use client";
-import { deleteCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 
+import { fetchLogout } from "@/shared/api/login";
 import { Button } from "@/shared/ui";
 
 export const LogoutButton = () => {
@@ -11,8 +11,8 @@ export const LogoutButton = () => {
   return (
     <Button
       variant={"outline"}
-      onClick={() => {
-        deleteCookie("token");
+      onClick={async () => {
+        await fetchLogout()
         router.refresh();
       }}
       className="text-black font-bold md:justify-self-center md:w-full"

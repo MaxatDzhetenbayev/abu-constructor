@@ -9,14 +9,14 @@ const intlMiddleware = createIntlMiddleware({
 
 // Authentication and redirection middleware
 function authMiddleware(req: NextRequest) {
-  const token = req.cookies.get("token");
+  const token = req.cookies.get("accessToken");
   const { pathname } = req.nextUrl;
 
   const locale = pathname.split("/")[1];
 
   if (pathname.startsWith(`/${locale}/admin`)) {
     if (token && pathname === `/${locale}/admin/login`) {
-      return NextResponse.redirect(new URL(`/${locale}/admin`, req.url));
+      return NextResponse.redirect(new URL(`/${locale}/admin/pages`, req.url));
     }
     if (!token && pathname !== `/${locale}/admin/login`) {
       return NextResponse.redirect(new URL(`/${locale}/admin/login`, req.url));

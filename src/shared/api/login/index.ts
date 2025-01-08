@@ -10,6 +10,16 @@ export const fetchLogin = async (body: {
     headers: {
       "Content-Type": "application/json",
     },
+    credentials: "include",
   })
   return response.json();
 };
+
+
+export const fetchLogout = async () => {
+  const response = await fetch(`${backendUrl}/auth/logout`, {
+    method: "POST",
+    credentials: "include",
+  });
+  return response.json();
+}
