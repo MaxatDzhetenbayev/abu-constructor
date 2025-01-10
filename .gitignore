@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 .yarn/install-state.gz
+.idea/
 
 # testing
 /coverage
@@ -40,3 +41,5 @@ next-env.d.ts
 /src/shared/lib/constants.ts
 
 .env
+# Sentry Config File
+.env.sentry-build-plugin
