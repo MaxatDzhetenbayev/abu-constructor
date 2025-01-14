@@ -1,18 +1,27 @@
+import { setCookie } from "cookies-next";
+
 import { backendUrl } from "@/shared/lib/constants";
 
 export const fetchLogin = async (body: {
   username: string;
   password: string;
 }) => {
-  const response = await fetch(`${backendUrl}/auth/login`, {
+  await fetch(`${backendUrl}/auth/login`, {
     method: "POST",
     body: JSON.stringify(body),
     headers: {
       "Content-Type": "application/json",
     },
-    credentials: "include",
+
+  }).then((res) => {
+    if (!res.ok) {
+      throw new Error("Ошибка");
+    }
+    return res.json();
+  }).then((res) => {
+    
+    setCookie("token", res.token)
   })
-  return response.json();
 };
 
 
