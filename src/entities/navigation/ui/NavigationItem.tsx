@@ -32,7 +32,7 @@ export const NavigationItem = ({
   return (
     <>
       {item.navigation_type === "link" ||
-      item.navigation_type === "group-link" ? (
+        item.navigation_type === "group-link" ? (
         <Link
           style={{ fontSize: "clamp(16px, 1.5vw, 20px)" }}
           className={clsx(
@@ -67,7 +67,7 @@ export const NavigationItem = ({
             {item.title[locale as string]}
             <ChevronRight
               className={clsx(
-                "transitio text-white",
+                "transitio text-font_primary",
                 isHoveredItem ? "rotate-90" : "rotate-0"
               )}
             />
@@ -101,7 +101,7 @@ const DropDownMenu = ({
       {element.children.map((child) => (
         <li key={child.id} className="p-2 group">
           <Link
-            className="inline-block p-1 text-white group-hover:underline"
+            className="inline-block p-1 text-font_primary group-hover:underline"
             href={`/${locale}/${element.slug}/${child.slug}`}
           >
             {child.title[locale]}

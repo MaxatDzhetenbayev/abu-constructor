@@ -4,11 +4,14 @@
 
 @layer base {
   :root {
-    --abu-primary: #7c0000;
-    --abu-primary-hover: #560000;
+    --abu-primary: #F5F5F3;
+    --abu-secondary: #7c0000;
+    --abu-secondary-hover: #560000;
     --swiper-pagination-color: var(--abu-primary);
     --font-raleway: "Raleway", sans-serif;
     --font-montserrat: "Montserrat", sans-serif;
+    --font-primary: "#000";
+
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 
@@ -74,6 +77,7 @@
 @layer base {
   * {
     @apply border-border;
+
     .gallery-swiper {
       max-width: 900px;
       width: 100%;
@@ -94,6 +98,7 @@
       width: 100%;
     }
   }
+
   body {
     @apply bg-background text-foreground;
   }

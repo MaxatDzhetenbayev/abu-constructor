@@ -21,7 +21,7 @@ function List({
 }) {
   return (
     <section className="flex flex-col gap-5  h-full">
-      <h2 className="text-3xl font-bold text-[#690000]">
+      <h2 className="text-3xl font-bold text-font_primary">
         {content?.[locale]?.title}
       </h2>
       <ul className="flex flex-col  gap-2">

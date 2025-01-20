@@ -9,10 +9,10 @@ function Links({
 }) {
   return (
     <section className="flex flex-col gap-3">
-      <h2 className="text-3xl font-bold text-abu_primary">
+      <h2 className="text-3xl font-bold text-font_primary">
         {content[locale].title}
       </h2>
-      <ul className="transition-colors duration-150 flex flex-col gap-3 ">
+      <ul className="transition-colors duration-150 flex flex-col gap-4 ">
         {contents.map(({ content }, idx) => (
           <li
             key={idx}

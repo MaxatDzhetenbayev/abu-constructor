@@ -14,7 +14,7 @@ export const getNavbarClass = ({
   locale,
 }: GetNavbarClassProps): string => {
   if (scrolled) return navbarStyles.scrolled;
-  if (hoveredItem) return "bg-abu_primary";
+  if (hoveredItem) return "bg-[#640000]";
   if (path === `/${locale}/home`) return navbarStyles.notHovered;
   return navbarStyles.hovered;
 };

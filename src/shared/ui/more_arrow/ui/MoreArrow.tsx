@@ -8,22 +8,22 @@ interface MoreArrowProps {
 }
 
 export const MoreArrow = ({ width, height }: MoreArrowProps) => {
-    const commonClasses = "group-hover:hidden";
-    const hoverClasses = "hidden group-hover:block";
+    // const commonClasses = "group-hover:hidden";
+    // const hoverClasses = "hidden group-hover:block";
     return (
         <>
             <Image
                 src="/icons/right-arrow-primary.svg"
                 width={width}
                 height={height}
-                className={commonClasses}
+                // className={commonClasses}
                 alt="Кнопка для активации"
             />
             <Image
                 src="/icons/right-arrow-white.svg"
                 width={width}
                 height={height}
-                className={hoverClasses}
+                // className={hoverClasses}
                 alt="Кнопка для активации"
             />
         </>

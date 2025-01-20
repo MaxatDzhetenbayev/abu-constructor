@@ -10,7 +10,7 @@ function Text({
   return (
     <section>
       {title && (
-        <h2 className="text-3xl font-bold text-abu_primary">{title}</h2>
+        <h2 className="text-3xl font-bold text-font_primary">{title}</h2>
       )}
       {body && (
         <section className="flex flex-1 py-5 flex-col gap-4 md:gap-7 ">
