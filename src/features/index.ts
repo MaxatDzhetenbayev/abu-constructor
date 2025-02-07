@@ -11,3 +11,4 @@ export {
 } from "./navigation/admin-navigation";
 export { ContentManage } from "./content";
 export { FileUploader } from "./file-upload";
+export { CreateNewsButton } from "./news/index";

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import clsx from "clsx";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
@@ -13,7 +13,6 @@ import { LocaleType } from "@/i18n";
 import { backendImageUrl } from "@/shared/lib/constants";
 import { Container, Heading, Skeleton } from "@/shared/ui";
 
-
 export const News = () => {
   const t = useTranslations("home");
 
@@ -27,29 +26,24 @@ export const News = () => {
 			 <Card key={news[0].desc} {...news[0]} />
 			 <Events />
 		  </section> */}
-        {
-          isLoading ? (
-            <section>
-              {skeletonNews
-                .map((item, idx) => (
-                  <article key={idx}>
-                    <Skeleton className="w-full h-[260px]" />
-                    <Skeleton className="w-full h-[20px] mt-3" />
-                    <Skeleton className="w-full h-[50px]mt-5" />
-                  </article>
-                ))}
-            </section>
-          ) : (
-            <section className="grid grid-cols-3 gap-4 max-lg:flex max-lg:flex-col">
-              {data?.items?.map((card) => (
-                <Card key={card.id} {...card} />
-              ))}
-            </section>
-          )
-        }
+        {isLoading ? (
+          <section>
+            {skeletonNews.map((item, idx) => (
+              <article key={idx}>
+                <Skeleton className="w-full h-[260px]" />
+                <Skeleton className="w-full h-[20px] mt-3" />
+                <Skeleton className="w-full h-[50px] mt-5" />
+              </article>
+            ))}
+          </section>
+        ) : (
+          <section className="grid grid-cols-3 gap-4 max-lg:flex max-lg:flex-col">
+            {data?.items?.map((card) => <Card key={card.id} {...card} />)}
+          </section>
+        )}
         <MoreButton maxWidth="506px" link="news" />
       </section>
-    </Container >
+    </Container>
   );
 };
 
@@ -59,7 +53,6 @@ const Card = ({
   id,
   className,
 }: INews & { className?: string }) => {
-
   const locale = useParams().locale as LocaleType[number];
 
   const head = title[locale];
@@ -74,15 +67,26 @@ const Card = ({
         )}
       >
         <div className="relative  aspect-square md:max-h-[380px] lg:max-h-[320px]">
-          <Image src={`${backendImageUrl}${images[0]}`} fill alt={head} className="object-cover" />
+          <Image
+            src={`${backendImageUrl}${images?.[0]}`}
+            fill
+            alt={head}
+            className="object-cover"
+          />
         </div>
         <div className="">
-          <h2 className="text-abu_primary font-semibold text-calc-xl">{head}</h2>
-          <p className="text-[#3E3232] text-calc-md mt-3">{description.length > 80 ? description.slice(0, 75) + "..." : description}</p>
+          <h2 className="text-abu_primary font-semibold text-calc-xl">
+            {head}
+          </h2>
+          <p
+            className="text-[#3E3232] text-calc-md mt-3 line-clamp-2"
+            dangerouslySetInnerHTML={{
+              __html: description,
+            }}
+          ></p>
         </div>
       </article>
     </Link>
-
   );
 };
 const MoreButton = ({

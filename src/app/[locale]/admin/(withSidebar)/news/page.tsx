@@ -5,6 +5,7 @@ import { Controller, useForm } from "react-hook-form";
 
 import { useNews, useNewsbyId } from "@/entities/news";
 import { INews } from "@/entities/news/model/types";
+import { CreateNewsButton } from "@/features";
 import { LocaleRecordType, locales, LocaleType } from "@/i18n";
 import { Button, Input, Modal } from "@/shared/ui";
 import QuillEditor from "@/shared/ui/quill-editor";
@@ -13,10 +14,10 @@ export default function NewsPage() {
   const lang = useParams().locale as LocaleType[number];
   const { data, isLoading, isError } = useNews({});
 
-
   return (
     <section>
       <section>
+        <CreateNewsButton />
         {isLoading && <p>Загрузка...</p>}
         {isError && <p>Ошибка загрузки</p>}
         {data?.items && (
@@ -58,20 +59,21 @@ const NewsModalContent = ({ news: { id } }: { news: Pick<INews, "id"> }) => {
     }
   }, [data]);
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, locale: LocaleType[number]) => {
+  const handleFileChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    locale: LocaleType[number]
+  ) => {
     const files = Array.from(e.target.files || []);
 
     setUploadedFiles((prev) => ({
       ...prev,
       [locale]: [...prev[locale], ...files],
     }));
-
   };
-
 
   const onSubmit = (data: any) => {
     console.log(data, uploadedFiles);
-  }
+  };
 
   return (
     <section>
@@ -131,8 +133,7 @@ const NewsModalContent = ({ news: { id } }: { news: Pick<INews, "id"> }) => {
                     <p key={index}>{file.name}</p>
                   ))}
                 </div>
-              )
-              )}
+              ))}
             </section>
           </section>
           <Button type="submit">Сохранить</Button>
