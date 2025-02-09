@@ -1,7 +1,6 @@
 import { backendUrl } from "@/shared/lib/constants";
 
-import { INewsResponse } from "./types";
-
+import { INewsResponse } from "../types/types";
 import { useQuery } from "@tanstack/react-query";
 
 interface IUseNewsProps {

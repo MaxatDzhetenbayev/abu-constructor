@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { useNewsbyId, viewPluralWordsCollection } from "@/entities/news";
+import { useNewsById, viewPluralWordsCollection } from "@/entities/news";
 import { LocaleType } from "@/i18n";
 import { useWordPlural } from "@/shared/lib";
 import { backendImageUrl } from "@/shared/lib/constants";
@@ -26,7 +26,7 @@ export default function Page({
   params: { id: number; locale: LocaleType[number] };
 }) {
   const { id, locale } = params;
-  const { data, isLoading, isError } = useNewsbyId(id);
+  const { data, isLoading, isError } = useNewsById(id);
 
   if (isLoading) {
     return (

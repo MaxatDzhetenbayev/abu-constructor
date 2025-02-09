@@ -5,7 +5,7 @@ import React from "react";
 import { LocaleType } from "@/i18n";
 import { backendImageUrl } from "@/shared/lib/constants";
 
-import { INews } from "../model/types";
+import { INews } from "../types/types";
 
 export const NewsItem = ({
   item,

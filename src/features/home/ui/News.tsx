@@ -8,7 +8,7 @@ import { useTranslations } from "next-intl";
 import React from "react";
 
 import { useNews } from "@/entities/news";
-import { INews } from "@/entities/news/model/types";
+import { INews } from "@/entities/news/types/types";
 import { LocaleType } from "@/i18n";
 import { backendImageUrl } from "@/shared/lib/constants";
 import { Container, Heading, Skeleton } from "@/shared/ui";

@@ -3,8 +3,8 @@ import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 
-import { useNews, useNewsbyId } from "@/entities/news";
-import { INews } from "@/entities/news/model/types";
+import { useNews, useNewsById } from "@/entities/news";
+import { INews } from "@/entities/news/types/types";
 import { CreateNewsButton } from "@/features";
 import { LocaleRecordType, locales, LocaleType } from "@/i18n";
 import { Button, Input, Modal } from "@/shared/ui";
@@ -44,7 +44,7 @@ export default function NewsPage() {
 }
 
 const NewsModalContent = ({ news: { id } }: { news: Pick<INews, "id"> }) => {
-  const { data, isLoading, isError } = useNewsbyId(id);
+  const { data, isLoading, isError } = useNewsById(id);
 
   const { register, reset, control, handleSubmit } = useForm();
   const [uploadedFiles, setUploadedFiles] = useState<LocaleRecordType<File[]>>({
