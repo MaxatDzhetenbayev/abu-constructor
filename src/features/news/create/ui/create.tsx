@@ -32,7 +32,7 @@ const CreateNewsModal = () => {
       }
     });
 
-    const response = await fetch(`${backendUrl}api/news`, {
+    const response = await fetch(`${backendUrl}/news`, {
       method: "POST",
       body: formData,
     });
