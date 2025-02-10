@@ -9,7 +9,7 @@ import { useState } from "react";
 import { topHeaderMenuList } from "@/shared/config/topHeaderMenu";
 import { backendUrl } from "@/shared/lib/constants";
 import { INavigation } from "@/shared/types";
-import { Button,Drawer, DrawerContent, DrawerTrigger } from "@/shared/ui";
+import { Button, Drawer, DrawerContent, DrawerTrigger } from "@/shared/ui";
 
 import { useQuery } from "@tanstack/react-query";
 
@@ -36,7 +36,7 @@ export const BurgerMenu = () => {
       >
         <Menu size={32} />
       </Button>
-      <DrawerContent className="rounded-none bg-abu_primary border-none px-4 py-14">
+      <DrawerContent className="rounded-none bg-[#640000] border-none px-4 py-14">
         <div className="relative flex flex-col gap-3 text-xl text-white">
           <Button
             onClick={() => setOpen(false)}
@@ -99,7 +99,7 @@ const MenuLink = ({
         <DrawerTrigger className="text-start flex justify-start items-center gap-3">
           {page.title[locale]} <ChevronRight className="" />
         </DrawerTrigger>
-        <DrawerContent className="rounded-none bg-abu_primary   border-none px-4 py-14">
+        <DrawerContent className="rounded-none bg-[#640000]   border-none px-4 py-14">
           <div className=" relative flex flex-col gap-3 text-xl text-white ">
             <Button
               onClick={() => setOpen(false)}

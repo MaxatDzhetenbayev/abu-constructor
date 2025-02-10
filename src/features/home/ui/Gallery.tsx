@@ -21,13 +21,13 @@ export const Gallery = () => {
 
   return (
     <section className="max-w-[1500px] font-raleway px-3  w-full mx-auto">
-      <Heading>{t("home.gallery.title")}</Heading>
+      <Heading className="text-font_primary">{t("home.gallery.title")}</Heading>
       <section className="grid grid-cols-1 lg:grid-cols-[566px,1fr] gap-3">
         <section className="flex flex-col max-lg:order-2 max-lg:text-justify  gap-10">
           <p>{t("home.gallery.body")}</p>
           <Link
             href={`/${locale}/university/media_resources`}
-            className="flex py-3 w-full justify-center items-center rounded-lg bg-abu_primary gap-2 text-white text-3xl"
+            className="flex py-3 w-full justify-center items-center rounded-lg bg-[#000] gap-2  text-white text-2xl font-bold"
           >
             {t("more")}
             <ArrowRight color="white" />

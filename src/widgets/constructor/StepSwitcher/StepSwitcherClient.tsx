@@ -34,7 +34,7 @@ export function StepSwitcherClient({
   }
   return (
     <section>
-      <h2 className="text-calc-xl font-bold text-abu_primary">
+      <h2 className="text-calc-xl font-bold text-font_primary">
         {content[locale]?.title}
       </h2>
       <section className="flex flex-col mt-5">
@@ -47,8 +47,8 @@ export function StepSwitcherClient({
             return (
               <button
                 className={clsx(
-                  "py-4 flex-1 font-bold text-calc-md text-center  md:border-b-4 border-transparent text-white ",
-                  activeStep === content.link ? " border-white max-md:bg-abu_primary_hover" : ""
+                  "py-4 flex-1 font-bold text-calc-md text-center  md:border-b-4 border-transparent text-font_primary ",
+                  activeStep === content.link ? "border-black max-md:bg-abu_primary_hover" : ""
                 )}
                 key={content[locale].title}
                 onClick={() => setActiveStep(content.link)}

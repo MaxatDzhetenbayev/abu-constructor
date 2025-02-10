@@ -21,7 +21,7 @@ export default async function Layout({
       <footer className="w-full  bg-abu_primary">
         <div className=" max-w-[1200px] mx-auto p-10 ">
           <div className=" flex justify-between items-center mb-10">
-            <div className="flex flex-col gap-4  text-white">
+            <div className="flex flex-col gap-4  text-font_primary">
               <h2 className="text-2xl">Наши контакты</h2>
               <div className="flex flex-col gap-3">
                 <div className="flex gap-4">
@@ -39,8 +39,8 @@ export default async function Layout({
               </div>
             </div>
           </div>
-          <Separator />
-          <span className="text-white block mt-4">
+          <Separator className="" />
+          <span className="text-font_primary block mt-4">
             ©{new Date().getFullYear()} Все права защищены.
           </span>
         </div>

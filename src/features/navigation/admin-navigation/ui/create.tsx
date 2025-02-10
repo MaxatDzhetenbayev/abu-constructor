@@ -4,7 +4,7 @@ import React, { useRef, useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 
 import { INavigation, NavigationEnum } from "@/entities";
-import { FileUploader } from "@/features/file-upload";
+// import { FileUploader } from "@/features/file-upload";
 import { queryClient } from "@/shared/lib/client";
 import {
   Button,
@@ -134,7 +134,7 @@ export const AdminNavigationCreate = ({
           {parent_id ? t("create.childBtn") : t("create.btn")}
         </Button>
       </Modal>
-      <FileUploader />
+      {/* <FileUploader /> */}
     </>
   );
 };

@@ -47,6 +47,7 @@ const config = {
       colors: {
         abu_primary: "var(--abu-primary)",
         abu_primary_hover: "var(--abu-primary-hover)",
+        font_primary: "var(--font-primary)",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

@@ -10,10 +10,10 @@ export const Infographics = () => {
 
   return (
     <Container>
-      <Heading className="mb-4 md:mb-8">
+      <Heading className="mb-4 md:mb-8 text-font_primary">
         <>{t("infographics.title")}</>
       </Heading>
-      <section className="flex justify-center flex-wrap xl:flex-nowrap gap-2   md:gap-5  rounded-md ">
+      <section className="flex justify-center flex-wrap xl:flex-nowrap gap-2   md:gap-5  rounded-md overflow-hidden">
         {Array.from({ length: 5 })
           .fill(1)
           .map((s, idx) => (
@@ -21,10 +21,10 @@ export const Infographics = () => {
               key={idx}
               className="flex items-center relative h-[5.75rem] md:h-[10.75rem] rounded-md px-2.5 w-[17.875rem] bg-abu_primary "
             >
-              <span className="text-white font-bold text-calc-xl">
+              <span className="text-font_primary font-bold text-calc-xl">
                 {t(`infographics.${idx + 1}`)}
               </span>
-              <Image
+              {/* <Image
                 className={clsx(
                   "absolute left-1/2 -bottom-10   h-auto",
                   {
@@ -39,7 +39,7 @@ export const Infographics = () => {
                 alt={`index-${idx + 1}`}
                 width={100}
                 height={100}
-              />
+              /> */}
             </section>
           ))}
       </section>

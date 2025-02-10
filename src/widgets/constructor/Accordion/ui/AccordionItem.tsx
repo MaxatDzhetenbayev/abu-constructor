@@ -16,7 +16,7 @@ export const AccordionItem = ({
       <button
         onClick={() => setIsOpen((prev) => !prev)}
         className={clsx(
-          "bg-abu_primary hover:bg-abu_primary_hover w-full text-left p-4 rounded-t-xl text-white flex justify-between items-center text-2xl",
+          "bg-abu_primary hover:bg-[#919191] w-full text-left p-4 rounded-t-xl text-font_primary flex justify-between items-center text-2xl",
           !isOpen && "rounded-b-xl"
         )}
       >

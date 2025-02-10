@@ -8,7 +8,7 @@ interface ListItemProps {
 }
 export const ListItem = ({ children, icon, href }: ListItemProps) => {
   return (
-    <li className="bg-abu_primary w-full text-left p-4 rounded-xl text-white flex justify-between align-middle">
+    <li className="bg-abu_primary w-full text-left p-4 rounded-xl text-font_primary flex justify-between align-middle">
       <a
         target="_blank"
         href={href}

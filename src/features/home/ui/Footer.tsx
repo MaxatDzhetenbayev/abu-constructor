@@ -36,7 +36,7 @@ export const Footer = () => {
   return (
     <Container>
       <div className="flex gap-5 items-center mb-[3.938rem] justify-center md:justify-end">
-        <Heading className="md:mb-0">
+        <Heading className="md:mb-0 text-font_primary">
           {t("accreditation&Recognition.title")}
         </Heading>
         <img
@@ -53,7 +53,7 @@ export const Footer = () => {
       <div className="grid  grid-cols-1 md:grid-cols-2 gap-4">
         {getMap({ locale: locale as string })}
         <div className="flex flex-col gap-5">
-          <div className="bg-abu_primary rounded-md text-white p-10 flex flex-col gap-4 text-2xl min-h-[216px]">
+          <div className="bg-abu_primary rounded-md text-font_primary p-10 flex flex-col gap-4 text-2xl min-h-[216px]">
             <h3 className="text-4xl font-bold">{t("contacts.our")}</h3>
             <a href="tel:+77222423224">+7 (7222) 42-32-24</a>
             <a href="mailto:semey@abu.edu.kz">semey@abu.edu.kz</a>
@@ -61,7 +61,7 @@ export const Footer = () => {
             <a href="tel:+77222423224">+7 (7222) 44-24-56</a>
             <a href="tel:+77222423224">+7 (700) 643 43 56</a>
           </div>
-          <div className="bg-abu_primary rounded-md text-white p-10 min-h-[216px]">
+          <div className="bg-abu_primary rounded-md text-font_primary p-10 min-h-[216px]">
             <h3 className="text-4xl mb-[35px] font-bold">
               {t("contacts.social")}
             </h3>

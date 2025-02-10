@@ -1,4 +1,4 @@
-import { motion,useMotionValue } from "framer-motion";
+import { motion, useMotionValue } from "framer-motion";
 import { useTranslations } from "next-intl";
 import React, { useEffect, useRef, useState } from "react";
 
@@ -10,7 +10,7 @@ export const Partners = () => {
   return (
     <section className="bg-abu_primary py-20">
       <Container className="grid place-items-center   ">
-        <Heading className="text-center font-bold mb-[37px] text-white">
+        <Heading className="text-center font-bold mb-[37px] text-font_primary">
           {t("title")}
         </Heading>
         {/* <PartnersSlider /> */}
@@ -193,7 +193,7 @@ const PartnersCarousel = () => {
               }}
               className="w-[60%] h-[60%]" // Ensure both width and height are set
             />
-            <h2 className="font-bold text-center text-md md:text-lg lg:text-xl text-abu_primary">
+            <h2 className="font-bold text-center text-md md:text-lg lg:text-xl text-[#000]">
               {i.name}
             </h2>
           </motion.div>

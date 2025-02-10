@@ -32,7 +32,7 @@ function Gallery({
   const { title } = content[locale];
   return (
     <section>
-      <h2 className="text-2xl font-bold">{title.toLocaleUpperCase()}</h2>
+      <h2 className="text-2xl font-bold text-font_primary">{title.toLocaleUpperCase()}</h2>
       <section className="flex flex-wrap gap-3 w-full mt-5">
         {variant === "slider" ? (
           <SwiperGallery contents={contents} />
