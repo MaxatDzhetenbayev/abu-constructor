@@ -8,7 +8,7 @@ import QuillEditor from "@/shared/ui/quill-editor";
 
 export const CreateNewsButton = () => {
   return (
-    <Modal modalSlot={<CreateNewsModal />}>
+    <Modal isWfull={true} modalSlot={<CreateNewsModal />}>
       <Button size={"sm"}>
         <Plus />
       </Button>
@@ -92,7 +92,7 @@ const CreateNewsModal = () => {
             ))}
           </section>
         </section>
-        <Button type="submit">Сохранить</Button>
+        <Button type="submit">Создать</Button>
       </form>
     </section>
   );

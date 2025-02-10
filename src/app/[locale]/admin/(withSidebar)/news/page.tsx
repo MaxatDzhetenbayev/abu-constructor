@@ -1,12 +1,14 @@
 "use client";
+import Link from "next/link";
 import { useParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 
 import { useNews, useNewsById } from "@/entities/news";
 import { INews } from "@/entities/news/types/types";
 import { CreateNewsButton } from "@/features";
-import { LocaleRecordType, locales, LocaleType } from "@/i18n";
+import { locales, LocaleType } from "@/i18n";
+import { backendImageUrl } from "@/shared/lib/constants";
 import { Button, Input, Modal } from "@/shared/ui";
 import QuillEditor from "@/shared/ui/quill-editor";
 
@@ -47,11 +49,6 @@ const NewsModalContent = ({ news: { id } }: { news: Pick<INews, "id"> }) => {
   const { data, isLoading, isError } = useNewsById(id);
 
   const { register, reset, control, handleSubmit } = useForm();
-  const [uploadedFiles, setUploadedFiles] = useState<LocaleRecordType<File[]>>({
-    ru: [],
-    en: [],
-    kz: [],
-  });
 
   useEffect(() => {
     if (data) {
@@ -59,20 +56,8 @@ const NewsModalContent = ({ news: { id } }: { news: Pick<INews, "id"> }) => {
     }
   }, [data]);
 
-  const handleFileChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    locale: LocaleType[number]
-  ) => {
-    const files = Array.from(e.target.files || []);
-
-    setUploadedFiles((prev) => ({
-      ...prev,
-      [locale]: [...prev[locale], ...files],
-    }));
-  };
-
   const onSubmit = (data: any) => {
-    console.log(data, uploadedFiles);
+    console.log(data);
   };
 
   return (
@@ -122,15 +107,16 @@ const NewsModalContent = ({ news: { id } }: { news: Pick<INews, "id"> }) => {
               {locales.map((locale) => (
                 <div key={locale} className="mt-5">
                   <label>{`Загрузить изображения (${locale})`}</label>
-                  <input
-                    type="file"
-                    multiple
-                    onChange={(e) => handleFileChange(e, locale)}
-                  />
+                  <input type="file" multiple />
 
                   {/* Отображение выбранных файлов */}
-                  {uploadedFiles?.[locale].map((file, index) => (
-                    <p key={index}>{file.name}</p>
+                  {data?.content?.[locale].images.map((file, index) => (
+                    <div className="flex gap-3" key={index}>
+                      <Link target="_blank" href={backendImageUrl + file}>
+                        {file}
+                      </Link>
+                      <button>Удалить</button>
+                    </div>
                   ))}
                 </div>
               ))}
