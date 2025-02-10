@@ -113,19 +113,19 @@ export default function Page({
           delay: 5000,
           disableOnInteraction: false,
         }}
-        className="pt-0 h-[550px] mt-10 "
+        className="pt-0 h-[550px] mt-10"
       >
         {images?.length > 0 ? (
           images.map((image, index) => (
             <SwiperSlide
               key={index}
-              className="swiper-slide relative bg-slate-100 w-full h-full overflow-hidden rounded-sm"
+              className="swiper-slide relative h-full overflow-hidden rounded-sm"
             >
               <Image
                 src={`${backendImageUrl}${image}`}
                 alt={data?.title?.[locale] || "Изображение"}
                 fill
-                style={{ objectFit: "cover" }}
+                style={{ objectFit: "contain" }}
               />
             </SwiperSlide>
           ))
@@ -136,7 +136,7 @@ export default function Page({
         )}
       </Swiper>
       <div
-        className="quill-content mt-20"
+        className="quill-content my-20"
         dangerouslySetInnerHTML={{ __html: description || "" }}
       ></div>
     </section>
