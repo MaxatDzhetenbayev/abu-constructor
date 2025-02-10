@@ -3,6 +3,7 @@ import React from "react";
 import { Controller, useForm } from "react-hook-form";
 
 import { locales } from "@/i18n";
+import { backendUrl } from '@/shared/lib/constants';
 import { Button, Input, Modal } from "@/shared/ui";
 import QuillEditor from "@/shared/ui/quill-editor";
 
@@ -31,7 +32,7 @@ const CreateNewsModal = () => {
       }
     });
 
-    const response = await fetch("http://localhost:3003/api/news", {
+    const response = await fetch(`${backendUrl}api/news`, {
       method: "POST",
       body: formData,
     });
