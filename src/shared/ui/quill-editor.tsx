@@ -1,30 +1,8 @@
 "use client";
-import dynamic from "next/dynamic";
+import JoditEditor from "jodit-react";
+import { useMemo } from "react";
 
 import { Label } from "./label";
-
-import "react-quill/dist/quill.snow.css";
-
-// Динамический импорт ReactQuill для предотвращения SSR ошибок
-const ReactQuill = dynamic(() => import("react-quill"), {
-  ssr: false,
-});
-
-const quillModules = {
-  toolbar: [
-    [{ size: [] }],
-    ["bold", "italic", "underline", "strike", "blockquote"],
-    [
-      { list: "ordered" },
-      { list: "bullet" },
-      { indent: "-1" },
-      { indent: "+1" },
-    ],
-    [{ align: [] }],
-    ["link", "image", "video"],
-    ["clean"],
-  ],
-};
 
 interface QuillEditorProps {
   value?: string;
@@ -32,19 +10,32 @@ interface QuillEditorProps {
   label?: string;
 }
 
-const QuillEditor = ({ value, onChange, label }: QuillEditorProps) => {
+const JoditEditorComponent = ({ value, onChange, label }: QuillEditorProps) => {
+  const config = useMemo(
+    () => ({
+      toolbarSticky: false,
+      spellcheck: true,
+      language: "ru",
+      toolbarAdaptive: false,
+      uploader: {
+        insertImageAsBase64URI: true,
+      },
+    }),
+    []
+  );
+
   return (
     <div>
       <Label>{label}</Label>
-      <ReactQuill
+      <JoditEditor
         value={value}
-        className="overflow-y-auto min-h-[200px] max-h-[470px]"
-        onChange={onChange}
-        modules={quillModules}
-        theme="snow"
+        config={config}
+        tabIndex={1}
+        onChange={(content) => onChange(content)}
+        className="h-96"
       />
     </div>
   );
 };
 
-export default QuillEditor;
+export default JoditEditorComponent;

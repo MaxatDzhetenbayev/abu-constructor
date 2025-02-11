@@ -6,7 +6,6 @@ import { getMessages } from "next-intl/server";
 import { QueryProvider } from "@/shared/providers";
 import { Toaster } from "@/shared/ui";
 
-import "react-quill/dist/quill.snow.css";
 import "../globals.css";
 
 // const inter = Montserrat({ subsets: ["latin"] });

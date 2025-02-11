@@ -3,9 +3,9 @@ import React from "react";
 import { Controller, useForm } from "react-hook-form";
 
 import { locales } from "@/i18n";
-import { backendUrl } from '@/shared/lib/constants';
+import { backendUrl } from "@/shared/lib/constants";
 import { Button, Input, Modal } from "@/shared/ui";
-import QuillEditor from "@/shared/ui/quill-editor";
+import JoditEditorComponent from "@/shared/ui/quill-editor";
 
 export const CreateNewsButton = () => {
   return (
@@ -69,7 +69,7 @@ const CreateNewsModal = () => {
                 name={`content.${locale}.description`}
                 control={control}
                 render={({ field }) => (
-                  <QuillEditor
+                  <JoditEditorComponent
                     key={locale}
                     label={`Текст` + ` (${locale})`}
                     value={field.value}

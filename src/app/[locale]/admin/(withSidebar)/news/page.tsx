@@ -10,7 +10,7 @@ import { CreateNewsButton } from "@/features";
 import { locales, LocaleType } from "@/i18n";
 import { backendImageUrl } from "@/shared/lib/constants";
 import { Button, Input, Modal } from "@/shared/ui";
-import QuillEditor from "@/shared/ui/quill-editor";
+import JoditEditorComponent from "@/shared/ui/quill-editor";
 
 export default function NewsPage() {
   const lang = useParams().locale as LocaleType[number];
@@ -88,7 +88,7 @@ const NewsModalContent = ({ news: { id } }: { news: Pick<INews, "id"> }) => {
                   name={`content.${locale}.description`}
                   control={control}
                   render={({ field }) => (
-                    <QuillEditor
+                    <JoditEditorComponent
                       key={locale}
                       label={`Текст` + ` (${locale})`}
                       value={field.value}
