@@ -13,8 +13,7 @@ function Info({
   options: any;
   locale: string;
 }) {
-
-  const { post, full_name, content: body } = content[locale]
+  const { post, full_name, content: body } = content[locale];
 
   return (
     <section className="flex flex-col">
@@ -24,7 +23,11 @@ function Info({
       <section className="flex p-5  flex-col lg:flex-row gap-4 md:gap-7 lg:gap-14 shadow-[0_0_30px_0px_rgba(0,0,0,0.05)] rounded-2xl bg-white mt-4 ">
         <section className="relative max-w-[400px] w-full h-[30vh] sm:h-[363px] sm:mx-auto">
           <Image
-            src={`${backendImageUrl}${content.image}`}
+            src={
+              content.image
+                ? `${backendImageUrl}${content.image}`
+                : "/images/placeholder.jpg"
+            }
             fill
             priority
             objectFit="cover"
