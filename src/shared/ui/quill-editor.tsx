@@ -13,13 +13,11 @@ interface QuillEditorProps {
 const JoditEditorComponent = ({ value, onChange, label }: QuillEditorProps) => {
   const config = useMemo(
     () => ({
-      toolbarSticky: false,
-      spellcheck: true,
+      readonly: false,
       language: "ru",
-      toolbarAdaptive: false,
-      uploader: {
-        insertImageAsBase64URI: true,
-      },
+		uploader: {
+			insertImageAsBase64URI: true,
+		 },
     }),
     []
   );
