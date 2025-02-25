@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { Raleway } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
@@ -18,6 +19,11 @@ const raleway = Raleway({
 //   variable: "--font-montserrat",
 //   subsets: ["cyrillic", "latin"],
 // });
+
+
+export const metadata: Metadata = {
+  title: "КГУ «ЦЕНТР ТРУДОВОЙ МОБИЛЬНОСТИ ОБЛАСТИ АБАЙ»"
+}
 
 export default async function LocaleLayout({
   children,

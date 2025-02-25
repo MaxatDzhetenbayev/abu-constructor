@@ -15,6 +15,7 @@ const socials = [
 ]
 
 
+
 export default async function Layout({
   children,
   params,

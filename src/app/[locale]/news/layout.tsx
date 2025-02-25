@@ -6,8 +6,8 @@ import { Separator } from "@/shared/ui";
 import { Header } from "@/widgets";
 
 export const metadata: Metadata = {
-  title: "Alikhan Bokeikhanov University",
-};
+  title: "КГУ «ЦЕНТР ТРУДОВОЙ МОБИЛЬНОСТИ ОБЛАСТИ АБАЙ»"
+}
 
 export default async function Layout({ children }: { children: ReactNode }) {
   return (
