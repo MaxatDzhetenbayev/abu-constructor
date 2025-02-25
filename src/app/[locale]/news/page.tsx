@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import Snowfall from "react-snowfall";
 
 import { NewsItem, useNews } from "@/entities/news";
 import {
@@ -53,7 +52,6 @@ export default function Page({ params }: any) {
 
   return (
     <section className="max-w-[1200px] mx-auto mt-20 ">
-      <Snowfall />
       <div className="p-4 mb-4 border rounded-lg shadow-sm">
         <div className="flex max-md:grid max-md:grid-cols-1">
           <input

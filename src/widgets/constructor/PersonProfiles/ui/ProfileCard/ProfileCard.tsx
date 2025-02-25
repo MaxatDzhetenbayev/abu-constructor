@@ -33,7 +33,7 @@ export const ProfileCard = ({ locale, content }: { locale: string, content: any 
                     </div>
                     <div className="flex items-center gap-5 mt-[15px]">
                         <p className="group-hover:text-white">Подробнее</p>
-                        <MoreArrow width={17} height={13} />
+                        <MoreArrow size={17} />
                     </div>
                 </section>
             </section>

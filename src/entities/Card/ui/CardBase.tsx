@@ -48,7 +48,7 @@ export const CardBase = ({
             {variant !== "with_modal" ? (
               <>
                 <Heading title={title} />
-                <MoreArrow width={36} height={24} />
+                <MoreArrow size={18} />
               </>
             ) : (
               <div className="h-full flex flex-col">
@@ -68,7 +68,7 @@ export const CardBase = ({
                       <Heading title={title} />
                       <div className="flex items-center gap-5 mt-[15px]">
                         <p className="">Подробнее</p>
-                        <MoreArrow width={17} height={13} />
+                        <MoreArrow size={18} />
                       </div>
                     </button>
                   </DialogTrigger>
@@ -83,17 +83,17 @@ export const CardBase = ({
             )}
           </WrapperComponent>
         </TooltipTrigger>
-        <TooltipContent>
-          {
-            title.length > 28 && (
+        {
+          title.length > 28 && (
+            <TooltipContent>
               <h2
                 className="text-calc-xl grow font-bold p-1"
               >
                 {title}
               </h2>
-            )
-          }
-        </TooltipContent>
+            </TooltipContent>
+          )
+        }
       </Tooltip>
     </TooltipProvider>
 

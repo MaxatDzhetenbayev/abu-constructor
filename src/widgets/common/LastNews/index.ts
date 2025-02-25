@@ -1,0 +1,1 @@
+export {LastNews} from './ui/LastNews'

@@ -155,7 +155,7 @@
         "placeholder": "Беттің түрі",
         "content": "content",
         "group": "group",
-        "group-link": "group-link"
+        "link": "link"
       },
       "slug": "Беттің Slug-ы",
       "number": "Беттің нөмірі",

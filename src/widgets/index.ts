@@ -31,7 +31,6 @@ export { NavigationPageContent } from "./common/NavigationPageContent";
 export { SearchWidget } from "./common/search-widget/search-widget";
 
 export { Counter } from "./common/Animations";
-export { SnowfallView } from "./common/snowfall/snowfall";
 
 export {
   Accordion,

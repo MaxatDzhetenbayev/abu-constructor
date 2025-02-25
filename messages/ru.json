@@ -154,7 +154,7 @@
         "placeholder": "Тип страницы",
         "content": "content",
         "group": "group",
-        "group-link": "group-link"
+        "link": "link"
       },
       "slug": "Slug страницы",
       "number": "Номер страницы",
