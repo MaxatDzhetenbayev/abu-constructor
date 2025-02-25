@@ -3,10 +3,10 @@ import { getRequestConfig } from "next-intl/server";
 
 // Can be imported from a shared config
 
-export type LocaleType = ["ru", "kz", "en"];
+export type LocaleType = ["ru", "kz"];
 export type LocaleRecordType<T> = Record<LocaleType[number], T>;
 
-export const locales: LocaleType = ["ru", "kz", "en"];
+export const locales: LocaleType = ["ru", "kz"];
 
 export default getRequestConfig(async ({ locale }) => {
   // Validate that the incoming `locale` parameter is valid

@@ -30,7 +30,6 @@ export const ChangeLocale = () => {
       <SelectContent className="text-[#640000] font-bold">
         <SelectItem value="ru">RU</SelectItem>
         <SelectItem value="kz">KZ</SelectItem>
-        <SelectItem value="en">EN</SelectItem>
       </SelectContent>
     </Select>
   );
