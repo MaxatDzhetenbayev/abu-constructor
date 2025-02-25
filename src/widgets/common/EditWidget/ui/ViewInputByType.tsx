@@ -10,7 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/shared/ui";
-import QuillEditor from "@/shared/ui/quill-editor";
+import JoditEditorComponent from "@/shared/ui/quill-editor";
 import { FileUploader } from "@/widgets/common/FileUploader";
 
 export const viewInputByType = (
@@ -48,7 +48,7 @@ export const viewInputByType = (
                 name={`content.${locale}.${options.props}`}
                 control={control}
                 render={({ field }) => (
-                  <QuillEditor
+                  <JoditEditorComponent
                     key={locale}
                     label={options.placeholder + ` (${locale})`}
                     value={field.value}

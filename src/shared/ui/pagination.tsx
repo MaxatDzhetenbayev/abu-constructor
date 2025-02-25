@@ -1,8 +1,8 @@
-import * as React from "react"
+import clsx from "clsx"
 import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react"
+import * as React from "react"
 
 import { ButtonProps, buttonVariants } from "@/shared//ui/button"
-import clsx from "clsx"
 
 const Pagination = ({ className, ...props }: React.ComponentProps<"nav">) => (
   <nav
