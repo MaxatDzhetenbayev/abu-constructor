@@ -19,8 +19,8 @@ export const fetchLogin = async (body: {
     }
     return res.json();
   }).then((res) => {
-    
-    setCookie("token", res.token)
+
+    setCookie("accessToken", res.token)
   })
 };
 

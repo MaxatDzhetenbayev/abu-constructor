@@ -9,7 +9,7 @@ const intlMiddleware = createIntlMiddleware({
 
 // Authentication and redirection middleware
 function authMiddleware(req: NextRequest) {
-  const token = req.cookies.get("token");
+  const token = req.cookies.get("accessToken");
   const { pathname } = req.nextUrl;
 
   const locale = pathname.split("/")[1];
