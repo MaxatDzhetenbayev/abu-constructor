@@ -21,10 +21,9 @@ export function Header() {
 
   return (
     <header className=" bg-abu_primary  p-4 ">
-      <div className="container flex justify-between items-center text-white ">
-        <div className="flex items-center gap-4">
-
-          <nav className={clsx("flex gap-6 [@media(max-width:890px)]:hidden")}>
+      <div className="container flex w-full  items-center text-white ">
+        <div className="flex flex-1  items-center gap-4">
+          <nav className={clsx("flex gap-6 items-center [@media(max-width:890px)]:hidden")}>
             {navigations?.map((item) => (
               <NavigationItem key={item.id} item={item} lang={lang} />
             ))}
@@ -43,16 +42,16 @@ export function Header() {
   );
 }
 
-function NavigationItem({ item, lang, parent_slug }: { item: INavigation; lang: any, parent_slug?: string }) {
+function NavigationItem({ item, lang, parent_slug, isParent }: { item: INavigation; lang: any, parent_slug?: string, isParent?: boolean }) {
   const slug = parent_slug ? `${parent_slug}/${item.slug}` : item.slug;
   if (item.navigation_type === "group") {
     return (
-      <DropdownMenu>
-        <DropdownMenuTrigger className="flex gap-2">{item.title[lang]} <ChevronDownIcon /></DropdownMenuTrigger>
-        <DropdownMenuContent>
+      <DropdownMenu >
+        <DropdownMenuTrigger className="w-full flex items-center justify-between">{item.title[lang]} <ChevronDownIcon /></DropdownMenuTrigger>
+        <DropdownMenuContent side={isParent ? "right" : "bottom"} sideOffset={isParent ? 20 : 30}>
           {item.children.map((child) => (
             <DropdownMenuItem>
-              <NavigationItem key={child.id} item={child} lang={lang} parent_slug={slug} />
+              <NavigationItem key={child.id} item={child} lang={lang} parent_slug={slug} isParent={true} />
             </DropdownMenuItem>
           ))}
         </DropdownMenuContent>
@@ -62,7 +61,7 @@ function NavigationItem({ item, lang, parent_slug }: { item: INavigation; lang: 
   }
   if (item.navigation_type === "link") {
     return (
-      <a href={item.slug} target="_blank" rel="noopener noreferrer">
+      <a href={item.slug} className="text-nowrap" target="_blank" rel="noopener noreferrer">
         {item.title[lang]}
       </a>
     );
