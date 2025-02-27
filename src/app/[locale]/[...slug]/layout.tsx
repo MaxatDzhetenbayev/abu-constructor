@@ -14,8 +14,6 @@ const socials = [
   "/enbek/socials/TikTok.png",
 ]
 
-
-
 export default async function Layout({
   children,
   params,
@@ -36,7 +34,7 @@ export default async function Layout({
             </section>
           </section>
         </LayoutWrapper>
-        <aside className="col-span-1">
+        <aside className="col-span-4 md:col-span-1">
           <LastNews />
         </aside>
       </section>

@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --abu-primary: oklch(70% 0.165 254.624);
+    --abu-primary: #0A1D56;
     --abu-secondary: #7c0000;
     --abu-secondary-hover: #560000;
     --swiper-pagination-color: var(--abu-primary);
