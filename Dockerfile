@@ -26,4 +26,4 @@ COPY --from=builder /app/package.json ./
 
 EXPOSE 3000
 
-CMD [".next/standalone/server.js"]
+CMD ["./node_modules/next/dist/bin/next", "start"]
