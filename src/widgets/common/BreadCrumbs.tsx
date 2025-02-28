@@ -61,7 +61,7 @@ export const BreadCrumbs = ({
           {getCrumbsElementForView(crumbs)?.map(
             ({ title, navigation_type: type, slug }: any, idx: number) => (
               <BreadcrumbItem
-                className="text-abu_primary font-bold text-xl"
+                className="text-abu_primary font-bold text-lg flex items-center"
                 key={idx}
               >
                 <BreadcrumbLink
@@ -70,14 +70,12 @@ export const BreadCrumbs = ({
                       ? `/${locale}/${slug}`
                       : undefined
                   }
-                  style={{
-                    fontSize: "clamp(18px, 1.4vw, 24px)",
-                  }}
+                  className="text-xl"
                 >
                   {isMobileWidth ? `${title.slice(0, 30)}...` : title}
                 </BreadcrumbLink>
                 {idx < getCrumbsElementForView(crumbs)?.length - 1 && (
-                  <ChevronRight size={30} className="mb-1" />
+                  <ChevronRight size={30}/>
                 )}
               </BreadcrumbItem>
             )
