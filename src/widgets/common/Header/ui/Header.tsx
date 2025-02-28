@@ -84,7 +84,7 @@ function NavigationItem({
     return (
       <DropdownMenu>
         <DropdownMenuTrigger className="w-full flex items-center gap-2 justify-between text-nowrap">
-          {item.title[lang]} <ChevronDownIcon />
+          {item.title[lang].toUpperCase()} <ChevronDownIcon />
         </DropdownMenuTrigger>
         <DropdownMenuContent
           side={isParent ? "right" : "bottom"}
@@ -113,9 +113,9 @@ function NavigationItem({
         target="_blank"
         rel="noopener noreferrer"
       >
-        {item.title[lang]}
+        {item.title[lang].toUpperCase()}
       </Link>
     );
   }
-  return <Link className="text-nowrap block w-full" href={`/${lang}/${slug}`}>{item.title[lang]}</Link>;
+  return <Link className="text-nowrap block w-full" href={`/${lang}/${slug}`}>{item.title[lang].toUpperCase()}</Link>;
 }

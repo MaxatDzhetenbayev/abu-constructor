@@ -1,13 +1,11 @@
 "use client";
 import { useParams } from "next/navigation";
-import { useTranslations } from "next-intl";
 import React from "react";
 
 import { NewsItem, useNews } from "@/entities/news";
 import { LocaleType } from "@/i18n";
 
 export const LastNews = () => {
-  const t = useTranslations();
   const { data } = useNews({ limit: 6, offset: 0 });
   const locale = useParams().locale as LocaleType[number];
   const slug = useParams().slug[0]
