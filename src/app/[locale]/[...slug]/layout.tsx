@@ -9,10 +9,22 @@ import { LastNews } from "@/widgets/common/LastNews";
 import { OurPlatforms } from "@/widgets/common/OurPlatrorms";
 
 const socials = [
-  "/enbek/socials/Facebook.png",
-  "/enbek/socials/Instagram.png",
-  "/enbek/socials/Telegram.png",
-  "/enbek/socials/TikTok.png",
+  {
+    link: "https://www.facebook.com/share/1D3oDLZEuy/?mibextid=wwXIfr",
+    icon: "/enbek/socials/Facebook.png",
+  },
+  {
+    link: "https://www.instagram.com/abai_emo?igsh=c2F4czJzdHExMm9s",
+    icon: "/enbek/socials/Instagram.png",
+  },
+  {
+    link: "https://t.me/abai_emo",
+    icon: "/enbek/socials/Telegram.png",
+  },
+  {
+    link: "https://www.tiktok.com/@abai_emo?_t=ZM-8uGDpD5ArNn&_r=1",
+    icon: "/enbek/socials/TikTok.png",
+  },
 ];
 
 export default async function Layout({
@@ -58,9 +70,9 @@ export default async function Layout({
           <div className="flex flex-col gap-5">
             <h2 className="text-white text-2xl font-bold">Бізге тіркел!</h2>
             <div className="flex gap-4">
-              {socials.map((s) => (
-                <Link href="" key={s}>
-                  <Image src={s} alt={s} width={40} height={40} />
+              {socials.map(({ icon, link }, index) => (
+                <Link href={link} target="_blank" key={index}>
+                  <Image src={icon} alt={link} width={40} height={40} />
                 </Link>
               ))}
             </div>

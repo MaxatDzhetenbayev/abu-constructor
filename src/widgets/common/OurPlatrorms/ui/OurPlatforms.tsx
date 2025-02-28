@@ -1,11 +1,14 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import React from "react";
 
 export const OurPlatforms = () => {
+  const t = useTranslations();
   return (
     <section className="mt-10">
-      <h2 className="text-xl font-bold ">Наши платформы</h2>
+      <h2 className="text-xl font-bold ">{t("our_platforms")}</h2>
       <section className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 mt-4 ">
         <article>
           <Link
