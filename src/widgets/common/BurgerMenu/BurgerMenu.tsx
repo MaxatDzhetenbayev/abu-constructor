@@ -74,7 +74,7 @@ const MenuLink = ({
   if (page?.navigation_type === "link") {
     return (
       <a href={page.slug} target="_blank" rel="noopener noreferrer">
-        {page.title[locale]}
+        {page.title[locale].toUpperCase()}
       </a>
     );
   }
@@ -84,14 +84,14 @@ const MenuLink = ({
         className={clsx(path == `/${locale}/${route}` && "font-bold")}
         href={`/${locale}/${route}`}
       >
-        {page.title[locale]}
+        {page.title[locale].toUpperCase()}
       </Link>
     );
   } else if (page?.navigation_type === "group") {
     return (
       <Drawer open={open} onOpenChange={setOpen} direction="right">
         <DrawerTrigger className="text-start flex justify-start items-center gap-3">
-          {page.title[locale]} <ChevronRight className="" />
+          {page.title[locale].toUpperCase()} <ChevronRight className="" />
         </DrawerTrigger>
         <DrawerContent className="rounded-none bg-abu_primary   border-none px-4 py-14">
           <div className=" relative flex flex-col gap-3 text-xl text-white ">
