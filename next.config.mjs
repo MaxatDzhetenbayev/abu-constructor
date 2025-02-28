@@ -18,8 +18,22 @@ const nextConfig = {
         hostname: "localhost",
         port: "3003",
         pathname: "/uploads/**"
-      }
+      },
     ]
+  },
+  async headers() {
+    return [
+      {
+        source: "/(.*)",
+        headers: [
+          {
+            key: "Content-Security-Policy",
+            value:
+              "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com;"
+          }
+        ]
+      }
+    ];
   },
   logging: {
     fetches: {
