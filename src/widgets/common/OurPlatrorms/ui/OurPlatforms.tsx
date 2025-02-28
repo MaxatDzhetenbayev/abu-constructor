@@ -12,7 +12,8 @@ export const OurPlatforms = () => {
       <section className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 mt-4 ">
         <article>
           <Link
-            href=""
+            href="https://skills.enbek.kz/kk"
+            target="_blank"
             className="bg-[#F7F2FE] p-6 flex flex-col gap-5"
             tabIndex={0}
           >
@@ -31,7 +32,8 @@ export const OurPlatforms = () => {
         </article>
         <article>
           <Link
-            href=""
+            href="https://business.enbek.kz/kk"
+            target="_blank"
             className="bg-[#F2F6FF] p-6 flex flex-col gap-5"
             tabIndex={0}
           >
@@ -40,7 +42,7 @@ export const OurPlatforms = () => {
                 src="/images/our_platform/business.png"
                 fill
                 objectFit="contain"
-                alt="Enbek skills"
+                alt="Enbek business"
               />
             </div>
             <p className="text-md">
@@ -50,7 +52,8 @@ export const OurPlatforms = () => {
         </article>
         <article>
           <Link
-            href=""
+            href="https://hr.enbek.kz/"
+            target="_blank"
             className="bg-[#EFFCF5] p-6 flex flex-col gap-5"
             tabIndex={0}
           >
@@ -59,7 +62,7 @@ export const OurPlatforms = () => {
                 src="/images/our_platform/hr.png"
                 fill
                 objectFit="contain"
-                alt="Enbek skills"
+                alt="Enbek hr"
               />
             </div>
             <p className="text-md">
@@ -69,7 +72,8 @@ export const OurPlatforms = () => {
         </article>
         <article>
           <Link
-            href=""
+            href="https://career.enbek.kz/"
+            target="_blank"
             className="bg-[#FBEEED] p-6 flex flex-col gap-5"
             tabIndex={0}
           >
@@ -78,7 +82,7 @@ export const OurPlatforms = () => {
                 src="/images/our_platform/career.png"
                 fill
                 objectFit="contain"
-                alt="Enbek skills"
+                alt="Enbek career"
               />
             </div>
             <p className="text-md">
