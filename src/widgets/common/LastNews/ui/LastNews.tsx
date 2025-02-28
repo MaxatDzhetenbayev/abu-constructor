@@ -13,14 +13,14 @@ export const LastNews = () => {
 
   return slug == "home" && (
     <section>
-      <section className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-3 gap-4 h-[860px]">
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:grid-rows-3 gap-4 min-h-[860px]">
         {data?.items?.map((item, index) => {
 
           if (index === 0) {
-            return <NewsItem key={item.id} item={item} locale={locale} styles="block col-span-2 row-span-2 h-full" />
+            return <NewsItem key={item.id} item={item} locale={locale} styles="h-[320px] sm:h-full sm:col-span-1 lg:col-span-2 lg:row-span-2 h-full" />
           }
           return (
-            <NewsItem key={item.id} item={item} locale={locale} />
+            <NewsItem key={item.id} item={item} locale={locale} styles="h-[320px] sm:h-full sm:col-span-1 lg:col-span-1" />
           )
         })}
       </section>
