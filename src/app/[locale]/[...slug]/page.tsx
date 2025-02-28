@@ -16,7 +16,7 @@ export default async function Page({
 
   return (
     <section
-      className="flex-1"
+      className="flex-1 mt-10"
     >
       <section className="flex flex-col gap-[70px] scroll-behavior: smooth">
         {widgetList}

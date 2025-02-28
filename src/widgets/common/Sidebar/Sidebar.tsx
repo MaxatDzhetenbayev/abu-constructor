@@ -6,7 +6,7 @@ import React from "react";
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/shared/ui";
 
-import { LastNews } from "../LastNews";
+// import { LastNews } from "../LastNews";
 
 
 const data: {
@@ -117,7 +117,7 @@ export const Sidebar = () => {
       >
         {t("online_queue")}
       </Link>
-      <LastNews />
+      {/* <LastNews /> */}
       <section>
         <h2 className="text-md font-bold text-center">{t("sidebar_table_title")}</h2>
         <Table className="mt-5">

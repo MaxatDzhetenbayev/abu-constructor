@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 import { Footer } from "@/features/home";
 import { LayoutWrapper } from "@/shared/ui";
 import { BreadCrumbs, Header, Sidebar } from "@/widgets";
+import { LastNews } from "@/widgets/common/LastNews";
 import { OurPlatforms } from "@/widgets/common/OurPlatrorms";
 
 export default async function Layout({
@@ -13,12 +14,16 @@ export default async function Layout({
   params: { slug: string[]; locale: string };
 }) {
   return (
-    <section>
+
+
+
+    <section >
       <Header />
       <section className="container px-4 lg:px-0 mx-auto grid grid-cols-12 gap-4 lg:gap-10 my-10">
         <LayoutWrapper styles="col-span-12 md:col-span-8 lg:col-span-9">
           <BreadCrumbs locale={params.locale} slug={params.slug} />
           <section className="flex flex-col h-full ">
+            <LastNews />
             {children}
             <section>
               <OurPlatforms />
