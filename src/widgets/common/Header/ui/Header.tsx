@@ -107,14 +107,14 @@ function NavigationItem({
   }
   if (item.navigation_type === "link") {
     return (
-      <a
+      <Link
         href={item.slug}
-        className="text-nowrap"
+        className="text-nowrap block w-full"
         target="_blank"
         rel="noopener noreferrer"
       >
         {item.title[lang]}
-      </a>
+      </Link>
     );
   }
   return <Link className="text-nowrap block w-full" href={`/${lang}/${slug}`}>{item.title[lang]}</Link>;
