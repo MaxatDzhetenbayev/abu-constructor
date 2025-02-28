@@ -48,7 +48,7 @@ export const CardBase = ({
             {variant !== "with_modal" ? (
               <>
                 <Heading title={title} />
-                <MoreArrow width={36} height={24} />
+                <MoreArrow size={18} />
               </>
             ) : (
               <div className="h-full flex flex-col">
@@ -64,11 +64,11 @@ export const CardBase = ({
                 )}
                 <Dialog>
                   <DialogTrigger asChild>
-                    <button className="grow  flex flex-col justify-between">
+                    <button className="grow flex flex-col justify-between ">
                       <Heading title={title} />
                       <div className="flex items-center gap-5 mt-[15px]">
-                        <p className="group-hover:text-white">Подробнее</p>
-                        <MoreArrow width={17} height={13} />
+                        <p className="">Подробнее</p>
+                        <MoreArrow size={18} />
                       </div>
                     </button>
                   </DialogTrigger>
@@ -83,17 +83,17 @@ export const CardBase = ({
             )}
           </WrapperComponent>
         </TooltipTrigger>
-        <TooltipContent>
-          {
-            title.length > 28 && (
+        {
+          title.length > 28 && (
+            <TooltipContent>
               <h2
                 className="text-calc-xl grow font-bold p-1"
               >
                 {title}
               </h2>
-            )
-          }
-        </TooltipContent>
+            </TooltipContent>
+          )
+        }
       </Tooltip>
     </TooltipProvider>
 
@@ -103,7 +103,7 @@ export const CardBase = ({
 const Heading = ({ title }: { title: string }): React.JSX.Element => {
   return (
     <h2
-      className="text-calc-xl grow font-bold text-left group-hover:text-white line-clamp-2"
+      className="text-calc-xl grow font-bold text-left  line-clamp-2"
     >
       {title}
     </h2>

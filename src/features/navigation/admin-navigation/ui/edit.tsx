@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import React, { useRef } from "react";
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 import { INavigation } from "@/entities";
 import { queryClient } from "@/shared/lib/client";
@@ -15,11 +15,6 @@ import {
   DialogFooter,
   Input,
   Modal,
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
 } from "@/shared/ui";
 
 import { NavigationEditModalForm } from "../api/fetch-edit";
@@ -33,7 +28,7 @@ export const AdminNavigationEdit = ({
   const closeRef = useRef<HTMLButtonElement>(null);
   const t = useTranslations("pages");
   const locale = useParams().locale as string;
-  const { register, handleSubmit, reset, control } =
+  const { register, handleSubmit, reset, } =
     useForm<NavigationEditModalForm>({
       mode: "onBlur",
       defaultValues: {
@@ -87,40 +82,20 @@ export const AdminNavigationEdit = ({
                 label={t("form.nameKz")}
                 {...register("title.kz", { required: true })}
               />
-              <Input
-                label={t("form.nameEn")}
-                {...register("title.en", { required: true })}
-              />
             </div>
             <Input
               label={t("form.slug")}
               {...register("slug", { required: true })}
             />
-            <Controller
-              name="variant"
-              control={control}
-              render={({ field }) => (
-                <Select value={field.value} onValueChange={field.onChange}>
-                  <SelectTrigger>
-                    <SelectValue placeholder={"Вариант"} />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="horizontal">Горизонтально</SelectItem>
-                    <SelectItem value="vertical">Вертикально</SelectItem>
-                  </SelectContent>
-                </Select>
-              )}
-            />
-
             {(navigationItem.navigation_type === "group-link" ||
               navigationItem.navigation_type === "content") && (
-              <Link
-                className="w-full bg-[#640000] text-white text-center rounded-md p-2"
-                href={{ pathname: `pages/${navigationItem.id}` }}
-              >
-                {t("table.edit")}
-              </Link>
-            )}
+                <Link
+                  className="w-full bg-[#640000] text-white text-center rounded-md p-2"
+                  href={{ pathname: `pages/${navigationItem.id}` }}
+                >
+                  {t("table.edit")}
+                </Link>
+              )}
             <Button type="submit" loading={isPending} disabled={isPending}>
               {t("form.save")}
             </Button>

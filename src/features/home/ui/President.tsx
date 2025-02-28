@@ -10,7 +10,7 @@ export const President = () => {
       {/* Задний фон */}
       <div className="absolute top-0 left-0 right-0 bottom-0 bg-abu_primary bg-opacity-95 bg-president" />
 
-      <section className="max-w-[1500px] font-raleway px-3  w-full mx-auto my-16 rounded-[10px] overflow-hidden text-white">
+      <section className="max-w-[1500px] font-raleway px-3  w-full mx-auto my-16 rounded-[10px] overflow-hidden text-font_primary">
         {/* Заголовок */}
         {/* <motion.h2
           className="text-calc-2xl max-lg:text-center  font-bold mb-20"
@@ -31,10 +31,10 @@ export const President = () => {
           </motion.div>
           <motion.section
             {...rightViewAnim}
-            className="flex flex-col gap-5 xl:pl-4  xl:border-l-4 border-white"
+            className="flex flex-col gap-5 xl:pl-4  xl:border-l-4 border-font_primary"
           >
-            <p className="text-justify text-calc-md font-bold ">{t("text")}</p>
-            <p className="text-calc-xl italic text-right font-extrabold ">
+            <p className="text-justify text-calc-md font-bold text-font_primary">{t("text")}</p>
+            <p className="text-calc-xl italic text-right font-extrabold text-font_primary">
               {t("signature")}
               <br />
               {t("name")}

@@ -3,13 +3,13 @@ import createIntlMiddleware from "next-intl/middleware";
 
 // Locale middleware setup
 const intlMiddleware = createIntlMiddleware({
-  locales: ["ru", "kz", "en"],
+  locales: ["ru", "kz"],
   defaultLocale: "kz",
 });
 
 // Authentication and redirection middleware
 function authMiddleware(req: NextRequest) {
-  const token = req.cookies.get("token");
+  const token = req.cookies.get("accessToken");
   const { pathname } = req.nextUrl;
 
   const locale = pathname.split("/")[1];

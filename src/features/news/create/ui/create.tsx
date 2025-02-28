@@ -49,7 +49,7 @@ const CreateNewsModal = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <section className="flex flex-col gap-3 border p-5">
           <h2>Заголовок</h2>
-          <section className="w-full grid gap-3 grid-cols-1 xl:grid-cols-3">
+          <section className="w-full grid gap-3 grid-cols-1 xl:grid-cols-2">
             {locales.map((locale) => (
               <Input
                 key={locale}
@@ -62,7 +62,7 @@ const CreateNewsModal = () => {
         {/* текст */}
         <section className="flex flex-col gap-3 border p-5">
           <h2>Текст</h2>
-          <section className="grid gap-3 grid-cols-1 xl:grid-cols-3">
+          <section className="grid gap-3 grid-cols-1 xl:grid-cols-2">
             {locales.map((locale) => (
               <Controller
                 key={locale}
@@ -84,7 +84,7 @@ const CreateNewsModal = () => {
         {/* Изображения */}
         <section className="flex flex-col gap-3 border p-5">
           <h2>Изображения</h2>
-          <section className="grid gap-3 grid-cols-1 xl:grid-cols-3">
+          <section className="grid gap-3 grid-cols-1 xl:grid-cols-2">
             {locales.map((locale) => (
               <div key={locale} className="mt-5">
                 <label>{`Загрузить изображения (${locale})`}</label>

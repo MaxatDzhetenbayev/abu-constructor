@@ -7,7 +7,7 @@ const ielts = [
 export const IELTS = () => {
   return (
     <Container>
-      <Heading>Экзамен IELTS</Heading>
+      <Heading className="text-font_primary">Экзамен IELTS</Heading>
       <section className="flex flex-col items-center  md:flex-row md:justify-center gap-10">
         {ielts.map((i) => (
           <a href={i.link} target="_blank" key={i.link}>

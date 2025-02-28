@@ -1,5 +1,5 @@
+import { Metadata } from "next";
 import { Raleway } from "next/font/google";
-import Script from "next/script";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 
@@ -20,6 +20,11 @@ const raleway = Raleway({
 //   subsets: ["cyrillic", "latin"],
 // });
 
+
+export const metadata: Metadata = {
+  title: "КГУ «ЦЕНТР ТРУДОВОЙ МОБИЛЬНОСТИ ОБЛАСТИ АБАЙ»"
+}
+
 export default async function LocaleLayout({
   children,
   params: { locale },
@@ -33,10 +38,6 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale}>
-      <head>
-        <Script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full" />
-        <Script src="../../shared/lib/map.js" />
-      </head>
       <body className={`${raleway.className}`}>
         <NextIntlClientProvider messages={messages}>
           <QueryProvider>{children}</QueryProvider>

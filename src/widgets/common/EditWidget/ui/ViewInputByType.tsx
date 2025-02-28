@@ -41,7 +41,7 @@ export const viewInputByType = (
       return (
         <section className="flex flex-col gap-3 border p-5">
           <p>{options.placeholder}</p>
-          <section className="grid gap-3 grid-cols-1 xl:grid-cols-3">
+          <section className="grid gap-3 grid-cols-1 ">
             {locales.map((locale) => (
               <Controller
                 key={locale}

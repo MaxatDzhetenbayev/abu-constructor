@@ -1,39 +1,6 @@
 {
     "more": "More",
-    "home": {
-        "infographics": {
-            "title": "Infographics",
-            "1": "58 educational programs",
-            "2": "2 modern dormitories",
-            "3": "Military department",
-            "4": "Regional Technocluster Abai IT Valley",
-            "5": "Academic mobility"
-        },
-        "president_message": {
-            "title": "Message from the President",
-            "text": "Friends, welcome to the official website of Alikhan Bokeikhan Universty!  We are living in a special historical period: the world has moved into the era of the IV industrial revolution.  The horizons of educational space are constantly expanding and have no boundaries. This is evidenced by the opening of branches of foreign universities in Kazakhstani universities.We are obliged to adapt to the calls of time and in accordance with our mission to become a fundamental educational institution, while preserving our national mentality and historical and cultural values as much as possible. In addition to the flow of information technology, an effective system of implementing artificial intelligence as a work style and lifestyle is being considered today through Abai IT-Valley. Today artificial intelligence is a priority issue. It is known that Alash movement leader Alikhan Bokeykhanov expressed his hope for the future by saying, “a generation will come who will see the sun”. What was a fantastic dream yesterday, today is becoming a reality, leading humanity to progress in recent history.Our main goal should be to systematically promote the idea of Alash leaders who strived for the independence of the country.Our endless and noble task remains not only to educate a graduated highly qualified specialist, but also a harmonious personality.",
-            "signature": "Sincerely,",
-            "name": "Shyryn Kurmanbaeva"
-        },
-        "gallery": {
-            "title": "Gallery",
-            "body": "Welcome to the photo gallery of our university! Here we have collected bright and memorable moments from the life of our university, events and achievements of students. In each album you can see what our academic community lives: scientific research, creative projects, student life, sporting events and much more. We are proud of the successes of our students and faculty, the atmosphere of inspiration and mutual support that make our university truly unique. Enjoy browsing and join our great university family!"
-        },
-        "news": {
-            "title": "News and Events"
-        },
-        "partners": {
-            "title": "Our partners"
-        },
-        "accreditation&Recognition": {
-            "title": "Accreditation and Recognition"
-        },
-        "contacts": {
-            "our": "Our contacts",
-            "social": "Social Networks",
-            "admissions": "Admissions Committee from 20.06 to 25.08"
-        }
-    },
+  
     "login": {
         "title": "Authorization",
         "login": "Login",

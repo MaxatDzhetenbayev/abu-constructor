@@ -15,7 +15,7 @@ export const Navlink = ({ href, children }: NavlinkProps) => {
   return (
     <Link
       className={clsx(
-        "font-bold text-lg md:text-2xl",
+        "font-bold text-md md:text-lg",
         path == `/${locale}${href}` && "underline",
       )}
       href={`/${locale}/${href}`}

@@ -20,7 +20,7 @@ export const News = () => {
   const skeletonNews = Array.from({ length: 3 }).fill(1);
   return (
     <Container className="w-full ">
-      <Heading>{t("news.title")}</Heading>
+      <Heading className="text-font_primary">{t("news.title")}</Heading>
       <section className="w-full flex flex-col gap-4">
         {/* <section className="grid grid-cols-1 md:grid-cols-[2fr_1fr]  gap-5">
 			 <Card key={news[0].desc} {...news[0]} />
@@ -101,7 +101,7 @@ const MoreButton = ({
   return (
     <Link
       href={`${link}`}
-      className="flex py-3 w-full justify-center items-center rounded-lg bg-abu_primary gap-2"
+      className="flex py-3 w-full justify-center items-center rounded-lg bg-[#000] gap-2"
       style={{
         maxWidth,
       }}

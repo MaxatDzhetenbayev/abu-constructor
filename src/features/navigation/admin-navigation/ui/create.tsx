@@ -78,11 +78,6 @@ export const AdminNavigationCreate = ({
                 {...register("title.kz", { required: true })}
                 error={errors.title?.kz?.message}
               />
-              <Input
-                label={t("form.nameEn")}
-                {...register("title.en", { required: true })}
-                error={errors.title?.kz?.message}
-              />
               <div className="flex flex-col gap-3">
                 <Label htmlFor="pageType">{t("form.select.placeholder")}</Label>
                 <Select
@@ -99,8 +94,8 @@ export const AdminNavigationCreate = ({
                     <SelectItem value={"group"}>
                       {t("form.select.group")}
                     </SelectItem>
-                    <SelectItem value={"group-link"}>
-                      {t("form.select.group-link")}
+                    <SelectItem value={"link"}>
+                      {t("form.select.link")}
                     </SelectItem>
                   </SelectContent>
                 </Select>
