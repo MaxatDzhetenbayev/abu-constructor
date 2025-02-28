@@ -30,7 +30,7 @@ export const BurgerMenu = () => {
       <Button
         size={"icon"}
         variant={"ghost"}
-        className="flex text-white  justify-center items-center [@media(min-width:890px)]:hidden "
+        className="flex text-white  justify-center items-center [@media(min-width:1400px)]:hidden "
         onClick={() => setOpen(true)}
       >
         <Menu size={32} />

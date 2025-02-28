@@ -48,7 +48,7 @@ export function Header() {
         <div className="flex flex-1  items-center gap-4">
           <nav
             className={clsx(
-              "flex gap-6 items-center [@media(max-width:890px)]:hidden"
+              "flex gap-6 items-center [@media(max-width:1400px)]:hidden"
             )}
           >
             {navigations?.map((item) => (
