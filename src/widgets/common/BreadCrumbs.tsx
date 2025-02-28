@@ -1,6 +1,5 @@
 "use client";
 import { ChevronRight } from "lucide-react";
-import { useEffect, useState } from "react";
 
 import { backendUrl } from "@/shared/lib/constants";
 import {
@@ -29,36 +28,12 @@ export const BreadCrumbs = ({
     },
   });
 
-  const [isMobileWidth, setIsMobileWidth] = useState<boolean>(false);
-
-  // получение ширины экрана
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      // Код будет выполнен только на клиенте
-      const handleResize = () =>
-        setIsMobileWidth(() => window.innerWidth < 768);
-      window.addEventListener("resize", handleResize);
-
-      // Установить начальное значение
-      handleResize();
-
-      return () => window.removeEventListener("resize", handleResize);
-    }
-  }, []);
-
-  const getCrumbsElementForView = (crumbs: string[]) => {
-    if (!Array.isArray(crumbs)) return [];
-    // Вернуть массив crumbs кроме 2 элемента массива
-    if (crumbs.length > 2)
-      return [...crumbs.slice(0, 1), ...crumbs.slice(2, crumbs.length)];
-    return crumbs;
-  };
 
   return (
     <>
       <Breadcrumb>
         <BreadcrumbList>
-          {getCrumbsElementForView(crumbs)?.map(
+          {crumbs?.map(
             ({ title, navigation_type: type, slug }: any, idx: number) => (
               <BreadcrumbItem
                 className="text-abu_primary font-bold text-lg flex items-center"
@@ -70,12 +45,12 @@ export const BreadCrumbs = ({
                       ? `/${locale}/${slug}`
                       : undefined
                   }
-                  className="text-xl"
+                  className="text-md"
                 >
-                  {isMobileWidth ? `${title.slice(0, 30)}...` : title}
+                  {title.toUpperCase()}
                 </BreadcrumbLink>
-                {idx < getCrumbsElementForView(crumbs)?.length - 1 && (
-                  <ChevronRight size={30}/>
+                {idx < crumbs?.length - 1 && (
+                  <ChevronRight size={30} />
                 )}
               </BreadcrumbItem>
             )
