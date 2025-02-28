@@ -40,7 +40,7 @@ export const Footer = () => {
             <Phone />
             <span>
               <a href="tel:24-93-09">24-93-09</a>,{" "}
-              <a href="tel:+7 700 956 98 10">+7 700 956 98 10</a>
+              <a href="tel:+77222354841">8 (7222) 35-48–41</a>
             </span>
           </div>
         </div>
