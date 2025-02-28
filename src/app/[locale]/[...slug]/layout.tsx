@@ -2,8 +2,7 @@ import { ReactNode } from "react";
 
 import { Footer } from "@/features/home";
 import { LayoutWrapper } from "@/shared/ui";
-import { BreadCrumbs, Header } from "@/widgets";
-import { LastNews } from "@/widgets/common/LastNews";
+import { BreadCrumbs, Header, Sidebar } from "@/widgets";
 import { OurPlatforms } from "@/widgets/common/OurPlatrorms";
 
 export default async function Layout({
@@ -26,9 +25,7 @@ export default async function Layout({
             </section>
           </section>
         </LayoutWrapper>
-        <aside className="col-span-12 md:col-span-4 lg:col-span-3">
-          <LastNews />
-        </aside>
+        <Sidebar />
       </section>
       <Footer />
     </section>
