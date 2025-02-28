@@ -45,7 +45,7 @@ export const Footer = () => {
           </div>
         </div>
         <div className="flex flex-col gap-5">
-          <h2 className="text-white text-2xl font-bold">Бізге тіркел!</h2>
+          <h2 className="text-white text-2xl font-bold">{t("subscribe")}</h2>
           <div className="flex gap-4">
             {socials.map(({ icon, link }, index) => (
               <Link href={link} target="_blank" key={index}>
