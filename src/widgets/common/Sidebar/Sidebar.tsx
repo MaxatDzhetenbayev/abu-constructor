@@ -6,8 +6,6 @@ import React from "react";
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/shared/ui";
 
-// import { LastNews } from "../LastNews";
-
 
 const data: {
   [key: string]: {
@@ -110,7 +108,7 @@ export const Sidebar = () => {
 
   return (
     <aside className="col-span-12 md:col-span-4 lg:col-span-3 flex flex-col gap-4">
-      <iframe width="100%" height="180" src="https://www.youtube.com/embed/XcT3YQrYvZw?si=stqZOIrgY_1u0akI?autoplay=1&mute=1" allow="autoplay; encrypted-media" title="YouTube video player"  ></iframe>
+      <iframe width="100%" height="180" src={`https://www.youtube.com/embed/${locale === "ru" ? "XcT3YQrYvZw?si=stqZOIrgY_1u0akI" : "Yd2qtMSAgSU?si=JZaAKZOYVc8Gvd28"}?autoplay=1&mute=1`} allow="autoplay; encrypted-media" title="YouTube video player"  ></iframe>
       <Link
         className="bg-abu_primary px-2 py-6 block text-white rounded-lg text-center text-md font-medium"
         href="https://web.telegram.org/k/#@abai_ctm_bot"
