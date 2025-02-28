@@ -4,6 +4,11 @@
   "our_platforms": "Біздің платформалар",
   "our_contacts": "Біздің мекенжайымыз:",
   "subscribe": "Бізге тіркел!",
+  "sidebar_table_title": "Бос жұмыс орындары жәрмеңкесінің кестесі",
+  "sidebar_table_content": {
+    "city": "Қала/аудан",
+    "date": "Күні"
+  },
   "online_queue": "Онлайн кезекке тіркелу",
   "login": {
     "title": "Авторизация",

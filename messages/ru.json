@@ -4,6 +4,11 @@
   "our_platforms": "Наши платформы",
   "our_contacts": "Наши контакты",
   "subscribe": "Подпишись на нас",
+  "sidebar_table_title": "Расписание ярмарки вакансий",
+  "sidebar_table_content": {
+    "city": "Город/район",
+    "date": "Дата"
+  },
   "online_queue": "Запись в онлайн очередь",
   "login": {
     "title": "Авторизация",
