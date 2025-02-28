@@ -83,7 +83,7 @@ function NavigationItem({
   if (item.navigation_type === "group") {
     return (
       <DropdownMenu>
-        <DropdownMenuTrigger className="w-full flex items-center justify-between">
+        <DropdownMenuTrigger className="w-full flex items-center gap-2 justify-between text-nowrap">
           {item.title[lang]} <ChevronDownIcon />
         </DropdownMenuTrigger>
         <DropdownMenuContent
@@ -117,5 +117,5 @@ function NavigationItem({
       </a>
     );
   }
-  return <Link href={`/${lang}/${slug}`}>{item.title[lang]}</Link>;
+  return <Link className="text-nowrap block w-full" href={`/${lang}/${slug}`}>{item.title[lang]}</Link>;
 }
