@@ -21,7 +21,7 @@ function Info({
         {content[locale]?.title}
       </h2>
       <section className="flex p-5  flex-col lg:flex-row gap-4 md:gap-7 lg:gap-14 shadow-[0_0_30px_0px_rgba(0,0,0,0.05)] rounded-2xl bg-white mt-4 ">
-        <section className="relative max-w-[400px] w-full h-[30vh] sm:h-[363px] sm:mx-auto">
+        <section className="relative max-w-[400px] w-full h-[40vh] sm:h-[363px] sm:mx-auto">
           <Image
             src={
               content.image
