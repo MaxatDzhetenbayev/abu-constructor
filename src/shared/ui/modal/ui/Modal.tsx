@@ -26,10 +26,10 @@ export const Modal = ({
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent
-        className={clsx(
+        className={clsx("overflow-auto max-h-[90%]",
           isWfull
-            ? "max-w-[90%] overflow-auto"
-            : "max-h-[80%] overflow-auto max-w-[90%] [@media(min-width:1180px)]:max-w-[50%]"
+            ? "max-w-[90%]"
+            : "max-h-[80%] max-w-[90%] [@media(min-width:1180px)]:max-w-[50%]"
         )}
       >
         <DialogHeader>
