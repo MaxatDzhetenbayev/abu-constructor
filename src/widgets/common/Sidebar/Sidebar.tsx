@@ -182,7 +182,7 @@ export const Sidebar = () => {
         {t("online_queue")}
       </Link>
       {/* <LastNews /> */}
-      <section>
+      <section className="max-h-[600px] overflow-y-auto">
         <h2 className="text-md font-bold text-center">{t("sidebar_table_title")}</h2>
         <Table className="mt-5">
           <TableHeader>
