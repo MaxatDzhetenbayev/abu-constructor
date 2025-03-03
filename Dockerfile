@@ -1,28 +1,29 @@
-# Используем базовый образ
-FROM node:22
-
-# Устанавливаем рабочую директорию
+FROM node:22 as dependencies
 WORKDIR /app
 
-# Копируем файлы зависимостей
-COPY package*.json ./
+COPY package.json package-lock.json ./
+RUN npm ci
 
-# Устанавливаем зависимости
-RUN npm install
+FROM node:22 as builder
+WORKDIR /app
 
-# Копируем остальной код приложения
+COPY --from=dependencies /app/node_modules ./node_modules
 COPY . .
 
-# Создаем .env файл из переменной окружения
-# Переменные окружения должны быть переданы на этапе сборки
 ARG NEXT_PUBLIC_BACKEND_URL
-RUN echo "NEXT_PUBLIC_BACKEND_URL=\"$NEXT_PUBLIC_BACKEND_URL\"" > .env
+ENV NEXT_PUBLIC_BACKEND_URL=$NEXT_PUBLIC_BACKEND_URL
 
-
-# Собираем проект (если необходимо)
 RUN npm run build
 
-# Экспонируем порт, который будет использоваться приложением
+FROM gcr.io/distroless/nodejs22-debian12:latest
+WORKDIR /app
+
+COPY --from=builder /app/next.config.mjs .
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./
+
 EXPOSE 3000
 
-CMD ["npm","run","start"]
+CMD ["./node_modules/next/dist/bin/next", "start"]

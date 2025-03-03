@@ -4,6 +4,9 @@ import createNextIntlPlugin from "next-intl/plugin";
 const withNextIntl = createNextIntlPlugin();
 const nextConfig = {
   output: "standalone",
+  experimental: {
+    outputFileTracing: true
+  },
   images: {
     formats: ["image/webp"],
     remotePatterns: [
@@ -20,6 +23,7 @@ const nextConfig = {
       }
     ]
   },
+  productionBrowserSourceMaps: false,
   logging: {
     fetches: {
       fullUrl: true
