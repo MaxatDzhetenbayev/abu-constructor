@@ -71,6 +71,13 @@
   }
 }
 
+@layer utilities {
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+
 @layer base {
   * {
     @apply border-border;

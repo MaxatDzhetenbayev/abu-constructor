@@ -41,7 +41,7 @@ function Info({
             <h2 className="font-bold text-calc-xl">{full_name}</h2>
           </div>
           <div
-            className="quill-content max-h-[235px] overflow-hidden"
+            className="quill-content max-h-[235px] overflow-y-scroll"
             dangerouslySetInnerHTML={{ __html: body }}
           ></div>
         </section>
