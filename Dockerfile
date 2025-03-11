@@ -1,29 +1,27 @@
-FROM node:22 as dependencies
-WORKDIR /app
-
-COPY package.json package-lock.json ./
-RUN npm ci
-
-FROM node:22 as builder
-WORKDIR /app
-
-COPY --from=dependencies /app/node_modules ./node_modules
-COPY . .
-
-ARG NEXT_PUBLIC_BACKEND_URL
-ENV NEXT_PUBLIC_BACKEND_URL=$NEXT_PUBLIC_BACKEND_URL
-
-RUN npm run build
-
-FROM gcr.io/distroless/nodejs22-debian12:latest
-WORKDIR /app
-
-COPY --from=builder /app/next.config.mjs .
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./
-
-EXPOSE 3000
-
-CMD ["./node_modules/next/dist/bin/next", "start"]
+FROM node:20-alpine AS base 
+ 
+FROM base AS deps 
+RUN apk add --no-cache libc6-compat 
+WORKDIR /app 
+ 
+COPY package.json package-lock.json* ./ 
+ 
+RUN npm ci  
+ 
+FROM base AS builder 
+WORKDIR /app 
+COPY --from=deps /app/node_modules ./node_modules 
+COPY . . 
+ 
+RUN npm run build 
+ 
+FROM gcr.io/distroless/nodejs20-debian12 AS production 
+WORKDIR /app 
+ 
+COPY --from=builder /app/public ./public 
+ 
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./ 
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static 
+ 
+ENV HOSTNAME="0.0.0.0" 
+CMD ["server.js"] 
