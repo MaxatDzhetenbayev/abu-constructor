@@ -19,7 +19,12 @@ function Cards({
         </h2>
       )}
       {
-        <div className={clsx("flex gap-5 flex-wrap ", "mt-2")}>
+        <div className={clsx("mt-2", {
+          "grid grid-cols-1": contents.length === 1,
+          "grid grid-cols-2": contents.length / 2 === 0,
+          "grid grid-cols-3": contents.length / 3 === 0,
+          "flex": contents.length / 2 !== 0 || contents.length / 3 !== 0,
+        })}>
           {contents.map(({ content }, idx) => (
             <Card
               key={idx}
