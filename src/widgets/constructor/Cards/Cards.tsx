@@ -19,7 +19,7 @@ function Cards({
         </h2>
       )}
       {
-        <div className={clsx("mt-2", {
+        <div className={clsx("mt-2 gap-4", {
           "grid grid-cols-1": contents.length === 1,
           "grid grid-cols-1 sm:grid-cols-2": contents.length % 2 === 0 && contents.length % 3 !== 0,
           "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3": contents.length % 3 === 0 && contents.length % 2 !== 0,
