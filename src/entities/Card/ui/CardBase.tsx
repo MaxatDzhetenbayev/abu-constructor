@@ -83,17 +83,17 @@ export const CardBase = ({
             )}
           </WrapperComponent>
         </TooltipTrigger>
-        <TooltipContent>
-          {
-            title.length > 28 && (
+        {
+          title.length > 28 && (
+            <TooltipContent>
               <h2
                 className="text-calc-xl grow font-bold p-1"
               >
                 {title}
               </h2>
-            )
-          }
-        </TooltipContent>
+            </TooltipContent>
+          )
+        }
       </Tooltip>
     </TooltipProvider>
 
