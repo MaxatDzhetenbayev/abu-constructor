@@ -36,10 +36,10 @@ export const NavigationList = ({
         </div>
       ) : navigations ? (
         <ul className="flex text-start gap-5 text-xl">
-          {navigations.map((mainPage) => (
+          {navigations.map((nav) => (
             <NavigationItem
-              key={mainPage.id}
-              item={mainPage}
+              key={nav.id}
+              item={nav}
               locale={locale}
               hoveredItem={hoveredItem}
               handleMouseEnter={handleMouseEnter}

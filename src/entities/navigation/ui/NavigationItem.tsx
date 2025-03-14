@@ -31,8 +31,19 @@ export const NavigationItem = ({
 
   return (
     <>
-      {item.navigation_type === "link" ||
-      item.navigation_type === "group-link" ? (
+      {item.navigation_type === "content" ? (<Link
+        style={{ fontSize: "clamp(16px, 1.5vw, 20px)" }}
+        className={clsx(
+          "text-center h-[94px] rounded-md flex items-center font-semibold text-white",
+          path.startsWith(`/${locale}${item.slug}`) && "font-bold"
+        )}
+        href={`/${locale}/${item.slug}`}
+        key={item.id}
+      >
+        {item.title[locale as string]}
+      </Link>
+      ) : item.navigation_type === "link" ||
+        item.navigation_type === "group-link" ? (
         <Link
           style={{ fontSize: "clamp(16px, 1.5vw, 20px)" }}
           className={clsx(
