@@ -1,6 +1,8 @@
+"use client"
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 import React from "react";
 
 import { LogoSize } from "../model";
@@ -25,9 +27,11 @@ export const Logo = ({
     }
   };
 
+  const locale = useParams().locale as string;
+
   return (
     <Link
-      href="/"
+      href={`/${locale}/home`}
       className={clsx(
         "inline",
         isMobileView && "[@media(min-width:890px)]:hidden"
