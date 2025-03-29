@@ -12,10 +12,7 @@ export const LayoutWrapper = ({
 }) => {
   return (
     <main
-      className={clsx(
-        "min-h-[100svh] max-w-[1200px] mx-auto flex flex-col gap-10",
-        styles
-      )}
+      className={clsx("min-h-[100svh] max-w-[1200px] w-full mx-auto ", styles)}
     >
       {children}
     </main>

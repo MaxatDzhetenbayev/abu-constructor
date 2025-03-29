@@ -1,7 +1,6 @@
 "use client";
 import clsx from "clsx";
 import { ChevronDownIcon } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 
@@ -24,26 +23,6 @@ export function Header() {
 
   return (
     <header className="bg-abu_primary  p-4 ">
-      <div className="container flex flex-col items-center gap-10 sm:flex-row sm:justify-end sm:gap-32">
-        <h1 className="order-2 sm:order-1 sm:text-md text-center sm:text-left lg:text-lg text-white font-bold">
-          «АБАЙ ОБЛЫСЫНЫҢ ЕҢБЕК МОБИЛЬДІЛІГІ ОРТАЛЫҒЫ» КММ
-          <br />
-          КГУ «ЦЕНТР ТРУДОВОЙ МОБИЛЬНОСТИ ОБЛАСТИ АБАЙ»
-        </h1>
-        <div className="order-1 sm:order-2 flex gap-5 items-center">
-          <div className="w-16 h-16 relative">
-            <Image src="/enbek/enbek.png" fill objectFit="contain" alt="EMO" />
-          </div>
-          <div className="w-36 h-20 relative">
-            <Image
-              src="/enbek/oblysy.png"
-              fill
-              objectFit="contain"
-              alt="Abai oblysy"
-            />
-          </div>
-        </div>
-      </div>
       <div className="mt-10 sm:mt-4 container flex w-full  items-center text-white ">
         <div className="flex flex-1  items-center gap-4">
           <nav
@@ -117,5 +96,9 @@ function NavigationItem({
       </Link>
     );
   }
-  return <Link className="text-nowrap block w-full" href={`/${lang}/${slug}`}>{item.title[lang].toUpperCase()}</Link>;
+  return (
+    <Link className="text-nowrap block w-full" href={`/${lang}/${slug}`}>
+      {item.title[lang].toUpperCase()}
+    </Link>
+  );
 }

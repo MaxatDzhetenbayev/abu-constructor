@@ -20,10 +20,9 @@ const raleway = Raleway({
 //   subsets: ["cyrillic", "latin"],
 // });
 
-
 export const metadata: Metadata = {
-  title: "КГУ «ЦЕНТР ТРУДОВОЙ МОБИЛЬНОСТИ ОБЛАСТИ АБАЙ»"
-}
+  title: "Web Constructor v2(Demo Azina)",
+};
 
 export default async function LocaleLayout({
   children,
