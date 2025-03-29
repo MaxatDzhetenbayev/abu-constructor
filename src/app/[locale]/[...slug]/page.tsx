@@ -6,7 +6,7 @@ import { GeneralPageProps } from "@/shared/types";
 import { getWidgetByName, } from "@/widgets";
 
 export const metadata: Metadata = {
-  title: "КГУ «ЦЕНТР ТРУДОВОЙ МОБИЛЬНОСТИ ОБЛАСТИ АБАЙ»"
+  title: "Web Constructor v2(Demo Azina)"
 }
 export default async function Page({
   params: { slug, locale },
