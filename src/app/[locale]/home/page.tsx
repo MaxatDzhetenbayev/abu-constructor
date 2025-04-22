@@ -10,7 +10,6 @@ import {
   Partners,
   President,
 } from "@/features/home";
-import { SnowfallView } from '@/widgets';
 
 import "../../globals.css";
 
@@ -18,7 +17,6 @@ export default function Page() {
   return (
     <section className="flex flex-col gap-24 md:px-3 lg:px-0 ">
       {/* <AppealDialog /> */}
-      <SnowfallView />
       <Banner />
       <Infographics />
       <President />
