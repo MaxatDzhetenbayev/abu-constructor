@@ -1,6 +1,7 @@
 {
     "more": "More",
     "details": "Details",
+    "all_rights": "All rights reserved",
     "home": {
         "infographics": {
             "title": "Infographics",
@@ -32,7 +33,8 @@
         "contacts": {
             "our": "Our contacts",
             "social": "Social Networks",
-            "admissions": "Admissions Committee from 20.06 to 25.08"
+            "admissions": "Admissions Committee from 20.06 to 25.08",
+            "geo": "Abai region, Semey city, Mangilik El street, 11"
         }
     },
     "login": {
