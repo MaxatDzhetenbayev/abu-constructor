@@ -29,7 +29,7 @@ function List({
           <ListItem
             key={idx}
             icon={<FileArchive className="w-7 h-9" />}
-            href={`${backendImageUrl}${content.image}`}
+            href={`${backendImageUrl}${content?.image?.[locale]}`}
           >
             <div>{content[locale].title}</div>
           </ListItem>
