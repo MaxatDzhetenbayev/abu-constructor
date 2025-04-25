@@ -25,15 +25,21 @@ function List({
         {content?.[locale]?.title}
       </h2>
       <ul className="flex flex-col  gap-2">
-        {contents.map(({ content }, idx) => (
-          <ListItem
-            key={idx}
-            icon={<FileArchive className="w-7 h-9" />}
-            href={`${backendImageUrl}${content?.image?.[locale]}`}
-          >
-            <div>{content[locale].title}</div>
-          </ListItem>
-        ))}
+        {contents.map(({ content }, idx) => {
+          const filePath =
+            content?.image?.[locale] || content?.image?.ru;
+
+          return (
+            <ListItem
+              key={idx}
+              icon={<FileArchive className="w-7 h-9" />}
+              href={`${backendImageUrl}${filePath}`}
+            >
+              <div>{content[locale].title}</div>
+            </ListItem>
+          )
+        }
+        )}
       </ul>
     </section>
   );
