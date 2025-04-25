@@ -2,6 +2,7 @@
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import React from "react";
 
 import { backendImageUrl } from "@/shared/lib/constants";
@@ -19,7 +20,7 @@ export const CardBase = ({
   styles,
 }: ICardWithPath) => {
   const { title, content: description } = content[locale];
-
+  const t = useTranslations("");
   const WrapperComponent =
     content.file || content.link
       ? (Link as React.ElementType)
@@ -67,7 +68,7 @@ export const CardBase = ({
                     <button className="grow  flex flex-col justify-between">
                       <Heading title={title} />
                       <div className="flex items-center gap-5 mt-[15px]">
-                        <p className="group-hover:text-white">Подробнее</p>
+                        <p className="group-hover:text-white">{t("details")}</p>
                         <MoreArrow width={17} height={13} />
                       </div>
                     </button>
