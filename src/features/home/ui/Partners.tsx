@@ -1,4 +1,4 @@
-import { motion,useMotionValue } from "framer-motion";
+import { motion, useMotionValue } from "framer-motion";
 import { useTranslations } from "next-intl";
 import React, { useEffect, useRef, useState } from "react";
 
@@ -8,9 +8,9 @@ export const Partners = () => {
   const t = useTranslations("home.partners");
 
   return (
-    <section className="bg-abu_primary py-20">
+    <section className=" py-20">
       <Container className="grid place-items-center   ">
-        <Heading className="text-center font-bold mb-[37px] text-white">
+        <Heading className="text-center font-bold mb-[10px] text-abu_primary">
           {t("title")}
         </Heading>
         {/* <PartnersSlider /> */}
@@ -124,36 +124,10 @@ const PartnersCarousel = () => {
       dir.current = "l";
     }
   };
-  const getImageScale = (idx: number) => {
-    if (idx == imgIndex - 2 || idx == imgIndex + 2) {
-      return 0.7;
-    }
-    if (idx == imgIndex - 1 || idx == imgIndex + 1) {
-      return 0.75;
-    }
-    if (idx == imgIndex) {
-      return 0.9;
-    }
-    return 0.5;
-  };
-
-  const getImageTranslateY = (idx: number) => {
-    if (idx == imgIndex - 2 || idx == imgIndex + 2) {
-      return 10;
-    }
-
-    if (idx == imgIndex - 1 || idx == imgIndex + 1) {
-      return 50;
-    }
-    if (idx == imgIndex) {
-      return 100;
-    }
-    return -100;
-  };
 
   const circleRef = useRef<HTMLDivElement>(null);
   return (
-    <div className=" max-w-[18.75rem] md:max-w-full w-full   pt-28 md:pt-40  flex justify-center overflow-hidden">
+    <div className=" max-w-[18.75rem] md:max-w-full w-full flex justify-center overflow-hidden">
       <motion.div
         drag="x"
         dragConstraints={{
@@ -168,7 +142,7 @@ const PartnersCarousel = () => {
         }}
         transition={SPRING_OPTIONS}
         onDragEnd={onDragEnd}
-        className=" flex w-full min-h-[20rem] gap-0 cursor-grab  active:cursor-grabbing"
+        className=" flex w-full min-h-[14rem] cursor-grab gap-4 active:cursor-grabbing"
       >
         {partners.map((i, idx) => (
           <motion.div
@@ -179,10 +153,6 @@ const PartnersCarousel = () => {
               height: circleRef.current?.offsetWidth,
             }}
             className="flex shadow-white/40 shadow-2xl p-3 min-h-[16.875rem] items-center relative flex-col  overflow-hidden flex-none justify-center   rounded-full bg-white"
-            animate={{
-              scale: getImageScale(idx),
-              y: -getImageTranslateY(idx),
-            }}
           >
             <div
               style={{
@@ -191,9 +161,9 @@ const PartnersCarousel = () => {
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
               }}
-              className="w-[60%] h-[60%]" // Ensure both width and height are set
+              className="w-[40%] h-[40%]" // Ensure both width and height are set
             />
-            <h2 className="font-bold text-center text-md md:text-lg lg:text-xl text-abu_primary">
+            <h2 className="font-bold text-center text-md md:text-lg lg:text-xl text-abu_primary ">
               {i.name}
             </h2>
           </motion.div>

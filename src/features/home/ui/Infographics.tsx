@@ -1,5 +1,3 @@
-import clsx from "clsx";
-import Image from "next/image";
 import { useTranslations } from "next-intl";
 import React from "react";
 
@@ -19,27 +17,11 @@ export const Infographics = () => {
           .map((s, idx) => (
             <section
               key={idx}
-              className="flex items-center relative h-[5.75rem] md:h-[10.75rem] rounded-md px-2.5 w-[17.875rem] bg-abu_primary "
+              className="flex items-center relative h-[5.75rem] md:h-[10.75rem] rounded-md px-2.5 w-[17.875rem] bg-[#CFCFD11F] "
             >
-              <span className="text-white font-bold text-calc-xl">
+              <span className="text-abu_primary font-bold text-calc-xl">
                 {t(`infographics.${idx + 1}`)}
               </span>
-              <Image
-                className={clsx(
-                  "absolute left-1/2 -bottom-10   h-auto",
-                  {
-                    1: "w-[9.188rem]",
-                    2: "w-[5.688rem]",
-                    3: "w-[8.25rem]",
-                    4: "w-[10.5rem]",
-                    5: "w-[10.375rem]",
-                  }[idx + 1]
-                )}
-                src={`/infograph/${idx + 1}.svg`}
-                alt={`index-${idx + 1}`}
-                width={100}
-                height={100}
-              />
             </section>
           ))}
       </section>

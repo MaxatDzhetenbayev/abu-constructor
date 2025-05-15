@@ -52,17 +52,17 @@ export const Footer = () => {
       </div>
       <div className="grid  grid-cols-1 md:grid-cols-2 gap-4">
         {getMap({ locale: locale as string })}
-        <div className="flex flex-col gap-5">
-          <div className="bg-abu_primary rounded-md text-white p-10 flex flex-col gap-4 text-2xl min-h-[216px]">
-            <h3 className="text-4xl font-bold">{t("contacts.our")}</h3>
-            <a href="tel:+77222423224">+7 (7222) 42-32-24</a>
-            <a href="mailto:semey@abu.edu.kz">semey@abu.edu.kz</a>
-            <h3 className="text-4xl font-bold">{t("contacts.admissions")}</h3>
-            <a href="tel:+77222423224">+7 (7222) 44-24-56</a>
-            <a href="tel:+77222423224">+7 (700) 643 43 56</a>
+        <div className="flex flex-col">
+          <div className="bg-[#CFCFD11F]  rounded-md text-white p-4 flex flex-col gap-2 text-2xl ">
+            <h3 className="text-xl font-bold  text-abu_primary">{t("contacts.our")}</h3>
+            <a className="text-sm font-bold text-abu_primary" href="tel:+77222423224">+7 (7222) 42-32-24</a>
+            <a className="text-sm font-bold text-abu_primary" href="mailto:semey@abu.edu.kz">semey@abu.edu.kz</a>
+            <h3 className="text-xl font-bold text-abu_primary">{t("contacts.admissions")}</h3>
+            <a className="text-sm font-bold text-abu_primary" href="tel:+77222423224">+7 (7222) 44-24-56</a>
+            <a className="text-sm font-bold text-abu_primary" href="tel:+77222423224">+7 (700) 643 43 56</a>
           </div>
-          <div className="bg-abu_primary rounded-md text-white p-10 min-h-[216px]">
-            <h3 className="text-4xl mb-[35px] font-bold">
+          <div className="bg-[#CFCFD11F] rounded-md text-white p-4">
+            <h3 className="text-xl mb-[15px] text-abu_primary font-bold">
               {t("contacts.social")}
             </h3>
             <div className="flex gap-2">
