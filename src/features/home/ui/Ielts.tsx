@@ -8,7 +8,7 @@ export const IELTS = () => {
   return (
     <Container>
       <Heading className="text-center">Экзамен IELTS</Heading>
-      <section className="mt-4 flex flex-col items-center  md:flex-row md:justify-center gap-10">
+      <section className="mt-4 flex flex-col items-center lg:flex-row md:justify-center gap-10">
         {ielts.map((i) => (
           <a href={i.link} target="_blank" key={i.link}>
             <img className="max-w-[350px] md:max-w-[450px]" src={i.img} alt="ielts" />
