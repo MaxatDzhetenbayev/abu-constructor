@@ -35,20 +35,22 @@ export const Footer = () => {
 
   return (
     <Container>
-      <div className="flex gap-5 items-center mb-[3.938rem] justify-center md:justify-end">
+      <div className="flex gap-5 items-center mb-[3.938rem] flex-col md:flex-row justify-center md:justify-end">
         <Heading className="md:mb-0">
           {t("accreditation&Recognition.title")}
         </Heading>
-        <img
-          src="/icons/accre.png"
-          className="w-[6rem] md:w-[10.375rem] h-auto"
-        />
-        <Link href="https://greenmetric.ui.ac.id/rankings/overall-rankings-2024" target="_blank">
+        <div className="flex gap-5 items-center">
           <img
-            src="/icons/green_metrics.png"
-            className="w-[6rem] md:w-[10.375rem] h-auto"
+            src="/icons/accre.png"
+            className="w-[9rem] md:w-[10.375rem] h-auto"
           />
-        </Link>
+          <Link href="https://greenmetric.ui.ac.id/rankings/overall-rankings-2024" target="_blank">
+            <img
+              src="/icons/green_metrics.png"
+              className="w-[9rem] md:w-[10.375rem] h-auto"
+            />
+          </Link>
+        </div>
       </div>
       <div className="grid  grid-cols-1 md:grid-cols-2 gap-4">
         {getMap({ locale: locale as string })}
