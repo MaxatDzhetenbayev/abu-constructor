@@ -15,6 +15,9 @@ function Info({
 }) {
   const { post, full_name, content: body } = content[locale];
 
+  const filePath =
+    content?.image?.[locale] || content?.image?.ru;
+
   return (
     <section className="flex flex-col">
       <h2 className="text-2xl font-bold text-abu_primary">
@@ -28,7 +31,7 @@ function Info({
               <Image
                 src={
                   content.image
-                    ? `${backendImageUrl}${content.image}`
+                    ? `${backendImageUrl}${filePath}`
                     : "/images/placeholder.jpg"
                 }
                 fill
