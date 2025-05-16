@@ -39,10 +39,24 @@ export const Partners = () => {
         <Heading className="text-center font-bold mb-[10px] text-abu_primary">
           {t("title")}
         </Heading>
-        <Swiper className="h-[200px] mt-6" slidesPerView={4} spaceBetween={20} loop={true} autoplay={{
+        <Swiper className="h-[200px] mt-6" spaceBetween={20} loop={true} autoplay={{
           delay: 1500,
           disableOnInteraction: false,
         }}
+          breakpoints={{
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 20,
+            },
+            1024: {
+              slidesPerView: 4,
+              spaceBetween: 20,
+            },
+          }}
           modules={[Autoplay]}
         >
           {
