@@ -27,7 +27,7 @@ export const News = () => {
 			 <Events />
 		  </section> */}
         {isLoading ? (
-          <section>
+          <section className="grid grid-cols-3 gap-4 max-lg:flex max-lg:flex-col">
             {skeletonNews.map((item, idx) => (
               <article key={idx}>
                 <Skeleton className="w-full h-[260px]" />
