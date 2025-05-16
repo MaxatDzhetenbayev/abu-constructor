@@ -19,7 +19,7 @@ export const Infographics = () => {
           .map((s, idx) => (
             <section
               key={idx}
-              className="flex items-center relative h-[5.75rem] md:h-[10.75rem] rounded-md px-2.5 w-[17.875rem] bg-abu_primary "
+              className="flex items-center relative h-[5.75rem] md:h-[10.75rem] rounded-md px-2.5 w-[17.875rem] bg-abu_primary overflow-hidden"
             >
               <span className="text-white font-bold text-calc-xl">
                 {t(`infographics.${idx + 1}`)}
