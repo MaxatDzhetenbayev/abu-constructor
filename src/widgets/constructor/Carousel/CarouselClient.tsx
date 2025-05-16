@@ -1,7 +1,7 @@
 "use client"
 import clsx from "clsx";
 import Image from "next/image";
-import { Autoplay,Pagination } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { backendImageUrl } from "@/shared/lib/constants";
@@ -58,7 +58,7 @@ export function CarouselClient({
             return (
               <SwiperSlide key={idx} className="relative w-full h-full">
                 <div className="w-[90%]">
-                  <Image src={`${backendImageUrl}/${content.image}`} alt="" fill style={{ objectFit: "contain" }} />
+                  <Image src={`${backendImageUrl}${content?.image?.[locale] || content?.image["ru"]}`} alt="" fill style={{ objectFit: "contain" }} />
 
                 </div>
                 <section
