@@ -46,19 +46,19 @@ export const BreadCrumbs = ({
     }
   }, []);
 
-  const getCrumbsElementForView = (crumbs: string[]) => {
-    if (!Array.isArray(crumbs)) return [];
-    // Вернуть массив crumbs кроме 2 элемента массива
-    if (crumbs.length > 2)
-      return [...crumbs.slice(0, 1), ...crumbs.slice(2, crumbs.length)];
-    return crumbs;
-  };
+  // const getCrumbsElementForView = (crumbs: string[]) => {
+  //   if (!Array.isArray(crumbs)) return [];
+  //   // Вернуть массив crumbs кроме 2 элемента массива
+  //   if (crumbs.length > 2)
+  //     return [...crumbs.slice(0, 1), ...crumbs.slice(2, crumbs.length)];
+  //   return crumbs;
+  // };
 
   return (
     <>
       <Breadcrumb>
         <BreadcrumbList>
-          {getCrumbsElementForView(crumbs)?.map(
+          {crumbs?.map(
             ({ title, navigation_type: type, slug }: any, idx: number) => (
               <BreadcrumbItem
                 className="text-red-950 font-bold text-xl"
