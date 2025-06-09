@@ -6,6 +6,7 @@ import React from "react";
 import { Logo, LogoSize } from "@/entities";
 import { NavigationList } from "@/entities/navigation";
 import { ChangeLocale } from "@/features";
+import { SearchWidget } from "@/widgets";
 
 import { navbarStyles } from "../config/navbarStyles";
 import { getNavbarClass } from "../libs/getNavbarClass";
@@ -34,7 +35,11 @@ export const Navbar = () => {
             hoveredItem={hoveredItem}
             setHoveredItem={setHoveredItem}
           />
-          {scrolled && <ChangeLocale />}
+          <section className="flex items-center gap-1">
+            <SearchWidget />
+            <div className="h-[22px] w-[4px] bg-[#BABABA]"></div>
+            <ChangeLocale />
+          </section>
         </section>
       </div>
     </nav>

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
@@ -43,7 +43,7 @@ export const Logo = ({
       }}
     >
       <Image
-        src={`/images/logo-white.png`}
+        src={`/images/logo-brown.png`}
         alt="logo"
         fill
         priority
