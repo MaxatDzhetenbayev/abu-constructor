@@ -79,7 +79,7 @@ export const NavigationItem = ({
             {item.title[locale as string]}
             <ChevronRight
               className={clsx(
-                "transitio text-white",
+                "transitio text-[#67493E]",
                 isHoveredItem ? "rotate-90" : "rotate-0"
               )}
             />
