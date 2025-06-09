@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useTranslations } from "next-intl";
 
 import { Container, Heading } from "@/shared/ui";
@@ -12,11 +12,11 @@ export const IELTS = () => {
 
   return (
     <Container>
-      <Heading className="text-center">{t("ielts.exam")}</Heading>
+      <Heading>{t("ielts.exam")}</Heading>
       <section className="mt-4 flex flex-col items-center lg:flex-row md:justify-center gap-10">
         {ielts.map((i) => (
-          <a href={i.link} target="_blank" key={i.link}>
-            <img className="max-w-[350px] md:max-w-[450px]" src={i.img} alt="ielts" />
+          <a href={i.link} target="_blank" key={i.link} className="flex-1 w-full">
+            <img src={i.img} alt="ielts" className="" />
           </a>
         ))}
       </section>

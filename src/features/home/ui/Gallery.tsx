@@ -1,12 +1,12 @@
-import clsx from "clsx";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useParams } from 'next/navigation';
+import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { ReactNode } from "react";
 import { EffectCoverflow, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+
+import { Heading } from "@/shared/ui";
 
 import "swiper/css";
 import "swiper/css/effect-coverflow";
@@ -15,7 +15,6 @@ import "swiper/css/pagination";
 export const Gallery = () => {
   const t = useTranslations();
   const locale = useParams().locale;
-
 
   const gallery_items = Array.from({ length: 15 }, (_, i) => i + 1);
 
@@ -27,7 +26,7 @@ export const Gallery = () => {
           <p>{t("home.gallery.body")}</p>
           <Link
             href={`/${locale}/university/media_resources`}
-            className="flex py-3 w-full justify-center items-center rounded-lg bg-abu_primary gap-2 text-white text-3xl"
+            className="flex py-3 w-full justify-center items-center rounded-lg bg-[#67493E] gap-2 text-white text-3xl"
           >
             {t("more")}
             <ArrowRight color="white" />
@@ -66,24 +65,5 @@ export const Gallery = () => {
         </Swiper>
       </section>
     </section>
-  );
-};
-
-const Heading = ({
-  children,
-  className,
-}: {
-  children: ReactNode;
-  className?: string;
-}) => {
-  return (
-    <h2
-      className={clsx(
-        "text-calc-2xl max-lg:text-center pl-3 md:pl-0 font-bold mb-4 md:mb-8 text-[#640000]",
-        className
-      )}
-    >
-      {children}
-    </h2>
   );
 };

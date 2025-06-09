@@ -12,10 +12,7 @@ export const Heading = ({
 }: IHeadingProps): React.JSX.Element | null => {
   return (
     <h2
-      className={clsx(
-        "text-calc-2xl max-lg:text-center font-bold text-abu_primary",
-        className
-      )}
+      className={clsx("text-calc-2xl font-bold text-[#67493E] mb-6", className)}
     >
       {children}
     </h2>

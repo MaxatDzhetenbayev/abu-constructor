@@ -10,12 +10,11 @@ export const President = () => {
       {/* Задний фон */}
       <div className="absolute top-0 left-0 right-0 bottom-0 " />
 
-      <div className="h-20 w-full bg-abu_primary" />
       <section className="max-w-[1500px] font-raleway px-3  w-full mx-auto my-16 rounded-[10px] overflow-hidden text-white">
         <section className="w-full flex flex-col max-xl:gap-5 items-center xl:grid grid-cols-[auto_1fr] ">
           <motion.div {...leftViewAnim} className="xl:mr-3 rounded-[48px]">
             <Image
-              src="/icons/president.png"
+              src="/images/president.png"
               alt="president photo"
               width={420}
               height={420}
@@ -24,9 +23,11 @@ export const President = () => {
           </motion.div>
           <motion.section
             {...rightViewAnim}
-            className="flex flex-col gap-5 xl:pl-4  xl:border-l-4 border-white"
+            className="flex flex-col bg-[#F9FAFA] gap-5 xl:pl-4   pt-10 px-5 pb-5"
           >
-            <p className="text-justify  text-calc-xl text-abu_primary font-bold">{t("title")}</p>
+            <p className="text-justify  text-calc-xl text-[#333333] font-bold">
+              {t("title")}
+            </p>
             <p className="text-justify text-black text-calc-md ">{t("text")}</p>
             <p className="text-calc-xl italic text-right text-black font-extrabold ">
               {t("signature")}
@@ -36,7 +37,6 @@ export const President = () => {
           </motion.section>
         </section>
       </section>
-      <div className="h-20 w-full bg-abu_primary" />
     </section>
   );
 };
@@ -56,7 +56,7 @@ const leftViewAnim: MotionProps = {
 const rightViewAnim: MotionProps = {
   transition: { duration: 0.5 },
   whileInView: {
-    x: 0,
+    x: -40,
     opacity: 1,
   },
   initial: {

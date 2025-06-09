@@ -15,7 +15,7 @@ import "../../globals.css";
 
 export default function Page() {
   return (
-    <section className="flex flex-col gap-14 md:px-3 lg:px-0 ">
+    <section className="flex flex-col gap-14 ">
       {/* <AppealDialog /> */}
       <Banner />
       <Infographics />

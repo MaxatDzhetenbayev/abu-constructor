@@ -6,13 +6,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import { Container, Heading } from "@/shared/ui";
 
-import 'swiper/css';
-import 'swiper/css/navigation';
+import "swiper/css";
+import "swiper/css/navigation";
 
 export const Partners = () => {
   const t = useTranslations("home.partners");
-
-
 
   const partners = Array(3)
     .fill([
@@ -36,13 +34,15 @@ export const Partners = () => {
   return (
     <section className="py-20">
       <Container className="">
-        <Heading className="text-center font-bold mb-[10px] text-abu_primary">
-          {t("title")}
-        </Heading>
-        <Swiper className="h-[200px] mt-6" spaceBetween={20} loop={true} autoplay={{
-          delay: 1500,
-          disableOnInteraction: false,
-        }}
+        <Heading className=" font-bold mb-[10px]">{t("title")}</Heading>
+        <Swiper
+          className="h-[200px] mt-6"
+          spaceBetween={20}
+          loop={true}
+          autoplay={{
+            delay: 1500,
+            disableOnInteraction: false,
+          }}
           breakpoints={{
             640: {
               slidesPerView: 2,
@@ -59,9 +59,12 @@ export const Partners = () => {
           }}
           modules={[Autoplay]}
         >
-          {
-            partners.map((i, idx) => {
-              return <SwiperSlide key={idx} className="flex justify-center flex-col gap-6 items-center">
+          {partners.map((i, idx) => {
+            return (
+              <SwiperSlide
+                key={idx}
+                className="flex justify-center flex-col gap-6 items-center"
+              >
                 <div className="w-full h-full relative">
                   <Image
                     src={i.img}
@@ -74,12 +77,10 @@ export const Partners = () => {
                   {i.name}
                 </h2>
               </SwiperSlide>
-            }
-            )}
+            );
+          })}
         </Swiper>
       </Container>
     </section>
-
-
-  )
+  );
 };

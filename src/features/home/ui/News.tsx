@@ -51,6 +51,7 @@ const Card = ({
   content,
   title,
   id,
+  createdAt,
   className,
 }: INews & { className?: string }) => {
   const locale = useParams().locale as LocaleType[number];
@@ -75,11 +76,16 @@ const Card = ({
           />
         </div>
         <div className="">
-          <h2 className="text-abu_primary font-semibold text-calc-xl">
-            {head}
+          <h2 className="text-[#BABABA] font-semibold text-calc-md">
+            {new Date(createdAt).toLocaleDateString("ru-RU", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
           </h2>
+          <h2 className="text-[#3E3232] font-semibold text-calc-xl">{head}</h2>
           <p
-            className="text-[#3E3232] text-calc-md mt-3 line-clamp-2"
+            className="text-[#3E3232] text-calc-md line-clamp-2"
             dangerouslySetInnerHTML={{
               __html: description,
             }}
@@ -101,7 +107,7 @@ const MoreButton = ({
   return (
     <Link
       href={`${link}`}
-      className="flex py-3 w-full justify-center items-center rounded-lg bg-abu_primary gap-2"
+      className="flex py-3 w-full justify-center items-center rounded-lg bg-[#67493E] gap-2"
       style={{
         maxWidth,
       }}
