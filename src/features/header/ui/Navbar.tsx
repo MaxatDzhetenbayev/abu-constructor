@@ -22,7 +22,7 @@ export const Navbar = () => {
     <nav
       className={clsx(
         navbarStyles.default,
-        getNavbarClass({ scrolled, hoveredItem, path, locale })
+        getNavbarClass({ scrolled, path, locale })
       )}
     >
       <div
