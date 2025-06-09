@@ -76,7 +76,7 @@ export const BreadCrumbs = ({
                 >
                   {isMobileWidth ? `${title.slice(0, 30)}...` : title}
                 </BreadcrumbLink>
-                {idx < getCrumbsElementForView(crumbs)?.length - 1 && (
+                {idx < crumbs?.length - 1 && (
                   <ChevronRight size={30} className="mb-1" />
                 )}
               </BreadcrumbItem>
