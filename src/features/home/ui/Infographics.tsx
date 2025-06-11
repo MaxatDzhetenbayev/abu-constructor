@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import React from "react";
@@ -13,7 +12,7 @@ export const Infographics = () => {
       <Heading className="mb-4 md:mb-8 text-center text-[#67493E] text-calc-2xl">
         <>{t("infographics.title")}</>
       </Heading>
-      <section className="flex flex-wrap justify-center box-border gap-10">
+      <section className="flex flex-wrap justify-center box-border gap-10 ">
         {Array.from({ length: 5 })
           .fill(1)
           .map((s, idx) => {
@@ -32,7 +31,7 @@ export const Infographics = () => {
                     />
                   </div>
                   <p className="text-center text-calc-xl font-semibold text-gray-800">
-                    50+ білім беру бағдарламасы
+                    {t(`infographics.${idx + 1}`)}
                   </p>
                 </div>
               </div>
