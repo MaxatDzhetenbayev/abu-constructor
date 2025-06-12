@@ -7,10 +7,15 @@ import React from "react";
 
 import { backendImageUrl } from "@/shared/lib/constants";
 import { Dialog, DialogContent, DialogTrigger, MoreArrow } from "@/shared/ui";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/shared/ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/shared/ui/tooltip";
 import { ICard } from "@/widgets/constructor/Cards/model/Cards.interface";
 
-type ICardWithPath = ICard & Record<"currentPath", string>
+type ICardWithPath = ICard & Record<"currentPath", string>;
 
 export const CardBase = ({
   content,
@@ -30,8 +35,6 @@ export const CardBase = ({
     ? { href: `${backendImageUrl}/${content.file}`, target: "_blank" }
     : content.link && { href: `${currentPath}/${content.link}` };
 
-
-
   return (
     <TooltipProvider>
       <Tooltip>
@@ -39,7 +42,7 @@ export const CardBase = ({
           <WrapperComponent
             {...linkProps}
             className={clsx(
-              "flex grow gap-5 rounded-2xl shadow-md overflow-hidden p-[20px] group hover:bg-abu_primary_hover transition-colors duration-500",
+              "flex grow gap-5 rounded-2xl shadow-md overflow-hidden p-[20px] group bg-[url('/images/backgrounds/background-2.png')] hover:bg-[url('/images/backgrounds/background-1.png')] transition-colors duration-700",
               styles,
               variant === "with_modal"
                 ? "flex-col"
@@ -68,8 +71,15 @@ export const CardBase = ({
                     <button className="grow  flex flex-col justify-between">
                       <Heading title={title} />
                       <div className="flex items-center gap-5 mt-[15px]">
-                        <p className="group-hover:text-white">{t("details")}</p>
-                        <MoreArrow width={17} height={13} />
+                        <p className="group-hover:text-abu_primary_hover">
+                          {t("details")}
+                        </p>
+                        <Image
+                          src="/icons/right-arrow-primary.svg"
+                          width={17}
+                          height={13}
+                          alt="Кнопка для активации"
+                        />
                       </div>
                     </button>
                   </DialogTrigger>
@@ -84,29 +94,20 @@ export const CardBase = ({
             )}
           </WrapperComponent>
         </TooltipTrigger>
-        {
-          title.length > 28 && (
-            <TooltipContent>
-              <h2
-                className="text-calc-xl grow font-bold p-1"
-              >
-                {title}
-              </h2>
-            </TooltipContent>
-          )
-        }
+        {title.length > 28 && (
+          <TooltipContent>
+            <h2 className="text-calc-xl grow font-bold p-1">{title}</h2>
+          </TooltipContent>
+        )}
       </Tooltip>
     </TooltipProvider>
-
   );
 };
 
 const Heading = ({ title }: { title: string }): React.JSX.Element => {
   return (
-    <h2
-      className="text-calc-xl grow font-bold text-left group-hover:text-white line-clamp-2"
-    >
+    <h2 className="text-calc-xl grow font-bold text-left text-abu_primary_hover line-clamp-2">
       {title}
     </h2>
-  )
-}
+  );
+};
