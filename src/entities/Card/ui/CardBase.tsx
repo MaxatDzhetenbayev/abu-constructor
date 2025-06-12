@@ -52,7 +52,12 @@ export const CardBase = ({
             {variant !== "with_modal" ? (
               <>
                 <Heading title={title} />
-                <MoreArrow width={36} height={24} />
+                <Image
+                  src="/icons/right-arrow-primary.svg"
+                  width={36}
+                  height={24}
+                  alt="Кнопка для активации"
+                />
               </>
             ) : (
               <div className="h-full flex flex-col">
