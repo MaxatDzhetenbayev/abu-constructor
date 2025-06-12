@@ -61,7 +61,7 @@ export const BreadCrumbs = ({
           {crumbs?.map(
             ({ title, navigation_type: type, slug }: any, idx: number) => (
               <BreadcrumbItem
-                className="text-red-950 font-bold text-xl"
+                className="text-abu_primary font-bold text-xl"
                 key={idx}
               >
                 <BreadcrumbLink
