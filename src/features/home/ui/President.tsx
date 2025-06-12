@@ -1,9 +1,51 @@
 import { motion, MotionProps } from "framer-motion";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { useEffect, useState } from "react";
 
 export const President = () => {
   const t = useTranslations("home.president_message");
+
+  const [isMobileWidth, setIsMobileWidth] = useState<boolean>(false);
+
+  // получение ширины экрана
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // Код будет выполнен только на клиенте
+      const handleResize = () =>
+        setIsMobileWidth(() => window.innerWidth < 768);
+      window.addEventListener("resize", handleResize);
+
+      // Установить начальное значение
+      handleResize();
+
+      return () => window.removeEventListener("resize", handleResize);
+    }
+  }, []);
+
+  const leftViewAnim: MotionProps = {
+    transition: { duration: 0.5 },
+    whileInView: {
+      x: 0,
+      opacity: 1,
+    },
+    initial: {
+      opacity: 0,
+      x: -100,
+    },
+  };
+
+  const rightViewAnim: MotionProps = {
+    transition: { duration: 0.5 },
+    whileInView: {
+      x: isMobileWidth ? 0 : -40,
+      opacity: 1,
+    },
+    initial: {
+      opacity: 0,
+      x: 100,
+    },
+  };
 
   return (
     <section className="relative">
@@ -39,28 +81,4 @@ export const President = () => {
       </section>
     </section>
   );
-};
-
-const leftViewAnim: MotionProps = {
-  transition: { duration: 0.5 },
-  whileInView: {
-    x: 0,
-    opacity: 1,
-  },
-  initial: {
-    opacity: 0,
-    x: -100,
-  },
-};
-
-const rightViewAnim: MotionProps = {
-  transition: { duration: 0.5 },
-  whileInView: {
-    x: -40,
-    opacity: 1,
-  },
-  initial: {
-    opacity: 0,
-    x: 100,
-  },
 };

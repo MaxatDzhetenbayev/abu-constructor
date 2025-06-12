@@ -9,7 +9,7 @@ import { useState } from "react";
 import { topHeaderMenuList } from "@/shared/config/topHeaderMenu";
 import { backendUrl } from "@/shared/lib/constants";
 import { INavigation } from "@/shared/types";
-import { Button,Drawer, DrawerContent, DrawerTrigger } from "@/shared/ui";
+import { Button, Drawer, DrawerContent, DrawerTrigger } from "@/shared/ui";
 
 import { useQuery } from "@tanstack/react-query";
 
@@ -31,12 +31,12 @@ export const BurgerMenu = () => {
       <Button
         size={"icon"}
         variant={"ghost"}
-        className="flex text-white hover:text-bg-[#640000] justify-center items-center [@media(min-width:890px)]:hidden "
+        className="flex text-white hover:text-bg-[#67493E] justify-center items-center [@media(min-width:890px)]:hidden "
         onClick={() => setOpen(true)}
       >
-        <Menu size={32} />
+        <Menu size={32} color="#67493E" />
       </Button>
-      <DrawerContent className="rounded-none bg-abu_primary border-none px-4 py-14">
+      <DrawerContent className="rounded-none bg-[#67493E] border-none px-4 py-14">
         <div className="relative flex flex-col gap-3 text-xl text-white">
           <Button
             onClick={() => setOpen(false)}
@@ -99,7 +99,7 @@ const MenuLink = ({
         <DrawerTrigger className="text-start flex justify-start items-center gap-3">
           {page.title[locale]} <ChevronRight className="" />
         </DrawerTrigger>
-        <DrawerContent className="rounded-none bg-abu_primary   border-none px-4 py-14">
+        <DrawerContent className="rounded-none bg-[#67493E]   border-none px-4 py-14">
           <div className=" relative flex flex-col gap-3 text-xl text-white ">
             <Button
               onClick={() => setOpen(false)}
