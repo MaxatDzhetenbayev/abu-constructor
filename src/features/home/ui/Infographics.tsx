@@ -19,9 +19,9 @@ export const Infographics = () => {
             return (
               <div
                 key={idx}
-                className={`mb-4 relative rounded-3xl p-[2px] bg-white border bg-gradient-to-tr from-[#67493E] to-[#FFBE0B] `}
+                className={`mb-4 basis-[350px] relative rounded-3xl p-[2px] bg-white border bg-gradient-to-tr from-[#67493E] to-[#FFBE0B] `}
               >
-                <div className="bg-white rounded-[22px] p-6">
+                <div className="bg-white rounded-[22px] p-6 h-full">
                   <div className="relative w-24 h-24 bg-[#FDF3DF] p-4 rounded-full flex items-center justify-center mx-auto">
                     <Image
                       src={`/infograph/${idx + 1}.svg`}
