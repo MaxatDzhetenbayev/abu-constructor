@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import React from "react";
 
 import { backendImageUrl } from "@/shared/lib/constants";
-import { Dialog, DialogContent, DialogTrigger, MoreArrow } from "@/shared/ui";
+import { Dialog, DialogContent, DialogTrigger } from "@/shared/ui";
 import {
   Tooltip,
   TooltipContent,
