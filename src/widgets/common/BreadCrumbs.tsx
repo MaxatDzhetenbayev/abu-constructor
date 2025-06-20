@@ -19,7 +19,7 @@ export const BreadCrumbs = ({
   slug: string[];
   locale: string;
 }) => {
-  const { data: crumbs } = useQuery({
+  const { data: crumbs, isSuccess } = useQuery({
     queryKey: ["crumbs"],
     queryFn: async () => {
       const response = await fetch(
@@ -46,42 +46,42 @@ export const BreadCrumbs = ({
     }
   }, []);
 
-  // const getCrumbsElementForView = (crumbs: string[]) => {
-  //   if (!Array.isArray(crumbs)) return [];
-  //   // Вернуть массив crumbs кроме 2 элемента массива
-  //   if (crumbs.length > 2)
-  //     return [...crumbs.slice(0, 1), ...crumbs.slice(2, crumbs.length)];
-  //   return crumbs;
-  // };
+  const getCrumbsElementForView = (crumbs: any) => {
+    // Вернуть массив после проверки на is_visible
+    const newCrumbs = crumbs?.filter((crumb: any) => crumb.is_visible);
+
+    return newCrumbs;
+  };
 
   return (
     <>
       <Breadcrumb>
         <BreadcrumbList>
-          {crumbs?.map(
-            ({ title, navigation_type: type, slug }: any, idx: number) => (
-              <BreadcrumbItem
-                className="text-abu_primary font-bold text-xl"
-                key={idx}
-              >
-                <BreadcrumbLink
-                  href={
-                    ["content", "group-link", "detail"].includes(type)
-                      ? `/${locale}/${slug}`
-                      : undefined
-                  }
-                  style={{
-                    fontSize: "clamp(18px, 1.4vw, 24px)",
-                  }}
+          {isSuccess &&
+            getCrumbsElementForView(crumbs)?.map(
+              ({ title, navigation_type: type, slug }: any, idx: number) => (
+                <BreadcrumbItem
+                  className="text-abu_primary font-bold text-xl"
+                  key={idx}
                 >
-                  {isMobileWidth ? `${title.slice(0, 30)}...` : title}
-                </BreadcrumbLink>
-                {idx < crumbs?.length - 1 && (
-                  <ChevronRight size={30} className="mb-1" />
-                )}
-              </BreadcrumbItem>
-            )
-          )}
+                  <BreadcrumbLink
+                    href={
+                      ["content", "group-link", "detail"].includes(type)
+                        ? `/${locale}/${slug}`
+                        : undefined
+                    }
+                    style={{
+                      fontSize: "clamp(18px, 1.4vw, 24px)",
+                    }}
+                  >
+                    {isMobileWidth ? `${title.slice(0, 30)}...` : title}
+                  </BreadcrumbLink>
+                  {idx < getCrumbsElementForView(crumbs)?.length - 1 && (
+                    <ChevronRight size={30} className="mb-1" />
+                  )}
+                </BreadcrumbItem>
+              )
+            )}
         </BreadcrumbList>
       </Breadcrumb>
     </>
