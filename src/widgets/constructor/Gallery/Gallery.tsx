@@ -47,7 +47,7 @@ function Gallery({
                       "cursor-pointer flex-1 min-w-[300px] w-[100%] [@media(max-width:390px)]:h-[300px] h-[350px] rounded-md bg-slate-50"
                     )}
                     style={{
-                      backgroundImage: `url('${backendImageUrl}${content.image}')`,
+                      backgroundImage: `url('${backendImageUrl}${filePath}')`,
                       backgroundSize: "cover",
                       backgroundPosition: "center",
                     }}
