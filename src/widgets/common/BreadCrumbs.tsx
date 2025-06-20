@@ -48,6 +48,9 @@ export const BreadCrumbs = ({
 
   const getCrumbsElementForView = (crumbs: any) => {
     // Вернуть массив после проверки на is_visible
+    if (!crumbs || !Array.isArray(crumbs)) return [];
+    if (crumbs.length === 2) return crumbs;
+
     const newCrumbs = crumbs?.filter((crumb: any) => crumb.is_visible);
 
     return newCrumbs;
