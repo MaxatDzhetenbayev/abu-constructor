@@ -67,7 +67,7 @@ const CreateNewsModal = () => {
   });
 
   return (
-    <section className="max-h-[95%] overflow-y-auto">
+    <section className="">
       <form onSubmit={handleSubmit(onSubmit)}>
         <section className="flex flex-col gap-3 border p-5">
           <h2>Заголовок</h2>

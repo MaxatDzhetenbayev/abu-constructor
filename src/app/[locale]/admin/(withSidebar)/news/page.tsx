@@ -108,10 +108,7 @@ const NewsModalContent = ({ news: { id } }: { news: Pick<INews, "id"> }) => {
   if (isError || !data) return <p>Ошибка загрузки</p>;
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="max-h-[95%] overflow-y-auto flex flex-col gap-6"
-    >
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
       <section className="">
         {/* Заголовок */}
         <section className="border p-4">
