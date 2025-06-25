@@ -3,9 +3,13 @@ import React from "react";
 import { Controller, useForm } from "react-hook-form";
 
 import { locales } from "@/i18n";
+import { queryClient } from "@/shared/lib/client";
 import { backendUrl } from "@/shared/lib/constants";
 import { Button, Input, Modal } from "@/shared/ui";
 import JoditEditorComponent from "@/shared/ui/quill-editor";
+import { toast } from "@/shared/ui/use-toast";
+
+import { useMutation } from "@tanstack/react-query";
 
 export const CreateNewsButton = () => {
   return (
@@ -19,33 +23,51 @@ export const CreateNewsButton = () => {
 
 const CreateNewsModal = () => {
   const { register, handleSubmit, control } = useForm();
-  const formData = new FormData();
-  const onSubmit = async (data: any) => {
-    formData.append("data", JSON.stringify(data));
 
-    locales.forEach((locale) => {
-      const inputElement = document.getElementById(locale) as HTMLInputElement;
-      if (inputElement && inputElement.files) {
-        Array.from(inputElement.files).forEach((file) => {
-          formData.append(`${locale}`, file);
-        });
-      }
-    });
-
-    const response = await fetch(`${backendUrl}/news`, {
-      method: "POST",
-      body: formData,
-    });
-
-    if (response.ok) {
-      console.log("News created");
-    } else {
-      console.log("Error creating news");
-    }
+  const onSubmit = (data: any) => {
+    mutate({ data });
   };
 
+  const { mutate } = useMutation({
+    mutationFn: async ({ data }: { data: any }) => {
+      const formData = new FormData();
+      formData.append("data", JSON.stringify(data));
+
+      locales.forEach((locale) => {
+        const inputElement = document.getElementById(
+          locale
+        ) as HTMLInputElement;
+        if (inputElement && inputElement.files) {
+          Array.from(inputElement.files).forEach((file) => {
+            formData.append(`${locale}`, file);
+          });
+        }
+      });
+
+      const res = await fetch(`${backendUrl}/news`, {
+        method: "POST",
+        body: formData,
+      });
+      if (!res.ok) throw new Error("Ошибка при обновлении");
+      return res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["news"] });
+      toast({
+        title: "Новость создана",
+        description: "Новость успешно создана.",
+      });
+    },
+    onError: () => {
+      toast({
+        title: "Ошибка",
+        description: "Не удалось создать новость.",
+      });
+    },
+  });
+
   return (
-    <section>
+    <section className="max-h-[95%] overflow-y-auto">
       <form onSubmit={handleSubmit(onSubmit)}>
         <section className="flex flex-col gap-3 border p-5">
           <h2>Заголовок</h2>

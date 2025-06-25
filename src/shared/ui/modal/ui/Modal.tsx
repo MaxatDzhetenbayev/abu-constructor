@@ -23,7 +23,7 @@ export const Modal = ({
   isWfull,
 }: ModalProps) => {
   return (
-    <Dialog>
+    <Dialog >
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent
         className={clsx(
