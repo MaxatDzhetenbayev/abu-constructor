@@ -12,7 +12,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "backnew.abu.edu.kz",
+        hostname: "back.abu.edu.kz",
         pathname: "/uploads/**"
       },
       {
