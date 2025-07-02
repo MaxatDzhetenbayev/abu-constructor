@@ -1,9 +1,9 @@
 'use client'
-import Link from 'next/link'
 import { useTranslations } from 'next-intl'
-import React from 'react'
+import Link from 'next/link'
 
 import { topHeaderMenuList } from '@/shared/config/topHeaderMenu'
+import clsx from 'clsx'
 
 export const TopHeaderMenu = () => {
     const t = useTranslations()
@@ -13,9 +13,7 @@ export const TopHeaderMenu = () => {
             className="text-white items-center hidden [@media(min-width:890px)]:flex py-3"
             style={{ gap: 'clamp(10px, 1.5vw, 15px)' }}
         >
-            <Link className="text-[#67493E] font-bold" href="https://old.abu.edu.kz/">
-                {t('old_version')}↗
-            </Link>
+
 
             {topHeaderMenuList.map((item, index) => (
                 <li key={index}>
@@ -23,9 +21,9 @@ export const TopHeaderMenu = () => {
                         href={item.link}
                         key={index}
                         target="_blank"
-                        className="text-[#67493E] font-bold before:content-['•'] before:mr-4"
+                        className={clsx("text-[#67493E] font-bold  ", index !== 0 && "before:content-['•'] before:mr-4")}
                     >
-                        {item.title}↗
+                        {index == 0 ? t(item.title) : item.title}↗
                     </Link>
                 </li>
             ))}

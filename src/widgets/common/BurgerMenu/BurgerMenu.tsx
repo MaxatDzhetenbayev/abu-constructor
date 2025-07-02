@@ -15,6 +15,7 @@ import { ChangeLocale } from "@/features";
 import { useQuery } from "@tanstack/react-query";
 
 export const BurgerMenu = () => {
+    const t = useTranslations()
     const params = useParams();
 
     const { data: pages } = useQuery<INavigation[]>({
@@ -64,7 +65,7 @@ export const BurgerMenu = () => {
                             key={index}
                             className="text-white text-[20px]"
                         >
-                            {item.title}
+                            {index == 0 ? t(item.title) : item.title}
                         </Link>
                     ))}
                 </div>
