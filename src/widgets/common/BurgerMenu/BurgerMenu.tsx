@@ -1,17 +1,17 @@
 "use client";
 import clsx from "clsx";
 import { ArrowLeft, ChevronRight, Menu, X } from "lucide-react";
-import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 
+import { ChangeLocale } from "@/features";
 import { topHeaderMenuList } from "@/shared/config/topHeaderMenu";
 import { backendUrl } from "@/shared/lib/constants";
 import { INavigation } from "@/shared/types";
 import { Button, Drawer, DrawerContent, DrawerTrigger } from "@/shared/ui";
 
-import { ChangeLocale } from "@/features";
 import { useQuery } from "@tanstack/react-query";
 
 export const BurgerMenu = () => {

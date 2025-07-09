@@ -1,9 +1,9 @@
 'use client'
-import { useTranslations } from 'next-intl'
+import clsx from 'clsx'
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 
 import { topHeaderMenuList } from '@/shared/config/topHeaderMenu'
-import clsx from 'clsx'
 
 export const TopHeaderMenu = () => {
     const t = useTranslations()
