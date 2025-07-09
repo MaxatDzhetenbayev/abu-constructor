@@ -29,6 +29,7 @@ export const Partners = () => {
       { name: "", img: "/icons/partners/8.webp" },
       { name: "", img: "/icons/partners/9.svg" },
       { name: "", img: "/icons/partners/10.webp" },
+      { name: "ТОО «ExpoDamu»", img: "/icons/partners/11.png" },
     ])
     .flat();
   return (
