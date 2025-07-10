@@ -1,219 +1,220 @@
 {
-    "old_version": "Old version",
-    "more": "More",
-    "details": "Details",
-    "all_rights": "All rights reserved",
-    "home": {
-        "infographics": {
-            "title": "Why choose Alikhan Bokeikhan University?",
-            "1": "50+ educational programs",
-            "2": "Modern student house",
-            "3": "Military department",
-            "4": "Regional Technocluster Abai IT Valley",
-            "5": "Academic mobility"
-        },
-        "president_message": {
-            "title": "Friends, welcome to the official website of Alikhan Bokeikhan Universty!",
-            "text": "We are living in a special historical period: the world has moved into the era of the IV industrial revolution.  The horizons of educational space are constantly expanding and have no boundaries. This is evidenced by the opening of branches of foreign universities in Kazakhstani universities.We are obliged to adapt to the calls of time and in accordance with our mission to become a fundamental educational institution, while preserving our national mentality and historical and cultural values as much as possible. In addition to the flow of information technology, an effective system of implementing artificial intelligence as a work style and lifestyle is being considered today through Abai IT-Valley. Today artificial intelligence is a priority issue. It is known that Alash movement leader Alikhan Bokeykhanov expressed his hope for the future by saying, “a generation will come who will see the sun”. What was a fantastic dream yesterday, today is becoming a reality, leading humanity to progress in recent history.Our main goal should be to systematically promote the idea of Alash leaders who strived for the independence of the country.Our endless and noble task remains not only to educate a graduated highly qualified specialist, but also a harmonious personality.",
-            "signature": "Sincerely,",
-            "university": "President of Alikhan Bokeikhan University",
-            "name": "Shyryn Kurmanbayeva"
-        },
-        "gallery": {
-            "title": "Gallery",
-            "body": "Welcome to the photo gallery of our university! Here we have collected bright and memorable moments from the life of our university, events and achievements of students. In each album you can see what our academic community lives: scientific research, creative projects, student life, sporting events and much more. We are proud of the successes of our students and faculty, the atmosphere of inspiration and mutual support that make our university truly unique. Enjoy browsing and join our great university family!"
-        },
-        "news": {
-            "title": "News and Events"
-        },
-        "partners": {
-            "title": "Our partners"
-        },
-        "ielts": {
-            "exam": "IELTS exam"
-        },
-        "accreditation&Recognition": {
-            "title": "Accreditation and Recognition"
-        },
-        "contacts": {
-            "our": "Our contacts",
-            "social": "Social Networks",
-            "admissions": "Admissions Committee from 20.06 to 25.08",
-            "geo": "Abai region, Semey city, Mangilik El street, 11"
-        }
+  "old_version": "Old version",
+  "more": "More",
+  "details": "Details",
+  "all_rights": "All rights reserved",
+  "home": {
+    "infographics": {
+      "title": "Why choose Alikhan Bokeikhan University?",
+      "1": "50+ educational programs",
+      "2": "Modern student house",
+      "3": "Military department",
+      "4": "Regional Technocluster Abai IT Valley",
+      "5": "Academic mobility",
+      "6": "Educational grants"
     },
-    "login": {
-        "title": "Authorization",
-        "login": "Login",
-        "password": "Password",
-        "btn": "Sign In"
+    "president_message": {
+      "title": "Friends, welcome to the official website of Alikhan Bokeikhan Universty!",
+      "text": "We are living in a special historical period: the world has moved into the era of the IV industrial revolution.  The horizons of educational space are constantly expanding and have no boundaries. This is evidenced by the opening of branches of foreign universities in Kazakhstani universities.We are obliged to adapt to the calls of time and in accordance with our mission to become a fundamental educational institution, while preserving our national mentality and historical and cultural values as much as possible. In addition to the flow of information technology, an effective system of implementing artificial intelligence as a work style and lifestyle is being considered today through Abai IT-Valley. Today artificial intelligence is a priority issue. It is known that Alash movement leader Alikhan Bokeykhanov expressed his hope for the future by saying, “a generation will come who will see the sun”. What was a fantastic dream yesterday, today is becoming a reality, leading humanity to progress in recent history.Our main goal should be to systematically promote the idea of Alash leaders who strived for the independence of the country.Our endless and noble task remains not only to educate a graduated highly qualified specialist, but also a harmonious personality.",
+      "signature": "Sincerely,",
+      "university": "President of Alikhan Bokeikhan University",
+      "name": "Shyryn Kurmanbayeva"
     },
-    "NotFoundPage": {
-        "title": "Page Not Found"
+    "gallery": {
+      "title": "Gallery",
+      "body": "Welcome to the photo gallery of our university! Here we have collected bright and memorable moments from the life of our university, events and achievements of students. In each album you can see what our academic community lives: scientific research, creative projects, student life, sporting events and much more. We are proud of the successes of our students and faculty, the atmosphere of inspiration and mutual support that make our university truly unique. Enjoy browsing and join our great university family!"
     },
-    "search": {
-        "title": "Search for the site",
-        "placeholder": "Write to search",
-        "not_found": "No results found",
-        "navigation": "page",
-        "widget": "content"
+    "news": {
+      "title": "News and Events"
     },
-    "sidebar": {
-        "logout": "Log Out",
-        "links": {
-            "home": {
-                "label": "Home",
-                "href": "/admin"
-            },
-            "settings": {
-                "label": "Settings",
-                "href": "/admin/settings"
-            },
-            "pages": {
-                "label": "Pages",
-                "href": "/admin/pages"
-            },
-            "news": {
-                "label": "News",
-                "href": "/admin/news"
-            }
-        }
+    "partners": {
+      "title": "Our partners"
     },
-    "burger": {
-        "back": "Back"
+    "ielts": {
+      "exam": "IELTS exam"
     },
-    "widget": {
-        "add": "Add",
-        "save": "Save",
-        "edit": {
-            "cardTitle": "Edit",
-            "desc": "Here you can edit the widget",
-            "triggerTitle": "Edit"
-        },
-        "history": {
-            "title": "History",
-            "desc": "Here all changes are displayed",
-            "item": "Changed",
-            "toast": {
-                "success": "Widget restored.",
-                "error": "Error restoring widget."
-            },
-            "alert": {
-                "title": "Are you sure you want to restore?",
-                "desc": "Restore button",
-                "decline": "Cancel",
-                "btn": "Restore"
-            }
-        }
+    "accreditation&Recognition": {
+      "title": "Accreditation and Recognition"
     },
-    "pages": {
-        "pageEditor": {
-            "btn": "Page Content",
-            "title": "Page Content",
-            "desc": "Here you can edit the page content.",
-            "decline": "Cancel"
-        },
-        "pageEditorContent": {
-            "toast": {
-                "delete": {
-                    "success": "Widget deleted",
-                    "error": "Error deleting widget"
-                },
-                "updateList": {
-                    "success": "Widget order updated",
-                    "error": "Error updating widget order"
-                }
-            },
-            "leftTitle": "Widget List",
-            "rightTitle": "Content",
-            "notFound": "No content found",
-            "save": "Save",
-            "delete": {
-                "title": "Delete Widget",
-                "desc": "Are you sure you want to delete the widget?",
-                "decline": "Cancel",
-                "delete": "Delete"
-            },
-            "preview": {
-                "title": "Widget Preview",
-                "desc": "Here you can preview how the widget looks"
-            },
-            "edit": {
-                "title": "Widget",
-                "desc": "Edit widget",
-                "close": {
-                    "title": "Are you sure you want to close the modal?",
-                    "desc": "All unsaved data will be lost when closing.",
-                    "decline": "Cancel",
-                    "close": "Close"
-                }
-            }
-        },
-        "id": {
-            "title": "Child Pages"
-        },
-        "form": {
-            "nameRu": "Name in Russian",
-            "nameKz": "Name in Kazakh",
-            "nameEn": "Name in English",
-            "select": {
-                "placeholder": "Page Type",
-                "content": "content",
-                "group": "group",
-                "group-link": "group-link"
-            },
-            "slug": "Page Slug",
-            "number": "Page Number",
-            "save": "Save"
-        },
-        "delete": {
-            "title": "Are you sure you want to delete the page?",
-            "desc": "Deleted data cannot be recovered.",
-            "decline": "Cancel",
-            "delete": "Delete"
-        },
-        "edit": {
-            "title": "Create Page",
-            "desc": "Here you can edit the page.",
-            "decline": "Cancel"
-        },
-        "create": {
-            "btn": "Create Page",
-            "childBtn": "Create Child Page",
-            "title": "Create Page",
-            "desc": "Here you can create a page",
-            "decline": "Cancel"
-        },
-        "table": {
-            "notFound": "No templates found",
-            "caption": "Available Templates",
-            "nameRu": "Name in Russian",
-            "nameKz": "Name in Kazakh",
-            "slug": "Slug",
-            "order": "Order",
-            "childPages": "Child Pages",
-            "edit": "Edit",
-            "delete": "Delete Page",
-            "follow": "Go to"
-        }
-    },
-    "settings": {
-        "updateBtn": "Update"
-    },
-    "templates": {
-        "create": {
-            "btn": "Create Template",
-            "title": "Create Template",
-            "desc": "Here you can create a template",
-            "name": "Template Name",
-            "next": "Next",
-            "decline": "Cancel"
-        },
-        "table": {
-            "notFound": "No templates found",
-            "caption": "Available Templates",
-            "name": "Name",
-            "structure": "Structure"
-        }
+    "contacts": {
+      "our": "Our contacts",
+      "social": "Social Networks",
+      "admissions": "Admissions Committee from 20.06 to 25.08",
+      "geo": "Abai region, Semey city, Mangilik El street, 11"
     }
+  },
+  "login": {
+    "title": "Authorization",
+    "login": "Login",
+    "password": "Password",
+    "btn": "Sign In"
+  },
+  "NotFoundPage": {
+    "title": "Page Not Found"
+  },
+  "search": {
+    "title": "Search for the site",
+    "placeholder": "Write to search",
+    "not_found": "No results found",
+    "navigation": "page",
+    "widget": "content"
+  },
+  "sidebar": {
+    "logout": "Log Out",
+    "links": {
+      "home": {
+        "label": "Home",
+        "href": "/admin"
+      },
+      "settings": {
+        "label": "Settings",
+        "href": "/admin/settings"
+      },
+      "pages": {
+        "label": "Pages",
+        "href": "/admin/pages"
+      },
+      "news": {
+        "label": "News",
+        "href": "/admin/news"
+      }
+    }
+  },
+  "burger": {
+    "back": "Back"
+  },
+  "widget": {
+    "add": "Add",
+    "save": "Save",
+    "edit": {
+      "cardTitle": "Edit",
+      "desc": "Here you can edit the widget",
+      "triggerTitle": "Edit"
+    },
+    "history": {
+      "title": "History",
+      "desc": "Here all changes are displayed",
+      "item": "Changed",
+      "toast": {
+        "success": "Widget restored.",
+        "error": "Error restoring widget."
+      },
+      "alert": {
+        "title": "Are you sure you want to restore?",
+        "desc": "Restore button",
+        "decline": "Cancel",
+        "btn": "Restore"
+      }
+    }
+  },
+  "pages": {
+    "pageEditor": {
+      "btn": "Page Content",
+      "title": "Page Content",
+      "desc": "Here you can edit the page content.",
+      "decline": "Cancel"
+    },
+    "pageEditorContent": {
+      "toast": {
+        "delete": {
+          "success": "Widget deleted",
+          "error": "Error deleting widget"
+        },
+        "updateList": {
+          "success": "Widget order updated",
+          "error": "Error updating widget order"
+        }
+      },
+      "leftTitle": "Widget List",
+      "rightTitle": "Content",
+      "notFound": "No content found",
+      "save": "Save",
+      "delete": {
+        "title": "Delete Widget",
+        "desc": "Are you sure you want to delete the widget?",
+        "decline": "Cancel",
+        "delete": "Delete"
+      },
+      "preview": {
+        "title": "Widget Preview",
+        "desc": "Here you can preview how the widget looks"
+      },
+      "edit": {
+        "title": "Widget",
+        "desc": "Edit widget",
+        "close": {
+          "title": "Are you sure you want to close the modal?",
+          "desc": "All unsaved data will be lost when closing.",
+          "decline": "Cancel",
+          "close": "Close"
+        }
+      }
+    },
+    "id": {
+      "title": "Child Pages"
+    },
+    "form": {
+      "nameRu": "Name in Russian",
+      "nameKz": "Name in Kazakh",
+      "nameEn": "Name in English",
+      "select": {
+        "placeholder": "Page Type",
+        "content": "content",
+        "group": "group",
+        "group-link": "group-link"
+      },
+      "slug": "Page Slug",
+      "number": "Page Number",
+      "save": "Save"
+    },
+    "delete": {
+      "title": "Are you sure you want to delete the page?",
+      "desc": "Deleted data cannot be recovered.",
+      "decline": "Cancel",
+      "delete": "Delete"
+    },
+    "edit": {
+      "title": "Create Page",
+      "desc": "Here you can edit the page.",
+      "decline": "Cancel"
+    },
+    "create": {
+      "btn": "Create Page",
+      "childBtn": "Create Child Page",
+      "title": "Create Page",
+      "desc": "Here you can create a page",
+      "decline": "Cancel"
+    },
+    "table": {
+      "notFound": "No templates found",
+      "caption": "Available Templates",
+      "nameRu": "Name in Russian",
+      "nameKz": "Name in Kazakh",
+      "slug": "Slug",
+      "order": "Order",
+      "childPages": "Child Pages",
+      "edit": "Edit",
+      "delete": "Delete Page",
+      "follow": "Go to"
+    }
+  },
+  "settings": {
+    "updateBtn": "Update"
+  },
+  "templates": {
+    "create": {
+      "btn": "Create Template",
+      "title": "Create Template",
+      "desc": "Here you can create a template",
+      "name": "Template Name",
+      "next": "Next",
+      "decline": "Cancel"
+    },
+    "table": {
+      "notFound": "No templates found",
+      "caption": "Available Templates",
+      "name": "Name",
+      "structure": "Structure"
+    }
+  }
 }

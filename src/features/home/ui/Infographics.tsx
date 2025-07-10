@@ -13,7 +13,7 @@ export const Infographics = () => {
         <>{t("infographics.title")}</>
       </Heading>
       <section className="flex flex-wrap justify-center box-border gap-10 ">
-        {Array.from({ length: 5 })
+        {Array.from({ length: 6 })
           .fill(1)
           .map((s, idx) => {
             return (
