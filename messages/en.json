@@ -4,11 +4,12 @@
     "international": "International Cooperation",
     "abu_life": "University Life"
   },
-	"created_by": "Created by Abai IT Valley",
   "more": "More",
   "details": "Details",
   "all_rights": "All rights reserved",
   "home": {
+    "created_by": "Created by Abai IT Valley",
+
     "infographics": {
       "title": "Why choose Alikhan Bokeikhan University?",
       "1": "50+ educational programs",

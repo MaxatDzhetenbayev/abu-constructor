@@ -4,11 +4,11 @@
     "international": "Международное сотрудничество",
     "abu_life": "Жизнь университета"
   },
-  "created_by": "Создано Abai IT Valley",
   "more": "Больше",
   "details": "Подробнее",
   "all_rights": "Все права защищены",
   "home": {
+    "created_by": "Создано Abai IT Valley",
     "infographics": {
       "title": "Почему выбирают Alikhan Bokeikhan University?",
       "1": "50+ образовательных программ",
