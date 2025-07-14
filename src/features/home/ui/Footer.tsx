@@ -99,6 +99,7 @@ export const Footer = () => {
                 </Link>
               ))}
             </div>
+            <h3 className="text-2xl font-bold text-white">{t("created_by")}</h3>
           </div>
         </div>
         <TwoGisMap />
