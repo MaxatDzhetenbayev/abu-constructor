@@ -1,5 +1,9 @@
 {
-  "old_version": "Old version",
+  "top_menu": {
+    "old_version": "Old version",
+    "international": "International Cooperation",
+    "abu_life": "University Life"
+  },
   "more": "More",
   "details": "Details",
   "all_rights": "All rights reserved",
