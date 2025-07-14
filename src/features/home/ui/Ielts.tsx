@@ -7,7 +7,7 @@ const ielts = [
   { img: "/icons/ielts-1.jpg", link: "https://ielts.kz/" },
   { img: "/icons/ielts-2.jpg", link: "https://ielts.idp.com/book" },
   {
-    img: "/icons/ielts-3.jpg",
+    img: "/icons/ielts-3.png",
     link: "https://circulec.tguk.tj/view_article.php?id=15",
   },
 ];
