@@ -2,7 +2,10 @@
   "top_menu": {
     "old_version": "Old version",
     "international": "International Cooperation",
-    "abu_life": "University Life"
+    "abu_life": "University Life",
+    "ais": "AIS",
+		"abai_it": "Abai IT",
+		"abai_it_school": "Abai IT School"
   },
   "more": "More",
   "details": "Details",

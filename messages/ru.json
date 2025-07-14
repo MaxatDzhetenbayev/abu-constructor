@@ -2,7 +2,10 @@
   "top_menu": {
     "old_version": "Старая версия",
     "international": "Международное сотрудничество",
-    "abu_life": "Жизнь университета"
+    "abu_life": "Жизнь университета",
+    "ais": "АИС",
+    "abai_it": "Abai IT",
+    "abai_it_school": "Abai IT School"
   },
   "more": "Больше",
   "details": "Подробнее",

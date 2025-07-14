@@ -24,7 +24,7 @@ export const TopHeaderMenu = () => {
               index !== 0 && "before:content-['•'] before:mr-4"
             )}
           >
-            {index == 0 ? t(item.title) : item.title}↗
+            {t(item.title)}↗
           </Link>
         </li>
       ))}

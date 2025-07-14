@@ -2,7 +2,10 @@
   "top_menu": {
     "old_version": "Ескі нұсқа",
     "international": "Халықаралық ынтымақтастық",
-    "abu_life": "Университеттегі өмір"
+    "abu_life": "Университеттегі өмір",
+		"ais": "АИС",
+		"abai_it": "Abai IT",
+		"abai_it_school": "Abai IT School"
   },
   "more": "Көбірек",
   "details": "Толығырақ",
