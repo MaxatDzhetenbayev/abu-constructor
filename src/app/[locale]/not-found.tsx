@@ -1,6 +1,5 @@
-import { useTranslations } from "next-intl";
+import { redirect } from "next/navigation";
 
 export default function NotFoundPage() {
-  const t = useTranslations("NotFoundPage");
-  return <h1>{t("title")}</h1>;
+  redirect("/kz/home");
 }
