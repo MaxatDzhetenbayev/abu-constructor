@@ -8,4 +8,8 @@ export const topHeaderMenuList = [
     title: "international",
     link: "https://international.abu.edu.kz",
   },
+  {
+    title: "ai",
+    link: "https://ai.abu.edu.kz",
+  },
 ];
