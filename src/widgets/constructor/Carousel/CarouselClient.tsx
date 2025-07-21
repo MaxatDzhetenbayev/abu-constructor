@@ -1,7 +1,7 @@
-"use client"
+"use client";
 import clsx from "clsx";
 import Image from "next/image";
-import { Autoplay,Pagination } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { backendImageUrl } from "@/shared/lib/constants";
@@ -33,16 +33,16 @@ export function CarouselClient({
           perView === "1"
             ? {}
             : {
-              640: {
-                slidesPerView: 1,
-              },
-              768: {
-                slidesPerView: 2,
-              },
-              1024: {
-                slidesPerView: 3,
-              },
-            }
+                640: {
+                  slidesPerView: 1,
+                },
+                768: {
+                  slidesPerView: 2,
+                },
+                1024: {
+                  slidesPerView: 3,
+                },
+              }
         }
         loop={true}
         spaceBetween={perView === "1" ? 0 : 10}
@@ -53,31 +53,40 @@ export function CarouselClient({
           "h-[550px]": variant === "large",
         })}
       >
-        {contents.map(
-          ({ content }: any, idx: number) => {
-            return (
-              <SwiperSlide key={idx} className="relative w-full h-full">
-                <div className="w-[90%]">
-                  <Image src={`${backendImageUrl}/${content.image}`} alt="" fill style={{ objectFit: "contain" }} />
+        {contents.map(({ content }: any, idx: number) => {
+          const filePath = content?.image?.[locale] || content?.image?.ru;
 
-                </div>
-                <section
-                  className={clsx(
-                    "absolute inset-0 flex items-end text-justify",
-                    {
-                      "bg-black bg-opacity-20 ":
-                        content?.title || content.content,
-                    }
-                  )}
-                >
-                  <section className="pb-8 px-5">
-                    <p className="text-white text-xl" dangerouslySetInnerHTML={{ __html: content?.[locale]?.content }}></p>
-                  </section>
+          return (
+            <SwiperSlide key={idx} className="relative w-full h-full">
+              <div className="w-[90%]">
+                <Image
+                  src={`${backendImageUrl}${filePath}`}
+                  alt=""
+                  fill
+                  style={{ objectFit: "contain" }}
+                />
+              </div>
+              <section
+                className={clsx(
+                  "absolute inset-0 flex items-end text-justify",
+                  {
+                    "bg-black bg-opacity-20 ":
+                      content?.title || content.content,
+                  }
+                )}
+              >
+                <section className="pb-8 px-5">
+                  <p
+                    className="text-white text-xl"
+                    dangerouslySetInnerHTML={{
+                      __html: content?.[locale]?.content,
+                    }}
+                  ></p>
                 </section>
-              </SwiperSlide>
-            );
-          }
-        )}
+              </section>
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     </section>
   );

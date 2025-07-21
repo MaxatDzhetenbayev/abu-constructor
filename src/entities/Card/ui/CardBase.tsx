@@ -6,10 +6,15 @@ import React from "react";
 
 import { backendImageUrl } from "@/shared/lib/constants";
 import { Dialog, DialogContent, DialogTrigger, MoreArrow } from "@/shared/ui";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/shared/ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/shared/ui/tooltip";
 import { ICard } from "@/widgets/constructor/Cards/model/Cards.interface";
 
-type ICardWithPath = ICard & Record<"currentPath", string>
+type ICardWithPath = ICard & Record<"currentPath", string>;
 
 export const CardBase = ({
   content,
@@ -19,6 +24,7 @@ export const CardBase = ({
   styles,
 }: ICardWithPath) => {
   const { title, content: description } = content[locale];
+  const filePath = content?.file?.[locale] || content?.file?.ru;
 
   const WrapperComponent =
     content.file || content.link
@@ -26,10 +32,8 @@ export const CardBase = ({
       : ("div" as const);
 
   const linkProps = content.file
-    ? { href: `${backendImageUrl}/${content.file}`, target: "_blank" }
+    ? { href: `${backendImageUrl}${filePath}`, target: "_blank" }
     : content.link && { href: `${currentPath}/${content.link}` };
-
-
 
   return (
     <TooltipProvider>
@@ -83,29 +87,20 @@ export const CardBase = ({
             )}
           </WrapperComponent>
         </TooltipTrigger>
-        {
-          title.length > 28 && (
-            <TooltipContent>
-              <h2
-                className="text-calc-xl grow font-bold p-1"
-              >
-                {title}
-              </h2>
-            </TooltipContent>
-          )
-        }
+        {title.length > 28 && (
+          <TooltipContent>
+            <h2 className="text-calc-xl grow font-bold p-1">{title}</h2>
+          </TooltipContent>
+        )}
       </Tooltip>
     </TooltipProvider>
-
   );
 };
 
 const Heading = ({ title }: { title: string }): React.JSX.Element => {
   return (
-    <h2
-      className="text-calc-xl grow font-bold text-left  line-clamp-2"
-    >
+    <h2 className="text-calc-xl grow font-bold text-left  line-clamp-2">
       {title}
     </h2>
-  )
-}
+  );
+};

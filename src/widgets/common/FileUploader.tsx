@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
+import { locales } from "@/i18n";
 import { backendImageUrl, backendUrl } from "@/shared/lib/constants";
 import { Button, Input, useToast } from "@/shared/ui";
 
@@ -9,43 +10,53 @@ import { useMutation } from "@tanstack/react-query";
 
 interface FileUploaderProps {
   id?: string;
-  file: string;
+  file: Record<string, string>; // теперь объект с ключами языка
   field: string;
   label: string;
-  onChange: (val: File | string) => void;
+  onChange: (val: Record<string, string>) => void;
   setIsUploading?: Dispatch<SetStateAction<boolean>>;
 }
 
 export const FileUploader = ({
-  file,
+  file = {},
   label,
   onChange,
   field,
   setIsUploading,
 }: FileUploaderProps) => {
-  const [image, setImage] = useState<string | ArrayBuffer | null>(null);
+  const [images, setImages] = useState<Record<string, string | null>>({});
   const { toast } = useToast();
+
   useEffect(() => {
-    if (file) {
-      setImage(`${backendImageUrl}${file}`);
-    }
+    const newImages: Record<string, string | null> = {};
+    locales.forEach((locale) => {
+      newImages[locale] = file?.[locale]
+        ? `${backendImageUrl}${file[locale]}`
+        : null;
+    });
+    setImages(newImages);
   }, [file]);
 
-  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (
+    e: React.ChangeEvent<HTMLInputElement>,
+    locale: string
+  ) => {
     if (e.target.files && e.target.files[0]) {
-      const file = e.target.files[0];
+      const selectedFile = e.target.files[0];
       const reader = new FileReader();
 
       if (setIsUploading) setIsUploading(true);
 
-      reader.onload = function (event) {
-        if (event.target) setImage(event.target.result);
+      reader.onload = (event) => {
+        setImages((prev) => ({
+          ...prev,
+          [locale]: event.target?.result as string,
+        }));
       };
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(selectedFile);
 
-      // Отправляем файл на сервер
       const formData = new FormData();
-      formData.append("file", file);
+      formData.append("file", selectedFile);
 
       try {
         const response = await fetch(`${backendUrl}/upload`, {
@@ -58,21 +69,23 @@ export const FileUploader = ({
         }
 
         const filename = await response.text();
-        onChange(filename); // Возвращаем имя файла
+        const updatedFiles = { ...file, [locale]: filename };
+        onChange(updatedFiles);
+
         toast({
           title: "Файл загружен",
-          description: "Файл был успешно загружен на сервер",
+          description: `Файл (${locale}) был успешно загружен`,
         });
       } catch (error) {
         console.error("Ошибка при загрузке:", error);
       } finally {
-        if (setIsUploading) setIsUploading(false); // Завершаем загрузку
+        if (setIsUploading) setIsUploading(false);
       }
     }
   };
 
   const { mutate } = useMutation({
-    mutationFn: async (fileName: string) => {
+    mutationFn: async ({ fileName }: { fileName: string }) => {
       const response = await fetch(`${backendUrl}/upload/${fileName}`, {
         method: "DELETE",
       });
@@ -82,27 +95,68 @@ export const FileUploader = ({
     },
   });
 
+  const handleDelete = (locale: string) => {
+    const fileName = file?.[locale];
+    if (!fileName) return;
+
+    mutate(
+      { fileName },
+      {
+        onSuccess: () => {
+          const updated = { ...file };
+          delete updated[locale];
+          onChange(updated);
+
+          toast({
+            title: "Файл удалён",
+            description: `Файл (${locale}) успешно удалён`,
+          });
+        },
+      }
+    );
+  };
+
   return (
     <div className="flex flex-col gap-4 border p-4">
       <p>{label}</p>
-      {field === "image" && image && (
-        <Image width={80} height={80} src={image as string} alt="image" />
-      )}
-      {field === "file" && typeof file === "string" && file.length > 0 && (
-        <a
-          href={`${backendImageUrl}${file}`}
-          target="_blank"
-          className="text-lg"
-        >
-          Посмотреть прикрепленный файл
-        </a>
-      )}
-      <div className="flex items-center ">
-        <Input type="file" label="" onChange={handleFileChange} />
-        {file && typeof file === "string" && file.length > 0 && (
-          <Button onClick={() => mutate(file)}>Удалить файл</Button>
-        )}
-      </div>
+
+      {locales.map((locale) => (
+        <div key={locale} className="flex  gap-2">
+          <label className="font-medium">{locale.toUpperCase()}</label>
+
+          {field === "image" && images[locale] && (
+            <Image
+              width={80}
+              height={80}
+              src={images[locale] as string}
+              alt={`image-${locale}`}
+            />
+          )}
+
+          {field === "file" && file?.[locale] && (
+            <a
+              href={`${backendImageUrl}${file[locale]}`}
+              target="_blank"
+              className="text-lg"
+            >
+              Посмотреть прикреплённый файл ({locale})
+            </a>
+          )}
+
+          <div className="flex items-center gap-3">
+            <Input
+              type="file"
+              label=""
+              onChange={(e) => handleFileChange(e, locale)}
+            />
+            {file?.[locale] && (
+              <Button type="button" onClick={() => handleDelete(locale)}>
+                Удалить
+              </Button>
+            )}
+          </div>
+        </div>
+      ))}
     </div>
   );
 };
