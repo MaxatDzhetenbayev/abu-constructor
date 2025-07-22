@@ -17,8 +17,6 @@ export const ProfileCard = ({
 
   const filePath = content?.image?.[locale] || content?.image?.ru;
 
-	console.log(`${backendImageUrl}${filePath}`);
-
   return (
     <Modal modalSlot={body}>
       <section className="flex px-5 cursor-pointer  flex-col  gap-2 shadow-[0_0_30px_0px_rgba(0,0,0,0.05)] rounded-2xl bg-white mt-4 ">

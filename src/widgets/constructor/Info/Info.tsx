@@ -16,8 +16,6 @@ function Info({
   const { post, full_name, content: body } = content[locale];
   const filePath = content?.image?.[locale] || content?.image?.ru;
 
-  console.log(`${backendImageUrl}${filePath}`);
-
   return (
     <section className="flex flex-col">
       <h2 className="text-2xl font-bold text-font_primary">
