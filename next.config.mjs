@@ -10,7 +10,7 @@ const nextConfig = {
       {
         protocol: "https",
 
-        hostname: "back.abai-ctm.kz",
+        hostname: "back.ctm-abai.kz",
         pathname: "/uploads/**"
       },
       {
