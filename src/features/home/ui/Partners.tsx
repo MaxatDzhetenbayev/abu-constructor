@@ -1,3 +1,4 @@
+import { Link } from "lucide-react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import React from "react";
@@ -30,6 +31,11 @@ export const Partners = () => {
       { name: "", img: "/icons/partners/9.svg" },
       { name: "", img: "/icons/partners/10.webp" },
       { name: "ТОО «ExpoDamu»", img: "/icons/partners/11.png" },
+      {
+        name: "SIGEX",
+        img: "/icons/partners/12.png",
+        link: "https://sigex.kz/",
+      },
     ])
     .flat();
   return (
@@ -66,14 +72,18 @@ export const Partners = () => {
                 key={idx}
                 className="flex justify-center flex-col gap-6 items-center"
               >
-                <div className="w-full h-full relative">
+                <Link
+                  href={i.link}
+                  target="_blank"
+                  className="w-full h-full relative block"
+                >
                   <Image
                     src={i.img}
                     className="object-contain w-full h-full"
                     fill
                     alt={i.name}
                   />
-                </div>
+                </Link>
                 <h2 className="font-bold text-center text-md md:text-lg lg:text-xl text-abu_primary ">
                   {i.name}
                 </h2>
