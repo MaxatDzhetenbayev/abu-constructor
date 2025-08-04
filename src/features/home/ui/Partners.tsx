@@ -1,5 +1,5 @@
-import { Link } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useTranslations } from "next-intl";
 import React from "react";
 import { Autoplay } from "swiper/modules";
@@ -72,18 +72,27 @@ export const Partners = () => {
                 key={idx}
                 className="flex justify-center flex-col gap-6 items-center"
               >
-                <Link
-                  href={i.link}
-                  target="_blank"
-                  className="w-full h-full relative block"
-                >
+                {i.link ? (
+                  <Link
+                    href={i.link}
+                    target="_blank"
+                    className="w-full h-full relative block"
+                  >
+                    <Image
+                      src={i.img}
+                      className="object-contain w-full h-full"
+                      fill
+                      alt={i.name}
+                    />
+                  </Link>
+                ) : (
                   <Image
                     src={i.img}
                     className="object-contain w-full h-full"
                     fill
                     alt={i.name}
                   />
-                </Link>
+                )}
                 <h2 className="font-bold text-center text-md md:text-lg lg:text-xl text-abu_primary ">
                   {i.name}
                 </h2>
