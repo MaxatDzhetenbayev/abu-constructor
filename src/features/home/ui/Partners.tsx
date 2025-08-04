@@ -86,12 +86,14 @@ export const Partners = () => {
                     />
                   </Link>
                 ) : (
-                  <Image
-                    src={i.img}
-                    className="object-contain w-full h-full"
-                    fill
-                    alt={i.name}
-                  />
+                  <div className="w-full h-full relative">
+                    <Image
+                      src={i.img}
+                      className="object-contain w-full h-full"
+                      fill
+                      alt={i.name}
+                    />
+                  </div>
                 )}
                 <h2 className="font-bold text-center text-md md:text-lg lg:text-xl text-abu_primary ">
                   {i.name}
