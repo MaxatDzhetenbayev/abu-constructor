@@ -2,6 +2,7 @@ import { Plus } from "lucide-react";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 
+import { ICreateNewsFormData } from "@/entities/news/types/types";
 import { locales } from "@/i18n";
 import { queryClient } from "@/shared/lib/client";
 import { backendUrl } from "@/shared/lib/constants";
@@ -22,14 +23,21 @@ export const CreateNewsButton = () => {
 };
 
 const CreateNewsModal = () => {
-  const { register, handleSubmit, control } = useForm();
+  const { register, handleSubmit, control, reset } =
+    useForm<ICreateNewsFormData>();
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: ICreateNewsFormData) => {
+    // Если дата не выбрана, не отправляем createdAt
+    if (data.createdAt) {
+      // Конвертируем локальную дату в ISO строку
+      const date = new Date(data.createdAt);
+      data.createdAt = date.toISOString();
+    }
     mutate({ data });
   };
 
   const { mutate } = useMutation({
-    mutationFn: async ({ data }: { data: any }) => {
+    mutationFn: async ({ data }: { data: ICreateNewsFormData }) => {
       const formData = new FormData();
       formData.append("data", JSON.stringify(data));
 
@@ -53,6 +61,7 @@ const CreateNewsModal = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["news"] });
+      reset(); // Очищаем форму
       toast({
         title: "Новость создана",
         description: "Новость успешно создана.",
@@ -81,6 +90,22 @@ const CreateNewsModal = () => {
             ))}
           </section>
         </section>
+
+        {/* Дата создания */}
+        <section className="flex flex-col gap-3 border p-5">
+          <h2>Дата создания</h2>
+          <section className="w-full">
+            <Input
+              type="datetime-local"
+              label="Дата и время создания (необязательно)"
+              {...register("createdAt")}
+            />
+            <p className="text-sm text-muted-foreground mt-1">
+              Если не указать, будет использована текущая дата и время
+            </p>
+          </section>
+        </section>
+
         {/* текст */}
         <section className="flex flex-col gap-3 border p-5">
           <h2>Текст</h2>
