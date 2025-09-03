@@ -20,10 +20,10 @@ const config = {
     },
     screens: {
       "2md": "890px",
-      "sm": "640px",
-      "md": "768px",
-      "lg": "1024px",
-      "xl": "1280px",
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
       "2xl": "1536px",
     },
     extend: {
@@ -110,12 +110,58 @@ const config = {
         fadeIn: "fadeIn 1.6s forwards",
         fadeOut: "fadeOut 1.6s forwards",
       },
+      spacing: {
+        // Accessibility-aware spacing
+        "accessibility-xs": "var(--accessibility-spacing-xs, 0.25rem)",
+        "accessibility-sm": "var(--accessibility-spacing-sm, 0.5rem)",
+        "accessibility-md": "var(--accessibility-spacing-md, 1rem)",
+        "accessibility-lg": "var(--accessibility-spacing-lg, 1.5rem)",
+        "accessibility-xl": "var(--accessibility-spacing-xl, 2rem)",
+      },
+      minHeight: {
+        // Accessibility-aware heights
+        "accessibility-button": "var(--accessibility-button-height, 2.5rem)",
+        "accessibility-input": "var(--accessibility-input-height, 2.5rem)",
+      },
+      minWidth: {
+        // Accessibility-aware widths
+        "accessibility-button": "var(--accessibility-button-width, 2.5rem)",
+        "accessibility-touch-target":
+          "var(--accessibility-touch-target, 2.75rem)",
+      },
     },
   },
   plugins: [
     require("tailwindcss-animate"),
     plugin(function ({ addBase, theme }) {
       addBase({
+        // Accessibility base styles
+        html: {
+          fontSize: "var(--accessibility-font-size, 100%)",
+        },
+        body: {
+          lineHeight: "var(--accessibility-line-height, 1.5)",
+          letterSpacing: "var(--accessibility-letter-spacing, 0px)",
+        },
+        // Ensure minimum touch target sizes
+        "button, [role='button'], input, select, textarea, a": {
+          minHeight: "var(--accessibility-button-height, 2.5rem)",
+          minWidth: "var(--accessibility-button-width, 2.5rem)",
+        },
+        // Focus styles
+        "*:focus": {
+          outline: "var(--accessibility-focus-outline, 2px solid #0066cc)",
+          outlineOffset: "var(--accessibility-focus-offset, 2px)",
+        },
+        // Reduce motion
+        "@media (prefers-reduced-motion: reduce)": {
+          "*": {
+            animationDuration: "0.01ms !important",
+            animationIterationCount: "1 !important",
+            transitionDuration: "0.01ms !important",
+            scrollBehavior: "auto !important",
+          },
+        },
         ".quill-content .ql-size-normal": {
           fontSize: theme("fontSize.calc-md"),
         },

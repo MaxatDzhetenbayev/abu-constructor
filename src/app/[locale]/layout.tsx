@@ -2,7 +2,7 @@ import Script from "next/script";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 
-import { QueryProvider } from "@/shared/providers";
+import { QueryProvider, AccessibilityProvider } from "@/shared/providers";
 import { Toaster } from "@/shared/ui";
 
 import "../globals.css";
@@ -24,12 +24,14 @@ export default async function LocaleLayout({
         <Script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full" />
         <Script src="../../shared/lib/map.js" />
       </head>
-      <body >
+      <body>
         <NextIntlClientProvider messages={messages}>
-          <QueryProvider>{children}</QueryProvider>
+          <QueryProvider>
+            <AccessibilityProvider>{children}</AccessibilityProvider>
+          </QueryProvider>
           <Toaster />
         </NextIntlClientProvider>
       </body>
-    </html >
+    </html>
   );
 }

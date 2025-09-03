@@ -68,7 +68,6 @@ export {
   TableCaption,
   TableCell,
   TableFooter,
-  TableHead,
   TableHeader,
   TableRow,
 } from "./table";
@@ -150,3 +149,6 @@ export { Modal } from "./modal";
 export { MoreArrow } from "./more_arrow";
 export { Container } from "./Container";
 export { LayoutWrapper } from "./layout-wrapper";
+export { AccessibilityPanel } from "./accessibility-panel";
+export { Slider } from "./slider";
+export { Switch } from "./switch";
