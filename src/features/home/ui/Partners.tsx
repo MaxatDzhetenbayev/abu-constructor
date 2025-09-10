@@ -36,6 +36,16 @@ export const Partners = () => {
         img: "/icons/partners/12.png",
         link: "https://sigex.kz/",
       },
+      {
+        name: "INNOVATIVE COLLEGE",
+        img: "/icons/partners/13.png",
+        link: "https://innovativecollege.kz/",
+      },
+      {
+        name: "SMK",
+        img: "/icons/partners/14.png",
+        link: "https://smkcollege.kz/glavnaya/",
+      },
     ])
     .flat();
   return (
