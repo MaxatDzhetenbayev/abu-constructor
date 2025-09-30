@@ -24,10 +24,9 @@ export default async function LocaleLayout({
         <Script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full" />
         <Script src="../../shared/lib/map.js" />
         <Script
-          async
-          src="https://acke.ispark.kz/tracker.js"
-          data-ackee-server="https://acke.ispark.kz"
-          data-ackee-domain-id="2bb96e07-7ebe-4695-93be-56e8e74e810a"
+          defer
+          src="https://stats.ispark.kz/script.js"
+          data-website-id="7aae9a7f-fdaf-4211-8fe7-3576e9966a15"
         ></Script>
       </head>
       <body>
