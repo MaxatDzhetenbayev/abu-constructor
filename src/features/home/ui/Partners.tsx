@@ -46,6 +46,16 @@ export const Partners = () => {
         img: "/icons/partners/14.png",
         link: "https://smkcollege.kz/glavnaya/",
       },
+      {
+        name: "EURAC",
+        img: "/icons/partners/15.png",
+        link: "https://www.eurac.edu/en",
+      },
+      {
+        name: "SWIB",
+        img: "/icons/partners/16.png",
+        link: "https://swib.ch/",
+      },
     ])
     .flat();
   return (
