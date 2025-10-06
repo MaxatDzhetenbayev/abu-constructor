@@ -12,6 +12,7 @@ import {
   Skeleton,
 } from "@/shared/ui";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function Page({ params }: any) {
   const locale = params?.locale ?? "en";
   const skeletonNews = Array.from({ length: 8 }).fill(1);

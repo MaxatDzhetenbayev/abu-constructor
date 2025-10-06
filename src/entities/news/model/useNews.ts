@@ -9,7 +9,7 @@ interface IUseNewsProps {
   search?: string;
   startDate?: string;
   endDate?: string;
-  lang: string;
+  lang?: string;
 }
 
 export const useNews = ({
@@ -20,7 +20,6 @@ export const useNews = ({
   search,
   lang,
 }: IUseNewsProps) => {
-  console.log(lang);
   return useQuery<INewsResponse>({
     queryKey: ["news", limit, offset, search, startDate, endDate, lang],
     queryFn: async () => {

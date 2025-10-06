@@ -89,7 +89,7 @@ const NewsModalContent = ({ news: { id } }: { news: Pick<INews, "id"> }) => {
     }));
   };
 
-  const onSubmit = async (formValues: any) => {
+  const onSubmit = async (formValues: never) => {
     const formData = new FormData();
     formData.append("data", JSON.stringify(formValues));
     formData.append("imagesToKeep", JSON.stringify(keptImages));
