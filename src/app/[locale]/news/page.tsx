@@ -26,6 +26,7 @@ export default function Page({ params }: any) {
   const { data, isLoading } = useNews({
     limit,
     offset,
+    lang: locale,
     ...filter,
   });
   const totalPages = Math.ceil((data?.count ?? 0) / limit);

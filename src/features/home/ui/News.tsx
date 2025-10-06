@@ -15,8 +15,9 @@ import { Container, Heading, Skeleton } from "@/shared/ui";
 
 export const News = () => {
   const t = useTranslations("home");
+  const lang = useParams().locale as LocaleType[number];
 
-  const { data, isLoading } = useNews({ limit: 3 });
+  const { data, isLoading } = useNews({ limit: 3, lang });
   const skeletonNews = Array.from({ length: 3 }).fill(1);
   return (
     <Container className="w-full ">
