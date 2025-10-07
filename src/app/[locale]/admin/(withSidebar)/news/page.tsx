@@ -108,8 +108,11 @@ const NewsModalContent = ({ news: { id } }: { news: Pick<INews, "id"> }) => {
   if (isError || !data) return <p>Ошибка загрузки</p>;
 
   return (
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    <form onSubmit={handleSubmit(onSubmit as any)} className="flex flex-col gap-6">
+    <form
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      onSubmit={handleSubmit(onSubmit as any)}
+      className="flex flex-col gap-6"
+    >
       <section className="">
         {/* Заголовок */}
         <section className="border p-4">

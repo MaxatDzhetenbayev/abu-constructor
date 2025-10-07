@@ -1,6 +1,6 @@
 import { backendUrl } from "@/shared/lib/constants";
 
-import { INewsResponse } from "../types/types";
+import { INewsResponse, newsSource } from "../types/types";
 import { useQuery } from "@tanstack/react-query";
 
 interface IUseNewsProps {
@@ -10,6 +10,7 @@ interface IUseNewsProps {
   startDate?: string;
   endDate?: string;
   lang?: string;
+  source?: newsSource;
 }
 
 export const useNews = ({
@@ -19,9 +20,10 @@ export const useNews = ({
   endDate,
   search,
   lang,
+  source = newsSource.ABU,
 }: IUseNewsProps) => {
   return useQuery<INewsResponse>({
-    queryKey: ["news", limit, offset, search, startDate, endDate, lang],
+    queryKey: ["news", limit, offset, search, startDate, endDate, lang, source],
     queryFn: async () => {
       const params = new URLSearchParams();
       if (limit) params.append("limit", String(limit));
@@ -30,6 +32,7 @@ export const useNews = ({
       if (startDate) params.append("startDate", startDate);
       if (endDate) params.append("endDate", endDate);
       if (lang) params.append("lang", lang);
+      if (source) params.append("source", source);
 
       const response = await fetch(`${backendUrl}/news?${params.toString()}`);
       return response.json();

@@ -2,12 +2,19 @@ import { Plus } from "lucide-react";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 
-import { ICreateNewsFormData } from "@/entities/news/types/types";
+import { ICreateNewsFormData, newsSource } from "@/entities/news/types/types";
 import { locales } from "@/i18n";
 import { queryClient } from "@/shared/lib/client";
 import { backendUrl } from "@/shared/lib/constants";
 import { Button, Input, Modal } from "@/shared/ui";
 import JoditEditorComponent from "@/shared/ui/quill-editor";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/shared/ui/select";
 import { toast } from "@/shared/ui/use-toast";
 
 import { useMutation } from "@tanstack/react-query";
@@ -91,18 +98,46 @@ const CreateNewsModal = () => {
           </section>
         </section>
 
-        {/* Дата создания */}
+        {/* Дата создания и Источник */}
         <section className="flex flex-col gap-3 border p-5">
-          <h2>Дата создания</h2>
-          <section className="w-full">
-            <Input
-              type="datetime-local"
-              label="Дата и время создания (необязательно)"
-              {...register("createdAt")}
-            />
-            <p className="text-sm text-muted-foreground mt-1">
-              Если не указать, будет использована текущая дата и время
-            </p>
+          <h2>Дата и источник</h2>
+          <section className="w-full grid gap-3 grid-cols-1 xl:grid-cols-2">
+            <div>
+              <Input
+                type="datetime-local"
+                label="Дата и время создания (необязательно)"
+                {...register("createdAt")}
+              />
+              <p className="text-sm text-muted-foreground mt-1">
+                Если не указать, будет использована текущая дата и время
+              </p>
+            </div>
+            <div>
+              <label className="mb-2 block text-sm">Источник</label>
+              <Controller
+                name="source"
+                control={control}
+                defaultValue={newsSource.ABU}
+                render={({ field }) => (
+                  <Select value={field.value} onValueChange={field.onChange}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Выберите источник" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value={newsSource.ABU}>
+                        Для сайта abu.edu
+                      </SelectItem>
+                      <SelectItem value={newsSource.AI}>
+                        Для сайта ai.abu.edu
+                      </SelectItem>
+                      <SelectItem value={newsSource.ALL}>
+                        Для всех сайтов
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                )}
+              />
+            </div>
           </section>
         </section>
 

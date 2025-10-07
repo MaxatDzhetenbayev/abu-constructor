@@ -7,6 +7,7 @@ export interface INews {
     description: string;
     images: string[];
   }>;
+  source: newsSource;
   viewCount: number;
   createdAt: Date;
   updatedAt: Date;
@@ -24,6 +25,7 @@ export interface ICreateNewsFormData {
     description: string;
     images: string[];
   }>;
+  source: newsSource;
 }
 
 export interface ICreateNewsDto {
@@ -33,8 +35,15 @@ export interface ICreateNewsDto {
     description: string;
     images: string[];
   }>;
+  source: newsSource;
 }
 
 export interface ICreateNewsData {
   data: ICreateNewsDto;
+}
+
+export enum newsSource {
+  AI = "ai",
+  ABU = "abu",
+  ALL = "all",
 }
