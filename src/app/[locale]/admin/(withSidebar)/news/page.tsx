@@ -12,6 +12,13 @@ import { locales, LocaleType } from "@/i18n";
 import { backendImageUrl } from "@/shared/lib/constants";
 import { Button, Input, Modal } from "@/shared/ui";
 import JoditEditorComponent from "@/shared/ui/quill-editor";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/shared/ui/select";
 
 export default function NewsPage() {
   const { data, isLoading, isError } = useNews({ source: newsSource.ALL });
@@ -65,7 +72,25 @@ const NewsModalContent = ({ news: { id } }: { news: Pick<INews, "id"> }) => {
 
   useEffect(() => {
     if (data) {
-      reset(data);
+      const formatDateTimeLocal = (input: string | Date) => {
+        const date = new Date(input);
+        const pad = (n: number) => String(n).padStart(2, "0");
+        const year = date.getFullYear();
+        const month = pad(date.getMonth() + 1);
+        const day = pad(date.getDate());
+        const hours = pad(date.getHours());
+        const minutes = pad(date.getMinutes());
+        return `${year}-${month}-${day}T${hours}:${minutes}`;
+      };
+
+      const preparedData = {
+        ...data,
+        createdAt: data.createdAt
+          ? formatDateTimeLocal(data.createdAt)
+          : undefined,
+      };
+
+      reset(preparedData);
 
       const initialImages = Object.fromEntries(
         locales.map((locale) => [locale, data.content?.[locale]?.images || []])
@@ -91,7 +116,12 @@ const NewsModalContent = ({ news: { id } }: { news: Pick<INews, "id"> }) => {
 
   const onSubmit = async (formValues: never) => {
     const formData = new FormData();
-    formData.append("data", JSON.stringify(formValues));
+    // удаляем createdAt, если пустой
+    const payload = { ...(formValues as Record<string, unknown>) };
+    if (!payload.createdAt) {
+      delete payload.createdAt;
+    }
+    formData.append("data", JSON.stringify(payload));
     formData.append("imagesToKeep", JSON.stringify(keptImages));
 
     for (const locale of locales) {
@@ -114,6 +144,48 @@ const NewsModalContent = ({ news: { id } }: { news: Pick<INews, "id"> }) => {
       className="flex flex-col gap-6"
     >
       <section className="">
+        {/* Дата и источник */}
+        <section className="border p-4">
+          <h2>Дата и источник</h2>
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-3">
+            <div>
+              <Input
+                type="datetime-local"
+                label="Дата и время создания"
+                {...register("createdAt")}
+              />
+            </div>
+            <div>
+              <label className="mb-2 block text-sm">Источник</label>
+              <Controller
+                name="source"
+                control={control}
+                defaultValue={data.source}
+                render={({ field }) => (
+                  <Select
+                    value={field.value ?? data.source}
+                    onValueChange={field.onChange}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Выберите источник" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value={newsSource.ABU}>
+                        Для сайта abu.edu
+                      </SelectItem>
+                      <SelectItem value={newsSource.AI}>
+                        Для сайта ai.abu.edu
+                      </SelectItem>
+                      <SelectItem value={newsSource.ALL}>
+                        Для всех сайтов
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                )}
+              />
+            </div>
+          </div>
+        </section>
         {/* Заголовок */}
         <section className="border p-4">
           <h2>Заголовок</h2>
