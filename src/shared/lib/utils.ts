@@ -1,6 +1,7 @@
-import { uploadFile } from "@/shared/api/widgets";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+
+import { uploadFile } from "@/shared/api/widgets";
 
 export const cn = (...inputs: ClassValue[]) => {
   return twMerge(clsx(inputs));

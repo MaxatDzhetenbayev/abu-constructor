@@ -1,9 +1,10 @@
 "use client";
 
 import React, { createContext, useContext } from "react";
+
 import {
-  useAccessibility,
   type AccessibilitySettings,
+  useAccessibility,
 } from "@/shared/hooks/useAccessibility";
 
 interface AccessibilityContextType {

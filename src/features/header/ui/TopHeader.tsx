@@ -1,8 +1,8 @@
 import React from "react";
 
 import { Logo, LogoSize } from "@/entities";
-import { BurgerMenu } from "@/widgets";
 import { AccessibilityPanel } from "@/shared/ui";
+import { BurgerMenu } from "@/widgets";
 
 import { TopHeaderMenu } from "./TopHeaderMenu";
 

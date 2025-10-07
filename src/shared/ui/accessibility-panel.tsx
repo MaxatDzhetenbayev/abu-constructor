@@ -1,13 +1,15 @@
 "use client";
 
+import { Contrast, Eye, Minus,Moon, Plus, Sun, Type } from "lucide-react";
 import React, { useState } from "react";
-import { Eye, Type, Contrast, Sun, Moon, Plus, Minus } from "lucide-react";
+
+import { useAccessibilityContext } from "@/shared/providers/accessibility-provider";
+
 import { Button } from "./button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "./dialog";
+import { Label } from "./label";
 import { Slider } from "./slider";
 import { Switch } from "./switch";
-import { Label } from "./label";
-import { useAccessibilityContext } from "@/shared/providers/accessibility-provider";
 
 export const AccessibilityPanel: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);

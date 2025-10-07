@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
+
 import {
   applyAccessibilityStyles,
-  resetAccessibilityStyles,
   applyThemeStyles,
   createAccessibilityObserver,
+  resetAccessibilityStyles,
 } from "@/shared/lib/accessibility-utils";
 
 export interface AccessibilitySettings {

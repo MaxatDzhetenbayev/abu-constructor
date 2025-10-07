@@ -13,7 +13,6 @@ export const applyAccessibilityStyles = (
   const isHighContrast = mode === "high";
   const textColor = isHighContrast ? "#000000" : "#ffffff";
   const bgColor = isHighContrast ? "#ffffff" : "#000000";
-  const borderColor = textColor;
 
   // Применяем стили ко всем элементам
   const allElements = document.querySelectorAll("*");

@@ -1,5 +1,6 @@
 "use client";
 
+import clsx from "clsx";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import { ButtonHTMLAttributes } from "react";
 
@@ -10,7 +11,6 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/shared/ui";
-import clsx from "clsx";
 
 export const ChangeLocale = ({ className, ...props }: ButtonHTMLAttributes<HTMLButtonElement>) => {
     const params = useParams();

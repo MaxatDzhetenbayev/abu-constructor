@@ -1,6 +1,6 @@
 import { motion, MotionProps } from 'framer-motion'
-import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
+import { useLocale, useTranslations } from 'next-intl'
 import { useEffect, useState } from 'react'
 
 export const President = () => {
