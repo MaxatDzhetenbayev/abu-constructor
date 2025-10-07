@@ -6,7 +6,7 @@ import { Controller, useForm } from "react-hook-form";
 
 import { useNews, useNewsById, useUpdateNews } from "@/entities/news";
 import { useDeleteNewsById } from "@/entities/news/model/useDeleteNewsById";
-import { INews } from "@/entities/news/types/types";
+import { INews, newsSource } from "@/entities/news/types/types";
 import { CreateNewsButton } from "@/features";
 import { locales, LocaleType } from "@/i18n";
 import { backendImageUrl } from "@/shared/lib/constants";
@@ -14,7 +14,7 @@ import { Button, Input, Modal } from "@/shared/ui";
 import JoditEditorComponent from "@/shared/ui/quill-editor";
 
 export default function NewsPage() {
-  const { data, isLoading, isError } = useNews({});
+  const { data, isLoading, isError } = useNews({ source: newsSource.ALL });
   return (
     <section>
       <section>

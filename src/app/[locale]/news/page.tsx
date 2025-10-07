@@ -2,6 +2,7 @@
 import { useState } from "react";
 
 import { NewsItem, useNews } from "@/entities/news";
+import { newsSource } from "@/entities/news/types/types";
 import {
   Pagination,
   PaginationContent,
@@ -27,6 +28,7 @@ export default function Page({ params }: any) {
   const { data, isLoading } = useNews({
     limit,
     offset,
+    source: newsSource.ABU,
     lang: locale,
     ...filter,
   });
