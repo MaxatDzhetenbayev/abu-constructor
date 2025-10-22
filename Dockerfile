@@ -15,7 +15,7 @@ COPY . .
  
 RUN npm run build 
  
-FROM registry.abu.edu.kz/ghcr-io/distroless/nodejs20-debian12 AS production 
+FROM registry.abu.edu.kz/gcr-io/distroless/nodejs20-debian12 AS production 
 WORKDIR /app 
  
 COPY --from=builder /app/public ./public 
