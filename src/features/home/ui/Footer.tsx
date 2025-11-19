@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Script from "next/script";
 import { useTranslations } from "next-intl";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 import { Container, Heading } from "@/shared/ui";
 
@@ -33,11 +33,11 @@ export const Footer = () => {
   return (
     <div>
       <div className="flex gap-5 items-center mb-[3.938rem] flex-col md:flex-row justify-center md:justify-end">
-        <Container className="flex items-center justify-between w-full">
+        <Container className="flex items-center justify-between w-full sm:flex-row flex-col">
           <Heading className="md:mb-0">
             {t("accreditation&Recognition.title")}
           </Heading>
-          <div className="flex gap-5 items-end">
+          <div className="flex gap-5 items-end flex-wrap justify-center">
             <img
               src="/icons/accre.png"
               className="w-[9rem] md:w-[10.375rem] h-auto"
@@ -51,6 +51,10 @@ export const Footer = () => {
                 className="w-[9rem] md:w-[10.375rem] h-auto"
               />
             </Link>
+            <img
+              src="/icons/qs.png"
+              className="w-[9rem] md:w-[10.375rem] h-auto"
+            />
           </div>
         </Container>
       </div>
