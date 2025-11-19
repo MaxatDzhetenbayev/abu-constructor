@@ -1,4 +1,4 @@
-FROM node:20-alpine AS base 
+FROM registry.abu.edu.kz/docker-hub/node:20-alpine AS base 
  
 FROM base AS deps 
 RUN apk add --no-cache libc6-compat 
@@ -6,7 +6,7 @@ WORKDIR /app
  
 COPY package.json package-lock.json* ./ 
  
-RUN npm install
+RUN npm install --registry https://npm.abu.edu.kz/repository/registry/
  
 FROM base AS builder 
 WORKDIR /app 
@@ -15,7 +15,7 @@ COPY . .
  
 RUN npm run build 
  
-FROM gcr.io/distroless/nodejs20-debian12 AS production 
+FROM registry.abu.edu.kz/gcr-io/distroless/nodejs20-debian12 AS production 
 WORKDIR /app 
  
 COPY --from=builder /app/public ./public 
