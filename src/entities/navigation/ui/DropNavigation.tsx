@@ -2,7 +2,6 @@
 import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
 
 import { INavigation } from "@/shared/types";
 
@@ -60,7 +59,11 @@ export const DropNavigation = ({
                 {child.children.map((subChild) => (
                   <li key={subChild.id} className="max-w-[400px]">
                     <Link
-                      href={`/${locale}/${item.slug}/${child.slug}/${subChild.slug}`}
+                      href={
+                        subChild.navigation_type === "link"
+                          ? `${subChild.slug}`
+                          : `/${locale}/${item.slug}/${child.slug}/${subChild.slug}`
+                      }
                       className={clsx(
                         "text-center max-w-11 text-slate-200 leading-3 hover:underline duration-150"
                       )}
