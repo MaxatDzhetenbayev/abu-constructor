@@ -3,9 +3,9 @@
     "old_version": "Ескі нұсқа",
     "international": "Халықаралық ынтымақтастық",
     "abu_life": "Университеттегі өмір",
-		"ais": "АИС",
-		"abai_it": "Abai IT",
-		"abai_it_school": "Abai IT School",
+    "ais": "АИС",
+    "abai_it": "Abai IT",
+    "abai_it_school": "Abai IT School",
     "ai": "Ai Sana"
   },
   "more": "Көбірек",
@@ -172,7 +172,8 @@
         "placeholder": "Беттің түрі",
         "content": "content",
         "group": "group",
-        "group-link": "group-link"
+        "group-link": "group-link",
+        "link": "link"
       },
       "slug": "Беттің Slug-ы",
       "number": "Беттің нөмірі",

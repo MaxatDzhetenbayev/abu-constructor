@@ -102,6 +102,9 @@ export const AdminNavigationCreate = ({
                     <SelectItem value={"group-link"}>
                       {t("form.select.group-link")}
                     </SelectItem>
+                    <SelectItem value={"link"}>
+                      {t("form.select.link")}
+                    </SelectItem>
                   </SelectContent>
                 </Select>
               </div>

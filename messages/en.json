@@ -171,7 +171,8 @@
         "placeholder": "Page Type",
         "content": "content",
         "group": "group",
-        "group-link": "group-link"
+        "group-link": "group-link",
+        "link": "link"
       },
       "slug": "Page Slug",
       "number": "Page Number",
