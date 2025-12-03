@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 
 import { useScroll } from "@/shared/lib/hooks/useScroll";
 import { INavigation } from "@/shared/types";
@@ -85,7 +85,11 @@ export const NavigationItem = ({
             />
           </button>
           {isHoveredItem && item.variant === "vertical" && (
-            <DropDownMenu element={item} locale={locale} />
+            <DropDownMenu
+              type={item.navigation_type}
+              element={item}
+              locale={locale}
+            />
           )}
         </div>
       )}
@@ -104,9 +108,11 @@ export const NavigationItem = ({
 const DropDownMenu = ({
   element,
   locale,
+  type,
 }: {
   locale: string;
   element: INavigation;
+  type: string;
 }) => {
   return (
     <ul className="shadow-md absolute left-0 rounded-bl-md rounded-br-md bg-[#67493E]">
@@ -114,12 +120,20 @@ const DropDownMenu = ({
         <li key={child.id} className="p-2 group">
           <Link
             className="inline-block p-1 text-white group-hover:underline"
-            href={`/${locale}/${element.slug}/${child.slug}`}
+            href={
+              type === "link"
+                ? `${element.slug}`
+                : `/${locale}/${element.slug}/${child.slug}`
+            }
           >
             {child.title[locale]}
           </Link>
           {child.children.length > 0 && (
-            <DropDownMenu element={child} locale={locale} />
+            <DropDownMenu
+              element={child}
+              locale={locale}
+              type={child.navigation_type}
+            />
           )}
         </li>
       ))}
