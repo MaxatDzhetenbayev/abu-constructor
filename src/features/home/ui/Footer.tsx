@@ -51,10 +51,15 @@ export const Footer = () => {
                 className="w-[9rem] md:w-[10.375rem] h-auto"
               />
             </Link>
-            <img
-              src="/icons/qs.png"
-              className="w-[9rem] md:w-[10.375rem] h-auto"
-            />
+            <Link
+              href="https://www.topuniversities.com/asia-university-rankings/central-asia?search=alikhan"
+              target="_blank"
+            >
+              <img
+                src="/icons/qs.png"
+                className="w-[9rem] md:w-[10.375rem] h-auto"
+              />
+            </Link>
           </div>
         </Container>
       </div>
