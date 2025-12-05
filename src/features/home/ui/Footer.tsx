@@ -56,7 +56,7 @@ export const Footer = () => {
               target="_blank"
             >
               <img
-                src="/icons/qs.png"
+                src="/icons/qs-partner.png"
                 className="w-[9rem] md:w-[10.375rem] h-auto"
               />
             </Link>
