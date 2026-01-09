@@ -25,7 +25,7 @@ export default async function LocaleLayout({
         <Script src="../../shared/lib/map.js" />
         <Script
           defer
-          src="https://stats.ispark.kz/script.js"
+          src="https://dev.ispark.kz/analytics/script.js"
           data-website-id="7aae9a7f-fdaf-4211-8fe7-3576e9966a15"
         ></Script>
       </head>
