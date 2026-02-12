@@ -15,6 +15,7 @@ import {
   SelectTrigger,
   SelectValue,
   Separator,
+  SocialLinks,
   Textarea,
 } from "@/shared/ui";
 import { toast } from "@/shared/ui/use-toast";
@@ -37,10 +38,10 @@ export const Footer = () => {
   return (
     <footer className="w-full bg-abu_primary">
       <div className="max-w-[1200px] mx-auto p-10">
-        <div className="grid gap-6 md:grid-cols-[minmax(0,2fr)] items-start mb-10">
+        <div className="grid gap-6 md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] items-start mb-4">
           <div className="flex flex-col gap-4 text-white">
             <h2 className="text-2xl">{t("home.contacts.our")}</h2>
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col">
               <div className="flex gap-4">
                 <Phone />
                 <a href="tel:+7 7222 42-32-24">+7 (7222) 42-32-24</a>
@@ -51,16 +52,30 @@ export const Footer = () => {
               </div>
               <div className="flex gap-4">
                 <MapPin />
-                <span>{t("home.contacts.geo")}</span>
+                <a href="https://go.2gis.com/Xu2HU" target="_blank" rel="noreferrer">
+                  <span>{t("home.contacts.geo")}</span>
+                </a>
               </div>
             </div>
+          </div>
+
+          <div className="flex flex-col items-start md:items-end gap-3 text-white">
+            <h3 className="text-xl font-semibold">
+              {t("home.contacts.social")}
+            </h3>
+            <SocialLinks />
           </div>
         </div>
         <Separator />
         <div className="mt-4 flex flex-col gap-4 items-start md:flex-row md:items-center md:justify-between">
-          <span className="text-white">
-            ©{new Date().getFullYear()} {t("all_rights")}.
-          </span>
+          <div className="flex flex-col gap-1 text-white">
+            <span>
+              ©{new Date().getFullYear()} {t("all_rights")}.
+            </span>
+            <span className="text-sm text-white/80">
+              {t("home.created_by")}
+            </span>
+          </div>
           <AppealButton />
         </div>
       </div>

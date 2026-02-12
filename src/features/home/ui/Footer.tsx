@@ -4,32 +4,10 @@ import Script from "next/script";
 import { useTranslations } from "next-intl";
 import { useEffect } from "react";
 
-import { Container, Heading } from "@/shared/ui";
+import { Container, Heading, SocialLinks } from "@/shared/ui";
 
 export const Footer = () => {
   const t = useTranslations("home");
-  const socials = [
-    {
-      image: "/vk.png",
-      link: "https://vk.com/id450108918",
-    },
-    {
-      image: "inst.png",
-      link: "https://www.instagram.com/bokeikhan_university/",
-    },
-    {
-      image: "fb.png",
-      link: "https://www.facebook.com/bokeikhan.university",
-    },
-    {
-      image: "yt.png",
-      link: "https://www.youtube.com/c/AlikhanBokeikhanUniversity",
-    },
-    {
-      image: "in.png",
-      link: "https://kz.linkedin.com/company/bokeikhan-university",
-    },
-  ];
 
   return (
     <div>
@@ -102,13 +80,7 @@ export const Footer = () => {
             <h3 className="text-2xl mb-[15px] text-white font-bold">
               {t("contacts.social")}
             </h3>
-            <div className="flex gap-2">
-              {socials.map(({ image, link }) => (
-                <Link key={link} href={link} target="_blank">
-                  <img src={`/icons/${image}`} className="w-[46px] h-[46px]" />
-                </Link>
-              ))}
-            </div>
+            <SocialLinks />
             <h3 className="text-2xl mt-3 font-bold text-white">
               {t("created_by")}
             </h3>
