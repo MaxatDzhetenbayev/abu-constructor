@@ -11,6 +11,7 @@ const links = [
   // { label: "links.settings.label", href: "links.settings.href" },
   { label: "links.pages.label", href: "links.pages.href" },
   { label: "links.news.label", href: "links.news.href" },
+  { label: "links.appeals.label", href: "links.appeals.href" },
 ];
 export const AdminSidebar = async ({
   className,

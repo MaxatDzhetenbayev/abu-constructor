@@ -127,6 +127,10 @@
       "news": {
         "label": "Новости",
         "href": "/admin/news"
+      },
+      "appeals": {
+        "label": "Обращения",
+        "href": "/admin/appeals"
       }
     }
   },
@@ -268,6 +272,60 @@
       "caption": "Доступные шаблоны",
       "name": "Название",
       "structure": "Структура"
+    }
+  },
+  "appeals": {
+    "title": "Обращения",
+    "filters": {
+      "periodFrom": "Дата с",
+      "periodTo": "Дата по",
+      "appealType": "Тип обращения",
+      "fullName": "ФИО",
+      "status": "Статус",
+      "statusAll": "Все",
+      "statusChecked": "Проверенные",
+      "statusUnchecked": "Непроверенные",
+      "reset": "Сбросить фильтры"
+    },
+    "table": {
+      "notFound": "Обращения не найдены",
+      "fullName": "ФИО",
+      "createdAt": "Дата отправки",
+      "appealType": "Тип обращения",
+      "isChecked": "Статус",
+      "actions": "Действия",
+      "statusChecked": "Проверено",
+      "statusUnchecked": "Не проверено",
+      "view": "Посмотреть"
+    },
+    "modal": {
+      "title": "Обращение",
+      "fields": {
+        "fullName": "ФИО",
+        "email": "Электронная почта",
+        "phone": "Телефон",
+        "appealType": "Тип обращения",
+        "answerType": "Способ ответа",
+        "text": "Текст обращения",
+        "isChecked": "Проверено",
+        "checkedAt": "Дата проверки",
+        "createdAt": "Дата отправки"
+      },
+      "actions": {
+        "complete": "Отметить как отработанное",
+        "completing": "Отмечаем...",
+        "completed": "Отработано"
+      },
+      "answerTypes": {
+        "email": "По электронной почте",
+        "phone": "По телефону",
+        "noAnswer": "Ответ не требуется"
+      },
+      "appealTypes": {
+        "appeal": "Обращение",
+        "claim": "Претензия",
+        "corruption": "Сообщение о коррупции"
+      }
     }
   }
 }

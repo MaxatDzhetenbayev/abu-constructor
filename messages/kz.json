@@ -127,6 +127,10 @@
       "news": {
         "label": "Жаналықтар",
         "href": "/admin/news"
+      },
+      "appeals": {
+        "label": "Өтініштер",
+        "href": "/admin/appeals"
       }
     }
   },
@@ -268,6 +272,60 @@
       "caption": "Қол жетімді үлгілер",
       "name": "Атауы",
       "structure": "Құрылымы"
+    }
+  },
+  "appeals": {
+    "title": "Өтініштер",
+    "filters": {
+      "periodFrom": "Күнінен",
+      "periodTo": "Күніне дейін",
+      "appealType": "Өтініш түрі",
+      "fullName": "Т.А.Ә.",
+      "status": "Мәртебе",
+      "statusAll": "Барлығы",
+      "statusChecked": "Тексерілген",
+      "statusUnchecked": "Тексерілмеген",
+      "reset": "Фильтрлерді тазарту"
+    },
+    "table": {
+      "notFound": "Өтініштер табылмады",
+      "fullName": "Т.А.Ә.",
+      "createdAt": "Жіберу күні",
+      "appealType": "Өтініш түрі",
+      "isChecked": "Мәртебе",
+      "actions": "Әрекеттер",
+      "statusChecked": "Тексерілген",
+      "statusUnchecked": "Тексерілмеген",
+      "view": "Қарау"
+    },
+    "modal": {
+      "title": "Өтініш",
+      "fields": {
+        "fullName": "Т.А.Ә.",
+        "email": "Электрондық пошта",
+        "phone": "Телефон",
+        "appealType": "Өтініш түрі",
+        "answerType": "Жауап алу тәсілі",
+        "text": "Өтініш мәтіні",
+        "isChecked": "Тексерілді",
+        "checkedAt": "Тексеру күні",
+        "createdAt": "Жіберу күні"
+      },
+      "actions": {
+        "complete": "Өңделді деп белгілеу",
+        "completing": "Белгілеудеміз...",
+        "completed": "Өңделді"
+      },
+      "answerTypes": {
+        "email": "Электрондық пошта арқылы",
+        "phone": "Телефон арқылы",
+        "noAnswer": "Жауап қажет емес"
+      },
+      "appealTypes": {
+        "appeal": "Өтініш",
+        "claim": "Шағым",
+        "corruption": "Сыбайлас жемқорлық туралы хабарлама"
+      }
     }
   }
 }

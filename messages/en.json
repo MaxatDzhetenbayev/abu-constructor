@@ -128,6 +128,10 @@
       "news": {
         "label": "News",
         "href": "/admin/news"
+      },
+      "appeals": {
+        "label": "Appeals",
+        "href": "/admin/appeals"
       }
     }
   },
@@ -267,6 +271,60 @@
       "caption": "Available Templates",
       "name": "Name",
       "structure": "Structure"
+    }
+  },
+  "appeals": {
+    "title": "Appeals",
+    "filters": {
+      "periodFrom": "Date from",
+      "periodTo": "Date to",
+      "appealType": "Appeal type",
+      "fullName": "Full name",
+      "status": "Status",
+      "statusAll": "All",
+      "statusChecked": "Checked",
+      "statusUnchecked": "Not checked",
+      "reset": "Reset filters"
+    },
+    "table": {
+      "notFound": "No appeals found",
+      "fullName": "Full name",
+      "createdAt": "Submission date",
+      "appealType": "Appeal type",
+      "isChecked": "Status",
+      "actions": "Actions",
+      "statusChecked": "Checked",
+      "statusUnchecked": "Not checked",
+      "view": "View"
+    },
+    "modal": {
+      "title": "Appeal",
+      "fields": {
+        "fullName": "Full name",
+        "email": "Email",
+        "phone": "Phone",
+        "appealType": "Appeal type",
+        "answerType": "Response method",
+        "text": "Appeal text",
+        "isChecked": "Checked",
+        "checkedAt": "Check date",
+        "createdAt": "Submission date"
+      },
+      "actions": {
+        "complete": "Mark as processed",
+        "completing": "Processing...",
+        "completed": "Processed"
+      },
+      "answerTypes": {
+        "email": "By email",
+        "phone": "By phone",
+        "noAnswer": "No response required"
+      },
+      "appealTypes": {
+        "appeal": "Appeal",
+        "claim": "Claim",
+        "corruption": "Corruption report"
+      }
     }
   }
 }
