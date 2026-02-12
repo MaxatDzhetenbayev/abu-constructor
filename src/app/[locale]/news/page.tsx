@@ -34,6 +34,30 @@ export default function Page({ params }: any) {
   });
   const totalPages = Math.ceil((data?.count ?? 0) / limit);
 
+  const maxVisiblePages = 10;
+  const currentPage = Math.floor(offset / limit) + 1;
+
+  let startPage = 1;
+  let endPage = totalPages;
+
+  if (totalPages > maxVisiblePages) {
+    startPage = Math.max(
+      1,
+      currentPage - Math.floor(maxVisiblePages / 2),
+    );
+    endPage = startPage + maxVisiblePages - 1;
+
+    if (endPage > totalPages) {
+      endPage = totalPages;
+      startPage = Math.max(1, endPage - maxVisiblePages + 1);
+    }
+  }
+
+  const pages =
+    totalPages > 0
+      ? Array.from({ length: endPage - startPage + 1 }, (_, idx) => startPage + idx)
+      : [];
+
   const handleFilter = () => {
     if (dateRange.start && dateRange.end && dateRange.end < dateRange.start) {
       return;
@@ -122,14 +146,15 @@ export default function Page({ params }: any) {
             isActive={offset > 0}
             onClick={() => handleOffsetChange(offset - limit)}
           />
-          {Array.from({ length: totalPages }).map((_, idx) => {
-            const page = idx + 1;
-            const isCurrent = offset === idx * limit;
+          {pages.map((page) => {
+            const pageOffset = (page - 1) * limit;
+            const isCurrent = offset === pageOffset;
+
             return (
-              <PaginationItem key={idx}>
+              <PaginationItem key={page}>
                 <PaginationLink
                   isActive={isCurrent}
-                  onClick={() => handleOffsetChange(idx * limit)}
+                  onClick={() => handleOffsetChange(pageOffset)}
                 >
                   {page}
                 </PaginationLink>
