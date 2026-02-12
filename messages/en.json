@@ -11,6 +11,47 @@
   "more": "More",
   "details": "Details",
   "all_rights": "All rights reserved",
+  "appeal": {
+    "button": "Appeal",
+    "modal": {
+      "title": "Appeal to the university",
+      "step1Title": "Choose the type of appeal",
+      "step2Title": "Fill out the form",
+      "types": {
+        "appeal": {
+          "title": "Appeal",
+          "description": "Ask a question, send an application, gratitude or suggestion"
+        },
+        "claim": {
+          "title": "Claim",
+          "description": "Send a claim or complaint. Be polite, please read the regulations for submitting appeals"
+        },
+        "corruption": {
+          "title": "Corruption report",
+          "description": "If you have become aware of a case of corruption."
+        }
+      },
+      "fields": {
+        "fullName": "Full name",
+        "email": "Email",
+        "phone": "Phone",
+        "message": "Message text",
+        "answerType": "How to receive a response",
+        "answerOptions": {
+          "email": "By email",
+          "phone": "By phone",
+          "noAnswer": "No response required"
+        }
+      },
+      "next": "Next",
+      "back": "Back",
+      "submit": "Send",
+      "successTitle": "Appeal sent",
+      "successDescription": "We will review your appeal as soon as possible.",
+      "errorTitle": "Error while sending",
+      "errorDescription": "An error occurred while sending the appeal. Please try again later."
+    }
+  },
   "home": {
     "created_by": "Created by Abai IT Valley",
 
