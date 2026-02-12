@@ -26,13 +26,24 @@ export const CardBase = ({
 }: ICardWithPath) => {
   const { title, content: description } = content[locale];
   const t = useTranslations("");
+  
+  // Получаем файл для текущей локали, если это объект с локализованными значениями
+  const file = typeof content.file === 'object' && content.file !== null
+    ? content.file[locale]
+    : content.file;
+  
+  // Получаем изображение для текущей локали, если это объект с локализованными значениями
+  const image = typeof content.image === 'object' && content.image !== null
+    ? content.image[locale] || content.image.ru
+    : content.image;
+  
   const WrapperComponent =
-    content.file || content.link
+    file || content.link
       ? (Link as React.ElementType)
       : ("div" as const);
 
-  const linkProps = content.file
-    ? { href: `${backendImageUrl}/${content.file}`, target: "_blank" }
+  const linkProps = file
+    ? { href: `${backendImageUrl}/${file}`, target: "_blank" }
     : content.link && { href: `${currentPath}/${content.link}` };
 
   return (
@@ -61,10 +72,10 @@ export const CardBase = ({
               </>
             ) : (
               <div className="h-full flex flex-col">
-                {content.image && (
+                {image && (
                   <div className="relative w-full h-[260px]">
                     <Image
-                      src={`${backendImageUrl}${content.image}`}
+                      src={`${backendImageUrl}${image}`}
                       fill
                       className="rounded-xl"
                       alt="Изображение"
