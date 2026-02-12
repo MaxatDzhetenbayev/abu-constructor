@@ -1,7 +1,6 @@
 "use client";
 
 import { Mail, Phone } from "lucide-react";
-import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 
@@ -34,44 +33,22 @@ export default function RectorBlogPage() {
 
   return (
     <div className="flex flex-col gap-12 py-8">
-      {/* Section 1: About the Rector */}
-      <section className="flex flex-col gap-6">
-        <h1 className="text-3xl font-bold text-abu_primary">
-          {t("about.title")}
-        </h1>
-        <div className="flex-1">
-          <div className="relative w-40 sm:w-48 md:w-60 lg:w-72 h-72 sm:h-80 md:h-96 bg-gray-200 rounded-lg overflow-hidden float-left mr-6 mb-4">
-            <Image
-              src="/images/rector/photo.webp"
-              alt="Rector"
-              fill
-              className="object-cover rounded-lg"
-            />
-          </div>
-          <p className="text-lg leading-relaxed text-gray-700 whitespace-pre-line">
-            {t("about.text")}
-          </p>
-        </div>
-      </section>
-
-      <Separator />
-
-      {/* Section 2: Appeal to Rector */}
+      {/* Appeal to Rector */}
       <section className="flex flex-col gap-6">
         <h2 className="text-3xl font-bold text-abu_primary">
           {t("appeal.title")}
         </h2>
         <div className="bg-gray-50 p-6 rounded-lg">
           <p className="text-lg mb-4">{t("appeal.intro")}</p>
-          <p className="text-base font-semibold">{t("appeal.signature")}</p>
-          <p className="text-base">{t("appeal.name")}</p>
+          <p className="text-base">{t("appeal.signature")}</p>
+          <p className="text-base font-semibold">{t("appeal.name")}</p>
         </div>
         <RectorAppealForm />
       </section>
 
       <Separator />
 
-      {/* Section 3: Contacts */}
+      {/* Contacts */}
       <section className="flex flex-col gap-6">
         <h2 className="text-3xl font-bold text-abu_primary">
           {t("contacts.title")}
