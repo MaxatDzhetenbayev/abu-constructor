@@ -1,8 +1,8 @@
 "use client";
 
+import { Footer } from "@/features/footer/Footer";
 import {
   Banner,
-  Footer,
   Gallery,
   IELTS,
   Infographics,

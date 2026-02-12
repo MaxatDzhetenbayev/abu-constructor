@@ -37,8 +37,8 @@ export const Footer = () => {
   return (
     <footer className="w-full bg-abu_primary">
       <div className="max-w-[1200px] mx-auto p-10">
-        <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between mb-10">
-          <div className="flex flex-col gap-4  text-white">
+        <div className="grid gap-6 md:grid-cols-[minmax(0,2fr)] items-start mb-10">
+          <div className="flex flex-col gap-4 text-white">
             <h2 className="text-2xl">{t("home.contacts.our")}</h2>
             <div className="flex flex-col gap-3">
               <div className="flex gap-4">
@@ -55,13 +55,14 @@ export const Footer = () => {
               </div>
             </div>
           </div>
-
-          <AppealButton />
         </div>
         <Separator />
-        <span className="text-white block mt-4">
-          ©{new Date().getFullYear()} {t("all_rights")}.
-        </span>
+        <div className="mt-4 flex flex-col gap-4 items-start md:flex-row md:items-center md:justify-between">
+          <span className="text-white">
+            ©{new Date().getFullYear()} {t("all_rights")}.
+          </span>
+          <AppealButton />
+        </div>
       </div>
     </footer>
   );
@@ -76,7 +77,11 @@ const AppealButton = () => {
       headerSlot={t("appeal.modal.title")}
       modalSlot={<AppealModalContent />}
     >
-      <Button variant="outline" className="bg-white text-abu_primary">
+      <Button
+        variant="ghost"
+        size="lg"
+        className="border border-white text-white px-10 rounded-full hover:bg-white/10"
+      >
         {t("appeal.button")}
       </Button>
     </Modal>
