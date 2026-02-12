@@ -323,8 +323,45 @@
       "appealTypes": {
         "appeal": "Appeal",
         "claim": "Claim",
-        "corruption": "Corruption report"
+        "corruption": "Corruption report",
+        "rector": "Appeal to the Rector"
       }
+    }
+  },
+  "rectorBlog": {
+    "button": "Rector's Blog",
+    "about": {
+      "title": "About the Rector",
+      "text": "Koichubaev Alexander Sergeevich was born on November 19, 1984 and completing his academic education received a doctorate (PhD) in Economics. Fluently speaks Kazakh, English and Russian.\n\nIn 2005 he graduated from the Kazakh Financial and Economic University with an \"Organization Management (by industry)\"degree, in 2008 he completed the Master's degree program in the same University.\n\nFrom 2011 to 2013, he studied at post-graduate level in the Omsk State University of Service (Russia) and successfully defended his PhD thesis in Economic Sciences. In 2017, he received the academic degree recognition in the Republic of Kazakhstan.\n\nIn 2019-2021, studying under the program for training top-level managers at the Swiss School of Applied Sciences for Economics and Management, he received a Master's degree in International Management.\n\nHe started his career as a teacher in the Department of Economics and Management of KazFEU in 2005. He worked at the Shakarim University as the Head for the Strategic Planning Department, Head of the Department, Head for the International Cooperation Center, International Faculty Dean, Vice-Rector for Science and Commercialization.\n\nAlexandr Sergeevich has more than 17 years of professional experience in the field of higher education, science,and internationalization, as well as work experience in international project groups, consulting and regional development programs development and university development strategies, being universities innovative and joint educational programs with foreign partner universities and transformational leadership programs developer.\n\nIn different years Alexandr Sergeevich completed Germany, Switzerland, Israel, Poland advanced training programs.\n\nHe worked as a Science and Higher Education Ministry of the Republic of Kazakhstan commission member, International accreditation agencies and the Center for International Programs \"Bolashak\" acting expert.\n\nAlexandr Sergeevich Koichubayev has extensive teamwork experience, investment management skills, and accomplished major academic and scientific projects in his personal portfolio. He is recognized in the academic community."
+    },
+    "appeal": {
+      "title": "Appeal to the Rector",
+      "intro": "Here you can ask questions and write your appeals. I will be happy to answer your messages.",
+      "signature": "Sincerely, Rector of Alikhan Bokeikhan University",
+      "name": "Alexander Koichubayev",
+      "form": {
+        "fullName": "Full name",
+        "email": "Email",
+        "phone": "Phone",
+        "message": "Message text",
+        "answerType": "How to receive a response",
+        "answerOptions": {
+          "email": "Email",
+          "phone": "Phone"
+        },
+        "submit": "Send",
+        "successTitle": "Appeal sent",
+        "successDescription": "We will review your appeal as soon as possible.",
+        "errorTitle": "Error while sending",
+        "errorDescription": "An error occurred while sending the appeal. Please try again later."
+      }
+    },
+    "contacts": {
+      "title": "Contacts",
+      "phone": "+7 (7222) 42-32-24",
+      "email": "semey@abu.edu.kz",
+      "receptionDays": "Reception days: Tuesday, Wednesday, Friday",
+      "receptionTime": "Reception time: 14:00 — 16:00"
     }
   }
 }

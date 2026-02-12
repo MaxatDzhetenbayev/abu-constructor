@@ -1,6 +1,8 @@
  "use client";
 
 import { Mail, MapPin, Phone } from "lucide-react";
+import Link from "next/link";
+import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import React, { useState } from "react";
 
@@ -76,10 +78,31 @@ export const Footer = () => {
               {t("home.created_by")}
             </span>
           </div>
-          <AppealButton />
+          <div className="flex gap-4">
+            <RectorBlogButton />
+            <AppealButton />
+          </div>
         </div>
       </div>
     </footer>
+  );
+};
+
+const RectorBlogButton = () => {
+  const t = useTranslations();
+  const params = useParams();
+  const locale = params.locale as string;
+
+  return (
+    <Link href={`/${locale}/rector-blog`}>
+      <Button
+        variant="ghost"
+        size="lg"
+        className="border border-white text-white px-10 rounded-full hover:bg-white/10"
+      >
+        {t("rectorBlog.button")}
+      </Button>
+    </Link>
   );
 };
 

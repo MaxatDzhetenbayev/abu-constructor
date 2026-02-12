@@ -117,6 +117,9 @@ export default function AppealsPage() {
                 <SelectItem value="corruption">
                   {t("modal.appealTypes.corruption")}
                 </SelectItem>
+                <SelectItem value="rector">
+                  {t("modal.appealTypes.rector")}
+                </SelectItem>
               </SelectContent>
             </Select>
           </div>

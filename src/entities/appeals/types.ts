@@ -1,4 +1,4 @@
-export type AppealType = "appeal" | "claim" | "corruption";
+export type AppealType = "appeal" | "claim" | "corruption" | "rector";
 
 export type AnswerType = "phone" | "email" | "no_answer";
 
