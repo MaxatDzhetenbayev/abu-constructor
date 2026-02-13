@@ -49,7 +49,11 @@
       "successTitle": "Appeal sent",
       "successDescription": "We will review your appeal as soon as possible.",
       "errorTitle": "Error while sending",
-      "errorDescription": "An error occurred while sending the appeal. Please try again later."
+      "errorDescription": "An error occurred while sending the appeal. Please try again later.",
+      "validation": {
+        "requiredFields": "Please fill in all required fields",
+        "messageRequired": "Message text is required"
+      }
     }
   },
   "home": {

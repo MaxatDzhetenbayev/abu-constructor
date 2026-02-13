@@ -165,6 +165,30 @@ const AppealModalContent = () => {
 
     if (!type) return;
 
+    const messageTrimmed = form.message.trim();
+
+    if (type === "corruption") {
+      if (!messageTrimmed) {
+        toast({
+          variant: "destructive",
+          title: t("appeal.modal.validation.messageRequired"),
+        });
+        return;
+      }
+    } else {
+      const fullNameTrimmed = form.fullName.trim();
+      const emailTrimmed = form.email.trim();
+      const phoneTrimmed = form.phone.trim();
+      const hasContact = !!emailTrimmed || !!phoneTrimmed;
+      if (!fullNameTrimmed || !messageTrimmed || !hasContact) {
+        toast({
+          variant: "destructive",
+          title: t("appeal.modal.validation.requiredFields"),
+        });
+        return;
+      }
+    }
+
     const payload: Record<string, unknown> = {
       // поля и значения как в CreateAppealDto
       appeal_type: type, // "appeal" | "claim" | "corruption"
@@ -253,6 +277,7 @@ const AppealModalContent = () => {
                 label={t("appeal.modal.fields.fullName")}
                 value={form.fullName}
                 onChange={handleFieldChange("fullName")}
+                required
               />
               <Input
                 type="email"
@@ -302,6 +327,7 @@ const AppealModalContent = () => {
               rows={5}
               value={form.message}
               onChange={handleFieldChange("message")}
+              required
             />
           </div>
 
