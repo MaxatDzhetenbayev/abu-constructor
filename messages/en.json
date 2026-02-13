@@ -27,8 +27,8 @@
           "description": "Send a claim or complaint. Be polite, please read the regulations for submitting appeals"
         },
         "corruption": {
-          "title": "Corruption report",
-          "description": "If you have become aware of a case of corruption."
+          "title": "Report on academic integrity violations",
+          "description": "If you have become aware of academic integrity violations."
         }
       },
       "fields": {
@@ -323,7 +323,13 @@
       "appealTypes": {
         "appeal": "Appeal",
         "claim": "Claim",
-        "corruption": "Corruption report",
+        "corruption": "Report on academic integrity violations",
+        "rector": "Appeal to the Rector"
+      },
+      "appealTypesShort": {
+        "appeal": "Appeal",
+        "claim": "Claim",
+        "corruption": "Academic integrity",
         "rector": "Appeal to the Rector"
       }
     }

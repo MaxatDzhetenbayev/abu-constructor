@@ -109,16 +109,16 @@ export default function AppealsPage() {
                   {t("filters.statusAll")}
                 </SelectItem>
                 <SelectItem value="appeal">
-                  {t("modal.appealTypes.appeal")}
+                  {t("modal.appealTypesShort.appeal")}
                 </SelectItem>
                 <SelectItem value="claim">
-                  {t("modal.appealTypes.claim")}
+                  {t("modal.appealTypesShort.claim")}
                 </SelectItem>
                 <SelectItem value="corruption">
-                  {t("modal.appealTypes.corruption")}
+                  {t("modal.appealTypesShort.corruption")}
                 </SelectItem>
                 <SelectItem value="rector">
-                  {t("modal.appealTypes.rector")}
+                  {t("modal.appealTypesShort.rector")}
                 </SelectItem>
               </SelectContent>
             </Select>
@@ -216,7 +216,7 @@ const AppealRow = ({ appeal }: { appeal: IAppeal }) => {
         {formatDate(appeal.createdAt)}
       </td>
       <td className="border px-3 py-2">
-        {t(`modal.appealTypes.${appeal.appeal_type}`)}
+        {t(`modal.appealTypesShort.${appeal.appeal_type}`)}
       </td>
       <td className={`border px-3 py-2 ${statusClass}`}>{statusLabel}</td>
       <td className="border px-3 py-2">
