@@ -133,10 +133,6 @@
       "news": {
         "label": "Новости",
         "href": "/admin/news"
-      },
-      "appeals": {
-        "label": "Обращения",
-        "href": "/admin/appeals"
       }
     }
   },
@@ -280,67 +276,6 @@
       "structure": "Структура"
     }
   },
-  "appeals": {
-    "title": "Обращения",
-    "filters": {
-      "periodFrom": "Дата с",
-      "periodTo": "Дата по",
-      "appealType": "Тип обращения",
-      "fullName": "ФИО",
-      "status": "Статус",
-      "statusAll": "Все",
-      "statusChecked": "Проверенные",
-      "statusUnchecked": "Непроверенные",
-      "reset": "Сбросить фильтры"
-    },
-    "table": {
-      "notFound": "Обращения не найдены",
-      "fullName": "ФИО",
-      "createdAt": "Дата отправки",
-      "appealType": "Тип обращения",
-      "isChecked": "Статус",
-      "actions": "Действия",
-      "statusChecked": "Проверено",
-      "statusUnchecked": "Не проверено",
-      "view": "Посмотреть"
-    },
-    "modal": {
-      "title": "Обращение",
-      "fields": {
-        "fullName": "ФИО",
-        "email": "Электронная почта",
-        "phone": "Телефон",
-        "appealType": "Тип обращения",
-        "answerType": "Способ ответа",
-        "text": "Текст обращения",
-        "isChecked": "Проверено",
-        "checkedAt": "Дата проверки",
-        "createdAt": "Дата отправки"
-      },
-      "actions": {
-        "complete": "Отметить как отработанное",
-        "completing": "Отмечаем...",
-        "completed": "Отработано"
-      },
-      "answerTypes": {
-        "email": "По электронной почте",
-        "phone": "По телефону",
-        "noAnswer": "Ответ не требуется"
-      },
-      "appealTypes": {
-        "appeal": "Обращение",
-        "claim": "Претензия",
-        "corruption": "Сообщение о нарушениях академической честности",
-        "rector": "Обращение к ректору"
-      },
-      "appealTypesShort": {
-        "appeal": "Обращение",
-        "claim": "Претензия",
-        "corruption": "Нарушения акад. честности",
-        "rector": "Обращение к ректору"
-      }
-    }
-  },
   "rectorBlog": {
     "button": "Блог ректора",
     "about": {
@@ -368,6 +303,7 @@
         "errorTitle": "Ошибка при отправке",
         "errorDescription": "Произошла ошибка при отправке обращения. Попробуйте еще раз позже.",
         "validation": {
+          "requiredFields": "Заполните все обязательные поля",
           "invalidEmail": "Введите корректный адрес электронной почты",
           "invalidPhone": "Введите телефон в формате 8(XXX)XXXXXXX"
         }

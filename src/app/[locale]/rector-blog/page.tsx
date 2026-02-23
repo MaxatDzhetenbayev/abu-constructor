@@ -119,8 +119,19 @@ const RectorAppealForm = () => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
+    const fullNameTrimmed = form.fullName.trim();
     const emailTrimmed = form.email.trim();
     const phoneTrimmed = form.phone.trim();
+    const messageTrimmed = form.message.trim();
+
+    if (!fullNameTrimmed || !emailTrimmed || !phoneTrimmed || !messageTrimmed) {
+      toast({
+        variant: "destructive",
+        title: t("appeal.form.validation.requiredFields"),
+      });
+      return;
+    }
+
     const nextErrors: { email?: string; phone?: string } = {};
     if (!validateEmail(emailTrimmed)) {
       nextErrors.email = t("appeal.form.validation.invalidEmail");
