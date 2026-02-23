@@ -6,7 +6,6 @@ import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import React, { useState } from "react";
 
-import { backendUrl } from "@/shared/lib/constants";
 import {
   Button,
   Input,
@@ -189,29 +188,16 @@ const AppealModalContent = () => {
       }
     }
 
-    const payload: Record<string, unknown> = {
-      // поля и значения как в CreateAppealDto
-      appeal_type: type, // "appeal" | "claim" | "corruption"
-      text: form.message,
+    const payload = {
+      appeal_type: type,
+      fullName: form.fullName,
+      email: form.email,
+      phone: form.phone,
+      message: form.message,
+      answer_type: form.answerType,
     };
 
-    if (!isAnonymous) {
-      if (form.fullName) {
-        payload.full_name = form.fullName;
-      }
-      if (form.email) {
-        payload.email = form.email;
-      }
-      if (form.phone) {
-        payload.phone = form.phone;
-      }
-      if (form.answerType) {
-        // "phone" | "email" | "no_answer"
-        payload.answer_type = form.answerType;
-      }
-    }
-
-    fetch(`${backendUrl}/appeals`, {
+    fetch("/api/mail_send.ts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

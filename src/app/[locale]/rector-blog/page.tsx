@@ -4,7 +4,6 @@ import { Mail, Phone } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 
-import { backendUrl } from "@/shared/lib/constants";
 import {
   Button,
   Input,
@@ -110,25 +109,16 @@ const RectorAppealForm = () => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
-    const payload: Record<string, unknown> = {
+    const payload = {
       appeal_type: "rector",
-      text: form.message,
+      fullName: form.fullName,
+      email: form.email,
+      phone: form.phone,
+      message: form.message,
+      answer_type: form.answerType,
     };
 
-    if (form.fullName) {
-      payload.full_name = form.fullName;
-    }
-    if (form.email) {
-      payload.email = form.email;
-    }
-    if (form.phone) {
-      payload.phone = form.phone;
-    }
-    if (form.answerType) {
-      payload.answer_type = form.answerType;
-    }
-
-    fetch(`${backendUrl}/appeals`, {
+    fetch("/api/mail_send.ts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
