@@ -7,6 +7,11 @@ import { useTranslations } from "next-intl";
 import React, { useState } from "react";
 
 import {
+  formatPhoneInput,
+  validateEmail,
+  validatePhone,
+} from "@/shared/lib/validation";
+import {
   Button,
   Input,
   Modal,
@@ -136,6 +141,7 @@ const AppealModalContent = () => {
     message: "",
     answerType: "phone",
   });
+  const [errors, setErrors] = useState<{ email?: string; phone?: string }>({});
 
   const isAnonymous = type === "corruption";
 
@@ -147,7 +153,12 @@ const AppealModalContent = () => {
         | React.ChangeEvent<HTMLTextAreaElement>,
     ) => {
       const { value } = event.target;
-      setForm((prev) => ({ ...prev, [field]: value }));
+      const next =
+        field === "phone" ? formatPhoneInput(value) : value;
+      setForm((prev) => ({ ...prev, [field]: next }));
+      if (errors[field as keyof typeof errors]) {
+        setErrors((prev) => ({ ...prev, [field]: undefined }));
+      }
     };
 
   const handleAnswerTypeChange = (value: string) => {
@@ -186,6 +197,18 @@ const AppealModalContent = () => {
         });
         return;
       }
+      const nextErrors: { email?: string; phone?: string } = {};
+      if (emailTrimmed && !validateEmail(emailTrimmed)) {
+        nextErrors.email = t("appeal.modal.validation.invalidEmail");
+      }
+      if (phoneTrimmed && !validatePhone(phoneTrimmed)) {
+        nextErrors.phone = t("appeal.modal.validation.invalidPhone");
+      }
+      if (Object.keys(nextErrors).length > 0) {
+        setErrors(nextErrors);
+        return;
+      }
+      setErrors({});
     }
 
     const payload = {
@@ -216,6 +239,7 @@ const AppealModalContent = () => {
 
         setStep(1);
         setType(null);
+        setErrors({});
         setForm({
           fullName: "",
           email: "",
@@ -270,12 +294,14 @@ const AppealModalContent = () => {
                 label={t("appeal.modal.fields.email")}
                 value={form.email}
                 onChange={handleFieldChange("email")}
+                error={errors.email}
               />
               <Input
                 type="tel"
                 label={t("appeal.modal.fields.phone")}
                 value={form.phone}
                 onChange={handleFieldChange("phone")}
+                error={errors.phone}
               />
               <div>
                 <label className="mb-1 block text-[18px]">

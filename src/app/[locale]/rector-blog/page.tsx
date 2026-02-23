@@ -5,6 +5,11 @@ import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 import {
+  formatPhoneInput,
+  validateEmail,
+  validatePhone,
+} from "@/shared/lib/validation";
+import {
   Button,
   Input,
   Select,
@@ -90,6 +95,7 @@ const RectorAppealForm = () => {
     message: "",
     answerType: "phone",
   });
+  const [errors, setErrors] = useState<{ email?: string; phone?: string }>({});
 
   const handleFieldChange =
     (field: keyof RectorAppealFormState) =>
@@ -99,7 +105,11 @@ const RectorAppealForm = () => {
         | React.ChangeEvent<HTMLTextAreaElement>,
     ) => {
       const { value } = event.target;
-      setForm((prev) => ({ ...prev, [field]: value }));
+      const next = field === "phone" ? formatPhoneInput(value) : value;
+      setForm((prev) => ({ ...prev, [field]: next }));
+      if (errors[field as keyof typeof errors]) {
+        setErrors((prev) => ({ ...prev, [field]: undefined }));
+      }
     };
 
   const handleAnswerTypeChange = (value: string) => {
@@ -108,6 +118,21 @@ const RectorAppealForm = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
+
+    const emailTrimmed = form.email.trim();
+    const phoneTrimmed = form.phone.trim();
+    const nextErrors: { email?: string; phone?: string } = {};
+    if (!validateEmail(emailTrimmed)) {
+      nextErrors.email = t("appeal.form.validation.invalidEmail");
+    }
+    if (!validatePhone(phoneTrimmed)) {
+      nextErrors.phone = t("appeal.form.validation.invalidPhone");
+    }
+    if (Object.keys(nextErrors).length > 0) {
+      setErrors(nextErrors);
+      return;
+    }
+    setErrors({});
 
     const payload = {
       appeal_type: "rector",
@@ -135,6 +160,7 @@ const RectorAppealForm = () => {
           description: t("appeal.form.successDescription"),
         });
 
+        setErrors({});
         setForm({
           fullName: "",
           email: "",
@@ -166,6 +192,7 @@ const RectorAppealForm = () => {
           label={t("appeal.form.email")}
           value={form.email}
           onChange={handleFieldChange("email")}
+          error={errors.email}
           required
         />
         <Input
@@ -173,6 +200,7 @@ const RectorAppealForm = () => {
           label={t("appeal.form.phone")}
           value={form.phone}
           onChange={handleFieldChange("phone")}
+          error={errors.phone}
           required
         />
         <div>
