@@ -47,14 +47,28 @@ export const Footer = () => {
         <div className="grid gap-6 md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] items-start mb-4">
           <div className="flex flex-col gap-4 text-white">
             <h2 className="text-2xl">{t("home.contacts.our")}</h2>
-            <div className="flex flex-col">
-              <div className="flex gap-4">
+            <div className="flex flex-col gap-2">
+              <div className="flex gap-4 items-center">
                 <Phone />
-                <a href="tel:+7 7222 42-32-24">+7 (7222) 42-32-24</a>
+                <div className="flex flex-col">
+                  <a href="tel:+77222423224">{t("home.contacts.phone_main")}</a>
+                  <div className="mt-2">
+                    <div className="font-semibold">
+                      {t("home.contacts.callCenter.title")}
+                    </div>
+                    <div className="flex flex-col">
+                      <span>{t("home.contacts.callCenter.line1")}</span>
+                      <span>{t("home.contacts.callCenter.line2")}</span>
+                      <span>{t("home.contacts.callCenter.line3")}</span>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div className="flex gap-4">
                 <Mail />
-                <a href="mailto:semey@abu.edu.kz">semey@abu.edu.kz</a>
+                <a href={`mailto:${t("home.contacts.email")}`}>
+                  {t("home.contacts.email")}
+                </a>
               </div>
               <div className="flex gap-4">
                 <MapPin />

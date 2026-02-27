@@ -45,36 +45,33 @@ export const Footer = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 py-10 gap-4 bg-[#67493E]">
         <div className="flex h-full justify-center flex-col pl-10">
           <div className="rounded-md text-white p-4 flex flex-col gap-2 text-2xl ">
-            <h3 className="text-2xl font-bold  text-white">
+            <h3 className="text-2xl font-bold text-white">
               {t("contacts.our")}
             </h3>
             <a
               className="text-2xl font-bold text-white"
               href="tel:+77222423224"
             >
-              +7 (7222) 42-32-24
+              {t("contacts.phone_main")}
             </a>
             <a
               className="text-2xl font-bold text-white"
-              href="mailto:semey@abu.edu.kz"
+              href={`mailto:${t("contacts.email")}`}
             >
-              semey@abu.edu.kz
+              {t("contacts.email")}
             </a>
             <h3 className="text-2xl font-bold text-white">
-              {t("contacts.admissions")}
+              {t("contacts.callCenter.title")}
             </h3>
-            <a
-              className="text-2xl font-bold text-white"
-              href="tel:+77222423224"
-            >
-              +7 (7222) 44-24-56
-            </a>
-            <a
-              className="text-2xl font-bold text-white"
-              href="tel:+77222423224"
-            >
-              +7 (700) 643 43 56
-            </a>
+            <span className="text-2xl font-bold text-white">
+              {t("contacts.callCenter.line1")}
+            </span>
+            <span className="text-2xl font-bold text-white">
+              {t("contacts.callCenter.line2")}
+            </span>
+            <span className="text-2xl font-bold text-white">
+              {t("contacts.callCenter.line3")}
+            </span>
           </div>
           <div className="rounded-md text-white p-4">
             <h3 className="text-2xl mb-[15px] text-white font-bold">

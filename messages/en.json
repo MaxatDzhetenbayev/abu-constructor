@@ -95,7 +95,15 @@
       "our": "Our contacts",
       "social": "Social Networks",
       "admissions": "Admissions Committee from 20.06 to 25.08",
-      "geo": "Abai region, Semey city, Mangilik El street, 11"
+      "geo": "Abai region, Semey city, Mangilik El street, 11",
+      "phone_main": "+7 (7222) 42-32-24",
+      "email": "semey@abu.edu.kz",
+      "callCenter": {
+        "title": "Call Center",
+        "line1": "+7 (7222) 55-09-71 – for general inquiries",
+        "line2": "+7 (7222) 55-09-70 – for admission inquiries",
+        "line3": "+7 (708) 510-85-62 – WhatsApp"
+      }
     }
   },
   "login": {
