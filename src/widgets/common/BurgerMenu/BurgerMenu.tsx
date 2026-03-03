@@ -38,7 +38,7 @@ export const BurgerMenu = () => {
       >
         <Menu size={32} color="#67493E" />
       </Button>
-      <DrawerContent className="rounded-none bg-[#67493E] border-none px-4 py-4 h-screen overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+      <DrawerContent className="rounded-none bg-[#67493E] border-none px-4 py-4 h-screen overflow-y-auto">
         <div className="relative flex flex-col gap-3 text-xl text-white">
           <section className="flex justify-between items-center">
             <ChangeLocale className="text-white" />
@@ -104,7 +104,7 @@ const MenuLink = ({
         <DrawerTrigger className="text-start flex justify-start items-center gap-3">
           {page.title[locale]} <ChevronRight className="" />
         </DrawerTrigger>
-        <DrawerContent className="rounded-none bg-[#67493E] border-none px-4 py-14 h-screen overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+        <DrawerContent className="rounded-none bg-[#67493E] border-none px-4 py-14 h-screen overflow-y-auto">
           <div className=" relative flex flex-col gap-3 text-xl text-white ">
             <Button
               onClick={() => setOpen(false)}
