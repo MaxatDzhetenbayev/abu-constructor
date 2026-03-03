@@ -38,8 +38,8 @@ export const BurgerMenu = () => {
       >
         <Menu size={32} color="#67493E" />
       </Button>
-      <DrawerContent className="rounded-none bg-[#67493E] border-none px-4 py-4 h-screen overflow-y-auto">
-        <div className="relative flex flex-col gap-3 text-xl text-white">
+      <DrawerContent className="rounded-none bg-[#67493E] border-none px-4 py-4 h-screen overflow-y-scroll overscroll-y-contain touch-pan-y">
+        <div className="relative flex flex-col gap-2 text-lg text-white">
           <section className="flex justify-between items-center">
             <ChangeLocale className="text-white" />
             <Button
@@ -56,8 +56,8 @@ export const BurgerMenu = () => {
               <MenuLink key={p.id} page={p} locale={params.locale as string} />
             ))}
         </div>
-        <div className="w-full h-[2px] bg-white my-6"></div>
-        <div className="flex flex-col gap-2">
+        <div className="w-full h-[2px] bg-white my-3"></div>
+        <div className="flex flex-col gap-1">
           {topHeaderMenuList.map((item, index) => (
             <Link
               href={item.link}
@@ -104,8 +104,8 @@ const MenuLink = ({
         <DrawerTrigger className="text-start flex justify-start items-center gap-3">
           {page.title[locale]} <ChevronRight className="" />
         </DrawerTrigger>
-        <DrawerContent className="rounded-none bg-[#67493E] border-none px-4 py-14 h-screen overflow-y-auto">
-          <div className=" relative flex flex-col gap-3 text-xl text-white ">
+        <DrawerContent className="rounded-none bg-[#67493E] border-none px-4 py-14 h-screen overflow-y-scroll overscroll-y-contain touch-pan-y">
+          <div className=" relative flex flex-col gap-2 text-lg text-white ">
             <Button
               onClick={() => setOpen(false)}
               variant={"ghost"}
