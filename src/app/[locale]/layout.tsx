@@ -21,8 +21,6 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <head>
-        <Script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full" />
-        <Script src="../../shared/lib/map.js" />
         <Script
           defer
           src="https://dev.ispark.kz/analytics/script.js"
