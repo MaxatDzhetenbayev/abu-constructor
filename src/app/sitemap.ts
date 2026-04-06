@@ -4,12 +4,12 @@ import { fetchNavigation } from '@/entities/navigation/api/fetchNavigation';
 
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const DOMAIN = 'https://abu.edu.kz'
+  const DOMAIN = process.env.SITE_URL ?? 'https://abu.edu.kz'
 
   const navigation = await fetchNavigation();
   const locales = ['ru', 'kz', 'en']
 
-  return navigation.flatMap(item =>
+  return navigation?.length ? navigation.flatMap(item =>
     locales.map(locale => {
       const path = item.slug ? `/${locale}/${item.slug}` : `/${locale}`
   
@@ -18,5 +18,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         lastModified: new Date(item.updatedAt),
       }
     })
-  )
+  ) : []
 }
