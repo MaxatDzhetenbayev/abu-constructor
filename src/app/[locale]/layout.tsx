@@ -4,6 +4,7 @@ import { getMessages } from "next-intl/server";
 
 import { AccessibilityProvider, QueryProvider } from "@/shared/providers";
 import { Toaster } from "@/shared/ui";
+import { ChatWidget } from "@/widgets/common/chat-widget/ChatWidget";
 
 import "../globals.css";
 
@@ -33,6 +34,7 @@ export default async function LocaleLayout({
             <AccessibilityProvider>{children}</AccessibilityProvider>
           </QueryProvider>
           <Toaster />
+          <ChatWidget />
         </NextIntlClientProvider>
       </body>
     </html>
