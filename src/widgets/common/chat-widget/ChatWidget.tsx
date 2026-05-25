@@ -243,10 +243,12 @@ export const ChatWidget = () => {
             continue;
           }
 
+          const contentChunk = event.content.replace(/\\n/g, "\n");
+
           setMessages((prev) =>
             prev.map((item) =>
               item.id === assistantId
-                ? { ...item, content: item.content + event.content }
+                ? { ...item, content: item.content + contentChunk }
                 : item,
             ),
           );
@@ -255,10 +257,11 @@ export const ChatWidget = () => {
 
       const trailingEvent = parseStreamLine(buffer);
       if (trailingEvent?.type === "item" && trailingEvent.content) {
+        const contentChunk = trailingEvent.content.replace(/\\n/g, "\n");
         setMessages((prev) =>
           prev.map((item) =>
             item.id === assistantId
-              ? { ...item, content: item.content + trailingEvent.content }
+              ? { ...item, content: item.content + contentChunk }
               : item,
           ),
         );
@@ -401,7 +404,7 @@ export const ChatWidget = () => {
               return (
                 <div
                   key={item.id}
-                  className={`max-w-[85%] rounded-2xl px-3 py-2 text-sm leading-6 ${
+                  className={`max-w-[85%] rounded-2xl px-3 py-2 text-sm leading-6 whitespace-pre-wrap ${
                     isUser
                       ? "ml-auto text-white"
                       : "mr-auto border border-[#eadfd8] bg-[#faf6f3] text-[#3d312c]"
