@@ -56,6 +56,11 @@ export const Partners = () => {
         img: "/icons/partners/16.png",
         link: "https://swib.ch/",
       },
+      {
+        name: "ENAI",
+        img: "/icons/partners/17.jpeg",
+        link: "https://www.academicintegrity.eu/wp/",
+      },
     ])
     .flat();
   return (
